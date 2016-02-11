@@ -39,24 +39,30 @@
       <HintPath>C:\Program Files\LANDIS-II\v6\bin\6.0\Landis.Core.dll</HintPath>
     </Reference>
     <Reference Include="Landis.Library.AgeOnlyCohorts">
-      <HintPath>C:\Program Files\LANDIS-II\v6\bin\extensions\Landis.Library.AgeOnlyCohorts.dll</HintPath>
+      <HintPath>..\lib\Landis.Library.AgeOnlyCohorts.dll</HintPath>
+    </Reference>
+    <Reference Include="Landis.Library.Biomass-v1">
+      <HintPath>..\lib\Landis.Library.Biomass-v1.dll</HintPath>
+    </Reference>
+    <Reference Include="Landis.Library.BiomassCohorts">
+      <HintPath>..\lib\Landis.Library.BiomassCohorts.dll</HintPath>
     </Reference>
     <Reference Include="Landis.Library.Climate, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files\LANDIS-II\v6\bin\extensions\Landis.Library.Climate.dll</HintPath>
+      <HintPath>..\lib\Landis.Library.Climate.dll</HintPath>
     </Reference>
     <Reference Include="Landis.Library.Cohorts">
-      <HintPath>C:\Program Files\LANDIS-II\v6\bin\extensions\Landis.Library.Cohorts.dll</HintPath>
+      <HintPath>..\lib\Landis.Library.Cohorts.dll</HintPath>
     </Reference>
     <Reference Include="Landis.Library.LeafBiomassCohorts">
-      <HintPath>C:\Program Files\LANDIS-II\v6\bin\extensions\Landis.Library.LeafBiomassCohorts.dll</HintPath>
+      <HintPath>..\lib\Landis.Library.LeafBiomassCohorts.dll</HintPath>
     </Reference>
     <Reference Include="Landis.Library.Metadata, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files\LANDIS-II\v6\bin\extensions\Landis.Library.Metadata.dll</HintPath>
+      <HintPath>..\lib\Landis.Library.Metadata.dll</HintPath>
     </Reference>
     <Reference Include="Landis.Library.Succession">
-      <HintPath>C:\Program Files\LANDIS-II\v6\bin\extensions\Landis.Library.Succession.dll</HintPath>
+      <HintPath>..\lib\Landis.Library.Succession.dll</HintPath>
     </Reference>
     <Reference Include="Landis.SpatialModeling">
       <HintPath>C:\Program Files\LANDIS-II\v6\bin\6.0\Landis.SpatialModeling.dll</HintPath>
