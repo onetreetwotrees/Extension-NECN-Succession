@@ -19,17 +19,16 @@ namespace Landis.Extension.Succession.Century
 {
     public class Outputs
     {
-        //private static StreamWriter log;
-        //private static StreamWriter logMonthly;
         public static StreamWriter CalibrateLog;
         public static MetadataTable<MonthlyLog> monthlyLog; 
-        public static MetadataTable<PrimaryLog> primaryLog; 
+        public static MetadataTable<PrimaryLog> primaryLog;
+        public static MetadataTable<PrimaryLogShort> primaryLogShort;
 
 
         //---------------------------------------------------------------------
         //public static void Initialize(IInputParameters parameters)
         //{
-        
+
         //    string logFileName   = "Century-succession-log.csv";
         //    PlugIn.ModelCore.UI.WriteLine("   Opening Century-succession log file \"{0}\" ...", logFileName);
         //    try {
@@ -39,7 +38,7 @@ namespace Landis.Extension.Succession.Century
         //        string mesg = string.Format("{0}", err.Message);
         //        throw new System.ApplicationException(mesg);
         //    }
-            
+
         //    log.AutoFlush = true;
         //    log.Write("Time, Ecoregion, NumSites,");
         //    log.Write("NEEC, SOMTC, AGB, ");
@@ -62,26 +61,65 @@ namespace Landis.Extension.Succession.Century
         //---------------------------------------------------------------------
         //public static void InitializeMonthly(IInputParameters parameters)
         //{
-            //string logFileName   = "Century-succession-monthly-log.csv"; 
-            //PlugIn.ModelCore.UI.WriteLine("   Opening Century-succession log file \"{0}\" ...", logFileName);
-            //try {
-            //    logMonthly = new StreamWriter(logFileName);
-            //}
-            //catch (Exception err) {
-            //    string mesg = string.Format("{0}", err.Message);
-            //    throw new System.ApplicationException(mesg);
-            //}
-            
-            //logMonthly.AutoFlush = true;
-            //logMonthly.Write("Time, Month, Ecoregion, NumSites,");
-            //logMonthly.Write("PPT, T, ");
-            //logMonthly.Write("NPPC, Resp, NEE, ");
-            //logMonthly.Write("Ndeposition,");
-            //logMonthly.WriteLine("");
+        //string logFileName   = "Century-succession-monthly-log.csv"; 
+        //PlugIn.ModelCore.UI.WriteLine("   Opening Century-succession log file \"{0}\" ...", logFileName);
+        //try {
+        //    logMonthly = new StreamWriter(logFileName);
+        //}
+        //catch (Exception err) {
+        //    string mesg = string.Format("{0}", err.Message);
+        //    throw new System.ApplicationException(mesg);
+        //}
+
+        //logMonthly.AutoFlush = true;
+        //logMonthly.Write("Time, Month, Ecoregion, NumSites,");
+        //logMonthly.Write("PPT, T, ");
+        //logMonthly.Write("NPPC, Resp, NEE, ");
+        //logMonthly.Write("Ndeposition,");
+        //logMonthly.WriteLine("");
 
 
         //}
 
+
+        //---------------------------------------------------------------------
+        public static void WriteShortPrimaryLogFile(int CurrentTime)
+        {
+
+            double avgNEEc = 0.0;
+            double avgSOMtc = 0.0;
+            double avgAGB = 0.0;
+            double avgAGNPPtc = 0.0;
+            double avgMineralN = 0.0;
+            double avgDeadWoodC = 0.0;
+
+
+            foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
+            {
+                avgNEEc += (double) SiteVars.AnnualNEE[site] / PlugIn.ModelCore.Landscape.ActiveSiteCount;
+                avgSOMtc += (double) GetOrganicCarbon(site) / PlugIn.ModelCore.Landscape.ActiveSiteCount; 
+                avgAGB += (double) Century.ComputeLivingBiomass(SiteVars.Cohorts[site]) / PlugIn.ModelCore.Landscape.ActiveSiteCount; 
+                avgAGNPPtc += (double) SiteVars.AGNPPcarbon[site] / PlugIn.ModelCore.Landscape.ActiveSiteCount;
+                avgMineralN += (double) SiteVars.MineralN[site] / PlugIn.ModelCore.Landscape.ActiveSiteCount;
+                avgDeadWoodC += (double) SiteVars.SurfaceDeadWood[site].Carbon / PlugIn.ModelCore.Landscape.ActiveSiteCount;
+
+            }
+
+            primaryLogShort.Clear();
+            PrimaryLogShort pl = new PrimaryLogShort();
+
+            pl.Time = CurrentTime;
+            pl.NEEC = avgNEEc;
+            pl.SOMTC = avgSOMtc;
+            pl.AGB = avgAGB;
+            pl.AG_NPPC = avgAGNPPtc;
+            pl.MineralN = avgMineralN;
+            pl.C_DeadWood = avgDeadWoodC;
+
+            primaryLogShort.AddObject(pl);
+            primaryLogShort.WriteToFile();
+
+        }
 
         //---------------------------------------------------------------------
         public static void WritePrimaryLogFile(int CurrentTime)
