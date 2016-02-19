@@ -88,7 +88,7 @@ namespace Landis.Extension.Succession.Century
 
             double avgNEEc = 0.0;
             double avgSOMtc = 0.0;
-            double avgAGB = 0.0;
+            int avgAGB = 0.0;
             double avgAGNPPtc = 0.0;
             double avgMineralN = 0.0;
             double avgDeadWoodC = 0.0;
@@ -96,12 +96,12 @@ namespace Landis.Extension.Succession.Century
 
             foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
             {
-                avgNEEc += (double) SiteVars.AnnualNEE[site] / PlugIn.ModelCore.Landscape.ActiveSiteCount;
-                avgSOMtc += (double) GetOrganicCarbon(site) / PlugIn.ModelCore.Landscape.ActiveSiteCount; 
-                avgAGB += (double) Century.ComputeLivingBiomass(SiteVars.Cohorts[site]) / PlugIn.ModelCore.Landscape.ActiveSiteCount; 
-                avgAGNPPtc += (double) SiteVars.AGNPPcarbon[site] / PlugIn.ModelCore.Landscape.ActiveSiteCount;
-                avgMineralN += (double) SiteVars.MineralN[site] / PlugIn.ModelCore.Landscape.ActiveSiteCount;
-                avgDeadWoodC += (double) SiteVars.SurfaceDeadWood[site].Carbon / PlugIn.ModelCore.Landscape.ActiveSiteCount;
+                avgNEEc += SiteVars.AnnualNEE[site] / PlugIn.ModelCore.Landscape.ActiveSiteCount;
+                avgSOMtc += GetOrganicCarbon(site) / PlugIn.ModelCore.Landscape.ActiveSiteCount; 
+                avgAGB += Century.ComputeLivingBiomass(SiteVars.Cohorts[site]); 
+                avgAGNPPtc += SiteVars.AGNPPcarbon[site] / PlugIn.ModelCore.Landscape.ActiveSiteCount;
+                avgMineralN += SiteVars.MineralN[site] / PlugIn.ModelCore.Landscape.ActiveSiteCount;
+                avgDeadWoodC += SiteVars.SurfaceDeadWood[site].Carbon / PlugIn.ModelCore.Landscape.ActiveSiteCount;
 
             }
 
@@ -111,7 +111,7 @@ namespace Landis.Extension.Succession.Century
             pl.Time = CurrentTime;
             pl.NEEC = avgNEEc;
             pl.SOMTC = avgSOMtc;
-            pl.AGB = avgAGB;
+            pl.AGB = (double) avgAGB / PlugIn.ModelCore.Landscape.ActiveSiteCount;
             pl.AG_NPPC = avgAGNPPtc;
             pl.MineralN = avgMineralN;
             pl.C_DeadWood = avgDeadWoodC;
