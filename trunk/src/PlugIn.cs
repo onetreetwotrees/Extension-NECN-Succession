@@ -119,7 +119,8 @@ namespace Landis.Extension.Succession.Century
                 Outputs.CreateCalibrateLogFile();
 
             Outputs.WritePrimaryLogFile(0);
-            
+            Outputs.WriteShortPrimaryLogFile(0);
+
         }
 
         //---------------------------------------------------------------------
@@ -152,6 +153,8 @@ namespace Landis.Extension.Succession.Century
                     Outputs.WriteMonthlyLogFile(month);
                 }
                 Outputs.WritePrimaryLogFile(PlugIn.ModelCore.CurrentTime);
+                Outputs.WriteShortPrimaryLogFile(PlugIn.ModelCore.CurrentTime);
+
 
                 if (SoilCarbonMapNames != null)// && (PlugIn.ModelCore.CurrentTime % SoilCarbonMapFrequency) == 0)
                 {
