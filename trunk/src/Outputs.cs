@@ -88,7 +88,7 @@ namespace Landis.Extension.Succession.Century
 
             double avgNEEc = 0.0;
             double avgSOMtc = 0.0;
-            int avgAGB = 0.0;
+            int avgAGB = 0;
             double avgAGNPPtc = 0.0;
             double avgMineralN = 0.0;
             double avgDeadWoodC = 0.0;
