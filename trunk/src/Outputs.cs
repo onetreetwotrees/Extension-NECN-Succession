@@ -566,7 +566,8 @@ namespace Landis.Extension.Succession.Century
             CalibrateLog.Write("availableWater,");  //from Water_limit
             CalibrateLog.Write("LAI,tlai,rlai,");  // from ComputeChange
             CalibrateLog.Write("mineralNalloc, resorbedNalloc, ");  // from calculateN_Limit
-            CalibrateLog.Write("limitLAI, limitH20, limitT, limitCapacity, limitN, ");  //from ComputeActualANPP
+            //CalibrateLog.Write("limitLAI, limitH20, limitT, limitCapacity, limitN, ");  //from ComputeActualANPP
+            CalibrateLog.Write("limitLAI, limitH20, limitT, limitN, ");  //from ComputeActualANPP
             CalibrateLog.Write("maxNPP, Bmax, Bsite, Bcohort, soilTemp, ");  //from ComputeActualANPP
             CalibrateLog.Write("actualWoodNPP, actualLeafNPP, ");  //from ComputeActualANPP
             CalibrateLog.Write("NPPwood, NPPleaf, ");  //from ComputeNPPcarbon
