@@ -88,7 +88,7 @@ namespace Landis.Extension.Succession.Century
 
             double avgNEEc = 0.0;
             double avgSOMtc = 0.0;
-            int avgAGB = 0;
+            double avgAGB = 0.0;
             double avgAGNPPtc = 0.0;
             double avgMineralN = 0.0;
             double avgDeadWoodC = 0.0;
@@ -98,7 +98,7 @@ namespace Landis.Extension.Succession.Century
             {
                 avgNEEc += SiteVars.AnnualNEE[site] / PlugIn.ModelCore.Landscape.ActiveSiteCount;
                 avgSOMtc += GetOrganicCarbon(site) / PlugIn.ModelCore.Landscape.ActiveSiteCount; 
-                avgAGB += Century.ComputeLivingBiomass(SiteVars.Cohorts[site]); 
+                avgAGB += Century.ComputeLivingBiomass(SiteVars.Cohorts[site]) / PlugIn.ModelCore.Landscape.ActiveSiteCount; 
                 avgAGNPPtc += SiteVars.AGNPPcarbon[site] / PlugIn.ModelCore.Landscape.ActiveSiteCount;
                 avgMineralN += SiteVars.MineralN[site] / PlugIn.ModelCore.Landscape.ActiveSiteCount;
                 avgDeadWoodC += SiteVars.SurfaceDeadWood[site].Carbon / PlugIn.ModelCore.Landscape.ActiveSiteCount;
@@ -111,7 +111,7 @@ namespace Landis.Extension.Succession.Century
             pl.Time = CurrentTime;
             pl.NEEC = avgNEEc;
             pl.SOMTC = avgSOMtc;
-            pl.AGB = (double) avgAGB / PlugIn.ModelCore.Landscape.ActiveSiteCount;
+            pl.AGB = avgAGB;
             pl.AG_NPPC = avgAGNPPtc;
             pl.MineralN = avgMineralN;
             pl.C_DeadWood = avgDeadWoodC;
@@ -280,7 +280,7 @@ namespace Landis.Extension.Succession.Century
                 
                 avgNEEc[ecoregion.Index]    += SiteVars.AnnualNEE[site];
                 avgSOMtc[ecoregion.Index]    += GetOrganicCarbon(site);
-                avgAGB[ecoregion.Index] += Century.ComputeLivingBiomass(SiteVars.Cohorts[site]); // + SiteVars.CohortWoodC[site]) * 2.13;
+                avgAGB[ecoregion.Index] += Century.ComputeLivingBiomass(SiteVars.Cohorts[site]); 
                 
                 avgAGNPPtc[ecoregion.Index]    += SiteVars.AGNPPcarbon[site];
                 avgBGNPPtc[ecoregion.Index]    += SiteVars.BGNPPcarbon[site];
