@@ -21,13 +21,13 @@ Source: ..\src\bin\Debug\Landis.Library.Succession.dll; DestDir: {#ExtDir}; Flag
 Source: ..\src\bin\Debug\Landis.Library.Metadata.dll; DestDir: {#ExtDir}; Flags:replacesameversion
 Source: ..\src\bin\Debug\Landis.Library.Climate.dll; DestDir: {#ExtDir}; Flags: replacesameversion
 Source: ..\src\bin\Debug\Landis.Library.BiomassCohorts.dll; DestDir: {#ExtDir}; Flags: uninsneveruninstall replacesameversion
-Source: ..\src\bin\Debug\Landis.Library.Biomass.dll; DestDir: {#ExtDir}; Flags: uninsneveruninstall replacesameversion
+Source: ..\src\bin\Debug\Landis.Library.Biomass-v1.dll; DestDir: {#ExtDir}; Flags: uninsneveruninstall replacesameversion
 
 ; Century Succession
 Source: ..\src\bin\Debug\Landis.Extension.Succession.Century.dll; DestDir: {#ExtDir}; Flags: replacesameversion
 
 ; Supporting documents
-Source: docs\LANDIS-II Century Succession v4.0.3 User Guide.pdf; DestDir: {#AppDir}\docs
+Source: docs\LANDIS-II Century Succession v4.1 User Guide.pdf; DestDir: {#AppDir}\docs
 Source: docs\LANDIS-II Climate Library v1.0 User Guide.pdf; DestDir: {#AppDir}\docs
 Source: docs\Century-calibrate-log-metadata.csv; DestDir: {#AppDir}\docs
 Source: docs\Century-prob-establish-log-metadata.csv; DestDir: {#AppDir}\docs
@@ -38,7 +38,7 @@ Source: examples\single_cell_3.img; DestDir: {#AppDir}\examples\century-successi
 Source: examples\ecoregions.gis; DestDir: {#AppDir}\examples\century-succession
 Source: examples\initial-communities.gis; DestDir: {#AppDir}\examples\century-succession
 
-#define CenturySucc "Century Succession 4.0.3.txt"
+#define CenturySucc "Century Succession 4.1.txt"
 Source: {#CenturySucc}; DestDir: {#LandisPlugInDir}
 
 [InstallDelete]
