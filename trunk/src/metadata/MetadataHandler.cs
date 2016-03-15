@@ -38,6 +38,7 @@ namespace Landis.Extension.Succession.Century
             //---------------------------------------
 
             Outputs.primaryLog = new MetadataTable<PrimaryLog>("Century-succession-log.csv");
+            Outputs.primaryLogShort = new MetadataTable<PrimaryLogShort>("Century-succession-log-short.csv");
             Outputs.monthlyLog = new MetadataTable<MonthlyLog>("Century-succession-monthly-log.csv");
 
             OutputMetadata tblOut_monthly = new OutputMetadata()
@@ -55,11 +56,21 @@ namespace Landis.Extension.Succession.Century
                 Type = OutputType.Table,
                 Name = "PrimaryLog",
                 FilePath = Outputs.primaryLog.FilePath,
-                Visualize = true,
+                Visualize = false,
             };
             tblOut_primary.RetriveFields(typeof(PrimaryLog));
             Extension.OutputMetadatas.Add(tblOut_primary);
 
+            OutputMetadata tblOut_primaryShort = new OutputMetadata()
+            {
+                Type = OutputType.Table,
+                Name = "PrimaryLogShort",
+                FilePath = Outputs.primaryLogShort.FilePath,
+                Visualize = true,
+            };
+            tblOut_primaryShort.RetriveFields(typeof(PrimaryLogShort));
+            Extension.OutputMetadatas.Add(tblOut_primaryShort);
+            
             //---------------------------------------            
             //          map outputs:         
             //---------------------------------------

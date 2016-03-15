@@ -90,6 +90,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="metadata\MonthlyLog.cs" />
+    <Compile Include="metadata\PrimaryLogShort.cs" />
     <Compile Include="metadata\PrimaryLog.cs" />
     <Compile Include="utility\BaseCohortsSiteVar.cs" />
     <Compile Include="Century.cs" />
