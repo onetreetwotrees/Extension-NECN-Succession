@@ -14,14 +14,14 @@
 
 [Files]
 ; Auxiliary libs
-Source: ..\src\bin\Debug\Landis.Library.AgeOnlyCohorts.dll; DestDir: {#ExtDir}; Flags: replacesameversion
-Source: ..\src\bin\Debug\Landis.Library.Cohorts.dll; DestDir: {#ExtDir}; Flags: replacesameversion
-Source: ..\src\bin\Debug\Landis.Library.LeafBiomassCohorts.dll; DestDir: {#ExtDir}; Flags: replacesameversion
-Source: ..\src\bin\Debug\Landis.Library.Succession.dll; DestDir: {#ExtDir}; Flags: replacesameversion
-Source: ..\src\bin\Debug\Landis.Library.Metadata.dll; DestDir: {#ExtDir}; Flags:replacesameversion
-Source: ..\src\bin\Debug\Landis.Library.Climate.dll; DestDir: {#ExtDir}; Flags: replacesameversion
-Source: ..\src\bin\Debug\Landis.Library.BiomassCohorts.dll; DestDir: {#ExtDir}; Flags: uninsneveruninstall replacesameversion
-Source: ..\src\bin\Debug\Landis.Library.Biomass-v1.dll; DestDir: {#ExtDir}; Flags: uninsneveruninstall replacesameversion
+Source: ..\src\lib\Landis.Library.AgeOnlyCohorts.dll; DestDir: {#ExtDir}; Flags: replacesameversion
+Source: ..\src\lib\Landis.Library.Cohorts.dll; DestDir: {#ExtDir}; Flags: replacesameversion
+Source: ..\src\lib\Landis.Library.LeafBiomassCohorts.dll; DestDir: {#ExtDir}; Flags: replacesameversion
+Source: ..\src\lib\Landis.Library.Succession.dll; DestDir: {#ExtDir}; Flags: replacesameversion
+Source: ..\src\lib\Landis.Library.Metadata.dll; DestDir: {#ExtDir}; Flags:replacesameversion
+Source: ..\src\lib\Landis.Library.Climate.dll; DestDir: {#ExtDir}; Flags: replacesameversion
+Source: ..\src\lib\Landis.Library.BiomassCohorts.dll; DestDir: {#ExtDir}; Flags: uninsneveruninstall replacesameversion
+Source: ..\src\lib\Landis.Library.Biomass-v1.dll; DestDir: {#ExtDir}; Flags: uninsneveruninstall replacesameversion
 
 ; Century Succession
 Source: ..\src\bin\Debug\Landis.Extension.Succession.Century.dll; DestDir: {#ExtDir}; Flags: replacesameversion
