@@ -13,8 +13,36 @@ using System.IO;
 
 namespace Landis.Extension.Succession.Century
 {
-    public class SpeciesData
+
+    //public interface ISpeciesData : Landis.Core.ISpecies
+    //{
+    //    int funcType { get; }
+    //    bool NFixer { get; }
+    //    int GDDmin { get; }
+    //    int GDDmax { get; }
+    //    int MinJanTemp { get; }
+    //    double MaxDrought { get; }
+    //    double LeafLongevity { get; }
+    //    bool Epicormic { get; }
+    //    double LeafLignin { get; }
+    //    double WoodLignin { get; }
+    //    double CoarseRootLignin { get; }
+    //    double FineRootLignin { get; }
+    //    double LeafCN { get; }
+    //    double WoodCN { get; }
+    //    double CoarseRootCN { get; }
+    //    double LeafLitterCN { get; }
+    //    double FineRootCN { get; }
+    //    Ecoregions.AuxParm<double> EstablishProbability { get; }
+    //    public static Species.AuxParm<Ecoregions.AuxParm<int>> ANPP_MAX_Spp { get; }
+    //    public static Species.AuxParm<Ecoregions.AuxParm<int>> B_MAX_Spp { get; }
+    //}
+
+    public class SpeciesData // : ISpeciesData
     {
+        //public static Dictionary<ISpecies, ISpeciesData> AllSpecies;
+
+        //private ISpecies _species;    // the 'original' landis species
 
         public static Species.AuxParm<int> FuncType;
         public static Species.AuxParm<bool> NFixer;
@@ -61,8 +89,15 @@ namespace Landis.Extension.Succession.Century
             CoarseRootCN        = parameters.CoarseRootCN;
             LeafLitterCN        = parameters.FoliageLitterCN;
             FineRootCN          = parameters.FineRootCN;
-            //NLimits = new Species.AuxParm<double>(PlugIn.ModelCore.Species);
+
+            //AllSpecies = new Dictionary<ISpecies, ISpeciesData>();
+
+            //foreach (ISpecies spp in PlugIn.ModelCore.Species)
+            //{
+            //    AllSpecies.Add(spp, new SpeciesData(spp));
+            //}
             
+
             Establishment.Initialize();
             
             // The initial set of establishment probabilities:
@@ -72,6 +107,11 @@ namespace Landis.Extension.Succession.Century
             
             
         }
+
+        //public SpeciesData(ISpecies species) // Constructor of SpeciesData
+        //{
+        //    FuncType = funcType[species];
+        //}
         
         public static void ChangeParameters(Dynamic.IParameters parameters)
         {
