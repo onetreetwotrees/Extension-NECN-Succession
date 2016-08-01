@@ -324,7 +324,7 @@ namespace Landis.Extension.Succession.Century
         {
 
             InitialBiomass initialBiomass = InitialBiomass.Compute(site, initialCommunity);
-            SiteVars.Cohorts[site] = InitialBiomass.Clone(initialBiomass.Cohorts);
+            //SiteVars.Cohorts[site] = InitialBiomass.Clone(initialBiomass.Cohorts);
             //IEcoregion ecoregion = PlugIn.ModelCore.Ecoregion[site];
 
             SiteVars.SurfaceDeadWood[site]       = initialBiomass.SurfaceDeadWood.Clone();

@@ -372,29 +372,29 @@ namespace Landis.Extension.Succession.Century
         /// Computes the initial biomass for a cohort at a site.
         /// </summary>
         public static float[] InitialBiomass(ISpecies species, ISiteCohorts siteCohorts,
-                                            ActiveSite  site)
+                                            ActiveSite site)
         {
             IEcoregion ecoregion = PlugIn.ModelCore.Ecoregion[site];
 
             double leafFrac = FunctionalType.Table[SpeciesData.FuncType[species]].FCFRACleaf;
-           
+
             double B_ACT = SiteVars.ActualSiteBiomass(site);
             double B_MAX = SpeciesData.B_MAX_Spp[species][ecoregion];
 
             //  Initial biomass exponentially declines in response to
             //  competition.
             double initialBiomass = 0.002 * B_MAX * Math.Exp(-1.6 * B_ACT / B_MAX);
-            
+
             initialBiomass = Math.Max(initialBiomass, 5.0);
 
             double initialLeafB = initialBiomass * leafFrac;
             double initialWoodB = initialBiomass - initialLeafB;
-            double[] initialB = new double[2]{initialWoodB, initialLeafB};
+            double[] initialB = new double[2] { initialWoodB, initialLeafB };
 
 
-           
 
-            float[] initialWoodLeafBiomass = new float[2]{(float) initialB[0], (float) initialB[1]};
+
+            float[] initialWoodLeafBiomass = new float[2] { (float)initialB[0], (float)initialB[1] };
 
             return initialWoodLeafBiomass;
         }
