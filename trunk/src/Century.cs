@@ -44,16 +44,6 @@ namespace Landis.Extension.Succession.Century
                 if(y == 0 && SiteVars.FireSeverity != null && SiteVars.FireSeverity[site] > 0)
                     FireEffects.ReduceLayers(SiteVars.FireSeverity[site], site);
 
-                //if (PlugIn.ModelCore.CurrentTime == 0)
-                //    EcoregionData.SetAnnualClimate(PlugIn.ModelCore.Ecoregion[site], y, Climate.Phase.SpinUp_Climate);
-                //else
-                //    EcoregionData.SetAnnualClimate(PlugIn.ModelCore.Ecoregion[site], y, Climate.Phase.Future_Climate);
-                // Do not reset annual climate if it has already happend for this year.
-                //if(!EcoregionData.ClimateUpdates[ecoregion][y + PlugIn.ModelCore.CurrentTime])
-                //{
-                //    EcoregionData.ClimateUpdates[ecoregion][y + PlugIn.ModelCore.CurrentTime] = true;
-                //}
-
                 // Next, Grow and Decompose each month
                 int[] months = new int[12]{6, 7, 8, 9, 10, 11, 0, 1, 2, 3, 4, 5};
 
@@ -92,7 +82,7 @@ namespace Landis.Extension.Succession.Century
                     }
 
                     if (monthlyNdeposition < 0)
-                        throw new System.ApplicationException("Error: Nitrogen deposition input data are not present in climate library");
+                        throw new System.ApplicationException("Error: Nitrogen deposition less than zero.");
 
                     EcoregionData.MonthlyNDeposition[ecoregion][Month] = monthlyNdeposition;
                     EcoregionData.AnnualNDeposition[ecoregion] += monthlyNdeposition;

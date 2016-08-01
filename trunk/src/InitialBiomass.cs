@@ -322,14 +322,16 @@ namespace Landis.Extension.Succession.Century
                                                      ActiveSite site)
                                                      //ComputeMethod initialBiomassMethod)
         {
-            //IEcoregion ecoregion = PlugIn.ModelCore.Ecoregion[site];
+            IEcoregion ecoregion = PlugIn.ModelCore.Ecoregion[site];
 
             SiteVars.Cohorts[site] = new Library.LeafBiomassCohorts.SiteCohorts();
 
-            foreach(ICohort cohort in initComm.Cohorts)
+            foreach(ISpeciesCohorts cohorts in initComm.Cohorts)
             {
-                SiteVars.Cohorts[site].AddNewCohort(cohort.Species, cohort.Age, cohort.WoodBiomass, cohort.LeafBiomass);                
+                foreach(ICohort cohort in cohorts)
+                    SiteVars.Cohorts[site].AddNewCohort(cohort.Species, cohort.Age, cohort.WoodBiomass, cohort.LeafBiomass);                
             }
+            EcoregionData.SetSingleAnnualClimate(ecoregion, 0, Climate.Phase.SpinUp_Climate); //the spinup climate array is sorted from oldest to newest years
 
 
                 //int indexNextAgeCohort = 0;
