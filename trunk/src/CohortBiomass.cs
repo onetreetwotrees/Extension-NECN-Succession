@@ -560,7 +560,7 @@ namespace Landis.Extension.Succession.Century
             //               Forestry, Vol. 54, No. 2, 1981
 
             //totalLAI += lai;
-            // if (totalLAI > EcoregionData.MaxLAI)
+            // if (totalLAI > ClimateRegionData.MaxLAI)
             // lai = 0.1;
 
             // The minimum LAI to calculate effect is 0.2.
@@ -612,12 +612,12 @@ namespace Landis.Extension.Succession.Century
 
             // Ratio_AvailWaterToPET used to be pptprd and WaterLimit used to be pprdwc
             double Ratio_AvailWaterToPET = 0.0;
-            double waterContent = EcoregionData.FieldCapacity[ecoregion] - EcoregionData.WiltingPoint[ecoregion];  // Difference between two fractions (FC - WP), not the actual water content, per se.
-            double tmin = EcoregionData.AnnualWeather[ecoregion].MonthlyMinTemp[Century.Month];
+            double waterContent = ClimateRegionData.FieldCapacity[ecoregion] - ClimateRegionData.WiltingPoint[ecoregion];  // Difference between two fractions (FC - WP), not the actual water content, per se.
+            double tmin = ClimateRegionData.AnnualWeather[ecoregion].MonthlyMinTemp[Century.Month];
             
-            double H2Oinputs = EcoregionData.AnnualWeather[ecoregion].MonthlyPrecip[Century.Month]; //rain + irract;
+            double H2Oinputs = ClimateRegionData.AnnualWeather[ecoregion].MonthlyPrecip[Century.Month]; //rain + irract;
             
-            double pet = EcoregionData.AnnualWeather[ecoregion].MonthlyPET[Century.Month];
+            double pet = ClimateRegionData.AnnualWeather[ecoregion].MonthlyPET[Century.Month];
             //PlugIn.ModelCore.UI.WriteLine("pet={0}, waterContent={1}, precip={2}.", pet, waterContent, H2Oinputs);
             
             if (pet >= 0.01)

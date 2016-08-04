@@ -63,7 +63,7 @@ namespace Landis.Extension.Succession.Century.Dynamic
 
                 //Update Input Data:
                 SpeciesData.ChangeParameters(nextUpdate.Parameters);
-                EcoregionData.ChangeParameters(nextUpdate.Parameters);
+                ClimateRegionData.ChangeParameters(nextUpdate.Parameters);
 
                 PlugIn.ModelCore.UI.WriteLine("   Updated biomass parameters for climate change");
 

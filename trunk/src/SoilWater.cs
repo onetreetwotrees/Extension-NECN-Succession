@@ -54,20 +54,20 @@ namespace Landis.Extension.Succession.Century
             double soilWaterContent = SiteVars.SoilWaterContent[site];
             double liquidSnowpack = SiteVars.LiquidSnowPack[site];
 
-            H2Oinputs = EcoregionData.AnnualWeather[ecoregion].MonthlyPrecip[month]; //rain + irract in cm;
+            H2Oinputs = ClimateRegionData.AnnualWeather[ecoregion].MonthlyPrecip[month]; //rain + irract in cm;
             //PlugIn.ModelCore.UI.WriteLine("SoilWater. WaterInputs={0:0.00}, .", H2Oinputs);
-            tave = EcoregionData.AnnualWeather[ecoregion].MonthlyTemp[month];
+            tave = ClimateRegionData.AnnualWeather[ecoregion].MonthlyTemp[month];
             //PlugIn.ModelCore.UI.WriteLine("SoilWater. AvgTemp={0:0.00}, .", tave);
-            tmax = EcoregionData.AnnualWeather[ecoregion].MonthlyMaxTemp[month];
-            tmin = EcoregionData.AnnualWeather[ecoregion].MonthlyMinTemp[month];
-            pet = EcoregionData.AnnualWeather[ecoregion].MonthlyPET[month];
+            tmax = ClimateRegionData.AnnualWeather[ecoregion].MonthlyMaxTemp[month];
+            tmin = ClimateRegionData.AnnualWeather[ecoregion].MonthlyMinTemp[month];
+            pet = ClimateRegionData.AnnualWeather[ecoregion].MonthlyPET[month];
 
-            double wiltingPoint = EcoregionData.WiltingPoint[ecoregion];
-            double soilDepth = EcoregionData.SoilDepth[ecoregion];
-            double fieldCapacity = EcoregionData.FieldCapacity[ecoregion];
-            double stormFlowFraction = EcoregionData.StormFlowFraction[ecoregion];
-            double baseFlowFraction = EcoregionData.BaseFlowFraction[ecoregion];
-            double drain = EcoregionData.Drain[ecoregion];
+            double wiltingPoint = ClimateRegionData.WiltingPoint[ecoregion];
+            double soilDepth = ClimateRegionData.SoilDepth[ecoregion];
+            double fieldCapacity = ClimateRegionData.FieldCapacity[ecoregion];
+            double stormFlowFraction = ClimateRegionData.StormFlowFraction[ecoregion];
+            double baseFlowFraction = ClimateRegionData.BaseFlowFraction[ecoregion];
+            double drain = ClimateRegionData.Drain[ecoregion];
            
                       
             //...Calculating snow pack first. Occurs when mean monthly air temperature is equal to or below freezing,
@@ -400,7 +400,7 @@ namespace Landis.Extension.Succession.Century
          //...waterMove > 0. indicates a saturated water flow out of layer lyr
             if (waterMove > 0.0 && SiteVars.MineralN[site] > 0.0)
             {
-                double textureEffect = OtherData.MineralLeachIntercept + OtherData.MineralLeachSlope * EcoregionData.PercentSand[ecoregion];
+                double textureEffect = OtherData.MineralLeachIntercept + OtherData.MineralLeachSlope * ClimateRegionData.PercentSand[ecoregion];
                 //double leachIntensity = (1.0 - (OtherData.OMLeachWater - waterMove) / OtherData.OMLeachWater);
                 //amtNLeached = textureEffect * SiteVars.MineralN[site] * OtherData.NfracLeachWater * OtherData.NO3frac;
                 amtNLeached = textureEffect * SiteVars.MineralN[site] *  OtherData.NO3frac;
@@ -482,21 +482,21 @@ namespace Landis.Extension.Succession.Century
         //    double deadBiomass = SiteVars.SurfaceDeadWood[site].Carbon * 2.0;
         //    double soilWaterContent = SiteVars.SoilWaterContent[site];
 
-        //    H2Oinputs = EcoregionData.AnnualWeather[ecoregion].MonthlyPrecip[month]; //rain + irract;
-        //    tave = EcoregionData.AnnualWeather[ecoregion].MonthlyTemp[month];
-        //    tmax = EcoregionData.AnnualWeather[ecoregion].MonthlyMaxTemp[month];
-        //    tmin = EcoregionData.AnnualWeather[ecoregion].MonthlyMinTemp[month];
-        //    pet = EcoregionData.AnnualWeather[ecoregion].MonthlyPET[month];
+        //    H2Oinputs = ClimateRegionData.AnnualWeather[ecoregion].MonthlyPrecip[month]; //rain + irract;
+        //    tave = ClimateRegionData.AnnualWeather[ecoregion].MonthlyTemp[month];
+        //    tmax = ClimateRegionData.AnnualWeather[ecoregion].MonthlyMaxTemp[month];
+        //    tmin = ClimateRegionData.AnnualWeather[ecoregion].MonthlyMinTemp[month];
+        //    pet = ClimateRegionData.AnnualWeather[ecoregion].MonthlyPET[month];
 
         //    PlugIn.ModelCore.UI.WriteLine("Line 91. Really just the inputs. Year={0}, month={1}, AvgMonthlyTemp={2}, tmax={3}, tmin={4}, pet={5:0.0000}, ppt={6}, soilWaterContent={7:0.0000}.", Century.Year, Century.Month, tave, tmax, tmin, pet, H2Oinputs, soilWaterContent);
         //    //double soilTemp         = tave;    
 
-        //    double wiltingPoint = EcoregionData.WiltingPoint[ecoregion];
-        //    double soilDepth = EcoregionData.SoilDepth[ecoregion];
-        //    double fieldCapacity = EcoregionData.FieldCapacity[ecoregion];
-        //    double stormFlowFraction = EcoregionData.StormFlowFraction[ecoregion];
-        //    double baseFlowFraction = EcoregionData.BaseFlowFraction[ecoregion];
-        //    double drain = EcoregionData.Drain[ecoregion];
+        //    double wiltingPoint = ClimateRegionData.WiltingPoint[ecoregion];
+        //    double soilDepth = ClimateRegionData.SoilDepth[ecoregion];
+        //    double fieldCapacity = ClimateRegionData.FieldCapacity[ecoregion];
+        //    double stormFlowFraction = ClimateRegionData.StormFlowFraction[ecoregion];
+        //    double baseFlowFraction = ClimateRegionData.BaseFlowFraction[ecoregion];
+        //    double drain = ClimateRegionData.Drain[ecoregion];
 
         //    //PlugIn.ModelCore.UI.WriteLine("Really just more inputs. wiltingpoint={0}, soildepth={1}, fieldcapacity={2}, stormflow={3}, baseflow={4}, drainage={5}.", wiltingPoint, soilDepth, fieldCapacity, stormFlowFraction, baseFlowFraction, drain);
 

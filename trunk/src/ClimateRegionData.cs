@@ -13,7 +13,7 @@ using System;
 
 namespace Landis.Extension.Succession.Century
 {
-    public class EcoregionData
+    public class ClimateRegionData
     {
 
         //user-defined by ecoregion

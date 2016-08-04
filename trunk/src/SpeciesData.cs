@@ -63,7 +63,7 @@ namespace Landis.Extension.Succession.Century
         public static Species.AuxParm<double> FineRootCN;
         //public static Species.AuxParm<double> NLimits;
 
-        public static Species.AuxParm<Ecoregions.AuxParm<double>> EstablishProbability;
+        //public static Species.AuxParm<Ecoregions.AuxParm<double>> EstablishProbability;
         public static Species.AuxParm<Ecoregions.AuxParm<int>> ANPP_MAX_Spp;
         public static Species.AuxParm<Ecoregions.AuxParm<int>> B_MAX_Spp;
         
@@ -98,10 +98,10 @@ namespace Landis.Extension.Succession.Century
             //}
             
 
-            Establishment.Initialize();
+            //Establishment.Initialize();
             
             // The initial set of establishment probabilities:
-            EstablishProbability = Establishment.GenerateNewEstablishProbabilities(parameters.Timestep);  
+            //EstablishProbability = Establishment.GenerateNewEstablishProbabilities(parameters.Timestep);  
             
             ChangeParameters(parameters);
             

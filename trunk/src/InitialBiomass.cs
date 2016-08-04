@@ -331,7 +331,7 @@ namespace Landis.Extension.Succession.Century
                 foreach(ICohort cohort in cohorts)
                     SiteVars.Cohorts[site].AddNewCohort(cohort.Species, cohort.Age, cohort.WoodBiomass, cohort.LeafBiomass);                
             }
-            EcoregionData.SetSingleAnnualClimate(ecoregion, 0, Climate.Phase.SpinUp_Climate); //the spinup climate array is sorted from oldest to newest years
+            //ClimateRegionData.SetSingleAnnualClimate(ecoregion, 0, Climate.Phase.SpinUp_Climate); //the spinup climate array is sorted from oldest to newest years
 
 
                 //int indexNextAgeCohort = 0;
@@ -352,7 +352,7 @@ namespace Landis.Extension.Succession.Century
                 //for (int time = -(ageCohorts[0].Age); time <= -1; time += successionTimestep)
                 //{
                 //     //PlugIn.ModelCore.UI.WriteLine("  Ageing initial cohorts.  Oldest cohorts={0} yrs, succession timestep={1}.", ageCohorts[0].Age, successionTimestep); 
-                //    EcoregionData.SetSingleAnnualClimate(ecoregion, time + ageCohorts[0].Age, Climate.Phase.SpinUp_Climate); //the spinup climate array is sorted from oldest to newest years
+                //    ClimateRegionData.SetSingleAnnualClimate(ecoregion, time + ageCohorts[0].Age, Climate.Phase.SpinUp_Climate); //the spinup climate array is sorted from oldest to newest years
 
                 //     //  Add those cohorts that were born at the current year
                 //     while (indexNextAgeCohort < ageCohorts.Count && ageCohorts[indexNextAgeCohort].Age == -time)

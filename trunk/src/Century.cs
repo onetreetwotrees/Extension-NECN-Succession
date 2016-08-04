@@ -34,8 +34,9 @@ namespace Landis.Extension.Succession.Century
 
                 Year = y + 1;
                 
-                if (PlugIn.ModelCore.CurrentTime > 0 && Climate.Future_MonthlyData.ContainsKey(PlugIn.FutureClimateBaseYear + y + PlugIn.ModelCore.CurrentTime- years))
-                    EcoregionData.AnnualWeather[ecoregion] = Climate.Future_MonthlyData[PlugIn.FutureClimateBaseYear + y - years + PlugIn.ModelCore.CurrentTime][ecoregion.Index];
+                //if (PlugIn.ModelCore.CurrentTime > 0 && Climate.Future_MonthlyData.ContainsKey(PlugIn.FutureClimateBaseYear + y + PlugIn.ModelCore.CurrentTime- years))
+                if (Climate.Future_MonthlyData.ContainsKey(PlugIn.FutureClimateBaseYear + y + PlugIn.ModelCore.CurrentTime - years))
+                    ClimateRegionData.AnnualWeather[ecoregion] = Climate.Future_MonthlyData[PlugIn.FutureClimateBaseYear + y - years + PlugIn.ModelCore.CurrentTime][ecoregion.Index];
 
                 //PlugIn.ModelCore.UI.WriteLine("PlugIn_FutureClimateBaseYear={0}, y={1}, ModelCore_CurrentTime={2}, CenturyTimeStep = {3}, SimulatedYear = {4}.", PlugIn.FutureClimateBaseYear, y, PlugIn.ModelCore.CurrentTime, years, (PlugIn.FutureClimateBaseYear + y - years + PlugIn.ModelCore.CurrentTime));
 
@@ -71,21 +72,21 @@ namespace Landis.Extension.Succession.Century
                     SiteVars.TotalWoodBiomass[site] = Century.ComputeWoodBiomass((ActiveSite) site);
                     //SiteVars.LAI[site] = Century.ComputeLAI((ActiveSite)site);
                                    
-                    double ppt = EcoregionData.AnnualWeather[ecoregion].MonthlyPrecip[Century.Month];
+                    double ppt = ClimateRegionData.AnnualWeather[ecoregion].MonthlyPrecip[Century.Month];
 
                     double monthlyNdeposition;
-                    if  (EcoregionData.AtmosNintercept[ecoregion]!=-1 && EcoregionData.AtmosNslope[ecoregion] !=-1)
-                        monthlyNdeposition = EcoregionData.AtmosNintercept[ecoregion] + (EcoregionData.AtmosNslope[ecoregion] * ppt);
+                    if  (ClimateRegionData.AtmosNintercept[ecoregion]!=-1 && ClimateRegionData.AtmosNslope[ecoregion] !=-1)
+                        monthlyNdeposition = ClimateRegionData.AtmosNintercept[ecoregion] + (ClimateRegionData.AtmosNslope[ecoregion] * ppt);
                     else 
                     {
-                        monthlyNdeposition = EcoregionData.AnnualWeather[ecoregion].MonthlyNDeposition[Century.Month];
+                        monthlyNdeposition = ClimateRegionData.AnnualWeather[ecoregion].MonthlyNDeposition[Century.Month];
                     }
 
                     if (monthlyNdeposition < 0)
                         throw new System.ApplicationException("Error: Nitrogen deposition less than zero.");
 
-                    EcoregionData.MonthlyNDeposition[ecoregion][Month] = monthlyNdeposition;
-                    EcoregionData.AnnualNDeposition[ecoregion] += monthlyNdeposition;
+                    ClimateRegionData.MonthlyNDeposition[ecoregion][Month] = monthlyNdeposition;
+                    ClimateRegionData.AnnualNDeposition[ecoregion] += monthlyNdeposition;
                     SiteVars.MineralN[site] += monthlyNdeposition;
                     //PlugIn.ModelCore.UI.WriteLine("Ndeposition={0},MineralN={1:0.00}.", monthlyNdeposition, SiteVars.MineralN[site]);
 
@@ -109,7 +110,7 @@ namespace Landis.Extension.Succession.Century
                     //     remains after uptake by plants.  ML added a correction factor for wetlands since their denitrification rate is double that of wetlands
                     //based on a review paper by Seitziner 2006.
 
-                    double volatilize = (SiteVars.MineralN[site] * EcoregionData.Denitrif[ecoregion]); // monthly value
+                    double volatilize = (SiteVars.MineralN[site] * ClimateRegionData.Denitrif[ecoregion]); // monthly value
 
                     //PlugIn.ModelCore.UI.WriteLine("BeforeVol.  MineralN={0:0.00}.", SiteVars.MineralN[site]);
 

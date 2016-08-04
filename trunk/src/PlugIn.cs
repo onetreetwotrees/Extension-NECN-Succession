@@ -87,9 +87,9 @@ namespace Landis.Extension.Succession.Century
             Climate.Initialize(parameters.ClimateConfigFile, false, modelCore);
             FutureClimateBaseYear = Climate.Future_MonthlyData.Keys.Min();
             
-            EcoregionData.Initialize(parameters);
+            ClimateRegionData.Initialize(parameters);
             SpeciesData.Initialize(parameters);
-            EcoregionData.ChangeParameters(parameters);
+            ClimateRegionData.ChangeParameters(parameters);
 
             OtherData.Initialize(parameters);
             FunctionalType.Initialize(parameters);
@@ -112,7 +112,7 @@ namespace Landis.Extension.Succession.Century
             AgeOnlyDisturbances.Module.Initialize(parameters.AgeOnlyDisturbanceParms);
 
             Dynamic.Module.Initialize(parameters.DynamicUpdates);
-            //EcoregionData.Initialize(parameters);
+            //ClimateRegionData.Initialize(parameters);
             FireEffects.Initialize(parameters);
             InitializeSites(parameters.InitialCommunities, parameters.InitialCommunitiesMap, modelCore); //the spinup is heppend within this fucntion
             if (parameters.CalibrateMode)
@@ -132,11 +132,15 @@ namespace Landis.Extension.Succession.Century
                     SiteVars.InitializeDisturbances();
 
             // Update Pest only once.
-            SpeciesData.EstablishProbability = Establishment.GenerateNewEstablishProbabilities(Timestep);
-            EcoregionData.AnnualNDeposition = new Ecoregions.AuxParm<double>(PlugIn.ModelCore.Ecoregions);
+            //SpeciesData.EstablishProbability = Establishment.GenerateNewEstablishProbabilities(Timestep);
+            ClimateRegionData.AnnualNDeposition = new Ecoregions.AuxParm<double>(PlugIn.ModelCore.Ecoregions);
 
-            base.RunReproductionFirst();
+            //base.RunReproductionFirst();
 
+            base.Run();
+
+            if(Timestep > 0)
+                ClimateRegionData.SetAllEcoregions_FutureAnnualClimate(ModelCore.CurrentTime);
 
             if (ModelCore.CurrentTime % Timestep == 0)
             {
@@ -287,7 +291,7 @@ namespace Landis.Extension.Succession.Century
             if (!ecoregion.Active)
                 return 0;
 
-            double B_MAX = (double) EcoregionData.B_MAX[ecoregion];
+            double B_MAX = (double) ClimateRegionData.B_MAX[ecoregion];
 
             double oldBiomass = (double) Library.LeafBiomassCohorts.Cohorts.ComputeNonYoungBiomass(SiteVars.Cohorts[site]);
 
@@ -300,13 +304,13 @@ namespace Landis.Extension.Succession.Century
 
             for (byte shade = 5; shade >= 1; shade--)
             {
-                if(EcoregionData.ShadeBiomass[shade][ecoregion] <= 0)
+                if(ClimateRegionData.ShadeBiomass[shade][ecoregion] <= 0)
                 {
                     string mesg = string.Format("Minimum relative biomass has not been defined for ecoregion {0}", ecoregion.Name);
                     throw new System.ApplicationException(mesg);
                 }
                 //PlugIn.ModelCore.UI.WriteLine("Shade Calculation:  lastMort={0:0.0}, B_MAX={1}, oldB={2}, B_ACT={3}, shade={4}.", lastMortality, B_MAX,oldBiomass,B_ACT,shade);
-                if (B_AM >= EcoregionData.ShadeBiomass[shade][ecoregion])
+                if (B_AM >= ClimateRegionData.ShadeBiomass[shade][ecoregion])
                 {
                     finalShade = shade;
                     break;
@@ -468,8 +472,9 @@ namespace Landis.Extension.Succession.Century
         /// </summary>
         public bool Establish(ISpecies species, ActiveSite site)
         {
-            IEcoregion ecoregion = modelCore.Ecoregion[site];
-            double establishProbability = SpeciesData.EstablishProbability[species][ecoregion];
+            //IEcoregion ecoregion = modelCore.Ecoregion[site];
+            //double establishProbability = SpeciesData.EstablishProbability[species][ecoregion];
+            double establishProbability = Establishment.Calculate(species, site);// SpeciesData.EstablishProbability[species][ecoregion];
 
             return modelCore.GenerateUniform() < establishProbability;
         }
@@ -483,7 +488,7 @@ namespace Landis.Extension.Succession.Century
         public bool PlantingEstablish(ISpecies species, ActiveSite site)
         {
             IEcoregion ecoregion = modelCore.Ecoregion[site];
-            double establishProbability = SpeciesData.EstablishProbability[species][ecoregion];
+            double establishProbability = Establishment.Calculate(species, site); //, Timestep); // SpeciesData.EstablishProbability[species][ecoregion];
 
             return establishProbability > 0.0;
         }

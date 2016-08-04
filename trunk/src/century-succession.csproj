@@ -107,7 +107,7 @@
     <Compile Include="dynamic-change\Parameters.cs" />
     <Compile Include="dynamic-change\ParametersParser.cs" />
     <Compile Include="dynamic-change\ParametersUpdate.cs" />
-    <Compile Include="EcoregionData.cs" />
+    <Compile Include="ClimateRegionData.cs" />
     <Compile Include="Establishment.cs" />
     <Compile Include="FireEffects.cs" />
     <Compile Include="ForestFloor.cs" />
