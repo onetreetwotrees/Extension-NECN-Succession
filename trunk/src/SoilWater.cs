@@ -4,6 +4,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System;
+using System.Globalization;
 using Landis.Core;
 using Landis.SpatialModeling;
 using Landis.Library.Climate;
@@ -21,6 +22,9 @@ namespace Landis.Extension.Succession.Century
         private static double tmax;
         private static double tmin;
         private static double pet;
+        private static int daysInMonth;
+        private static int beginGrowing;
+        private static int endGrowing;
 
         public static void Run(int year, int month, double liveBiomass, Site site, out double baseFlow, out double stormFlow)
         {
@@ -29,7 +33,7 @@ namespace Landis.Extension.Succession.Century
             //Water Submodel for Century - written by Bill Parton
             //     Updated from Fortran 4 - rm 2/92
             //     Rewritten by Bill Pulliam - 9/94
-            // Rewritten by Melissa Lucash- 11/2014
+            //     Rewritten by Melissa Lucash- 11/2014
 
             //PlugIn.ModelCore.UI.WriteLine("month={0}.", Century.Month);
         
@@ -45,6 +49,7 @@ namespace Landis.Extension.Succession.Century
             double availableWaterMax = 0.0;  //amount of water available after precipitation and snowmelt (over-estimate of available water)
             double availableWaterMin = 0.0;   //amount of water available after stormflow (runoff) evaporation and transpiration, but before baseflow/leaching (under-estimate of available water)
             double availableWater = 0.0;     //amount of water deemed available to the trees, which will be the average between the max and min
+            double priorWaterAvail = SiteVars.AvailableWater[site];
 
             //...Calculate external inputs
             IEcoregion ecoregion = PlugIn.ModelCore.Ecoregion[site];
@@ -61,6 +66,9 @@ namespace Landis.Extension.Succession.Century
             tmax = ClimateRegionData.AnnualWeather[ecoregion].MonthlyMaxTemp[month];
             tmin = ClimateRegionData.AnnualWeather[ecoregion].MonthlyMinTemp[month];
             pet = ClimateRegionData.AnnualWeather[ecoregion].MonthlyPET[month];
+            daysInMonth = AnnualClimate.DaysInMonth(month, year);
+            beginGrowing = ClimateRegionData.AnnualWeather[ecoregion].BeginGrowing;
+            endGrowing = ClimateRegionData.AnnualWeather[ecoregion].EndGrowing;
 
             double wiltingPoint = ClimateRegionData.WiltingPoint[ecoregion];
             double soilDepth = ClimateRegionData.SoilDepth[ecoregion];
@@ -194,7 +202,6 @@ namespace Landis.Extension.Succession.Century
 
             //Subtract transpiration from soil water content
             soilWaterContent -= actualET;
-            
 
             //Leaching occurs. Drain baseflow fraction from holding tank.
             baseFlow = soilWaterContent * baseFlowFraction;
@@ -222,11 +229,79 @@ namespace Landis.Extension.Succession.Century
             SiteVars.SoilWaterContent[site] = soilWaterContent;
             SiteVars.SoilTemperature[site] = CalculateSoilTemp(tmin, tmax, liveBiomass, litterBiomass, month);
             SiteVars.DecayFactor[site] = CalculateDecayFactor((int)OtherData.WType, SiteVars.SoilTemperature[site], relativeWaterContent, ratioPrecipPET, month);
-            SiteVars.AnaerobicEffect[site] = CalculateAnaerobicEffect(drain, ratioPrecipPET, pet, tave);                             
+            SiteVars.AnaerobicEffect[site] = CalculateAnaerobicEffect(drain, ratioPrecipPET, pet, tave);
+            if (month == 0)
+                SiteVars.DryDays[site] = 0;
+            else
+                SiteVars.DryDays[site] += CalculateDryDays(month, beginGrowing, endGrowing, wiltingPoint, availableWater, priorWaterAvail);
                         
             return;
         }
 
+        private static int CalculateDryDays(int month, int beginGrowing, int endGrowing, double wiltingPoint, double waterAvail, double priorWaterAvail)
+        {
+            //DateTime myDT = new DateTime(2002, month+1, 1, new GregorianCalendar());
+            //JulianCalendar myCal = new JulianCalendar();
+            int dryDays = 0;
+            int julianDay = CalculateMidMonthJulianDay(month + 1); // myCal.GetDayOfYear(myDT); // +15;
+            int oldJulianDay = CalculateMidMonthJulianDay(month); // Math.Max(1, julianDay - 30);
+            double dryDayInterp = 0.0;
+            PlugIn.ModelCore.UI.WriteLine("Month={4}, JulianDay={0}, oldJulian={1}, begin={2}, end={3}.", julianDay, oldJulianDay, beginGrowing, endGrowing, month+1);
+            
+            //Increment number of dry days, truncate
+            //at end of growing season
+                if ((julianDay > beginGrowing) && (oldJulianDay < endGrowing)) 
+                {
+                    if ((priorWaterAvail >= wiltingPoint)  && (waterAvail >= wiltingPoint))
+                    {
+                        dryDayInterp += 0.0;  // NONE below wilting point
+                    }
+                    else if ((priorWaterAvail > wiltingPoint) && (waterAvail < wiltingPoint)) 
+                    {
+                        dryDayInterp = daysInMonth * (wiltingPoint - waterAvail) / 
+                                        (priorWaterAvail - waterAvail);
+                        if ((oldJulianDay < beginGrowing) && (julianDay > beginGrowing))
+                            if ((julianDay - beginGrowing) < dryDayInterp)
+                                dryDayInterp = julianDay - beginGrowing;
+    
+                        if ((oldJulianDay < endGrowing) && (julianDay > endGrowing))
+                            dryDayInterp = endGrowing - julianDay + dryDayInterp;
+    
+                        if (dryDayInterp < 0.0)
+                            dryDayInterp = 0.0;
+    
+                    } 
+                    else if ((priorWaterAvail < wiltingPoint) && (waterAvail > wiltingPoint)) 
+                    {
+                        dryDayInterp = daysInMonth * (wiltingPoint - priorWaterAvail) / 
+                                        (waterAvail - priorWaterAvail);
+          
+                        if ((oldJulianDay < beginGrowing) && (julianDay > beginGrowing))
+                            dryDayInterp = oldJulianDay + dryDayInterp - beginGrowing;
+    
+                        if (dryDayInterp < 0.0)
+                            dryDayInterp = 0.0;
+    
+                        if ((oldJulianDay < endGrowing) && (julianDay > endGrowing))
+                            if ((endGrowing - oldJulianDay) < dryDayInterp)
+                                dryDayInterp = endGrowing - oldJulianDay;
+                    } 
+                    else // ALL below wilting point
+                    {
+                        dryDayInterp = daysInMonth;
+          
+                        if ((oldJulianDay < beginGrowing) && (julianDay > beginGrowing))
+                            dryDayInterp = julianDay - beginGrowing;
+    
+                        if ((oldJulianDay < endGrowing) && (julianDay > endGrowing))
+                            dryDayInterp = endGrowing - oldJulianDay;
+                    }
+      
+                    dryDays += (int) dryDayInterp;
+                }
+                return dryDays;
+        }
+        
         //---------------------------------------------------------------------------
 
         private static double CalculateDecayFactor(int idef, double soilTemp, double rwc, double ratioPrecipPET, int month)
@@ -791,6 +866,36 @@ namespace Landis.Extension.Succession.Century
 
         //    return;
         //}
+        private static int CalculateMidMonthJulianDay(int month)
+        {
+            if (month == 1)
+                return 1;
+            if (month == 2)
+                return 31 + 14;
+            if (month == 3)
+                return 31 + 28 + 15;
+            if (month == 4)
+                return 31 + 28 + 31 + 15;
+            if (month == 5)
+                return 31 + 28 + 31 + 30 + 15;
+            if (month == 6)
+                return 31 + 28 + 31 + 30 + 31 + 15;
+            if (month == 7)
+                return 31 + 28 + 31 + 30 + 31 + 30 + 15;
+            if (month == 8)
+                return 31 + 28 + 31 + 30 + 31 + 30 + 31 + 15;
+            if (month == 9)
+                return 31 + 28 + 31 + 30 + 31 + 30 + 31 + 31 + 15;
+            if (month == 10)
+                return 31 + 28 + 31 + 30 + 31 + 30 + 31 + 31 + 30 + 15;
+            if (month == 11)
+                return 31 + 28 + 31 + 30 + 31 + 30 + 31 + 31 + 30 + 31 + 15;
+            if (month == 12)
+                return 31 + 28 + 31 + 30 + 31 + 30 + 31 + 31 + 30 + 31 + 30 + 15;
+
+            return 0;
+
+        }
     }
 }
 

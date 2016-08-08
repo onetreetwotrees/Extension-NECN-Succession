@@ -79,6 +79,7 @@ namespace Landis.Extension.Succession.Century
         private static ISiteVar<double[]> monthlymineralN;
         private static ISiteVar<double> frassC;
         private static ISiteVar<double> lai;
+        private static ISiteVar<int> dryDays;
                 
         public static ISiteVar<double> TotalWoodBiomass;
         public static ISiteVar<int> PrevYearMortality;
@@ -130,6 +131,7 @@ namespace Landis.Extension.Succession.Century
             decayFactor         = PlugIn.ModelCore.Landscape.NewSiteVar<double>();
             soilTemperature     = PlugIn.ModelCore.Landscape.NewSiteVar<double>();
             anaerobicEffect     = PlugIn.ModelCore.Landscape.NewSiteVar<double>();
+            dryDays             = PlugIn.ModelCore.Landscape.NewSiteVar<int>();
             
             // Annual accumulators
             grossMineralization = PlugIn.ModelCore.Landscape.NewSiteVar<double>();
@@ -166,19 +168,12 @@ namespace Landis.Extension.Succession.Century
 
             CohortResorbedNallocation = PlugIn.ModelCore.Landscape.NewSiteVar<Dictionary<int, Dictionary<int, double>>>();
 
-
-
-
             PlugIn.ModelCore.RegisterSiteVar(cohorts, "Succession.LeafBiomassCohorts");
             PlugIn.ModelCore.RegisterSiteVar(baseCohortsSiteVar, "Succession.AgeCohorts");
             PlugIn.ModelCore.RegisterSiteVar(biomassCohortsSiteVar, "Succession.BiomassCohorts");
             
             foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
             {
-                //  site cohorts are initialized by the PlugIn.InitializeSite method
-                
-                //leafBiomassCohorts[site]    = new SiteCohorts();
-                //Console.Write("-");
                 surfaceDeadWood[site]       = new Layer(LayerName.Wood, LayerType.Surface);
                 soilDeadWood[site]          = new Layer(LayerName.CoarseRoot, LayerType.Soil);
                 
@@ -305,6 +300,7 @@ namespace Landis.Extension.Succession.Century
             SiteVars.FrassC[site] = 0.0;
             SiteVars.LAI[site] = 0.0;
             SiteVars.WoodMortality[site] = 0.0;
+            //SiteVars.DryDays[site] = 0;
 
             //SiteVars.FireEfflux[site] = 0.0;
                         
@@ -576,6 +572,22 @@ namespace Landis.Extension.Succession.Century
         //---------------------------------------------------------------------
 
         /// <summary>
+        /// Soil moisture at the time of reproduction
+        /// </summary>
+        public static ISiteVar<int> DryDays
+        {
+            get
+            {
+                return dryDays;
+            }
+            set
+            {
+                dryDays = value;
+            }
+        }
+        //---------------------------------------------------------------------
+
+        /// <summary>
         /// A summary of all Leaf Nitrogen in the Cohorts.
         /// </summary>
         public static ISiteVar<double> CohortLeafN
@@ -587,7 +599,6 @@ namespace Landis.Extension.Succession.Century
                 cohortLeafN = value;
             }
         }
-        //---------------------------------------------------------------------
         //---------------------------------------------------------------------
 
         /// <summary>
@@ -647,7 +658,6 @@ namespace Landis.Extension.Succession.Century
                 cohortWoodN = value;
             }
         }
-        //---------------------------------------------------------------------
         //---------------------------------------------------------------------
 
         /// <summary>

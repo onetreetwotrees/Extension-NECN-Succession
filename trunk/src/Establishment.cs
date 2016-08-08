@@ -49,12 +49,12 @@ namespace Landis.Extension.Succession.Century
                 //int actualYear = PlugIn.ModelCore.TimeSinceStart + y;
 
                 AnnualClimate_Monthly ecoClimate = ClimateRegionData.AnnualWeather[climateRegion];
-                PlugIn.ModelCore.UI.WriteLine("AET={0:0.00}, MAT={1:0.0}, TAP={2:0.0}", ecoClimate.AnnualAET, ecoClimate.MeanAnnualTemperature, ecoClimate.TotalAnnualPrecip);
+                //PlugIn.ModelCore.UI.WriteLine("AET={0:0.00}, MAT={1:0.0}, TAP={2:0.0}", ecoClimate.AnnualAET, ecoClimate.MeanAnnualTemperature, ecoClimate.TotalAnnualPrecip);
 
                 if (ecoClimate == null)
                     throw new System.ApplicationException("Error in Establishment: CLIMATE NULL.");
-                
-                double ecoDryDays = CalculateSoilMoisture(ecoClimate, climateRegion, ecoClimate.Year);
+
+                double ecoDryDays = SiteVars.DryDays[site]; // CalculateSoilMoisture(ecoClimate, climateRegion, ecoClimate.Year);
                 tempMultiplier = BotkinDegreeDayMultiplier(ecoClimate, species);
                 soilMultiplier = SoilMoistureMultiplier(ecoClimate, species, ecoDryDays);
                 minJanTempMultiplier = MinJanuaryTempModifier(ecoClimate, species);
@@ -173,7 +173,6 @@ namespace Landis.Extension.Succession.Century
             //Calc species soil moisture multipliers
             maxDrought = sppAllowableDrought * growDays;
             
-            //PlugIn.ModelCore.UI.WriteLine("SppMaxDr={0:0.00}, growDays={1:0.0}, dryDays={2:0.0}.", sppAllowableDrought, growDays, dryDays);
             if (maxDrought < dryDays) 
             {
                 Soil_Moist_GF = 0.0;
@@ -203,7 +202,7 @@ namespace Landis.Extension.Succession.Century
                   (max_Grow_Deg_Days - Deg_Days)) / (totalGDD * totalGDD);
             
            if (Deg_Day_GF < 0) Deg_Day_GF = 0.0;
-           PlugIn.ModelCore.UI.WriteLine("SppMaxDD={0:0.00}, sppMinGDD={1:0.0}, actualGDD={2:0}, gddM={3:0.00}.", max_Grow_Deg_Days, min_Grow_Deg_Days, Deg_Days, Deg_Day_GF);
+           //PlugIn.ModelCore.UI.WriteLine("SppMaxDD={0:0.00}, sppMinGDD={1:0.0}, actualGDD={2:0}, gddM={3:0.00}.", max_Grow_Deg_Days, min_Grow_Deg_Days, Deg_Days, Deg_Day_GF);
            
            return Deg_Day_GF;
         }
