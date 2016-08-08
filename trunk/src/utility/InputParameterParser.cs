@@ -11,8 +11,10 @@ namespace Landis.Extension.Succession.Century
     /// <summary>
     /// A parser that reads biomass succession parameters from text input.
     /// </summary>
-    public class InputParametersParser
-        : Dynamic.BiomassParametersParser<IInputParameters>
+    public class InputParametersParser//<TParseResult>
+        : TextParser<IInputParameters>
+    //public class InputParametersParser
+        //: BiomassParametersParser<IInputParameters>
 
     {
         public override string LandisDataValue
@@ -23,17 +25,13 @@ namespace Landis.Extension.Succession.Century
             }
         }
 
+
         public static class Names
         {
             public const string Timestep = "Timestep";
             public const string SeedingAlgorithm = "SeedingAlgorithm";
 
             public const string ClimateConfigFile = "ClimateConfigFile";
-            //public const string ClimateFileFormat = "ClimateFileFormat";
-            //public const string ClimateFile = "ClimateFile";
-            //public const string SpinUpClimateFileFormat = "SpinUpClimateFileFormat";
-            //public const string SpinUpClimateFile = "SpinUpClimateFile";
-          
             public const string CalibrateMode = "CalibrateMode";
             public const string SufficientLight = "SufficientLightTable";
             public const string SpeciesParameters = "SpeciesParameters";
@@ -42,8 +40,8 @@ namespace Landis.Extension.Succession.Century
             public const string FireReductionParameters = "FireReductionParameters";
             public const string HarvestReductionParameters = "HarvestReductionParameters";
             public const string AgeOnlyDisturbanceParms = "AgeOnlyDisturbances:BiomassParameters";
-            public const string DynamicChange = "DynamicChange";
-            public const string MonthlyMaxNPP = "MonthlyMaxNPP";
+            //public const string DynamicChange = "DynamicChange";
+            //public const string MonthlyMaxNPP = "MonthlyMaxNPP";
         }
 
         //---------------------------------------------------------------------
@@ -59,6 +57,7 @@ namespace Landis.Extension.Succession.Century
         {
             SeedingAlgorithmsUtil.RegisterForInputValues();
             RegisterForInputValues();
+            Percentage dummy = new Percentage();
 
         }
 
@@ -71,7 +70,7 @@ namespace Landis.Extension.Succession.Century
             this.speciesLineNums = new Dictionary<string, int>();
             this.speciesName = new InputVar<string>("Species");
 
-            Dynamic.InputValidation.Initialize();
+            //Dynamic.InputValidation.Initialize();
         }
 
         //---------------------------------------------------------------------
@@ -84,7 +83,7 @@ namespace Landis.Extension.Succession.Century
             int numLitterTypes = 4;
             int numFunctionalTypes = 25;
 
-            Parameters parameters = new Parameters(ecoregionDataset, speciesDataset, numLitterTypes, numFunctionalTypes);
+            InputParameters parameters = new InputParameters(ecoregionDataset, speciesDataset, numLitterTypes, numFunctionalTypes);
 
             InputVar<int> timestep = new InputVar<int>(Names.Timestep);
             ReadVar(timestep);
@@ -131,6 +130,11 @@ namespace Landis.Extension.Succession.Century
             else
                 parameters.ProbEstablishAdjustment = 1.0;
 
+            InputVar<string> ageOnlyDisturbanceParms = new InputVar<string>(Names.AgeOnlyDisturbanceParms);
+            ReadVar(ageOnlyDisturbanceParms);
+            parameters.AgeOnlyDisturbanceParms = ageOnlyDisturbanceParms.Value;
+
+            
             //InputVar<string> soilCarbonMaps = new InputVar<string>("SoilCarbonMapNames");
             //if (ReadOptionalVar(soilCarbonMaps))
             //{
@@ -323,7 +327,9 @@ namespace Landis.Extension.Succession.Century
             InputVar<double> cRootCN = new InputVar<double>("Coarse Root CN Ratio");
             InputVar<double> foliarCN = new InputVar<double>("Foliage CN Ratio");
             InputVar<double> fRootCN = new InputVar<double>("Fine Root CN Ratio");
-            string lastColumn = "the " + fRootCN.Name + " column";
+            InputVar<int> maxANPP = new InputVar<int>("Maximum ANPP");
+            InputVar<int> maxBiomass = new InputVar<int>("Maximum Aboveground Biomass");
+            string lastColumn = "the " + maxBiomass.Name + " column";
 
             while (! AtEndOfInput && CurrentName != Names.FunctionalGroupParameters) {
                 StringReader currentLine = new StringReader(CurrentLine);
@@ -379,6 +385,12 @@ namespace Landis.Extension.Succession.Century
 
                 ReadValue(foliarCN, currentLine);
                 parameters.SetFoliageLitterCN(species, foliarCN.Value);
+
+                ReadValue(maxANPP, currentLine);
+                parameters.SetMaxANPP(species, maxANPP.Value);
+
+                ReadValue(maxBiomass, currentLine);
+                parameters.SetMaxBiomass(species, maxANPP.Value);
 
                 CheckNoDataAfter(lastColumn, currentLine);
                 GetNextLine();
@@ -619,7 +631,6 @@ namespace Landis.Extension.Succession.Century
                 ReadValue(denits, currentLine);
                 parameters.SetDenitrif(ecoregion, denits.Value);
 
-
                 CheckNoDataAfter("the " + drsom3.Name + " column", currentLine);
 
                 GetNextLine();
@@ -632,8 +643,7 @@ namespace Landis.Extension.Succession.Century
             InputVar<double> wred = new InputVar<double>("Wood Reduction");
             InputVar<double> lred = new InputVar<double>("Litter Reduction");
 
-            while (! AtEndOfInput && CurrentName != Names.MonthlyMaxNPP
-                && CurrentName != Names.HarvestReductionParameters)
+            while (! AtEndOfInput && CurrentName != Names.HarvestReductionParameters && CurrentName != Names.AgeOnlyDisturbanceParms)
             {
                 StringReader currentLine = new StringReader(CurrentLine);
 
@@ -659,6 +669,7 @@ namespace Landis.Extension.Succession.Century
 
                 GetNextLine();
             }
+
             //--------- Read In Harvest Reductions Table ---------------------------
             InputVar<string> hreds = new InputVar<string>("HarvestReductions");
             ReadOptionalName(Names.HarvestReductionParameters);
@@ -668,11 +679,9 @@ namespace Landis.Extension.Succession.Century
                 InputVar<double> wred_pr = new InputVar<double>("Wood Reduction");
                 InputVar<double> lred_pr = new InputVar<double>("Litter Reduction");
 
-                //lineNumbers.Clear();
                 List<string> prescriptionNames = new List<string>();
-                //Dictionary<int, int> DisturbanceTypeLineNumbers = new Dictionary<int, int>();
 
-                while (!AtEndOfInput && CurrentName != Names.MonthlyMaxNPP)
+                while (!AtEndOfInput && CurrentName != Names.AgeOnlyDisturbanceParms)
                 {
                     HarvestReductions harvReduction = new HarvestReductions();
                     parameters.HarvestReductionsTable.Add(harvReduction);
@@ -692,25 +701,8 @@ namespace Landis.Extension.Succession.Century
                 }
             }
 
-            //---------------------------------------------------------------------
 
-            ParseBiomassParameters(parameters, Names.AgeOnlyDisturbanceParms,
-                                               Names.DynamicChange);
-
-            string lastParameter = null;
-            InputVar<string> ageOnlyDisturbanceParms = new InputVar<string>(Names.AgeOnlyDisturbanceParms);
-            ReadVar(ageOnlyDisturbanceParms);
-            parameters.AgeOnlyDisturbanceParms = ageOnlyDisturbanceParms.Value;
-
-
-            //  Climate Change table (optional)
-            if (ReadOptionalName(Names.DynamicChange)) {
-                ReadDynamicTable(parameters.DynamicUpdates);
-            }
-            else if (lastParameter != null)
-                CheckNoDataAfter(lastParameter);
-
-            return parameters; //.GetComplete();
+            return parameters; 
         }
 
         //---------------------------------------------------------------------
@@ -746,38 +738,38 @@ namespace Landis.Extension.Succession.Century
         }
         //---------------------------------------------------------------------
 
-        protected void ReadDynamicTable(List<Dynamic.ParametersUpdate> parameterUpdates)
-        {
-            int? prevYear = null;
-            int prevYearLineNum = 0;
-            InputVar<int> year = new InputVar<int>("Year", Dynamic.InputValidation.ReadYear);
-            InputVar<string> file = new InputVar<string>("Parameter File");
-            while (! AtEndOfInput) {
-                StringReader currentLine = new StringReader(CurrentLine);
+        //protected void ReadDynamicTable(List<Dynamic.ParametersUpdate> parameterUpdates)
+        //{
+        //    int? prevYear = null;
+        //    int prevYearLineNum = 0;
+        //    InputVar<int> year = new InputVar<int>("Year", Dynamic.InputValidation.ReadYear);
+        //    InputVar<string> file = new InputVar<string>("Parameter File");
+        //    while (! AtEndOfInput) {
+        //        StringReader currentLine = new StringReader(CurrentLine);
 
-                ReadValue(year, currentLine);
-                if (prevYear.HasValue) {
-                    if (year.Value.Actual < prevYear.Value)
-                        throw new InputValueException(year.Value.String,
-                                                      "Year {0} is before year {1} which was on line {2}",
-                                                      year.Value.Actual, prevYear.Value, prevYearLineNum);
-                    if (year.Value.Actual == prevYear.Value)
-                        throw new InputValueException(year.Value.String,
-                                                      "Year {0} was already used on line {1}",
-                                                      year.Value.Actual, prevYearLineNum);
-                }
-                prevYear = year.Value.Actual;
-                prevYearLineNum = LineNumber;
+        //        ReadValue(year, currentLine);
+        //        if (prevYear.HasValue) {
+        //            if (year.Value.Actual < prevYear.Value)
+        //                throw new InputValueException(year.Value.String,
+        //                                              "Year {0} is before year {1} which was on line {2}",
+        //                                              year.Value.Actual, prevYear.Value, prevYearLineNum);
+        //            if (year.Value.Actual == prevYear.Value)
+        //                throw new InputValueException(year.Value.String,
+        //                                              "Year {0} was already used on line {1}",
+        //                                              year.Value.Actual, prevYearLineNum);
+        //        }
+        //        prevYear = year.Value.Actual;
+        //        prevYearLineNum = LineNumber;
 
-                ReadValue(file, currentLine);
-                Dynamic.InputValidation.CheckPath(file.Value);
+        //        ReadValue(file, currentLine);
+        //        Dynamic.InputValidation.CheckPath(file.Value);
 
-                CheckNoDataAfter("the " + file + " column", currentLine);
-                parameterUpdates.Add(new Dynamic.ParametersUpdate(year.Value.Actual,
-                                                                        file.Value.Actual));
-                GetNextLine();
-            }
-        }
+        //        CheckNoDataAfter("the " + file + " column", currentLine);
+        //        parameterUpdates.Add(new Dynamic.ParametersUpdate(year.Value.Actual,
+        //                                                                file.Value.Actual));
+        //        GetNextLine();
+        //    }
+        //}
         //---------------------------------------------------------------------
 
         /// <summary>

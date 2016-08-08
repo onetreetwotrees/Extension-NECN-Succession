@@ -253,8 +253,8 @@ namespace Landis.Extension.Succession.Century
             int totalBiomass = Library.LeafBiomassCohorts.Cohorts.ComputeBiomass(siteCohorts, out youngBiomass);
             double B_ACT = totalBiomass - youngBiomass;
 
-            int lastMortality = SiteVars.PrevYearMortality[site];
-            B_ACT = System.Math.Min(ClimateRegionData.B_MAX[ecoregion] - lastMortality, B_ACT);
+            //int lastMortality = SiteVars.PrevYearMortality[site];
+            //B_ACT = System.Math.Min(ClimateRegionData.B_MAX[ecoregion] - lastMortality, B_ACT);
 
             return B_ACT;
         }

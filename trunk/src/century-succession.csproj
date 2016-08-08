@@ -88,9 +88,6 @@
     <Compile Include="age-only-disturbances\PercentageTable.cs" />
     <Compile Include="age-only-disturbances\PoolPercentages.cs" />
     <Compile Include="AvailableN.cs" />
-    <Compile Include="dynamic-change\BiomassParametersParser.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="HarvestEffects.cs" />
     <Compile Include="LitterType.cs">
       <SubType>Code</SubType>
@@ -101,12 +98,6 @@
     <Compile Include="utility\BaseCohortsSiteVar.cs" />
     <Compile Include="Century.cs" />
     <Compile Include="CohortBiomass.cs" />
-    <Compile Include="dynamic-change\InputValidation.cs" />
-    <Compile Include="dynamic-change\IParameters.cs" />
-    <Compile Include="dynamic-change\Module.cs" />
-    <Compile Include="dynamic-change\Parameters.cs" />
-    <Compile Include="dynamic-change\ParametersParser.cs" />
-    <Compile Include="dynamic-change\ParametersUpdate.cs" />
     <Compile Include="ClimateRegionData.cs" />
     <Compile Include="Establishment.cs" />
     <Compile Include="FireEffects.cs" />

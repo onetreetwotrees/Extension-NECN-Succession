@@ -7,13 +7,13 @@ using Edu.Wisc.Forest.Flel.Util;
 using System.Diagnostics;
 
 
-namespace Landis.Extension.Succession.Century.Dynamic
+namespace Landis.Extension.Succession.Century
 {
     /// <summary>
     /// The biomass parameters affected by climate change.
     /// </summary>
     public class Parameters
-        : IParameters
+        //: IParameters
     {
         public IEcoregionDataset ecoregionDataset;
         public ISpeciesDataset speciesDataset;

@@ -61,11 +61,13 @@ namespace Landis.Extension.Succession.Century
         public static Species.AuxParm<double> CoarseRootCN;
         public static Species.AuxParm<double> LeafLitterCN;
         public static Species.AuxParm<double> FineRootCN;
+        public static Species.AuxParm<int> Max_ANPP;
+        public static Species.AuxParm<int> Max_Biomass;
         //public static Species.AuxParm<double> NLimits;
 
         //public static Species.AuxParm<Ecoregions.AuxParm<double>> EstablishProbability;
-        public static Species.AuxParm<Ecoregions.AuxParm<int>> ANPP_MAX_Spp;
-        public static Species.AuxParm<Ecoregions.AuxParm<int>> B_MAX_Spp;
+        //public static Species.AuxParm<Ecoregions.AuxParm<int>> ANPP_MAX_Spp;
+        //public static Species.AuxParm<Ecoregions.AuxParm<int>> B_MAX_Spp;
         
         //private static StreamWriter log;
 
@@ -89,6 +91,8 @@ namespace Landis.Extension.Succession.Century
             CoarseRootCN        = parameters.CoarseRootCN;
             LeafLitterCN        = parameters.FoliageLitterCN;
             FineRootCN          = parameters.FineRootCN;
+            Max_ANPP            = parameters.MaxANPP;
+            Max_Biomass         = parameters.MaxBiomass;
 
             //AllSpecies = new Dictionary<ISpecies, ISpeciesData>();
 
@@ -103,7 +107,7 @@ namespace Landis.Extension.Succession.Century
             // The initial set of establishment probabilities:
             //EstablishProbability = Establishment.GenerateNewEstablishProbabilities(parameters.Timestep);  
             
-            ChangeParameters(parameters);
+            //ChangeParameters(parameters);
             
             
         }
@@ -113,11 +117,11 @@ namespace Landis.Extension.Succession.Century
         //    FuncType = funcType[species];
         //}
         
-        public static void ChangeParameters(Dynamic.IParameters parameters)
-        {
-            ANPP_MAX_Spp  = parameters.MaxANPP;
-            B_MAX_Spp     = parameters.MaxBiomass;
-        }
+        //public static void ChangeParameters(IParameters parameters)
+        //{
+        //    ANPP_MAX_Spp  = parameters.MaxANPP;
+        //    B_MAX_Spp     = parameters.MaxBiomass;
+        //}
 
        
     }

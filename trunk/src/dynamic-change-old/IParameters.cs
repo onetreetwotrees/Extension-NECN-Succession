@@ -1,6 +1,6 @@
 using Edu.Wisc.Forest.Flel.Util;
 
-namespace Landis.Extension.Succession.Century.Dynamic
+namespace Landis.Extension.Succession.Century
 {
     /// <summary>
     /// The biomass parameters affected by climate change.
@@ -23,19 +23,19 @@ namespace Landis.Extension.Succession.Century.Dynamic
         /// <summary>
         /// Species' maximum growth rates for all ecoregions.
         /// </summary>
-        Species.AuxParm<Ecoregions.AuxParm<int>> MaxANPP
-        {
-            get;
-        }
+        //Species.AuxParm<Ecoregions.AuxParm<int>> MaxANPP
+        //{
+        //    get;
+        //}
 
         //---------------------------------------------------------------------
 
         /// <summary>
         /// Species' maximum aboveground live biomass for all ecoregions.
         /// </summary>
-        Species.AuxParm<Ecoregions.AuxParm<int>> MaxBiomass
-        {
-            get;
-        }
+        //Species.AuxParm<Ecoregions.AuxParm<int>> MaxBiomass
+        //{
+        //    get;
+        //}
     }
 }

@@ -5,7 +5,7 @@ using Landis.Core;
 using Edu.Wisc.Forest.Flel.Util;
 using System.Collections.Generic;
 
-namespace Landis.Extension.Succession.Century.Dynamic
+namespace Landis.Extension.Succession.Century
 {
     /// <summary>
     /// Base class for parsers that read biomass parameters affected by
@@ -58,7 +58,7 @@ namespace Landis.Extension.Succession.Century.Dynamic
         /// The names of the parameters or tables that may follow the biomass
         /// parameters in the text input.
         /// </param>
-        protected void ParseBiomassParameters(Parameters parameters,
+        protected void ParseBiomassParameters(InputParameters parameters,
                                               params string[]    namesThatFollows)
         {
 

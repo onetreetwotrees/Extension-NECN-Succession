@@ -169,9 +169,9 @@ namespace Landis.Extension.Succession.Century
         {
 
             double leafFractionNPP  = FunctionalType.Table[SpeciesData.FuncType[cohort.Species]].FCFRACleaf;
-            double maxBiomass       = SpeciesData.B_MAX_Spp[cohort.Species][ecoregion];
+            double maxBiomass       = SpeciesData.Max_Biomass[cohort.Species];//.B_MAX_Spp[cohort.Species][ecoregion];
             double sitelai          = SiteVars.LAI[site];
-            double maxNPP           = SpeciesData.ANPP_MAX_Spp[cohort.Species][ecoregion];
+            double maxNPP           = SpeciesData.Max_ANPP[cohort.Species];//.ANPP_MAX_Spp[cohort.Species][ecoregion];
 
             double limitT   = calculateTemp_Limit(site, cohort.Species);
 
@@ -379,7 +379,7 @@ namespace Landis.Extension.Succession.Century
             double leafFrac = FunctionalType.Table[SpeciesData.FuncType[species]].FCFRACleaf;
 
             double B_ACT = SiteVars.ActualSiteBiomass(site);
-            double B_MAX = SpeciesData.B_MAX_Spp[species][ecoregion];
+            double B_MAX = SpeciesData.Max_Biomass[species]; // B_MAX_Spp[species][ecoregion];
 
             //  Initial biomass exponentially declines in response to
             //  competition.

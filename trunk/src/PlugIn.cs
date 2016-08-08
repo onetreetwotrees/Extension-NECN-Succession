@@ -40,6 +40,7 @@ namespace Landis.Extension.Succession.Century
         public static double ProbEstablishAdjust;
 
         public static int FutureClimateBaseYear;
+        public static int B_MAX;
 
         //---------------------------------------------------------------------
 
@@ -89,7 +90,7 @@ namespace Landis.Extension.Succession.Century
             
             ClimateRegionData.Initialize(parameters);
             SpeciesData.Initialize(parameters);
-            ClimateRegionData.ChangeParameters(parameters);
+            //ClimateRegionData.ChangeParameters(parameters);
 
             OtherData.Initialize(parameters);
             FunctionalType.Initialize(parameters);
@@ -111,8 +112,6 @@ namespace Landis.Extension.Succession.Century
             Cohort.DeathEvent += CohortDied;
             AgeOnlyDisturbances.Module.Initialize(parameters.AgeOnlyDisturbanceParms);
 
-            Dynamic.Module.Initialize(parameters.DynamicUpdates);
-            //ClimateRegionData.Initialize(parameters);
             FireEffects.Initialize(parameters);
             InitializeSites(parameters.InitialCommunities, parameters.InitialCommunitiesMap, modelCore); //the spinup is heppend within this fucntion
             if (parameters.CalibrateMode)
@@ -120,6 +119,13 @@ namespace Landis.Extension.Succession.Century
 
             Outputs.WritePrimaryLogFile(0);
             Outputs.WriteShortPrimaryLogFile(0);
+
+            B_MAX = 0;
+            foreach(ISpecies species in ModelCore.Species)
+            {
+                if (SpeciesData.Max_Biomass[species] > B_MAX)
+                    B_MAX = SpeciesData.Max_Biomass[species];
+            }
 
         }
 
@@ -291,7 +297,7 @@ namespace Landis.Extension.Succession.Century
             if (!ecoregion.Active)
                 return 0;
 
-            double B_MAX = (double) ClimateRegionData.B_MAX[ecoregion];
+            //double B_MAX = (double) ClimateRegionData.B_MAX[ecoregion];
 
             double oldBiomass = (double) Library.LeafBiomassCohorts.Cohorts.ComputeNonYoungBiomass(SiteVars.Cohorts[site]);
 

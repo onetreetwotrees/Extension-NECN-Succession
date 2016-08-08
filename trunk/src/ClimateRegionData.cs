@@ -35,7 +35,7 @@ namespace Landis.Extension.Succession.Century
         public static Ecoregions.AuxParm<double> Denitrif;
         public static Ecoregions.AuxParm<int> ActiveSiteCount;
         public static Ecoregions.AuxParm<Percentage>[] ShadeBiomass;
-        public static Ecoregions.AuxParm<int> B_MAX;
+        //public static Ecoregions.AuxParm<int> B_MAX;
         public static Ecoregions.AuxParm<double> AnnualNDeposition;    
         public static Ecoregions.AuxParm<double[]> MonthlyNDeposition; 
         private static Ecoregions.AuxParm<int> LastYearUpdated;
@@ -107,28 +107,30 @@ namespace Landis.Extension.Succession.Century
                     SetSingleAnnualClimate(ecoregion, 0, Climate.Phase.SpinUp_Climate);  // Some placeholder data to get things started.
                 }
             }
-        }
-        //---------------------------------------------------------------------
-        public static void ChangeParameters(Dynamic.IParameters parameters)
-        {
-            B_MAX               = new Ecoregions.AuxParm<int>(PlugIn.ModelCore.Ecoregions);
+
             
-            //  Fill in B_MAX array
-            foreach (IEcoregion ecoregion in PlugIn.ModelCore.Ecoregions) 
-            {
-                if(ecoregion.Active)
-                {
-                    int largest_B_MAX_Spp = 0;
-                    foreach (ISpecies species in PlugIn.ModelCore.Species) 
-                    {
-                        largest_B_MAX_Spp = Math.Max(largest_B_MAX_Spp, SpeciesData.B_MAX_Spp[species][ecoregion]);
-                        //PlugIn.ModelCore.UI.WriteLine("B_MAX={0}. species={1}, ecoregion={2}", largest_B_MAX_Spp, species.Name, ecoregion.Name);
-                    }
-                    B_MAX[ecoregion] = largest_B_MAX_Spp;
-                }
-            }
-         
         }
+        ////---------------------------------------------------------------------
+        //public static void ChangeParameters(Dynamic.IParameters parameters)
+        //{
+        //    B_MAX               = new Ecoregions.AuxParm<int>(PlugIn.ModelCore.Ecoregions);
+            
+        //    //  Fill in B_MAX array
+        //    foreach (IEcoregion ecoregion in PlugIn.ModelCore.Ecoregions) 
+        //    {
+        //        if(ecoregion.Active)
+        //        {
+        //            int largest_B_MAX_Spp = 0;
+        //            foreach (ISpecies species in PlugIn.ModelCore.Species) 
+        //            {
+        //                largest_B_MAX_Spp = Math.Max(largest_B_MAX_Spp, SpeciesData.B_MAX_Spp[species][ecoregion]);
+        //                //PlugIn.ModelCore.UI.WriteLine("B_MAX={0}. species={1}, ecoregion={2}", largest_B_MAX_Spp, species.Name, ecoregion.Name);
+        //            }
+        //            B_MAX[ecoregion] = largest_B_MAX_Spp;
+        //        }
+        //    }
+         
+        //}
 
         //---------------------------------------------------------------------
         // Generates new climate parameters for a SINGLE ECOREGION at an annual time step.
@@ -172,7 +174,7 @@ namespace Landis.Extension.Succession.Century
                         AnnualWeather[ecoregion] = Climate.Future_MonthlyData[actualYear][ecoregion.Index];
                     }
 
-                    PlugIn.ModelCore.UI.WriteLine("Utilizing Climate Data: Simulated Year = {0}, actualClimateYearUsed = {1}.", actualYear, AnnualWeather[ecoregion].Year);
+                    //PlugIn.ModelCore.UI.WriteLine("Utilizing Climate Data: Simulated Year = {0}, actualClimateYearUsed = {1}.", actualYear, AnnualWeather[ecoregion].Year);
                 }
 
             }

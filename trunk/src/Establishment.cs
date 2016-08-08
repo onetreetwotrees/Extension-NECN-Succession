@@ -55,8 +55,8 @@ namespace Landis.Extension.Succession.Century
                     throw new System.ApplicationException("Error in Establishment: CLIMATE NULL.");
 
                 double ecoDryDays = SiteVars.DryDays[site]; // CalculateSoilMoisture(ecoClimate, climateRegion, ecoClimate.Year);
-                tempMultiplier = BotkinDegreeDayMultiplier(ecoClimate, species);
                 soilMultiplier = SoilMoistureMultiplier(ecoClimate, species, ecoDryDays);
+                tempMultiplier = BotkinDegreeDayMultiplier(ecoClimate, species);
                 minJanTempMultiplier = MinJanuaryTempModifier(ecoClimate, species);
 
                 // Liebig's Law of the Minimum is applied to the four multipliers for each year:
@@ -67,7 +67,7 @@ namespace Landis.Extension.Succession.Century
             //}
             //establishProbability /= (double) years;
             establishProbability *= PlugIn.ProbEstablishAdjust;
-            //if (establishProbability > 0.0)
+            if (establishProbability > 0.0)
                 PlugIn.ModelCore.UI.WriteLine("Spp={0}, Pest={1:0.000}: tM={2:0.0}, sM={3:0.0}, jM={4:0.0}", species.Name, establishProbability, tempMultiplier, soilMultiplier, minJanTempMultiplier);
             return establishProbability;
         }
@@ -181,6 +181,7 @@ namespace Landis.Extension.Succession.Century
             {
                 Soil_Moist_GF = System.Math.Sqrt((double)(maxDrought - dryDays) / maxDrought);
             }
+            //PlugIn.ModelCore.UI.WriteLine("BeginGrow={0}, EndGrow={1}, dryDays={2}, maxDrought={3}", weather.BeginGrowing, weather.EndGrowing, dryDays, maxDrought);
             return Soil_Moist_GF;
         }
         

@@ -11,7 +11,7 @@ namespace Landis.Extension.Succession.Century
     /// The parameters for biomass succession.
     /// </summary>
     public interface IInputParameters
-        : Dynamic.IParameters
+        //: IParameters
     {
         int Timestep{ get;set;}
         SeedingAlgorithms SeedAlgorithm{ get;set;}
@@ -19,10 +19,6 @@ namespace Landis.Extension.Succession.Century
         string InitialCommunitiesMap{ get;set;}
 
         string ClimateConfigFile { get; set; }
-        //string ClimateFileFormat { get; set; }
-        //string ClimateFile { get; set; }
-        //string SpinUpClimateFileFormat { get; set; }
-        //string SpinUpClimateFile { get; set; }
 
         double SpinupMortalityFraction { get; set; }
         bool CalibrateMode { get; set; }
@@ -93,6 +89,8 @@ namespace Landis.Extension.Succession.Century
         Species.AuxParm<double> CoarseRootCN {get;}
         Species.AuxParm<double> FoliageLitterCN {get;}
         Species.AuxParm<double> FineRootCN {get;}
+        Species.AuxParm<int> MaxANPP { get; }
+        Species.AuxParm<int> MaxBiomass { get; }
 
         Ecoregions.AuxParm<double> PercentClay {get;}
         Ecoregions.AuxParm<double> PercentSand {get;}
@@ -140,10 +138,10 @@ namespace Landis.Extension.Succession.Century
         /// A list of zero or more updates to the biomass parameters because of
         /// climate change.
         /// </summary>
-        List<Dynamic.ParametersUpdate> DynamicUpdates
-        {
-            get;
-        }
+        //List<Dynamic.ParametersUpdate> DynamicUpdates
+        //{
+        //    get;
+        //}
 
         
     }

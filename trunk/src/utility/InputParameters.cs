@@ -13,8 +13,8 @@ namespace Landis.Extension.Succession.Century
     /// <summary>
     /// The parameters for biomass succession.
     /// </summary>
-    public class Parameters
-        : Dynamic.Parameters, IInputParameters
+    public class InputParameters
+        : IInputParameters
     {
         private int timestep;
         private SeedingAlgorithms seedAlg;
@@ -27,6 +27,9 @@ namespace Landis.Extension.Succession.Century
         private double spinupMortalityFraction;
         public WaterType wtype;
         public double probEstablishAdjust;
+
+        private IEcoregionDataset ecoregionDataset;
+        private ISpeciesDataset speciesDataset;
         
         private FunctionalTypeTable functionalTypes;
         private FireReductions[] fireReductionsTable;
@@ -49,6 +52,8 @@ namespace Landis.Extension.Succession.Century
         private Species.AuxParm<double> coarseRootCN;
         private Species.AuxParm<double> foliageLitterCN;
         private Species.AuxParm<double> fineRootCN;
+        private Species.AuxParm<int> maxANPP;
+        private Species.AuxParm<int> maxBiomass;
         
         private Ecoregions.AuxParm<Percentage>[] minRelativeBiomass;
         private List<ISufficientLight> sufficientLight;
@@ -83,7 +88,7 @@ namespace Landis.Extension.Succession.Century
 
         
         private string ageOnlyDisturbanceParms;
-        private List<Dynamic.ParametersUpdate> dynamicUpdates;
+        //private List<Dynamic.ParametersUpdate> dynamicUpdates;
 
         //---------------------------------------------------------------------
         /// <summary>
@@ -376,6 +381,24 @@ namespace Landis.Extension.Succession.Century
         }
         //---------------------------------------------------------------------
 
+        public Species.AuxParm<int> MaxANPP
+        {
+            get
+            {
+                return maxANPP;
+            }
+        }
+        //---------------------------------------------------------------------
+
+        public Species.AuxParm<int> MaxBiomass
+        {
+            get
+            {
+                return maxBiomass;
+            }
+        }
+        //---------------------------------------------------------------------
+
         /// <summary>
         /// Definitions of sufficient light probabilities.
         /// </summary>
@@ -539,12 +562,12 @@ namespace Landis.Extension.Succession.Century
 
         //---------------------------------------------------------------------
 
-        public List<Dynamic.ParametersUpdate> DynamicUpdates
-        {
-            get {
-                return dynamicUpdates;
-            }
-        }
+        //public List<Dynamic.ParametersUpdate> DynamicUpdates
+        //{
+        //    get {
+        //        return dynamicUpdates;
+        //    }
+        //}
         //---------------------------------------------------------------------
 
         public void SetMinRelativeBiomass(byte                   shadeClass,
@@ -689,6 +712,21 @@ namespace Landis.Extension.Succession.Century
         {
             Debug.Assert(species != null);
             fineRootCN[species] = CheckBiomassParm(newValue, 5.0, 100.0);
+        }
+        //---------------------------------------------------------------------
+
+        public void SetMaxANPP(ISpecies species,
+                                          InputValue<int> newValue)
+        {
+            Debug.Assert(species != null);
+            maxANPP[species] = CheckBiomassParm(newValue, 2, 1000);
+        }
+        //---------------------------------------------------------------------
+
+        public void SetMaxBiomass(ISpecies species, InputValue<int> newValue)
+        {
+            Debug.Assert(species != null);
+            maxBiomass[species] = CheckBiomassParm(newValue, 2, 100000);
         }
         //---------------------------------------------------------------------
 
@@ -857,11 +895,9 @@ namespace Landis.Extension.Succession.Century
         //---------------------------------------------------------------------
         //---------------------------------------------------------------------
 
-        public Parameters(IEcoregionDataset ecoregionDataset,
+        public InputParameters(IEcoregionDataset ecoregionDataset,
                                   ISpeciesDataset    speciesDataset,
                                   int litterCnt, int functionalCnt)
-            : base(ecoregionDataset,
-                   speciesDataset)
         {
             this.speciesDataset = speciesDataset;
             this.ecoregionDataset = ecoregionDataset;
@@ -886,7 +922,9 @@ namespace Landis.Extension.Succession.Century
             woodCN                  = new Species.AuxParm<double>(speciesDataset);
             coarseRootCN            = new Species.AuxParm<double>(speciesDataset);
             foliageLitterCN         = new Species.AuxParm<double>(speciesDataset);
-            fineRootCN        = new Species.AuxParm<double>(speciesDataset);
+            fineRootCN              = new Species.AuxParm<double>(speciesDataset);
+            maxANPP                 = new Species.AuxParm<int>(speciesDataset);
+            maxBiomass              = new Species.AuxParm<int>(speciesDataset);
 
             minRelativeBiomass = new Ecoregions.AuxParm<Percentage>[6];
             for (byte shadeClass = 1; shadeClass <= 5; shadeClass++) {
@@ -921,7 +959,7 @@ namespace Landis.Extension.Succession.Century
             initMineralN            = new Ecoregions.AuxParm<double>(ecoregionDataset);
 
             
-            this.dynamicUpdates = new List<Dynamic.ParametersUpdate>();
+            //this.dynamicUpdates = new List<Dynamic.ParametersUpdate>();
             
         }
 

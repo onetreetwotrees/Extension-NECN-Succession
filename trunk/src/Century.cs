@@ -106,7 +106,7 @@ namespace Landis.Extension.Succession.Century
                     LitterLayer.Decompose(site);
                     SoilLayer.Decompose(site);
                    
-                    //...Volatilization loss as a function of the mineral n which
+                    //...Volatilization loss as a function of the mineral N which
                     //     remains after uptake by plants.  ML added a correction factor for wetlands since their denitrification rate is double that of wetlands
                     //based on a review paper by Seitziner 2006.
 
