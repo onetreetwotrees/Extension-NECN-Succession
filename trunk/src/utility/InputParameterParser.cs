@@ -1,5 +1,5 @@
 //  Copyright 2007-2010 Portland State University, University of Wisconsin-Madison
-//  Author: Robert Scheller, Ben Sulman
+//  Author: Robert Scheller, Melissa Lucash
 
 using Landis.Core;
 using Edu.Wisc.Forest.Flel.Util;
@@ -13,9 +13,6 @@ namespace Landis.Extension.Succession.Century
     /// </summary>
     public class InputParametersParser//<TParseResult>
         : TextParser<IInputParameters>
-    //public class InputParametersParser
-        //: BiomassParametersParser<IInputParameters>
-
     {
         public override string LandisDataValue
         {
@@ -40,6 +37,7 @@ namespace Landis.Extension.Succession.Century
             public const string FireReductionParameters = "FireReductionParameters";
             public const string HarvestReductionParameters = "HarvestReductionParameters";
             public const string AgeOnlyDisturbanceParms = "AgeOnlyDisturbances:BiomassParameters";
+            public const string SoilDepthFileName = "SoilDepthFileName";
             //public const string DynamicChange = "DynamicChange";
             //public const string MonthlyMaxNPP = "MonthlyMaxNPP";
         }
@@ -134,6 +132,9 @@ namespace Landis.Extension.Succession.Century
             ReadVar(ageOnlyDisturbanceParms);
             parameters.AgeOnlyDisturbanceParms = ageOnlyDisturbanceParms.Value;
 
+            InputVar<string> soilDepthFileName = new InputVar<string>(Names.SoilDepthFileName);
+            ReadVar(soilDepthFileName);
+            parameters.SoilDepthFileName = soilDepthFileName.Value;
             
             //InputVar<string> soilCarbonMaps = new InputVar<string>("SoilCarbonMapNames");
             //if (ReadOptionalVar(soilCarbonMaps))
@@ -558,7 +559,7 @@ namespace Landis.Extension.Succession.Century
 
             InputVar<double> pclay = new InputVar<double>("Percent Clay");
             InputVar<double> psand = new InputVar<double>("Percent Sand");
-            InputVar<int> sd = new InputVar<int>("Soil Depth");
+            //InputVar<int> sd = new InputVar<int>("Soil Depth");
             InputVar<double> fc = new InputVar<double>("Field Capacity");
             InputVar<double> wp = new InputVar<double>("Wilting Point");
             InputVar<double> sff = new InputVar<double>("Storm Flow Fraction");
@@ -583,8 +584,8 @@ namespace Landis.Extension.Succession.Century
                 IEcoregion ecoregion = GetEcoregion(ecoregionName.Value,
                                                     lineNumbers);
 
-                ReadValue(sd, currentLine);
-                parameters.SetSoilDepth(ecoregion, sd.Value);
+                //ReadValue(sd, currentLine);
+                //parameters.SetSoilDepth(ecoregion, sd.Value);
 
                 ReadValue(pclay, currentLine);
                 parameters.SetPercentClay(ecoregion, pclay.Value);

@@ -1,5 +1,5 @@
 //  Copyright 2007-2010 Portland State University, University of Wisconsin-Madison
-//  Author: Robert Scheller, Ben Sulman
+//  Author: Robert Scheller, Melissa Lucash
 
 using Edu.Wisc.Forest.Flel.Util;
 using System;

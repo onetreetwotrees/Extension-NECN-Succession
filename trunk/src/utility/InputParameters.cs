@@ -1,5 +1,5 @@
 //  Copyright 2007-2010 Portland State University, University of Wisconsin-Madison
-//  Author: Robert Scheller, Ben Sulman
+//  Author: Robert Scheller, Melissa Lucash
 
 using Landis.Core;
 using Landis.SpatialModeling;
@@ -60,7 +60,7 @@ namespace Landis.Extension.Succession.Century
         
         private Ecoregions.AuxParm<double> percentClay;
         private Ecoregions.AuxParm<double> percentSand;
-        private Ecoregions.AuxParm<int>    soilDepth;
+        //private Ecoregions.AuxParm<int>    soilDepth;
         private Ecoregions.AuxParm<double> fieldCapacity;
         private Ecoregions.AuxParm<double> wiltingPoint;
         private Ecoregions.AuxParm<double> stormFlowFraction;
@@ -88,6 +88,7 @@ namespace Landis.Extension.Succession.Century
 
         
         private string ageOnlyDisturbanceParms;
+        private string soilDepthFileName;
         //private List<Dynamic.ParametersUpdate> dynamicUpdates;
 
         //---------------------------------------------------------------------
@@ -429,12 +430,12 @@ namespace Landis.Extension.Succession.Century
             }
         }
         //---------------------------------------------------------------------
-        public Ecoregions.AuxParm<int> SoilDepth
-        {
-            get {
-                return soilDepth;
-            }
-        }
+        //public Ecoregions.AuxParm<int> SoilDepth
+        //{
+        //    get {
+        //        return soilDepth;
+        //    }
+        //}
         //---------------------------------------------------------------------
         public Ecoregions.AuxParm<double> FieldCapacity
         {
@@ -560,6 +561,20 @@ namespace Landis.Extension.Succession.Century
             }
         }
 
+        public string SoilDepthFileName
+        {
+            get
+            {
+                return soilDepthFileName;
+            }
+            set
+            {
+                string path = value;
+                if (path.Trim(null).Length == 0)
+                    throw new InputValueException(path, "\"{0}\" is not a valid path.", path);
+                soilDepthFileName = value;
+            }
+        }
         //---------------------------------------------------------------------
 
         //public List<Dynamic.ParametersUpdate> DynamicUpdates
@@ -744,11 +759,11 @@ namespace Landis.Extension.Succession.Century
         }
         //---------------------------------------------------------------------
 
-        public void SetSoilDepth(IEcoregion ecoregion, InputValue<int> newValue)
-        {
-            Debug.Assert(ecoregion != null);
-            soilDepth[ecoregion] = CheckBiomassParm(newValue, 1, 200);
-        }
+        //public void SetSoilDepth(IEcoregion ecoregion, InputValue<int> newValue)
+        //{
+        //    Debug.Assert(ecoregion != null);
+        //    soilDepth[ecoregion] = CheckBiomassParm(newValue, 1, 200);
+        //}
         //---------------------------------------------------------------------
 
         public void SetFieldCapacity(IEcoregion ecoregion, InputValue<double> newValue)
@@ -934,7 +949,7 @@ namespace Landis.Extension.Succession.Century
 
             percentClay             = new Ecoregions.AuxParm<double>(ecoregionDataset);
             percentSand             = new Ecoregions.AuxParm<double>(ecoregionDataset);
-            soilDepth               = new Ecoregions.AuxParm<int>(ecoregionDataset);
+            //soilDepth               = new Ecoregions.AuxParm<int>(ecoregionDataset);
             fieldCapacity           = new Ecoregions.AuxParm<double>(ecoregionDataset);
             wiltingPoint            = new Ecoregions.AuxParm<double>(ecoregionDataset);
             stormFlowFraction       = new Ecoregions.AuxParm<double>(ecoregionDataset);

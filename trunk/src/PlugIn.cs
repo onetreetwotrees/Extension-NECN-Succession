@@ -1,5 +1,5 @@
-//  Copyright 2007-2010 Portland State University, University of Wisconsin-Madison
-//  Author: Robert Scheller, Ben Sulman
+//  Copyright 2007-2016 Portland State University
+//  Author: Robert Scheller, Melissa Lucash
 
 using Landis.Core;
 using Landis.SpatialModeling;
@@ -90,6 +90,7 @@ namespace Landis.Extension.Succession.Century
             
             ClimateRegionData.Initialize(parameters);
             SpeciesData.Initialize(parameters);
+            Util.ReadSoilDepthMap(parameters.SoilDepthFileName);
             //ClimateRegionData.ChangeParameters(parameters);
 
             OtherData.Initialize(parameters);

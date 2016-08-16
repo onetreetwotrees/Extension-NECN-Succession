@@ -1,5 +1,5 @@
 //  Copyright 2007-2010 Portland State University, University of Wisconsin-Madison
-//  Author: Robert Scheller, Ben Sulman, Melissa Lucash
+//  Author: Robert Scheller, Melissa Lucash, Melissa Lucash
 
 using System.Collections.Generic;
 using System.IO;
@@ -71,7 +71,7 @@ namespace Landis.Extension.Succession.Century
             endGrowing = ClimateRegionData.AnnualWeather[ecoregion].EndGrowing;
 
             double wiltingPoint = ClimateRegionData.WiltingPoint[ecoregion];
-            double soilDepth = ClimateRegionData.SoilDepth[ecoregion];
+            double soilDepth = SiteVars.SoilDepth[site]; // ClimateRegionData.SoilDepth[ecoregion];
             double fieldCapacity = ClimateRegionData.FieldCapacity[ecoregion];
             double stormFlowFraction = ClimateRegionData.StormFlowFraction[ecoregion];
             double baseFlowFraction = ClimateRegionData.BaseFlowFraction[ecoregion];

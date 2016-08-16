@@ -1,5 +1,5 @@
 //  Copyright 2007-2010 Portland State University, University of Wisconsin-Madison
-//  Author: Robert Scheller, Ben Sulman
+//  Author: Robert Scheller, Melissa Lucash
 
 using Landis.Library.Succession;
 using Edu.Wisc.Forest.Flel.Util;
@@ -11,7 +11,6 @@ namespace Landis.Extension.Succession.Century
     /// The parameters for biomass succession.
     /// </summary>
     public interface IInputParameters
-        //: IParameters
     {
         int Timestep{ get;set;}
         SeedingAlgorithms SeedAlgorithm{ get;set;}
@@ -94,7 +93,7 @@ namespace Landis.Extension.Succession.Century
 
         Ecoregions.AuxParm<double> PercentClay {get;}
         Ecoregions.AuxParm<double> PercentSand {get;}
-        Ecoregions.AuxParm<int>    SoilDepth {get;}
+        //Ecoregions.AuxParm<int>    SoilDepth {get;}
         Ecoregions.AuxParm<double> FieldCapacity {get;}
         Ecoregions.AuxParm<double> WiltingPoint {get;}
         Ecoregions.AuxParm<double> StormFlowFraction {get;}
@@ -130,6 +129,12 @@ namespace Landis.Extension.Succession.Century
         string AgeOnlyDisturbanceParms
         {
             get;set;
+        }
+
+        string SoilDepthFileName
+        {
+            get;
+            set;
         }
 
         //---------------------------------------------------------------------

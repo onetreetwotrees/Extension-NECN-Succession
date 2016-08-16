@@ -1,5 +1,5 @@
 //  Copyright 2007-2010 Portland State University, University of Wisconsin-Madison
-//  Author: Robert Scheller, Ben Sulman
+//  Author: Robert Scheller, Melissa Lucash
 
 using Landis.Core;
 using Landis.SpatialModeling;
@@ -135,7 +135,7 @@ namespace Landis.Extension.Succession.Century
 
                         double leachTextureEffect = OtherData.OMLeachIntercept + OtherData.OMLeachSlope * ClimateRegionData.PercentSand[ecoregion];
 
-                        double indexWaterMovement = SiteVars.WaterMovement[site] / (ClimateRegionData.SoilDepth[ecoregion] * ClimateRegionData.FieldCapacity[ecoregion]);
+                        double indexWaterMovement = SiteVars.WaterMovement[site] / (SiteVars.SoilDepth[site] * ClimateRegionData.FieldCapacity[ecoregion]);
                                               
                         cLeached = netCFlow * leachTextureEffect * indexWaterMovement;
                                                                         

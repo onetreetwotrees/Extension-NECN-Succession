@@ -1,5 +1,5 @@
-//  Copyright 2007-2010 Portland State University, University of Wisconsin-Madison
-//  Author: Robert Scheller, Ben Sulman
+//  Copyright 2007-2016 Portland State University
+//  Author: Robert Scheller
 
 using Landis.Core;
 using Landis.SpatialModeling;
@@ -222,7 +222,7 @@ namespace Landis.Extension.Succession.Century
         }
         
         //---------------------------------------------------------------------------
-        private static double CalculateSoilMoisture(AnnualClimate_Monthly weather, IEcoregion ecoregion, int year)
+        private static double CalculateSoilMoisture(AnnualClimate_Monthly weather, IEcoregion ecoregion, int year, ActiveSite site)
         // Calculate fraction of growing season with unfavorable soil moisture
         // for growth (Dry_Days_in_Grow_Seas) used in SoilMoistureMultiplier to determine soil
         // moisture growth multipliers.
@@ -257,8 +257,8 @@ namespace Landis.Extension.Succession.Century
             changeSoilMoisture, //
             oldJulianDay,       //
             dryDayInterp;       //
-            double fieldCapacity = ClimateRegionData.FieldCapacity[ecoregion] * (double) ClimateRegionData.SoilDepth[ecoregion];
-            double wiltingPoint  = ClimateRegionData.WiltingPoint[ecoregion] * (double) ClimateRegionData.SoilDepth[ecoregion];
+            double fieldCapacity = ClimateRegionData.FieldCapacity[ecoregion] * (double)SiteVars.SoilDepth[site]; // ClimateRegionData.SoilDepth[ecoregion];
+            double wiltingPoint = ClimateRegionData.WiltingPoint[ecoregion] * (double)SiteVars.SoilDepth[site]; // ClimateRegionData.SoilDepth[ecoregion];
             //double fieldCapacity = ClimateRegionData.FieldCapacity[ecoregion] * 100.0;
             //double wiltingPoint  = ClimateRegionData.WiltingPoint[ecoregion] * 100.0;
             

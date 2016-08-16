@@ -126,7 +126,6 @@
     <Compile Include="utility\ShortPixel.cs" />
     <Compile Include="utility\Species_AuxParm.cs" />
     <Compile Include="utility\Util.cs" />
-    <Compile Include="utility\VersioningVerifier.cs" />
     <Compile Include="WoodLayer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

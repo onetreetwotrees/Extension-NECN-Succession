@@ -1,5 +1,5 @@
 //  Copyright 2007-2010 Portland State University, University of Wisconsin-Madison
-//  Author: Robert Scheller, Ben Sulman
+//  Author: Robert Scheller, Melissa Lucash
 
 using Landis.Core;
 using Landis.SpatialModeling;
@@ -19,7 +19,7 @@ namespace Landis.Extension.Succession.Century
         //user-defined by ecoregion
         public static Ecoregions.AuxParm<double> PercentClay;  
         public static Ecoregions.AuxParm<double> PercentSand;  
-        public static Ecoregions.AuxParm<int>    SoilDepth;
+        //public static Ecoregions.AuxParm<int>    SoilDepth;
         public static Ecoregions.AuxParm<double> FieldCapacity;
         public static Ecoregions.AuxParm<double> WiltingPoint;
         public static Ecoregions.AuxParm<double> StormFlowFraction;
@@ -48,7 +48,7 @@ namespace Landis.Extension.Succession.Century
         
             PercentClay         = parameters.PercentClay; 
             PercentSand         = parameters.PercentSand; 
-            SoilDepth           = parameters.SoilDepth;
+            //SoilDepth           = parameters.SoilDepth;
             FieldCapacity       = parameters.FieldCapacity;
             WiltingPoint        = parameters.WiltingPoint;
             StormFlowFraction   = parameters.StormFlowFraction;

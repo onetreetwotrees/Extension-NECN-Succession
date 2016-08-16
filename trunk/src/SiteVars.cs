@@ -1,5 +1,5 @@
 //  Copyright 2007-2010 Portland State University, University of Wisconsin-Madison
-//  Author: Robert Scheller, Ben Sulman
+//  Author: Robert Scheller, Melissa Lucash
 
 using Landis.Core;
 using Landis.SpatialModeling;
@@ -37,6 +37,7 @@ namespace Landis.Extension.Succession.Century
         private static ISiteVar<Layer> som1soil;
         private static ISiteVar<Layer> som2;
         private static ISiteVar<Layer> som3;
+        private static ISiteVar<int> soilDepth;
         
         // Similar to soil layers with respect to their pools:
         private static ISiteVar<Layer> stream;
@@ -116,6 +117,7 @@ namespace Landis.Extension.Succession.Century
             som1soil            = PlugIn.ModelCore.Landscape.NewSiteVar<Layer>();
             som2                = PlugIn.ModelCore.Landscape.NewSiteVar<Layer>();
             som3                = PlugIn.ModelCore.Landscape.NewSiteVar<Layer>();
+            soilDepth           = PlugIn.ModelCore.Landscape.NewSiteVar<int>();
             
             // Other Layers
             stream              = PlugIn.ModelCore.Landscape.NewSiteVar<Layer>();
@@ -181,10 +183,8 @@ namespace Landis.Extension.Succession.Century
                 surfaceMetabolic[site]      = new Layer(LayerName.Metabolic, LayerType.Surface);
                 soilStructural[site]        = new Layer(LayerName.Structural, LayerType.Soil);
                 soilMetabolic[site]         = new Layer(LayerName.Metabolic, LayerType.Soil);
-                
                 som1surface[site]           = new Layer(LayerName.SOM1, LayerType.Surface);
                 som1soil[site]              = new Layer(LayerName.SOM1, LayerType.Soil);
-                
                 som2[site]                  = new Layer(LayerName.SOM2, LayerType.Soil);
                 som3[site]                  = new Layer(LayerName.SOM3, LayerType.Soil);
                 
@@ -428,6 +428,7 @@ namespace Landis.Extension.Succession.Century
                 return som3;
             }
         }
+        public static ISiteVar<int> SoilDepth {get{return soilDepth;}}
         //---------------------------------------------------------------------
 
         /// <summary>
