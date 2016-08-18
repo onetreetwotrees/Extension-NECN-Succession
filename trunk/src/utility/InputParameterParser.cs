@@ -101,32 +101,9 @@ namespace Landis.Extension.Succession.Century
             ReadVar(communitiesMap);
             parameters.InitialCommunitiesMap = communitiesMap.Value;
 
-
             InputVar<string> climateConfigFile = new InputVar<string>(Names.ClimateConfigFile);
             ReadVar(climateConfigFile);
             parameters.ClimateConfigFile = climateConfigFile.Value;
-
-            InputVar<bool> calimode = new InputVar<bool>(Names.CalibrateMode);
-            if (ReadOptionalVar(calimode))
-                parameters.CalibrateMode = calimode.Value;
-            else
-                parameters.CalibrateMode = false;
-
-            InputVar<double> spinMort = new InputVar<double>("SpinupMortalityFraction");
-            if (ReadOptionalVar(spinMort))
-                parameters.SpinupMortalityFraction = spinMort.Value;
-            else
-                parameters.SpinupMortalityFraction = 0.0;
-
-            InputVar<string> wt = new InputVar<string>("WaterDecayFunction");
-            ReadVar(wt);
-            parameters.WType = WParse(wt.Value);
-
-            InputVar<double> pea = new InputVar<double>("ProbEstablishAdjust");
-            if (ReadOptionalVar(pea))
-                parameters.ProbEstablishAdjustment = pea.Value;
-            else
-                parameters.ProbEstablishAdjustment = 1.0;
 
             InputVar<string> ageOnlyDisturbanceParms = new InputVar<string>(Names.AgeOnlyDisturbanceParms);
             ReadVar(ageOnlyDisturbanceParms);
@@ -135,7 +112,39 @@ namespace Landis.Extension.Succession.Century
             InputVar<string> soilDepthFileName = new InputVar<string>(Names.SoilDepthFileName);
             ReadVar(soilDepthFileName);
             parameters.SoilDepthFileName = soilDepthFileName.Value;
-            
+
+            InputVar<bool> calimode = new InputVar<bool>(Names.CalibrateMode);
+            if (ReadOptionalVar(calimode))
+                parameters.CalibrateMode = calimode.Value;
+            else
+                parameters.CalibrateMode = false;
+
+            //InputVar<double> spinMort = new InputVar<double>("SpinupMortalityFraction");
+            //if (ReadOptionalVar(spinMort))
+            //    parameters.SpinupMortalityFraction = spinMort.Value;
+            //else
+            //    parameters.SpinupMortalityFraction = 0.0;
+
+            InputVar<string> wt = new InputVar<string>("WaterDecayFunction");
+            ReadVar(wt);
+            parameters.WType = WParse(wt.Value);
+
+            InputVar<double> pea = new InputVar<double>("ProbEstablishAdjust");
+            ReadVar(pea);
+            parameters.ProbEstablishAdjustment = pea.Value;
+
+            InputVar<double> iMN = new InputVar<double>("InitialMineralN");
+            ReadVar(iMN);
+            parameters.SetInitMineralN(iMN.Value);
+
+            InputVar<double> ans = new InputVar<double>("AtmosphericNSlope");
+            ReadVar(ans);
+            parameters.SetAtmosNslope(ans.Value);
+
+            InputVar<double> ani = new InputVar<double>("AtmosphericNIntercept");
+            ReadVar(ani);
+            parameters.SetAtmosNintercept(ani.Value);
+
             //InputVar<string> soilCarbonMaps = new InputVar<string>("SoilCarbonMapNames");
             //if (ReadOptionalVar(soilCarbonMaps))
             //{
@@ -509,7 +518,6 @@ namespace Landis.Extension.Succession.Century
             InputVar<double> iS2N = new InputVar<double>("Initial SOM2 (intermediate turnover) N");
             InputVar<double> iS3C = new InputVar<double>("Initial SOM3 (slow turnover) C");
             InputVar<double> iS3N = new InputVar<double>("Initial SOM3 (slow turnover) N");
-            InputVar<double> iMN  = new InputVar<double>("Initial Mineral (available) N");
             Dictionary <string, int> lineNumbers2 = new Dictionary<string, int>();
 
             while (! AtEndOfInput && CurrentName != Names.EcoregionParameters ) {
@@ -544,10 +552,7 @@ namespace Landis.Extension.Succession.Century
                 ReadValue(iS3N, currentLine);
                 parameters.SetInitSOM3N(ecoregion, iS3N.Value);
 
-                ReadValue(iMN, currentLine);
-                parameters.SetInitMineralN(ecoregion, iMN.Value);
-
-                CheckNoDataAfter("the " + iMN.Name + " column", currentLine);
+                CheckNoDataAfter("the " + iS3N.Name + " column", currentLine);
 
                 GetNextLine();
             }
@@ -565,8 +570,6 @@ namespace Landis.Extension.Succession.Century
             InputVar<double> sff = new InputVar<double>("Storm Flow Fraction");
             InputVar<double> bff = new InputVar<double>("Base Flow Fraction");
             InputVar<double> drain = new InputVar<double>("Drain Fraction");
-            InputVar<double> ans = new InputVar<double>("Atmospheric N Slope");
-            InputVar<double> ani = new InputVar<double>("Atmospheric N Intercept");
             InputVar<double> lat = new InputVar<double>("Latitude");
             InputVar<double> drsoms = new InputVar<double>("Decay Rate Surf");
             InputVar<double> drsom1 = new InputVar<double>("Decay Rate SOM1");
@@ -607,12 +610,6 @@ namespace Landis.Extension.Succession.Century
 
                 ReadValue(drain, currentLine);
                 parameters.SetDrain(ecoregion, drain.Value);
-
-                ReadValue(ans, currentLine);
-                parameters.SetAtmosNslope(ecoregion, ans.Value);
-
-                ReadValue(ani, currentLine);
-                parameters.SetAtmosNintercept(ecoregion, ani.Value);
 
                 ReadValue(lat, currentLine);
                 parameters.SetLatitude(ecoregion, lat.Value);

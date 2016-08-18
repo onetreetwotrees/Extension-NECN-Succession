@@ -24,9 +24,11 @@ namespace Landis.Extension.Succession.Century
         private bool calibrateMode;
         private string initCommunities;
         private string communitiesMap;
-        private double spinupMortalityFraction;
+        //private double spinupMortalityFraction;
         public WaterType wtype;
         public double probEstablishAdjust;
+        private double atmosNslope;
+        private double atmosNintercept;
 
         private IEcoregionDataset ecoregionDataset;
         private ISpeciesDataset speciesDataset;
@@ -66,8 +68,6 @@ namespace Landis.Extension.Succession.Century
         private Ecoregions.AuxParm<double> stormFlowFraction;
         private Ecoregions.AuxParm<double> baseFlowFraction;
         private Ecoregions.AuxParm<double> drain;
-        private Ecoregions.AuxParm<double> atmosNslope;
-        private Ecoregions.AuxParm<double> atmosNintercept;
         private Ecoregions.AuxParm<double> latitude;
         private Ecoregions.AuxParm<double> decayRateSurf;
         private Ecoregions.AuxParm<double> decayRateSOM1;
@@ -84,7 +84,7 @@ namespace Landis.Extension.Succession.Century
         private Ecoregions.AuxParm<double> initSOM2N;
         private Ecoregions.AuxParm<double> initSOM3C;
         private Ecoregions.AuxParm<double> initSOM3N;
-        private Ecoregions.AuxParm<double> initMineralN;
+        private double initMineralN;
 
         
         private string ageOnlyDisturbanceParms;
@@ -166,19 +166,19 @@ namespace Landis.Extension.Succession.Century
         }
         //---------------------------------------------------------------------
 
-        public double SpinupMortalityFraction
-        {
-            get
-            {
-                return spinupMortalityFraction;
-            }
-            set
-            {
-                if (value < 0.0 || value > 0.5)
-                    throw new InputValueException(value.ToString(), "SpinupMortalityFraction must be > 0.0 and < 0.5");
-                spinupMortalityFraction = value;
-            }
-        }
+        //public double SpinupMortalityFraction
+        //{
+        //    get
+        //    {
+        //        return spinupMortalityFraction;
+        //    }
+        //    set
+        //    {
+        //        if (value < 0.0 || value > 0.5)
+        //            throw new InputValueException(value.ToString(), "SpinupMortalityFraction must be > 0.0 and < 0.5");
+        //        spinupMortalityFraction = value;
+        //    }
+        //}
 
         //---------------------------------------------------------------------
         public string ClimateConfigFile
@@ -239,6 +239,23 @@ namespace Landis.Extension.Succession.Century
                 probEstablishAdjust = value;
             }
         }
+        //---------------------------------------------------------------------
+        public double AtmosNslope
+        {
+            get
+            {
+                return atmosNslope;
+            }
+        }
+        //---------------------------------------------------------------------
+        public double AtmosNintercept
+        {
+            get
+            {
+                return atmosNintercept;
+            }
+        }
+
         //---------------------------------------------------------------------
         /// <summary>
         /// Functional type parameters.
@@ -473,21 +490,6 @@ namespace Landis.Extension.Succession.Century
             }
         }
         //---------------------------------------------------------------------
-        public Ecoregions.AuxParm<double> AtmosNslope
-        {
-            get {
-                return atmosNslope;
-            }
-        }
-        //---------------------------------------------------------------------
-        public Ecoregions.AuxParm<double> AtmosNintercept
-        {
-            get {
-                return atmosNintercept;
-            }
-        }
-        
-        //---------------------------------------------------------------------
         public Ecoregions.AuxParm<double> Latitude
         {
             get {
@@ -544,7 +546,7 @@ namespace Landis.Extension.Succession.Century
         public Ecoregions.AuxParm<double> InitialSOM2N { get { return initSOM2N; } }
         public Ecoregions.AuxParm<double> InitialSOM3C { get { return initSOM3C; } }
         public Ecoregions.AuxParm<double> InitialSOM3N { get { return initSOM3N; } }
-        public Ecoregions.AuxParm<double> InitialMineralN { get { return initMineralN; } }
+        public double InitialMineralN { get { return initMineralN; } }
         
         //---------------------------------------------------------------------
 
@@ -803,16 +805,14 @@ namespace Landis.Extension.Succession.Century
         }
         //---------------------------------------------------------------------
 
-        public void SetAtmosNslope(IEcoregion ecoregion, InputValue<double> newValue)
+        public void SetAtmosNslope(InputValue<double> newValue)
         {
-            Debug.Assert(ecoregion != null);
-            atmosNslope[ecoregion] = CheckBiomassParm(newValue, -1.0, 2.0);
+            atmosNslope = CheckBiomassParm(newValue, -1.0, 2.0);
         }
         //---------------------------------------------------------------------
-        public void SetAtmosNintercept(IEcoregion ecoregion, InputValue<double> newValue)
+        public void SetAtmosNintercept(InputValue<double> newValue)
         {
-            Debug.Assert(ecoregion != null);
-            atmosNintercept[ecoregion] = CheckBiomassParm(newValue, -1.0, 2.0);
+            atmosNintercept = CheckBiomassParm(newValue, -1.0, 2.0);
         }
         //---------------------------------------------------------------------
         public void SetLatitude(IEcoregion ecoregion, InputValue<double> newValue)
@@ -902,10 +902,9 @@ namespace Landis.Extension.Succession.Century
             initSOM3N[ecoregion] = CheckBiomassParm(newValue, 0.0, 1000.0);
         }
         //---------------------------------------------------------------------
-        public void SetInitMineralN(IEcoregion ecoregion, InputValue<double> newValue)
+        public void SetInitMineralN(InputValue<double> newValue)
         {
-            Debug.Assert(ecoregion != null);
-            initMineralN[ecoregion] = CheckBiomassParm(newValue, 0.0, 5000.0);
+            initMineralN = CheckBiomassParm(newValue, 0.0, 5000.0);
         }
         //---------------------------------------------------------------------
         //---------------------------------------------------------------------
@@ -955,8 +954,8 @@ namespace Landis.Extension.Succession.Century
             stormFlowFraction       = new Ecoregions.AuxParm<double>(ecoregionDataset);
             baseFlowFraction        = new Ecoregions.AuxParm<double>(ecoregionDataset);
             drain                   = new Ecoregions.AuxParm<double>(ecoregionDataset);
-            atmosNslope             = new Ecoregions.AuxParm<double>(ecoregionDataset);
-            atmosNintercept         = new Ecoregions.AuxParm<double>(ecoregionDataset);
+            //atmosNslope             = new Ecoregions.AuxParm<double>(ecoregionDataset);
+            //atmosNintercept         = new Ecoregions.AuxParm<double>(ecoregionDataset);
             latitude                = new Ecoregions.AuxParm<double>(ecoregionDataset);
             decayRateSurf           = new Ecoregions.AuxParm<double>(ecoregionDataset);
             decayRateSOM1           = new Ecoregions.AuxParm<double>(ecoregionDataset);
@@ -971,7 +970,7 @@ namespace Landis.Extension.Succession.Century
             initSOM2N               = new Ecoregions.AuxParm<double>(ecoregionDataset);
             initSOM3C               = new Ecoregions.AuxParm<double>(ecoregionDataset);
             initSOM3N               = new Ecoregions.AuxParm<double>(ecoregionDataset);
-            initMineralN            = new Ecoregions.AuxParm<double>(ecoregionDataset);
+            //initMineralN            = new Ecoregions.AuxParm<double>(ecoregionDataset);
 
             
             //this.dynamicUpdates = new List<Dynamic.ParametersUpdate>();

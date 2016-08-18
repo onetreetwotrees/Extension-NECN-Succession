@@ -19,7 +19,7 @@ namespace Landis.Extension.Succession.Century
 
         string ClimateConfigFile { get; set; }
 
-        double SpinupMortalityFraction { get; set; }
+        //double SpinupMortalityFraction { get; set; }
         bool CalibrateMode { get; set; }
         WaterType WType {get;set;}
         double ProbEstablishAdjustment { get; set; }
@@ -100,8 +100,8 @@ namespace Landis.Extension.Succession.Century
         Ecoregions.AuxParm<double> BaseFlowFraction {get;}
         Ecoregions.AuxParm<double> Drain {get;}
         //Ecoregions.AuxParm<double> MonthlyNDeposition {get;}
-        Ecoregions.AuxParm<double> AtmosNslope {get;}
-        Ecoregions.AuxParm<double> AtmosNintercept {get;}
+        double AtmosNslope {get;}
+        double AtmosNintercept {get;}
         Ecoregions.AuxParm<double> Latitude {get;}
         Ecoregions.AuxParm<double> DecayRateSurf { get; }
         Ecoregions.AuxParm<double> DecayRateSOM1 { get; }
@@ -117,7 +117,7 @@ namespace Landis.Extension.Succession.Century
         Ecoregions.AuxParm<double> InitialSOM2N {get;}
         Ecoregions.AuxParm<double> InitialSOM3C {get;}
         Ecoregions.AuxParm<double> InitialSOM3N {get;}
-        Ecoregions.AuxParm<double> InitialMineralN {get;}
+        double InitialMineralN {get;}
 
 
         //---------------------------------------------------------------------

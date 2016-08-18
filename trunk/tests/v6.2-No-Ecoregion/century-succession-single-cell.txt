@@ -7,12 +7,17 @@ SeedingAlgorithm  WardSeedDispersal
 InitialCommunities      "./initial-communities.txt"
 InitialCommunitiesMap   "./single_cell_3.img"
 ClimateConfigFile	climate-generator-baseline.txt
-CalibrateMode 	yes
->>SpinupMortalityFraction
-WaterDecayFunction Ratio <<Linear or Ratio
->>ProbabilityEstablishmentAdjust
 AgeOnlyDisturbances:BiomassParameters  bio-reductions-standard.txt
 SoilDepthFileName	soil_depth_single.img
+
+CalibrateMode 	yes
+WaterDecayFunction Ratio <<Linear or Ratio
+
+>>SpinupMortalityFraction
+ProbabilityEstablishmentAdjust 	1.0
+InitialMineralN			2.0
+AtmosphericNSlope		0.05
+AtmosphericNIntercept		0.05
 
 AvailableLightBiomass
 
@@ -72,18 +77,18 @@ HVFST	3	25.0	45.0	1.0	3.0	0.5	0.00823	2000	20.0	1.0	0.8	0.4	0.003	10	9	0.1	0.1
 ASPEN 	4	20.0	32.0	0.2	10.0	0.5	0.00823	3000	20.0	1.0	0.8	0.4	0.003	10	9	0.1	0.1
 
 InitialEcoregionParameters
->> 	SOM1	SOM1	SOM1	SOM1	SOM2	SOM2	SOM3	SOM3	Minrl
->> 	C	N	C	N	C	N	C	N	N
+>> 	SOM1	SOM1	SOM1	SOM1	SOM2	SOM2	SOM3	SOM3	
+>> 	C	N	C	N	C	N	C	N	
 >> 	surf	surf	soil	soil
-eco3	110	6	150	9	4500	145	1294.0	50	2.0
-eco2	110	6	150	9	4500	145	1294.0	50	2.0
-	
+eco3	110	6	150	9	4500	145	1294.0	50	
+eco2	110	6	150	9	4500	145	1294.0	50		
+
 EcoregionParameters
->>	Percent	Percent	Field	Wilt	StormF	BaseF	Drain	Atmos	Atmos	Lat-	Decay   Decay   Decay	 Decay      Denitrif 
->>	Clay	Sand	Cap	Point	Fract	Fract		N	N	itude	Rate    Rate    Rate	 Rate	    Slope  
->>      				frac	frac		slope	inter		Surf    SOM1    SOM2	 SOM3
-eco3	0.069	0.591	0.1	0.05	0.4	0.4	0.75	0.05	0.05	44.0	0.01	0.05	0.2	0.0045	    0.01	 
-eco2	0.069	0.591	0.2	0.1	0.4	0.4	0.75	0.05	0.05	44.0	0.01	0.05	0.2	0.0045	    0.01
+>>	Percent	Percent	Field	Wilt	StormF	BaseF	Drain	Lat-	Decay   Decay   Decay	 Decay      Denitrif 
+>>	Clay	Sand	Cap	Point	Fract	Fract		itude	Rate    Rate    Rate	 Rate	    Slope  
+>>      				frac	frac			Surf    SOM1    SOM2	 SOM3
+eco3	0.069	0.591	0.1	0.05	0.4	0.4	0.75	44.0	0.01	0.05	0.2	0.0045	    0.01	 
+eco2	0.069	0.591	0.2	0.1	0.4	0.4	0.75	44.0	0.01	0.05	0.2	0.0045	    0.01
 
 FireReductionParameters
 >>	Severity	Wood	Litter

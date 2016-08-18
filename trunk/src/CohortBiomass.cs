@@ -25,7 +25,7 @@ namespace Landis.Extension.Succession.Century
 
         //  Ecoregion where the cohort's site is located
         private IEcoregion ecoregion;
-        public static double SpinupMortalityFraction;
+        //public static double SpinupMortalityFraction;
         private double defoliation;
         private double defoliatedLeafBiomass;
 
@@ -261,11 +261,11 @@ namespace Landis.Extension.Succession.Century
             double M_AGE_leaf =    cohort.LeafBiomass *  monthAdjust *
                                     Math.Exp((double) cohort.Age / max_age * d) / Math.Exp(d);
 
-            if (PlugIn.ModelCore.CurrentTime <= 0 &&  SpinupMortalityFraction > 0.0)
-            {
-                M_AGE_wood += cohort.Biomass * SpinupMortalityFraction;
-                M_AGE_leaf += cohort.Biomass * SpinupMortalityFraction;
-            }
+            //if (PlugIn.ModelCore.CurrentTime <= 0 &&  SpinupMortalityFraction > 0.0)
+            //{
+            //    M_AGE_wood += cohort.Biomass * SpinupMortalityFraction;
+            //    M_AGE_leaf += cohort.Biomass * SpinupMortalityFraction;
+            //}
 
             M_AGE_wood = Math.Min(M_AGE_wood, cohort.WoodBiomass);
             M_AGE_leaf = Math.Min(M_AGE_leaf, cohort.LeafBiomass);

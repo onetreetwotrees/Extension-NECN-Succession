@@ -75,8 +75,8 @@ namespace Landis.Extension.Succession.Century
                     double ppt = ClimateRegionData.AnnualWeather[ecoregion].MonthlyPrecip[Century.Month];
 
                     double monthlyNdeposition;
-                    if  (ClimateRegionData.AtmosNintercept[ecoregion]!=-1 && ClimateRegionData.AtmosNslope[ecoregion] !=-1)
-                        monthlyNdeposition = ClimateRegionData.AtmosNintercept[ecoregion] + (ClimateRegionData.AtmosNslope[ecoregion] * ppt);
+                    if  (PlugIn.AtmosNintercept !=-1 && PlugIn.AtmosNslope !=-1)
+                        monthlyNdeposition = PlugIn.AtmosNintercept + (PlugIn.AtmosNslope * ppt);
                     else 
                     {
                         monthlyNdeposition = ClimateRegionData.AnnualWeather[ecoregion].MonthlyNDeposition[Century.Month];

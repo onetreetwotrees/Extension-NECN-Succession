@@ -25,8 +25,8 @@ namespace Landis.Extension.Succession.Century
         public static Ecoregions.AuxParm<double> StormFlowFraction;
         public static Ecoregions.AuxParm<double> BaseFlowFraction;
         public static Ecoregions.AuxParm<double> Drain;
-        public static Ecoregions.AuxParm<double> AtmosNslope;
-        public static Ecoregions.AuxParm<double> AtmosNintercept;
+        //public static Ecoregions.AuxParm<double> AtmosNslope;
+        //public static Ecoregions.AuxParm<double> AtmosNintercept;
         public static Ecoregions.AuxParm<double> Latitude;
         public static Ecoregions.AuxParm<double> DecayRateSurf; 
         public static Ecoregions.AuxParm<double> DecayRateSOM1;
@@ -54,8 +54,6 @@ namespace Landis.Extension.Succession.Century
             StormFlowFraction   = parameters.StormFlowFraction;
             BaseFlowFraction    = parameters.BaseFlowFraction;
             Drain               = parameters.Drain;
-            AtmosNslope         = parameters.AtmosNslope;
-            AtmosNintercept     = parameters.AtmosNintercept;
             Latitude            = parameters.Latitude;
             DecayRateSurf       = parameters.DecayRateSurf;
             DecayRateSOM1       = parameters.DecayRateSOM1;
@@ -89,7 +87,7 @@ namespace Landis.Extension.Succession.Century
                 SiteVars.SOM3[site].Carbon              = parameters.InitialSOM3C[ecoregion];
                 SiteVars.SOM3[site].Nitrogen            = parameters.InitialSOM3N[ecoregion];
                 
-                SiteVars.MineralN[site]               = parameters.InitialMineralN[ecoregion];
+                SiteVars.MineralN[site]               = parameters.InitialMineralN;
                 
                 ActiveSiteCount[ecoregion]++;
             }

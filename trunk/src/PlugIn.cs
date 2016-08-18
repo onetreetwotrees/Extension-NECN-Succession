@@ -23,6 +23,8 @@ namespace Landis.Extension.Succession.Century
         public static readonly string ExtensionName = "Century Succession";
         private static ICore modelCore;
         private IInputParameters parameters;
+        public static double AtmosNslope;
+        public static double AtmosNintercept;
 
 
         private List<ISufficientLight> sufficientLight;
@@ -82,7 +84,7 @@ namespace Landis.Extension.Succession.Century
             sufficientLight       = parameters.LightClassProbabilities;
             ProbEstablishAdjust = parameters.ProbEstablishAdjustment;
             MetadataHandler.InitializeMetadata(Timestep, modelCore, SoilCarbonMapNames, SoilNitrogenMapNames, ANPPMapNames, ANEEMapNames, TotalCMapNames);
-            CohortBiomass.SpinupMortalityFraction = parameters.SpinupMortalityFraction;
+            //CohortBiomass.SpinupMortalityFraction = parameters.SpinupMortalityFraction;
             
             //Initialize climate.
             Climate.Initialize(parameters.ClimateConfigFile, false, modelCore);
@@ -127,6 +129,9 @@ namespace Landis.Extension.Succession.Century
                 if (SpeciesData.Max_Biomass[species] > B_MAX)
                     B_MAX = SpeciesData.Max_Biomass[species];
             }
+            
+            AtmosNslope = parameters.AtmosNslope;
+            AtmosNintercept = parameters.AtmosNintercept;
 
         }
 
