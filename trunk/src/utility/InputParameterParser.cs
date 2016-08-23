@@ -145,6 +145,30 @@ namespace Landis.Extension.Succession.Century
             ReadVar(ani);
             parameters.SetAtmosNintercept(ani.Value);
 
+            InputVar<double> lat = new InputVar<double>("Latitude");
+            ReadVar(lat);
+            parameters.SetLatitude(lat.Value);
+
+            InputVar<double> denits = new InputVar<double>("DenitrificationRate");
+            ReadVar(denits);
+            parameters.SetDenitrif(denits.Value);
+
+            InputVar<double> drsoms = new InputVar<double>("DecayRateSurf");
+            ReadVar(drsoms);
+            parameters.SetDecayRateSurf(drsoms.Value);
+
+            InputVar<double> drsom1 = new InputVar<double>("DecayRateSOM1");
+            ReadVar(drsom1);
+            parameters.SetDecayRateSOM1(drsom1.Value);
+
+            InputVar<double> drsom2 = new InputVar<double>("DecayRateSOM2");
+            ReadVar(drsom2);
+            parameters.SetDecayRateSOM2(drsom2.Value);
+
+            InputVar<double> drsom3 = new InputVar<double>("DecayRateSOM3");
+            ReadVar(drsom3);
+            parameters.SetDecayRateSOM3(drsom3.Value);
+
             //InputVar<string> soilCarbonMaps = new InputVar<string>("SoilCarbonMapNames");
             //if (ReadOptionalVar(soilCarbonMaps))
             //{
@@ -570,12 +594,8 @@ namespace Landis.Extension.Succession.Century
             InputVar<double> sff = new InputVar<double>("Storm Flow Fraction");
             InputVar<double> bff = new InputVar<double>("Base Flow Fraction");
             InputVar<double> drain = new InputVar<double>("Drain Fraction");
-            InputVar<double> lat = new InputVar<double>("Latitude");
-            InputVar<double> drsoms = new InputVar<double>("Decay Rate Surf");
-            InputVar<double> drsom1 = new InputVar<double>("Decay Rate SOM1");
-            InputVar<double> drsom2 = new InputVar<double>("Decay Rate SOM2");
-            InputVar<double> drsom3 = new InputVar<double>("Decay Rate SOM3");
-            InputVar<double> denits = new InputVar<double>("Denitrification");
+            //InputVar<double> lat = new InputVar<double>("Latitude");
+            //InputVar<double> denits = new InputVar<double>("Denitrification");
 
             Dictionary<string, int> lineNumbers = new Dictionary<string, int>();
 
@@ -611,25 +631,9 @@ namespace Landis.Extension.Succession.Century
                 ReadValue(drain, currentLine);
                 parameters.SetDrain(ecoregion, drain.Value);
 
-                ReadValue(lat, currentLine);
-                parameters.SetLatitude(ecoregion, lat.Value);
 
-                ReadValue(drsoms, currentLine);
-                parameters.SetDecayRateSurf(ecoregion, drsoms.Value);
 
-                ReadValue(drsom1, currentLine);
-                parameters.SetDecayRateSOM1(ecoregion, drsom1.Value);
-
-                ReadValue(drsom2, currentLine);
-                parameters.SetDecayRateSOM2(ecoregion, drsom2.Value);
-
-                ReadValue(drsom3, currentLine);
-                parameters.SetDecayRateSOM3(ecoregion, drsom3.Value);
-
-                ReadValue(denits, currentLine);
-                parameters.SetDenitrif(ecoregion, denits.Value);
-
-                CheckNoDataAfter("the " + drsom3.Name + " column", currentLine);
+                CheckNoDataAfter("the " + drain.Name + " column", currentLine);
 
                 GetNextLine();
             }

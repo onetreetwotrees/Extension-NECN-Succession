@@ -25,6 +25,13 @@ namespace Landis.Extension.Succession.Century
         private IInputParameters parameters;
         public static double AtmosNslope;
         public static double AtmosNintercept;
+        public static double Latitude;
+        public static double DenitrificationRate;
+public static double             DecayRateSurf;
+            public static double DecayRateSOM1;
+            public static double DecayRateSOM2;
+            public static double DecayRateSOM3;
+
 
 
         private List<ISufficientLight> sufficientLight;
@@ -132,6 +139,12 @@ namespace Landis.Extension.Succession.Century
             
             AtmosNslope = parameters.AtmosNslope;
             AtmosNintercept = parameters.AtmosNintercept;
+            Latitude = parameters.Latitude;
+            DenitrificationRate = parameters.Denitrif;
+            DecayRateSurf = parameters.DecayRateSurf;
+            DecayRateSOM1 = parameters.DecayRateSOM1;
+            DecayRateSOM2 = parameters.DecayRateSOM2;
+            DecayRateSOM3 = parameters.DecayRateSOM3;
 
         }
 

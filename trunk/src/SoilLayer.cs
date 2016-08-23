@@ -87,10 +87,10 @@ namespace Landis.Extension.Succession.Century
                 double totalCflow = som1c_soil 
                             * SiteVars.DecayFactor[site]
                             * OtherData.LitterParameters[(int) LayerType.Soil].DecayRateMicrobes
-                            * ClimateRegionData.DecayRateSOM1[ecoregion] 
-                            * textureEffect  
-                            * anerb
-                            * OtherData.MonthAdjust;
+                            * PlugIn.DecayRateSOM1 // ClimateRegionData.DecayRateSOM1[ecoregion]
+                             * textureEffect
+                             * anerb
+                             * OtherData.MonthAdjust;
 
                 // If soil SOM1 can decompose to SOM2, it will also go to SOM3.
                 // If it can't go to SOM2, it can't decompose at all.
@@ -188,7 +188,7 @@ namespace Landis.Extension.Succession.Century
                 // Compute total C flow out of SOM2C
                 double totalCflow = som2c 
                                 * SiteVars.DecayFactor[site] 
-                                * ClimateRegionData.DecayRateSOM2[ecoregion]
+                                * PlugIn.DecayRateSOM2 //ClimateRegionData.DecayRateSOM2[ecoregion]
                                 * anerb //impact of soil anaerobic conditions
                                 * OtherData.MonthAdjust;
                 //PlugIn.ModelCore.UI.WriteLine("som2c={0:0.00}, decayFactor={1:0.00}, decayRateSOM2={2:0.00}, anerb={3:0.00}, monthAdj={4:0.00}", som2c, SiteVars.DecayFactor[site], ClimateRegionData.DecayRateSOM2[ecoregion], anerb, OtherData.MonthAdjust);
@@ -258,7 +258,7 @@ namespace Landis.Extension.Succession.Century
                 //Compute total C flow out of SOM3C
                 double totalCflow = som3c
                                 * SiteVars.DecayFactor[site]
-                                * ClimateRegionData.DecayRateSOM3[ecoregion]
+                                * PlugIn.DecayRateSOM3 //ClimateRegionData.DecayRateSOM3[ecoregion]
                                 * anerb 
                                 * OtherData.MonthAdjust;
 

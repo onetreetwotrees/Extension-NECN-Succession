@@ -110,7 +110,7 @@ namespace Landis.Extension.Succession.Century
                     //     remains after uptake by plants.  ML added a correction factor for wetlands since their denitrification rate is double that of wetlands
                     //based on a review paper by Seitziner 2006.
 
-                    double volatilize = (SiteVars.MineralN[site] * ClimateRegionData.Denitrif[ecoregion]); // monthly value
+                    double volatilize = (SiteVars.MineralN[site] * PlugIn.DenitrificationRate); //ClimateRegionData.Denitrif[ecoregion]); // monthly value
 
                     //PlugIn.ModelCore.UI.WriteLine("BeforeVol.  MineralN={0:0.00}.", SiteVars.MineralN[site]);
 

@@ -29,6 +29,12 @@ namespace Landis.Extension.Succession.Century
         public double probEstablishAdjust;
         private double atmosNslope;
         private double atmosNintercept;
+        private double latitude;
+        private double denitrif;
+        private double decayRateSurf;
+        private double decayRateSOM1;
+        private double decayRateSOM2;
+        private double decayRateSOM3;
 
         private IEcoregionDataset ecoregionDataset;
         private ISpeciesDataset speciesDataset;
@@ -68,12 +74,6 @@ namespace Landis.Extension.Succession.Century
         private Ecoregions.AuxParm<double> stormFlowFraction;
         private Ecoregions.AuxParm<double> baseFlowFraction;
         private Ecoregions.AuxParm<double> drain;
-        private Ecoregions.AuxParm<double> latitude;
-        private Ecoregions.AuxParm<double> decayRateSurf;
-        private Ecoregions.AuxParm<double> decayRateSOM1;
-        private Ecoregions.AuxParm<double> decayRateSOM2;
-        private Ecoregions.AuxParm<double> decayRateSOM3;
-        private Ecoregions.AuxParm<double> denitrif;
         
 
         private Ecoregions.AuxParm<double> initSOM1surfC;
@@ -490,14 +490,14 @@ namespace Landis.Extension.Succession.Century
             }
         }
         //---------------------------------------------------------------------
-        public Ecoregions.AuxParm<double> Latitude
+        public double Latitude
         {
             get {
                 return latitude;
             }
         }
         //-----------------------------------------------
-        public Ecoregions.AuxParm<double> DecayRateSurf
+        public double DecayRateSurf
         {
             get
             {
@@ -505,14 +505,14 @@ namespace Landis.Extension.Succession.Century
             }
         }
         //-----------------------------------------------
-        public Ecoregions.AuxParm<double> DecayRateSOM1
+        public double DecayRateSOM1
         {
             get
             {
                 return decayRateSOM1;
             }
         }//---------------------------------------------------------------------
-        public Ecoregions.AuxParm<double> DecayRateSOM2
+        public double DecayRateSOM2
         {
             get
             {
@@ -520,7 +520,7 @@ namespace Landis.Extension.Succession.Century
             }
         }
         //---------------------------------------------------------------------
-        public Ecoregions.AuxParm<double> DecayRateSOM3
+        public double DecayRateSOM3
         {
             get
             {
@@ -528,7 +528,7 @@ namespace Landis.Extension.Succession.Century
             }
         }
         //-----------------------------------------------
-        public Ecoregions.AuxParm<double> Denitrif
+        public double Denitrif
         {
             get
             {
@@ -815,41 +815,36 @@ namespace Landis.Extension.Succession.Century
             atmosNintercept = CheckBiomassParm(newValue, -1.0, 2.0);
         }
         //---------------------------------------------------------------------
-        public void SetLatitude(IEcoregion ecoregion, InputValue<double> newValue)
+        public void SetLatitude(InputValue<double> newValue)
         {
-            Debug.Assert(ecoregion != null);
-            latitude[ecoregion] = CheckBiomassParm(newValue, 0.0, 50.0);
+            //Debug.Assert(ecoregion != null);
+            latitude = CheckBiomassParm(newValue, 0.0, 50.0);
         }
         //---------------------------------------------------------------------
        
-        public void SetDecayRateSurf(IEcoregion ecoregion, InputValue<double> newValue)
+        public void SetDecayRateSurf(InputValue<double> newValue)
         {
-            Debug.Assert(ecoregion != null);
-            decayRateSurf[ecoregion] = CheckBiomassParm(newValue, 0.0, 10.0);
+            decayRateSurf = CheckBiomassParm(newValue, 0.0, 10.0);
         }
         //---------------------------------------------------------------------
-        public void SetDecayRateSOM1(IEcoregion ecoregion, InputValue<double> newValue)
+        public void SetDecayRateSOM1(InputValue<double> newValue)
         {
-            Debug.Assert(ecoregion != null);
-            decayRateSOM1[ecoregion] = CheckBiomassParm(newValue, 0.0, 10.0);
+            decayRateSOM1 = CheckBiomassParm(newValue, 0.0, 10.0);
         }
         //---------------------------------------------------------------------
-        public void SetDecayRateSOM2(IEcoregion ecoregion, InputValue<double> newValue)
+        public void SetDecayRateSOM2(InputValue<double> newValue)
         {
-            Debug.Assert(ecoregion != null);
-            decayRateSOM2[ecoregion] = CheckBiomassParm(newValue, 0.0, 1.0);
+            decayRateSOM2 = CheckBiomassParm(newValue, 0.0, 1.0);
         }
         //---------------------------------------------------------------------
-        public void SetDecayRateSOM3(IEcoregion ecoregion, InputValue<double> newValue)
+        public void SetDecayRateSOM3(InputValue<double> newValue)
         {
-            Debug.Assert(ecoregion != null);
-            decayRateSOM3[ecoregion] = CheckBiomassParm(newValue, 0.0, 1.0);
+            decayRateSOM3 = CheckBiomassParm(newValue, 0.0, 1.0);
         }
         //---------------------------------------------------------------------
-        public void SetDenitrif(IEcoregion ecoregion, InputValue<double> newValue)
+        public void SetDenitrif(InputValue<double> newValue)
         {
-            Debug.Assert(ecoregion != null);
-            denitrif[ecoregion] = CheckBiomassParm(newValue, 0.0, 1.0);
+            denitrif = CheckBiomassParm(newValue, 0.0, 1.0);
         }
 
        
@@ -956,12 +951,8 @@ namespace Landis.Extension.Succession.Century
             drain                   = new Ecoregions.AuxParm<double>(ecoregionDataset);
             //atmosNslope             = new Ecoregions.AuxParm<double>(ecoregionDataset);
             //atmosNintercept         = new Ecoregions.AuxParm<double>(ecoregionDataset);
-            latitude                = new Ecoregions.AuxParm<double>(ecoregionDataset);
-            decayRateSurf           = new Ecoregions.AuxParm<double>(ecoregionDataset);
-            decayRateSOM1           = new Ecoregions.AuxParm<double>(ecoregionDataset);
-            decayRateSOM2           = new Ecoregions.AuxParm<double>(ecoregionDataset);
-            decayRateSOM3           = new Ecoregions.AuxParm<double>(ecoregionDataset);
-            denitrif              = new Ecoregions.AuxParm<double>(ecoregionDataset);
+            //latitude                = new Ecoregions.AuxParm<double>(ecoregionDataset);
+            //denitrif              = new Ecoregions.AuxParm<double>(ecoregionDataset);
             initSOM1surfC           = new Ecoregions.AuxParm<double>(ecoregionDataset);
             initSOM1surfN           = new Ecoregions.AuxParm<double>(ecoregionDataset);
             initSOM1soilC           = new Ecoregions.AuxParm<double>(ecoregionDataset);

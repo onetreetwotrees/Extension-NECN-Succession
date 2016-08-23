@@ -29,10 +29,10 @@ namespace Landis.Extension.Succession.Century
         //public static Ecoregions.AuxParm<double> AtmosNintercept;
         public static Ecoregions.AuxParm<double> Latitude;
         public static Ecoregions.AuxParm<double> DecayRateSurf; 
-        public static Ecoregions.AuxParm<double> DecayRateSOM1;
-        public static Ecoregions.AuxParm<double> DecayRateSOM2;
-        public static Ecoregions.AuxParm<double> DecayRateSOM3;
-        public static Ecoregions.AuxParm<double> Denitrif;
+        //public static Ecoregions.AuxParm<double> DecayRateSOM1;
+        //public static Ecoregions.AuxParm<double> DecayRateSOM2;
+        //public static Ecoregions.AuxParm<double> DecayRateSOM3;
+        //public static Ecoregions.AuxParm<double> Denitrif;
         public static Ecoregions.AuxParm<int> ActiveSiteCount;
         public static Ecoregions.AuxParm<Percentage>[] ShadeBiomass;
         //public static Ecoregions.AuxParm<int> B_MAX;
@@ -54,12 +54,12 @@ namespace Landis.Extension.Succession.Century
             StormFlowFraction   = parameters.StormFlowFraction;
             BaseFlowFraction    = parameters.BaseFlowFraction;
             Drain               = parameters.Drain;
-            Latitude            = parameters.Latitude;
-            DecayRateSurf       = parameters.DecayRateSurf;
-            DecayRateSOM1       = parameters.DecayRateSOM1;
-            DecayRateSOM2       = parameters.DecayRateSOM2;
-            DecayRateSOM3       = parameters.DecayRateSOM3;
-            Denitrif             = parameters.Denitrif;
+            //Latitude            = parameters.Latitude;
+            //DecayRateSurf       = parameters.DecayRateSurf;
+            //DecayRateSOM1       = parameters.DecayRateSOM1;
+            //DecayRateSOM2       = parameters.DecayRateSOM2;
+            //DecayRateSOM3       = parameters.DecayRateSOM3;
+            //Denitrif             = parameters.Denitrif;
             
             ShadeBiomass = parameters.MinRelativeBiomass;
     

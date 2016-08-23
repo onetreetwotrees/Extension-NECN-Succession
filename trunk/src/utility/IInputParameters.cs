@@ -102,12 +102,12 @@ namespace Landis.Extension.Succession.Century
         //Ecoregions.AuxParm<double> MonthlyNDeposition {get;}
         double AtmosNslope {get;}
         double AtmosNintercept {get;}
-        Ecoregions.AuxParm<double> Latitude {get;}
-        Ecoregions.AuxParm<double> DecayRateSurf { get; }
-        Ecoregions.AuxParm<double> DecayRateSOM1 { get; }
-        Ecoregions.AuxParm<double> DecayRateSOM2 { get; }
-        Ecoregions.AuxParm<double> DecayRateSOM3 { get; }
-        Ecoregions.AuxParm<double> Denitrif { get; }
+        double Latitude {get;}
+        double DecayRateSurf { get; }
+        double DecayRateSOM1 { get; }
+        double DecayRateSOM2 { get; }
+        double DecayRateSOM3 { get; }
+        double Denitrif { get; }
         
         Ecoregions.AuxParm<double> InitialSOM1surfC {get;}
         Ecoregions.AuxParm<double> InitialSOM1surfN {get;}

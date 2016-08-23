@@ -13,11 +13,15 @@ SoilDepthFileName	soil_depth_single.img
 CalibrateMode 	yes
 WaterDecayFunction Ratio <<Linear or Ratio
 
->>SpinupMortalityFraction
 ProbabilityEstablishmentAdjust 	1.0
 InitialMineralN			2.0
 AtmosphericNSlope		0.05
 AtmosphericNIntercept		0.05
+Latitude			44.0
+DecayRateSurf			0.01
+DecayRateSOM1			0.01
+DecayRateSOM2			0.2
+DecayRateSOM3			0.001
 
 AvailableLightBiomass
 
@@ -84,11 +88,11 @@ eco3	110	6	150	9	4500	145	1294.0	50
 eco2	110	6	150	9	4500	145	1294.0	50		
 
 EcoregionParameters
->>	Percent	Percent	Field	Wilt	StormF	BaseF	Drain	Lat-	Decay   Decay   Decay	 Decay      Denitrif 
->>	Clay	Sand	Cap	Point	Fract	Fract		itude	Rate    Rate    Rate	 Rate	    Slope  
->>      				frac	frac			Surf    SOM1    SOM2	 SOM3
-eco3	0.069	0.591	0.1	0.05	0.4	0.4	0.75	44.0	0.01	0.05	0.2	0.0045	    0.01	 
-eco2	0.069	0.591	0.2	0.1	0.4	0.4	0.75	44.0	0.01	0.05	0.2	0.0045	    0.01
+>>	Percent	Percent	Field	Wilt	StormF	BaseF	Drain	
+>>	Clay	Sand	Cap	Point	Fract	Fract		
+>>      				frac	frac			
+eco3	0.069	0.591	0.1	0.05	0.4	0.4	0.75	
+eco2	0.069	0.591	0.2	0.1	0.4	0.4	0.75	
 
 FireReductionParameters
 >>	Severity	Wood	Litter
