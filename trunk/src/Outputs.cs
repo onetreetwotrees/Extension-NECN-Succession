@@ -142,6 +142,7 @@ namespace Landis.Extension.Succession.Century
 
             foreach (IEcoregion ecoregion in PlugIn.ModelCore.Ecoregions)
             {
+                // TO DO: ADD SWHC LOOP
                 avgAnnualPPT[ecoregion.Index] = 0.0;
                 avgJJAtemp[ecoregion.Index] = 0.0;
                 
@@ -220,8 +221,10 @@ namespace Landis.Extension.Succession.Century
             foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
             {
                 IEcoregion ecoregion = PlugIn.ModelCore.Ecoregion[site];
-                
-                avgNEEc[ecoregion.Index]    += SiteVars.AnnualNEE[site];
+
+                // TO DO: ADD SWHC LOOP
+
+                avgNEEc[ecoregion.Index] += SiteVars.AnnualNEE[site];
                 avgSOMtc[ecoregion.Index]    += GetOrganicCarbon(site);
                 avgAGB[ecoregion.Index] += Century.ComputeLivingBiomass(SiteVars.Cohorts[site]); 
                 
@@ -304,8 +307,8 @@ namespace Landis.Extension.Succession.Century
                 PrimaryLog pl = new PrimaryLog();
 
                 pl.Time =    CurrentTime;
-                pl.EcoregionName =    ecoregion.Name;
-                pl.EcoregionIndex = ecoregion.Index;
+                pl.ClimateRegionName =    ecoregion.Name;
+                pl.ClimateRegionIndex = ecoregion.Index;
                 pl.NumSites = ClimateRegionData.ActiveSiteCount[ecoregion];
 
                 pl.NEEC =    (avgNEEc[ecoregion.Index] / (double) ClimateRegionData.ActiveSiteCount[ecoregion]);

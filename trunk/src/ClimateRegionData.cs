@@ -27,8 +27,8 @@ namespace Landis.Extension.Succession.Century
         public static Ecoregions.AuxParm<double> Drain;
         //public static Ecoregions.AuxParm<double> AtmosNslope;
         //public static Ecoregions.AuxParm<double> AtmosNintercept;
-        public static Ecoregions.AuxParm<double> Latitude;
-        public static Ecoregions.AuxParm<double> DecayRateSurf; 
+        //public static Ecoregions.AuxParm<double> Latitude;
+        //public static Ecoregions.AuxParm<double> DecayRateSurf; 
         //public static Ecoregions.AuxParm<double> DecayRateSOM1;
         //public static Ecoregions.AuxParm<double> DecayRateSOM2;
         //public static Ecoregions.AuxParm<double> DecayRateSOM3;
@@ -38,7 +38,7 @@ namespace Landis.Extension.Succession.Century
         //public static Ecoregions.AuxParm<int> B_MAX;
         public static Ecoregions.AuxParm<double> AnnualNDeposition;    
         public static Ecoregions.AuxParm<double[]> MonthlyNDeposition; 
-        private static Ecoregions.AuxParm<int> LastYearUpdated;
+        //private static Ecoregions.AuxParm<int> LastYearUpdated;
 
         public static Ecoregions.AuxParm<AnnualClimate_Monthly> AnnualWeather;
 
@@ -64,7 +64,7 @@ namespace Landis.Extension.Succession.Century
             ShadeBiomass = parameters.MinRelativeBiomass;
     
             ActiveSiteCount = new Ecoregions.AuxParm<int>(PlugIn.ModelCore.Ecoregions);
-            LastYearUpdated = new Ecoregions.AuxParm<int>(PlugIn.ModelCore.Ecoregions);
+            //LastYearUpdated = new Ecoregions.AuxParm<int>(PlugIn.ModelCore.Ecoregions);
             AnnualWeather = new Ecoregions.AuxParm<AnnualClimate_Monthly>(PlugIn.ModelCore.Ecoregions);
             MonthlyNDeposition = new Ecoregions.AuxParm<double[]>(PlugIn.ModelCore.Ecoregions);
 
@@ -101,7 +101,7 @@ namespace Landis.Extension.Succession.Century
 
                 if (ecoregion.Active)
                 {
-                    Climate.GenerateEcoregionClimateData(ecoregion, 0, Latitude[ecoregion], FieldCapacity[ecoregion], WiltingPoint[ecoregion]);
+                    Climate.GenerateEcoregionClimateData(ecoregion, 0, PlugIn.Latitude, FieldCapacity[ecoregion], WiltingPoint[ecoregion]);
                     SetSingleAnnualClimate(ecoregion, 0, Climate.Phase.SpinUp_Climate);  // Some placeholder data to get things started.
                 }
             }

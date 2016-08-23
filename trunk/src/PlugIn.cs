@@ -27,12 +27,11 @@ namespace Landis.Extension.Succession.Century
         public static double AtmosNintercept;
         public static double Latitude;
         public static double DenitrificationRate;
-public static double             DecayRateSurf;
-            public static double DecayRateSOM1;
-            public static double DecayRateSOM2;
-            public static double DecayRateSOM3;
-
-
+        public static double DecayRateSurf;
+        public static double DecayRateSOM1;
+        public static double DecayRateSOM2;
+        public static double DecayRateSOM3;
+        public static List<int> SWHC_List;
 
         private List<ISufficientLight> sufficientLight;
         public static string SoilCarbonMapNames = null;
@@ -100,6 +99,10 @@ public static double             DecayRateSurf;
             ClimateRegionData.Initialize(parameters);
             SpeciesData.Initialize(parameters);
             Util.ReadSoilDepthMap(parameters.SoilDepthFileName);
+            
+            // TO DO
+            // Read in soil depth, field capacity, wilting point, then generate an LIST of soil water holding capacity for logging
+            // TO DO
             //ClimateRegionData.ChangeParameters(parameters);
 
             OtherData.Initialize(parameters);

@@ -37,7 +37,7 @@ namespace Landis.Extension.Succession.Century
                 //Compute total C flow out of surface microbes.
                 double totalCflow = som1c_surface
                     * SiteVars.DecayFactor[site]
-                    * ClimateRegionData.DecayRateSurf[ecoregion]
+                    * PlugIn.DecayRateSurf //ClimateRegionData.DecayRateSurf[ecoregion]
                     * OtherData.MonthAdjust
                     * OtherData.LitterParameters[(int)LayerType.Surface].DecayRateMicrobes;
                     

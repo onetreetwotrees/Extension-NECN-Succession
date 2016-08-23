@@ -311,7 +311,7 @@ namespace Landis.Extension.Succession.Century
                 {
 
                     potentialET = 1.6 * (System.Math.Pow((tempFac / tempEfficiency), aExponentET)) * 
-                            AnnualClimate.LatitudeCorrection(i, ClimateRegionData.Latitude[ecoregion]);
+                            AnnualClimate.LatitudeCorrection(i, PlugIn.Latitude); //ClimateRegionData.Latitude[ecoregion]);
                 } 
                 else 
                 {
