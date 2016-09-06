@@ -8,7 +8,7 @@ InitialCommunities      "./initial-communities.txt"
 InitialCommunitiesMap   "./single_cell_3.img"
 ClimateConfigFile	climate-generator-baseline.txt
 AgeOnlyDisturbances:BiomassParameters  bio-reductions-standard.txt
-SoilDepthFileName	soil_depth_single.img
+SoilDepthFileName	100singlecell.img
 
 CalibrateMode 	yes
 WaterDecayFunction Ratio <<Linear or Ratio
