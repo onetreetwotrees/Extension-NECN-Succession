@@ -19,6 +19,8 @@ namespace Landis.Extension.Succession.Century
         string ClimateConfigFile { get; set; }
         string SoilDepthMapName { get; set; }
         string SoilDrainMapName { get; set; }
+        string SoilBaseFlowMapName { get; set; }
+        string SoilStormFlowMapName { get; set; }
 
         //double SpinupMortalityFraction { get; set; }
         bool CalibrateMode { get; set; }

@@ -73,8 +73,8 @@ namespace Landis.Extension.Succession.Century
             double wiltingPoint = ClimateRegionData.WiltingPoint[ecoregion];
             double soilDepth = SiteVars.SoilDepth[site]; // ClimateRegionData.SoilDepth[ecoregion];
             double fieldCapacity = ClimateRegionData.FieldCapacity[ecoregion];
-            double stormFlowFraction = ClimateRegionData.StormFlowFraction[ecoregion];
-            double baseFlowFraction = ClimateRegionData.BaseFlowFraction[ecoregion];
+            double stormFlowFraction = SiteVars.SoilStormFlowFraction[site]; // ClimateRegionData.StormFlowFraction[ecoregion];
+            double baseFlowFraction = SiteVars.SoilBaseFlowFraction[site];//ClimateRegionData.BaseFlowFraction[ecoregion];
             double drain = SiteVars.SoilDrain[site]; // ClimateRegionData.Drain[ecoregion];
            
                       

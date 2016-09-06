@@ -117,6 +117,14 @@ namespace Landis.Extension.Succession.Century
             ReadVar(soilDrainMapName);
             parameters.SoilDrainMapName = soilDrainMapName.Value;
 
+            InputVar<string> soilBaseFlowMapName = new InputVar<string>("SoilBaseFlowMapName");
+            ReadVar(soilBaseFlowMapName);
+            parameters.SoilBaseFlowMapName = soilBaseFlowMapName.Value;
+
+            InputVar<string> soilStormFlowMapName = new InputVar<string>("SoilStormFlowMapName");
+            ReadVar(soilStormFlowMapName);
+            parameters.SoilStormFlowMapName = soilStormFlowMapName.Value;
+
             InputVar<bool> calimode = new InputVar<bool>(Names.CalibrateMode);
             if (ReadOptionalVar(calimode))
                 parameters.CalibrateMode = calimode.Value;
@@ -595,8 +603,8 @@ namespace Landis.Extension.Succession.Century
             //InputVar<int> sd = new InputVar<int>("Soil Depth");
             InputVar<double> fc = new InputVar<double>("Field Capacity");
             InputVar<double> wp = new InputVar<double>("Wilting Point");
-            InputVar<double> sff = new InputVar<double>("Storm Flow Fraction");
-            InputVar<double> bff = new InputVar<double>("Base Flow Fraction");
+            //InputVar<double> sff = new InputVar<double>("Storm Flow Fraction");
+            //InputVar<double> bff = new InputVar<double>("Base Flow Fraction");
             //InputVar<double> drain = new InputVar<double>("Drain Fraction");
             //InputVar<double> lat = new InputVar<double>("Latitude");
             //InputVar<double> denits = new InputVar<double>("Denitrification");
@@ -626,18 +634,18 @@ namespace Landis.Extension.Succession.Century
                 ReadValue(wp, currentLine);
                 parameters.SetWiltingPoint(ecoregion, wp.Value);
 
-                ReadValue(sff, currentLine);
-                parameters.SetStormFlowFraction(ecoregion, sff.Value);
+                //ReadValue(sff, currentLine);
+                //parameters.SetStormFlowFraction(ecoregion, sff.Value);
 
-                ReadValue(bff, currentLine);
-                parameters.SetBaseFlowFraction(ecoregion, bff.Value);
+                //ReadValue(bff, currentLine);
+                //parameters.SetBaseFlowFraction(ecoregion, bff.Value);
 
                 //ReadValue(drain, currentLine);
                 //parameters.SetDrain(ecoregion, drain.Value);
 
 
 
-                CheckNoDataAfter("the " + bff.Name + " column", currentLine);
+                CheckNoDataAfter("the " + wp.Name + " column", currentLine);
 
                 GetNextLine();
             }

@@ -25,6 +25,8 @@ namespace Landis.Extension.Succession.Century
         private string ageOnlyDisturbanceParms;
         private string soilDepthMapName;
         private string soilDrainMapName;
+        private string soilBaseFlowMapName;
+        private string soilStormFlowMapName;
 
         private bool calibrateMode;
         //private double spinupMortalityFraction;
@@ -592,6 +594,38 @@ namespace Landis.Extension.Succession.Century
                 if (path.Trim(null).Length == 0)
                     throw new InputValueException(path, "\"{0}\" is not a valid path.", path);
                 soilDrainMapName = value;
+            }
+        }
+        //---------------------------------------------------------------------
+
+        public string SoilBaseFlowMapName
+        {
+            get
+            {
+                return soilBaseFlowMapName;
+            }
+            set
+            {
+                string path = value;
+                if (path.Trim(null).Length == 0)
+                    throw new InputValueException(path, "\"{0}\" is not a valid path.", path);
+                soilBaseFlowMapName = value;
+            }
+        }
+        //---------------------------------------------------------------------
+
+        public string SoilStormFlowMapName
+        {
+            get
+            {
+                return soilStormFlowMapName;
+            }
+            set
+            {
+                string path = value;
+                if (path.Trim(null).Length == 0)
+                    throw new InputValueException(path, "\"{0}\" is not a valid path.", path);
+                soilStormFlowMapName = value;
             }
         }
         //---------------------------------------------------------------------

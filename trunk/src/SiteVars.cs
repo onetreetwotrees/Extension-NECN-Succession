@@ -39,6 +39,8 @@ namespace Landis.Extension.Succession.Century
         private static ISiteVar<Layer> som3;
         private static ISiteVar<int> soilDepth;
         private static ISiteVar<double> soilDrain;
+        private static ISiteVar<double> soilBaseFlowFraction;
+        private static ISiteVar<double> soilStormFlowFraction;
         
         // Similar to soil layers with respect to their pools:
         private static ISiteVar<Layer> stream;
@@ -120,6 +122,8 @@ namespace Landis.Extension.Succession.Century
             som3                = PlugIn.ModelCore.Landscape.NewSiteVar<Layer>();
             soilDepth           = PlugIn.ModelCore.Landscape.NewSiteVar<int>();
             soilDrain           = PlugIn.ModelCore.Landscape.NewSiteVar<double>();
+            soilBaseFlowFraction = PlugIn.ModelCore.Landscape.NewSiteVar<double>();
+            soilStormFlowFraction = PlugIn.ModelCore.Landscape.NewSiteVar<double>();
             
             // Other Layers
             stream              = PlugIn.ModelCore.Landscape.NewSiteVar<Layer>();
@@ -432,6 +436,8 @@ namespace Landis.Extension.Succession.Century
         }
         public static ISiteVar<int> SoilDepth {get{return soilDepth;}}
         public static ISiteVar<double> SoilDrain { get { return soilDrain; } }
+        public static ISiteVar<double> SoilBaseFlowFraction { get { return soilBaseFlowFraction; } }
+        public static ISiteVar<double> SoilStormFlowFraction { get { return soilStormFlowFraction; } }
         //---------------------------------------------------------------------
 
         /// <summary>

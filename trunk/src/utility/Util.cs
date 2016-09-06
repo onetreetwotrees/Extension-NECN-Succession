@@ -109,5 +109,85 @@ namespace Landis.Extension.Succession.Century
                 }
             }
         }
+        //---------------------------------------------------------------------
+
+        public static void ReadSoilBaseFlowMap(string path)
+        {
+            IInputRaster<DoublePixel> map;
+
+            try
+            {
+                map = PlugIn.ModelCore.OpenRaster<DoublePixel>(path);
+            }
+            catch (FileNotFoundException)
+            {
+                string mesg = string.Format("Error: The file {0} does not exist", path);
+                throw new System.ApplicationException(mesg);
+            }
+
+            if (map.Dimensions != PlugIn.ModelCore.Landscape.Dimensions)
+            {
+                string mesg = string.Format("Error: The input map {0} does not have the same dimension (row, column) as the ecoregions map", path);
+                throw new System.ApplicationException(mesg);
+            }
+
+            using (map)
+            {
+                DoublePixel pixel = map.BufferPixel;
+                foreach (Site site in PlugIn.ModelCore.Landscape.AllSites)
+                {
+                    map.ReadBufferPixel();
+                    double mapValue = pixel.MapCode.Value;
+                    if (site.IsActive)
+                    {
+                        if (mapValue < 0.0 || mapValue > 1.0)
+                            throw new InputValueException(mapValue.ToString(),
+                                                          "{0} is not between {1:0.0} and {2:0.0}",
+                                                          mapValue, 0.0, 1.0);
+                        SiteVars.SoilBaseFlowFraction[site] = mapValue;
+                    }
+                }
+            }
+        }
+        //---------------------------------------------------------------------
+
+        public static void ReadSoilStormFlowMap(string path)
+        {
+            IInputRaster<DoublePixel> map;
+
+            try
+            {
+                map = PlugIn.ModelCore.OpenRaster<DoublePixel>(path);
+            }
+            catch (FileNotFoundException)
+            {
+                string mesg = string.Format("Error: The file {0} does not exist", path);
+                throw new System.ApplicationException(mesg);
+            }
+
+            if (map.Dimensions != PlugIn.ModelCore.Landscape.Dimensions)
+            {
+                string mesg = string.Format("Error: The input map {0} does not have the same dimension (row, column) as the ecoregions map", path);
+                throw new System.ApplicationException(mesg);
+            }
+
+            using (map)
+            {
+                DoublePixel pixel = map.BufferPixel;
+                foreach (Site site in PlugIn.ModelCore.Landscape.AllSites)
+                {
+                    map.ReadBufferPixel();
+                    double mapValue = pixel.MapCode.Value;
+                    if (site.IsActive)
+                    {
+                        if (mapValue < 0.0 || mapValue > 1.0)
+                            throw new InputValueException(mapValue.ToString(),
+                                                          "{0} is not between {1:0.0} and {2:0.0}",
+                                                          mapValue, 0.0, 1.0);
+                        SiteVars.SoilStormFlowFraction[site] = mapValue;
+                    }
+                }
+            }
+        }
     }
 }
