@@ -20,10 +20,13 @@ namespace Landis.Extension.Succession.Century
         private SeedingAlgorithms seedAlg;
 
         private string climateConfigFile;
-
-        private bool calibrateMode;
         private string initCommunities;
         private string communitiesMap;
+        private string ageOnlyDisturbanceParms;
+        private string soilDepthMapName;
+        private string soilDrainMapName;
+
+        private bool calibrateMode;
         //private double spinupMortalityFraction;
         public WaterType wtype;
         public double probEstablishAdjust;
@@ -73,7 +76,7 @@ namespace Landis.Extension.Succession.Century
         private Ecoregions.AuxParm<double> wiltingPoint;
         private Ecoregions.AuxParm<double> stormFlowFraction;
         private Ecoregions.AuxParm<double> baseFlowFraction;
-        private Ecoregions.AuxParm<double> drain;
+        //private Ecoregions.AuxParm<double> drain;
         
 
         private Ecoregions.AuxParm<double> initSOM1surfC;
@@ -87,8 +90,6 @@ namespace Landis.Extension.Succession.Century
         private double initMineralN;
 
         
-        private string ageOnlyDisturbanceParms;
-        private string soilDepthFileName;
         //private List<Dynamic.ParametersUpdate> dynamicUpdates;
 
         //---------------------------------------------------------------------
@@ -483,12 +484,12 @@ namespace Landis.Extension.Succession.Century
         }
         
         //---------------------------------------------------------------------
-        public Ecoregions.AuxParm<double> Drain
-        {
-            get {
-                return drain;
-            }
-        }
+        //public Ecoregions.AuxParm<double> Drain
+        //{
+        //    get {
+        //        return drain;
+        //    }
+        //}
         //---------------------------------------------------------------------
         public double Latitude
         {
@@ -563,22 +564,37 @@ namespace Landis.Extension.Succession.Century
             }
         }
 
-        public string SoilDepthFileName
+        public string SoilDepthMapName
         {
             get
             {
-                return soilDepthFileName;
+                return soilDepthMapName;
             }
             set
             {
                 string path = value;
                 if (path.Trim(null).Length == 0)
                     throw new InputValueException(path, "\"{0}\" is not a valid path.", path);
-                soilDepthFileName = value;
+                soilDepthMapName = value;
             }
         }
         //---------------------------------------------------------------------
 
+        public string SoilDrainMapName
+        {
+            get
+            {
+                return soilDrainMapName;
+            }
+            set
+            {
+                string path = value;
+                if (path.Trim(null).Length == 0)
+                    throw new InputValueException(path, "\"{0}\" is not a valid path.", path);
+                soilDrainMapName = value;
+            }
+        }
+        //---------------------------------------------------------------------
         //public List<Dynamic.ParametersUpdate> DynamicUpdates
         //{
         //    get {
@@ -798,11 +814,11 @@ namespace Landis.Extension.Succession.Century
         }
         //---------------------------------------------------------------------
 
-        public void SetDrain(IEcoregion ecoregion, InputValue<double> newValue)
-        {
-            Debug.Assert(ecoregion != null);
-            drain[ecoregion] = CheckBiomassParm(newValue, 0.0, 1.0);
-        }
+        //public void SetDrain(IEcoregion ecoregion, InputValue<double> newValue)
+        //{
+        //    Debug.Assert(ecoregion != null);
+        //    drain[ecoregion] = CheckBiomassParm(newValue, 0.0, 1.0);
+        //}
         //---------------------------------------------------------------------
 
         public void SetAtmosNslope(InputValue<double> newValue)
@@ -948,7 +964,7 @@ namespace Landis.Extension.Succession.Century
             wiltingPoint            = new Ecoregions.AuxParm<double>(ecoregionDataset);
             stormFlowFraction       = new Ecoregions.AuxParm<double>(ecoregionDataset);
             baseFlowFraction        = new Ecoregions.AuxParm<double>(ecoregionDataset);
-            drain                   = new Ecoregions.AuxParm<double>(ecoregionDataset);
+            //drain                   = new Ecoregions.AuxParm<double>(ecoregionDataset);
             //atmosNslope             = new Ecoregions.AuxParm<double>(ecoregionDataset);
             //atmosNintercept         = new Ecoregions.AuxParm<double>(ecoregionDataset);
             //latitude                = new Ecoregions.AuxParm<double>(ecoregionDataset);

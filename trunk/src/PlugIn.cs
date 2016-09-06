@@ -98,7 +98,8 @@ namespace Landis.Extension.Succession.Century
             
             ClimateRegionData.Initialize(parameters);
             SpeciesData.Initialize(parameters);
-            Util.ReadSoilDepthMap(parameters.SoilDepthFileName);
+            Util.ReadSoilDepthMap(parameters.SoilDepthMapName);
+            Util.ReadSoilDrainMap(parameters.SoilDrainMapName);
             
             // TO DO
             // Read in soil depth, field capacity, wilting point, then generate an LIST of soil water holding capacity for logging

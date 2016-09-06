@@ -33,11 +33,11 @@ namespace Landis.Extension.Succession.Century
 
         public static void ReadSoilDepthMap(string path)
         {
-            IInputRaster<IntPixel> map;
+            IInputRaster<DoublePixel> map;
 
             try
             {
-                map = PlugIn.ModelCore.OpenRaster<IntPixel>(path);
+                map = PlugIn.ModelCore.OpenRaster<DoublePixel>(path);
             }
             catch (FileNotFoundException)
             {
@@ -53,31 +53,58 @@ namespace Landis.Extension.Succession.Century
 
             using (map)
             {
-                IntPixel pixel = map.BufferPixel;
+                DoublePixel pixel = map.BufferPixel;
                 foreach (Site site in PlugIn.ModelCore.Landscape.AllSites)
                 {
                     map.ReadBufferPixel();
-                    int mapValue = pixel.MapCode.Value;
+                    int mapValue = (int) pixel.MapCode.Value;
                     if (site.IsActive)
                     {
-                        //if (Dataset == null)
-                        //    PlugIn.ModelCore.UI.WriteLine("FireRegion.Dataset not set correctly.");
-                        //IFireRegion ecoregion = Find(mapCode);
-
-                        //if (ecoregion == null)
-                        //{
-                        //    string mesg = string.Format("mapCode = {0}, dimensions.rows = {1}", mapCode, map.Dimensions.Rows);
-                        //    throw new System.ApplicationException(mesg);
-                        //}
-                        //if (mapValue != null)
-                        //{
                             if (mapValue < 1 || mapValue > 200)
                                 throw new InputValueException(mapValue.ToString(),
                                                               "{0} is not between {1:0.0} and {2:0.0}",
                                                               mapValue, 1, 200);
-                        //}
-
                         SiteVars.SoilDepth[site] = mapValue;
+                    }
+                }
+            }
+        }
+        //---------------------------------------------------------------------
+
+        public static void ReadSoilDrainMap(string path)
+        {
+            IInputRaster<DoublePixel> map;
+
+            try
+            {
+                map = PlugIn.ModelCore.OpenRaster<DoublePixel>(path);
+            }
+            catch (FileNotFoundException)
+            {
+                string mesg = string.Format("Error: The file {0} does not exist", path);
+                throw new System.ApplicationException(mesg);
+            }
+
+            if (map.Dimensions != PlugIn.ModelCore.Landscape.Dimensions)
+            {
+                string mesg = string.Format("Error: The input map {0} does not have the same dimension (row, column) as the ecoregions map", path);
+                throw new System.ApplicationException(mesg);
+            }
+
+            using (map)
+            {
+                DoublePixel pixel = map.BufferPixel;
+                foreach (Site site in PlugIn.ModelCore.Landscape.AllSites)
+                {
+                    map.ReadBufferPixel();
+                    double mapValue = pixel.MapCode.Value;
+                    if (site.IsActive)
+                    {
+                        if (mapValue < 0.0 || mapValue > 1.0)
+                            throw new InputValueException(mapValue.ToString(),
+                                                          "{0} is not between {1:0.0} and {2:0.0}",
+                                                          mapValue, 0.0, 1.0);
+                        SiteVars.SoilDrain[site] = mapValue;
                     }
                 }
             }

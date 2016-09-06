@@ -16,8 +16,9 @@ namespace Landis.Extension.Succession.Century
         SeedingAlgorithms SeedAlgorithm{ get;set;}
         string InitialCommunities{ get;set;}
         string InitialCommunitiesMap{ get;set;}
-
         string ClimateConfigFile { get; set; }
+        string SoilDepthMapName { get; set; }
+        string SoilDrainMapName { get; set; }
 
         //double SpinupMortalityFraction { get; set; }
         bool CalibrateMode { get; set; }
@@ -98,7 +99,7 @@ namespace Landis.Extension.Succession.Century
         Ecoregions.AuxParm<double> WiltingPoint {get;}
         Ecoregions.AuxParm<double> StormFlowFraction {get;}
         Ecoregions.AuxParm<double> BaseFlowFraction {get;}
-        Ecoregions.AuxParm<double> Drain {get;}
+        //Ecoregions.AuxParm<double> Drain {get;}
         //Ecoregions.AuxParm<double> MonthlyNDeposition {get;}
         double AtmosNslope {get;}
         double AtmosNintercept {get;}
@@ -131,11 +132,6 @@ namespace Landis.Extension.Succession.Century
             get;set;
         }
 
-        string SoilDepthFileName
-        {
-            get;
-            set;
-        }
 
         //---------------------------------------------------------------------
 

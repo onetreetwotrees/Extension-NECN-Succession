@@ -32,11 +32,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Edu.Wisc.Forest.Flel.Util">
-      <HintPath>..\..\..\..\..\..\..\Program Files\LANDIS-II\v6\bin\6.2\Edu.Wisc.Forest.Flel.Util.dll</HintPath>
+    <Reference Include="Edu.Wisc.Forest.Flel.Util, Version=1.1.400.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\Edu.Wisc.Forest.Flel.Util.dll</HintPath>
     </Reference>
-    <Reference Include="Landis.Core">
-      <HintPath>..\..\..\..\..\..\..\Program Files\LANDIS-II\v6\bin\6.2\Landis.Core.dll</HintPath>
+    <Reference Include="Landis.Core, Version=6.2.5807.26917, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\Landis.Core.dll</HintPath>
     </Reference>
     <Reference Include="Landis.Library.AgeOnlyCohorts, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -70,13 +72,18 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\Landis.Library.Succession.dll</HintPath>
     </Reference>
-    <Reference Include="Landis.SpatialModeling">
-      <HintPath>..\..\..\..\..\..\..\Program Files\LANDIS-II\v6\bin\6.2\Landis.SpatialModeling.dll</HintPath>
+    <Reference Include="Landis.SpatialModeling, Version=1.0.4815.34359, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\Landis.SpatialModeling.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.XML" />
+    <Reference Include="Troschuetz.Random, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\Troschuetz.Random.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="age-only-disturbances\DatasetParser.cs" />
@@ -120,6 +127,7 @@
     <Compile Include="utility\IInputParameters.cs" />
     <Compile Include="utility\InputParameterParser.cs" />
     <Compile Include="utility\InputParameters.cs" />
+    <Compile Include="utility\DoublePixel.cs" />
     <Compile Include="utility\IntPixel.cs" />
     <Compile Include="utility\MapNames.cs" />
     <Compile Include="metadata\MetadataHandler.cs" />

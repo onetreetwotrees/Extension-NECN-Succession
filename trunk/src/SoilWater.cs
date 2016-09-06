@@ -75,7 +75,7 @@ namespace Landis.Extension.Succession.Century
             double fieldCapacity = ClimateRegionData.FieldCapacity[ecoregion];
             double stormFlowFraction = ClimateRegionData.StormFlowFraction[ecoregion];
             double baseFlowFraction = ClimateRegionData.BaseFlowFraction[ecoregion];
-            double drain = ClimateRegionData.Drain[ecoregion];
+            double drain = SiteVars.SoilDrain[site]; // ClimateRegionData.Drain[ecoregion];
            
                       
             //...Calculating snow pack first. Occurs when mean monthly air temperature is equal to or below freezing,

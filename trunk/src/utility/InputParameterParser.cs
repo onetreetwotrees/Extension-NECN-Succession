@@ -37,7 +37,7 @@ namespace Landis.Extension.Succession.Century
             public const string FireReductionParameters = "FireReductionParameters";
             public const string HarvestReductionParameters = "HarvestReductionParameters";
             public const string AgeOnlyDisturbanceParms = "AgeOnlyDisturbances:BiomassParameters";
-            public const string SoilDepthFileName = "SoilDepthFileName";
+            //public const string SoilDepthMapName = "SoilDepthMapName";
             //public const string DynamicChange = "DynamicChange";
             //public const string MonthlyMaxNPP = "MonthlyMaxNPP";
         }
@@ -109,9 +109,13 @@ namespace Landis.Extension.Succession.Century
             ReadVar(ageOnlyDisturbanceParms);
             parameters.AgeOnlyDisturbanceParms = ageOnlyDisturbanceParms.Value;
 
-            InputVar<string> soilDepthFileName = new InputVar<string>(Names.SoilDepthFileName);
-            ReadVar(soilDepthFileName);
-            parameters.SoilDepthFileName = soilDepthFileName.Value;
+            InputVar<string> soilDepthMapName = new InputVar<string>("SoilDepthMapName");
+            ReadVar(soilDepthMapName);
+            parameters.SoilDepthMapName = soilDepthMapName.Value;
+
+            InputVar<string> soilDrainMapName = new InputVar<string>("SoilDrainMapName");
+            ReadVar(soilDrainMapName);
+            parameters.SoilDrainMapName = soilDrainMapName.Value;
 
             InputVar<bool> calimode = new InputVar<bool>(Names.CalibrateMode);
             if (ReadOptionalVar(calimode))
@@ -129,7 +133,7 @@ namespace Landis.Extension.Succession.Century
             ReadVar(wt);
             parameters.WType = WParse(wt.Value);
 
-            InputVar<double> pea = new InputVar<double>("ProbEstablishAdjust");
+            InputVar<double> pea = new InputVar<double>("ProbabilityEstablishAdjust");
             ReadVar(pea);
             parameters.ProbEstablishAdjustment = pea.Value;
 
@@ -593,7 +597,7 @@ namespace Landis.Extension.Succession.Century
             InputVar<double> wp = new InputVar<double>("Wilting Point");
             InputVar<double> sff = new InputVar<double>("Storm Flow Fraction");
             InputVar<double> bff = new InputVar<double>("Base Flow Fraction");
-            InputVar<double> drain = new InputVar<double>("Drain Fraction");
+            //InputVar<double> drain = new InputVar<double>("Drain Fraction");
             //InputVar<double> lat = new InputVar<double>("Latitude");
             //InputVar<double> denits = new InputVar<double>("Denitrification");
 
@@ -628,12 +632,12 @@ namespace Landis.Extension.Succession.Century
                 ReadValue(bff, currentLine);
                 parameters.SetBaseFlowFraction(ecoregion, bff.Value);
 
-                ReadValue(drain, currentLine);
-                parameters.SetDrain(ecoregion, drain.Value);
+                //ReadValue(drain, currentLine);
+                //parameters.SetDrain(ecoregion, drain.Value);
 
 
 
-                CheckNoDataAfter("the " + drain.Name + " column", currentLine);
+                CheckNoDataAfter("the " + bff.Name + " column", currentLine);
 
                 GetNextLine();
             }

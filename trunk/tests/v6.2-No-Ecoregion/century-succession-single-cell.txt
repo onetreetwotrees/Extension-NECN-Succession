@@ -8,16 +8,18 @@ InitialCommunities      "./initial-communities.txt"
 InitialCommunitiesMap   "./single_cell_3.img"
 ClimateConfigFile	climate-generator-baseline.txt
 AgeOnlyDisturbances:BiomassParameters  bio-reductions-standard.txt
-SoilDepthFileName	100singlecell.img
+SoilDepthMapName	100singlecell.img
+SoilDrainMapName	point75singlecell.img
 
 CalibrateMode 	yes
 WaterDecayFunction Ratio <<Linear or Ratio
 
-ProbabilityEstablishmentAdjust 	1.0
+ProbabilityEstablishAdjust 	1.0
 InitialMineralN			2.0
 AtmosphericNSlope		0.05
 AtmosphericNIntercept		0.05
 Latitude			44.0
+DenitrificationRate		0.001
 DecayRateSurf			0.01
 DecayRateSOM1			0.01
 DecayRateSOM2			0.2
@@ -88,11 +90,11 @@ eco3	110	6	150	9	4500	145	1294.0	50
 eco2	110	6	150	9	4500	145	1294.0	50		
 
 EcoregionParameters
->>	Percent	Percent	Field	Wilt	StormF	BaseF	Drain	
+>>	Percent	Percent	Field	Wilt	StormF	BaseF		
 >>	Clay	Sand	Cap	Point	Fract	Fract		
 >>      				frac	frac			
-eco3	0.069	0.591	0.1	0.05	0.4	0.4	0.75	
-eco2	0.069	0.591	0.2	0.1	0.4	0.4	0.75	
+eco3	0.069	0.591	0.1	0.05	0.4	0.4		
+eco2	0.069	0.591	0.2	0.1	0.4	0.4		
 
 FireReductionParameters
 >>	Severity	Wood	Litter

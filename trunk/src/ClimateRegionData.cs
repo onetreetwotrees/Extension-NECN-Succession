@@ -24,7 +24,7 @@ namespace Landis.Extension.Succession.Century
         public static Ecoregions.AuxParm<double> WiltingPoint;
         public static Ecoregions.AuxParm<double> StormFlowFraction;
         public static Ecoregions.AuxParm<double> BaseFlowFraction;
-        public static Ecoregions.AuxParm<double> Drain;
+        //public static Ecoregions.AuxParm<double> Drain;
         //public static Ecoregions.AuxParm<double> AtmosNslope;
         //public static Ecoregions.AuxParm<double> AtmosNintercept;
         //public static Ecoregions.AuxParm<double> Latitude;
@@ -53,7 +53,7 @@ namespace Landis.Extension.Succession.Century
             WiltingPoint        = parameters.WiltingPoint;
             StormFlowFraction   = parameters.StormFlowFraction;
             BaseFlowFraction    = parameters.BaseFlowFraction;
-            Drain               = parameters.Drain;
+            //Drain               = parameters.Drain;
             //Latitude            = parameters.Latitude;
             //DecayRateSurf       = parameters.DecayRateSurf;
             //DecayRateSOM1       = parameters.DecayRateSOM1;
