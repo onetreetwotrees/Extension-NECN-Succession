@@ -135,7 +135,7 @@ namespace Landis.Extension.Succession.Century
 
                         double leachTextureEffect = OtherData.OMLeachIntercept + OtherData.OMLeachSlope * ClimateRegionData.PercentSand[ecoregion];
 
-                        double indexWaterMovement = SiteVars.WaterMovement[site] / (SiteVars.SoilDepth[site] * ClimateRegionData.FieldCapacity[ecoregion]);
+                        double indexWaterMovement = SiteVars.WaterMovement[site] / (SiteVars.SoilDepth[site] * SiteVars.SoilFieldCapacity[site]);//ClimateRegionData.FieldCapacity[ecoregion]);
                                               
                         cLeached = netCFlow * leachTextureEffect * indexWaterMovement;
                                                                         

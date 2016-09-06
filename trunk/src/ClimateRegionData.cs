@@ -20,8 +20,8 @@ namespace Landis.Extension.Succession.Century
         public static Ecoregions.AuxParm<double> PercentClay;  
         public static Ecoregions.AuxParm<double> PercentSand;  
         //public static Ecoregions.AuxParm<int>    SoilDepth;
-        public static Ecoregions.AuxParm<double> FieldCapacity;
-        public static Ecoregions.AuxParm<double> WiltingPoint;
+        //public static Ecoregions.AuxParm<double> FieldCapacity;
+        //public static Ecoregions.AuxParm<double> WiltingPoint;
         //public static Ecoregions.AuxParm<double> StormFlowFraction;
         //public static Ecoregions.AuxParm<double> BaseFlowFraction;
         //public static Ecoregions.AuxParm<double> Drain;
@@ -49,8 +49,8 @@ namespace Landis.Extension.Succession.Century
             PercentClay         = parameters.PercentClay; 
             PercentSand         = parameters.PercentSand; 
             //SoilDepth           = parameters.SoilDepth;
-            FieldCapacity       = parameters.FieldCapacity;
-            WiltingPoint        = parameters.WiltingPoint;
+            //FieldCapacity       = parameters.FieldCapacity;
+            //WiltingPoint        = parameters.WiltingPoint;
             //StormFlowFraction   = parameters.StormFlowFraction;
             //BaseFlowFraction    = parameters.BaseFlowFraction;
             //Drain               = parameters.Drain;
@@ -101,7 +101,7 @@ namespace Landis.Extension.Succession.Century
 
                 if (ecoregion.Active)
                 {
-                    Climate.GenerateEcoregionClimateData(ecoregion, 0, PlugIn.Latitude, FieldCapacity[ecoregion], WiltingPoint[ecoregion]);
+                    Climate.GenerateEcoregionClimateData(ecoregion, 0, PlugIn.Latitude); //, FieldCapacity[ecoregion], WiltingPoint[ecoregion]);
                     SetSingleAnnualClimate(ecoregion, 0, Climate.Phase.SpinUp_Climate);  // Some placeholder data to get things started.
                 }
             }

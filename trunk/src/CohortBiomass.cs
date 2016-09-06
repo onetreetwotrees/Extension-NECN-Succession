@@ -612,7 +612,8 @@ namespace Landis.Extension.Succession.Century
 
             // Ratio_AvailWaterToPET used to be pptprd and WaterLimit used to be pprdwc
             double Ratio_AvailWaterToPET = 0.0;
-            double waterContent = ClimateRegionData.FieldCapacity[ecoregion] - ClimateRegionData.WiltingPoint[ecoregion];  // Difference between two fractions (FC - WP), not the actual water content, per se.
+            double waterContent = SiteVars.SoilFieldCapacity[site] - SiteVars.SoilWiltingPoint[site];
+                //ClimateRegionData.FieldCapacity[ecoregion] - ClimateRegionData.WiltingPoint[ecoregion];  // Difference between two fractions (FC - WP), not the actual water content, per se.
             double tmin = ClimateRegionData.AnnualWeather[ecoregion].MonthlyMinTemp[Century.Month];
             
             double H2Oinputs = ClimateRegionData.AnnualWeather[ecoregion].MonthlyPrecip[Century.Month]; //rain + irract;

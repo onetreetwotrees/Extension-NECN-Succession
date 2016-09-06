@@ -125,6 +125,14 @@ namespace Landis.Extension.Succession.Century
             ReadVar(soilStormFlowMapName);
             parameters.SoilStormFlowMapName = soilStormFlowMapName.Value;
 
+            InputVar<string> soilFCMapName = new InputVar<string>("SoilFieldCapacityMapName");
+            ReadVar(soilFCMapName);
+            parameters.SoilFieldCapacityMapName = soilFCMapName.Value;
+
+            InputVar<string> soilWPMapName = new InputVar<string>("SoilWiltingPointMapName");
+            ReadVar(soilWPMapName);
+            parameters.SoilWiltingPointMapName = soilWPMapName.Value;
+
             InputVar<bool> calimode = new InputVar<bool>(Names.CalibrateMode);
             if (ReadOptionalVar(calimode))
                 parameters.CalibrateMode = calimode.Value;
@@ -628,11 +636,11 @@ namespace Landis.Extension.Succession.Century
                 ReadValue(psand, currentLine);
                 parameters.SetPercentSand(ecoregion, psand.Value);
 
-                ReadValue(fc, currentLine);
-                parameters.SetFieldCapacity(ecoregion, fc.Value);
+                //ReadValue(fc, currentLine);
+                //parameters.SetFieldCapacity(ecoregion, fc.Value);
 
-                ReadValue(wp, currentLine);
-                parameters.SetWiltingPoint(ecoregion, wp.Value);
+                //ReadValue(wp, currentLine);
+                //parameters.SetWiltingPoint(ecoregion, wp.Value);
 
                 //ReadValue(sff, currentLine);
                 //parameters.SetStormFlowFraction(ecoregion, sff.Value);
@@ -645,7 +653,7 @@ namespace Landis.Extension.Succession.Century
 
 
 
-                CheckNoDataAfter("the " + wp.Name + " column", currentLine);
+                CheckNoDataAfter("the " + psand.Name + " column", currentLine);
 
                 GetNextLine();
             }

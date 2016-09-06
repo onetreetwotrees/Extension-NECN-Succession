@@ -257,8 +257,8 @@ namespace Landis.Extension.Succession.Century
             changeSoilMoisture, //
             oldJulianDay,       //
             dryDayInterp;       //
-            double fieldCapacity = ClimateRegionData.FieldCapacity[ecoregion] * (double)SiteVars.SoilDepth[site]; // ClimateRegionData.SoilDepth[ecoregion];
-            double wiltingPoint = ClimateRegionData.WiltingPoint[ecoregion] * (double)SiteVars.SoilDepth[site]; // ClimateRegionData.SoilDepth[ecoregion];
+            double fieldCapacity = SiteVars.SoilFieldCapacity[site] * (double)SiteVars.SoilDepth[site]; // ClimateRegionData.SoilDepth[ecoregion];
+            double wiltingPoint = SiteVars.SoilWiltingPoint[site] * (double)SiteVars.SoilDepth[site]; // ClimateRegionData.SoilDepth[ecoregion];
             //double fieldCapacity = ClimateRegionData.FieldCapacity[ecoregion] * 100.0;
             //double wiltingPoint  = ClimateRegionData.WiltingPoint[ecoregion] * 100.0;
             

@@ -92,11 +92,11 @@ eco3	110	6	150	9	4500	145	1294.0	50
 eco2	110	6	150	9	4500	145	1294.0	50		
 
 EcoregionParameters
->>	Percent	Percent	Field	Wilt			
->>	Clay	Sand	Cap	Point			
+>>	Percent	Percent				
+>>	Clay	Sand				
 >>      							
-eco3	0.069	0.591	0.1	0.05			
-eco2	0.069	0.591	0.2	0.1			
+eco3	0.069	0.591				
+eco2	0.069	0.591				
 
 FireReductionParameters
 >>	Severity	Wood	Litter

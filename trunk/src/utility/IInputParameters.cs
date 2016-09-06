@@ -21,6 +21,9 @@ namespace Landis.Extension.Succession.Century
         string SoilDrainMapName { get; set; }
         string SoilBaseFlowMapName { get; set; }
         string SoilStormFlowMapName { get; set; }
+        string SoilFieldCapacityMapName { get; set; }
+        string SoilWiltingPointMapName { get; set; }
+
 
         //double SpinupMortalityFraction { get; set; }
         bool CalibrateMode { get; set; }
@@ -97,10 +100,10 @@ namespace Landis.Extension.Succession.Century
         Ecoregions.AuxParm<double> PercentClay {get;}
         Ecoregions.AuxParm<double> PercentSand {get;}
         //Ecoregions.AuxParm<int>    SoilDepth {get;}
-        Ecoregions.AuxParm<double> FieldCapacity {get;}
-        Ecoregions.AuxParm<double> WiltingPoint {get;}
-        Ecoregions.AuxParm<double> StormFlowFraction {get;}
-        Ecoregions.AuxParm<double> BaseFlowFraction {get;}
+        //Ecoregions.AuxParm<double> FieldCapacity {get;}
+        //Ecoregions.AuxParm<double> WiltingPoint {get;}
+        //Ecoregions.AuxParm<double> StormFlowFraction {get;}
+        //Ecoregions.AuxParm<double> BaseFlowFraction {get;}
         //Ecoregions.AuxParm<double> Drain {get;}
         //Ecoregions.AuxParm<double> MonthlyNDeposition {get;}
         double AtmosNslope {get;}
