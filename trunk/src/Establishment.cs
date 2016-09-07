@@ -49,7 +49,7 @@ namespace Landis.Extension.Succession.Century
                 //int actualYear = PlugIn.ModelCore.TimeSinceStart + y;
 
                 AnnualClimate_Monthly ecoClimate = ClimateRegionData.AnnualWeather[climateRegion];
-                //PlugIn.ModelCore.UI.WriteLine("AET={0:0.00}, MAT={1:0.0}, TAP={2:0.0}", ecoClimate.AnnualAET, ecoClimate.MeanAnnualTemperature, ecoClimate.TotalAnnualPrecip);
+                //PlugIn.ModelCore.UI.WriteLine("MAT={0:0.0}, TAP={1:0.0}", ecoClimate.MeanAnnualTemperature, ecoClimate.TotalAnnualPrecip);
 
                 if (ecoClimate == null)
                     throw new System.ApplicationException("Error in Establishment: CLIMATE NULL.");
