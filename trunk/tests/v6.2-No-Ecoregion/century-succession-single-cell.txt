@@ -4,14 +4,16 @@ Timestep  1
 
 SeedingAlgorithm  WardSeedDispersal
 
-InitialCommunities      "./initial-communities.txt"
-InitialCommunitiesMap   "./single_cell_3.img"
-ClimateConfigFile	climate-generator-baseline.txt
+InitialCommunities      	"./initial-communities.txt"
+InitialCommunitiesMap   	"./single_cell_3.img"
+ClimateConfigFile		climate-generator-baseline.txt
 AgeOnlyDisturbances:BiomassParameters  bio-reductions-standard.txt
-SoilDepthMapName	100singlecell.img
-SoilDrainMapName	point75singlecell.img
-SoilBaseFlowMapName	point4singlecell.img
-SoilStormFlowMapName	point4singlecell.img
+SoilDepthMapName		100singlecell.img
+SoilDrainMapName		point75singlecell.img
+SoilBaseFlowMapName		point4singlecell.img
+SoilStormFlowMapName		point4singlecell.img
+SoilFieldCapacityMapName	point1singlecell.img
+SoilWiltingPointMapName		point05singlecell.img
 
 CalibrateMode 	yes
 WaterDecayFunction Ratio <<Linear or Ratio
@@ -95,7 +97,7 @@ EcoregionParameters
 >>	Percent	Percent				
 >>	Clay	Sand				
 >>      							
-eco3	0.069	0.591				
+eco3	0.069	0.591
 eco2	0.069	0.591				
 
 FireReductionParameters
