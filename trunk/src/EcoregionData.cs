@@ -11,7 +11,7 @@ using System.Linq;
 using System;
 
 
-namespace Landis.Extension.Succession.Century
+namespace Landis.Extension.Succession.NetEcosystemCN
 {
     public class EcoregionData
     {

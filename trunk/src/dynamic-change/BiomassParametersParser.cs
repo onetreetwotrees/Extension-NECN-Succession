@@ -5,7 +5,7 @@ using Landis.Core;
 using Edu.Wisc.Forest.Flel.Util;
 using System.Collections.Generic;
 
-namespace Landis.Extension.Succession.Century.Dynamic
+namespace Landis.Extension.Succession.NetEcosystemCN.Dynamic
 {
     /// <summary>
     /// Base class for parsers that read biomass parameters affected by

@@ -10,7 +10,7 @@ using System;
 using System.Collections.Generic;
 
 
-namespace Landis.Extension.Succession.Century
+namespace Landis.Extension.Succession.NetEcosystemCN
 {
     /// <summary>
     /// A helper class.

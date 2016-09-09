@@ -6,7 +6,7 @@
 using Edu.Wisc.Forest.Flel.Util;
 using System.Text.RegularExpressions;
 
-namespace Landis.Extension.Succession.Century.Dynamic
+namespace Landis.Extension.Succession.NetEcosystemCN.Dynamic
 {
     /// <summary>
     /// Methods for validating input values for climate change.

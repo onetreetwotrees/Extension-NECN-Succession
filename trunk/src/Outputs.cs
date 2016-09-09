@@ -15,7 +15,7 @@ using System.Collections;
 
 
 
-namespace Landis.Extension.Succession.Century
+namespace Landis.Extension.Succession.NetEcosystemCN
 {
     public class Outputs
     {
@@ -98,7 +98,7 @@ namespace Landis.Extension.Succession.Century
             {
                 avgNEEc += SiteVars.AnnualNEE[site] / PlugIn.ModelCore.Landscape.ActiveSiteCount;
                 avgSOMtc += GetOrganicCarbon(site) / PlugIn.ModelCore.Landscape.ActiveSiteCount; 
-                avgAGB += Century.ComputeLivingBiomass(SiteVars.Cohorts[site]) / PlugIn.ModelCore.Landscape.ActiveSiteCount; 
+                avgAGB += Main.ComputeLivingBiomass(SiteVars.Cohorts[site]) / PlugIn.ModelCore.Landscape.ActiveSiteCount; 
                 avgAGNPPtc += SiteVars.AGNPPcarbon[site] / PlugIn.ModelCore.Landscape.ActiveSiteCount;
                 avgMineralN += SiteVars.MineralN[site] / PlugIn.ModelCore.Landscape.ActiveSiteCount;
                 avgDeadWoodC += SiteVars.SurfaceDeadWood[site].Carbon / PlugIn.ModelCore.Landscape.ActiveSiteCount;
@@ -280,7 +280,7 @@ namespace Landis.Extension.Succession.Century
                 
                 avgNEEc[ecoregion.Index]    += SiteVars.AnnualNEE[site];
                 avgSOMtc[ecoregion.Index]    += GetOrganicCarbon(site);
-                avgAGB[ecoregion.Index] += Century.ComputeLivingBiomass(SiteVars.Cohorts[site]); 
+                avgAGB[ecoregion.Index] += Main.ComputeLivingBiomass(SiteVars.Cohorts[site]); 
                 
                 avgAGNPPtc[ecoregion.Index]    += SiteVars.AGNPPcarbon[site];
                 avgBGNPPtc[ecoregion.Index]    += SiteVars.BGNPPcarbon[site];

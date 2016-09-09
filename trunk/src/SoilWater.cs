@@ -8,7 +8,7 @@ using Landis.Core;
 using Landis.SpatialModeling;
 using Landis.Library.Climate;
 
-namespace Landis.Extension.Succession.Century
+namespace Landis.Extension.Succession.NetEcosystemCN
 {
 
     public enum WaterType { Linear, Ratio }
@@ -414,7 +414,7 @@ namespace Landis.Extension.Succession.Century
             //PlugIn.ModelCore.UI.WriteLine("AfterSoilWaterLeaching. totalNLeach={0:0.0}, MineralN={1:0.00}", totalNleached, SiteVars.MineralN[site]);         
 
             SiteVars.Stream[site].Nitrogen += totalNleached;
-            SiteVars.MonthlyStreamN[site][Century.Month] += totalNleached;
+            SiteVars.MonthlyStreamN[site][Main.Month] += totalNleached;
             //PlugIn.ModelCore.UI.WriteLine("AfterSoilWaterLeaching. totalNLeach={0:0.0}, MineralN={1:0.00}", totalNleached, SiteVars.MineralN[site]);        
 
             return;

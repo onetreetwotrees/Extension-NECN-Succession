@@ -8,8 +8,8 @@
     <ProjectGuid>{651E102F-6FC1-4DB8-B384-3178E409AF2D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>century_succession</RootNamespace>
-    <AssemblyName>Landis.Extension.Succession.Century</AssemblyName>
+    <RootNamespace>NECN_succession</RootNamespace>
+    <AssemblyName>Landis.Extension.Succession.NetEcosystemCarbonNitrogen</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -94,7 +94,7 @@
     <Compile Include="metadata\PrimaryLogShort.cs" />
     <Compile Include="metadata\PrimaryLog.cs" />
     <Compile Include="utility\BaseCohortsSiteVar.cs" />
-    <Compile Include="Century.cs" />
+    <Compile Include="Main.cs" />
     <Compile Include="CohortBiomass.cs" />
     <Compile Include="dynamic-change\InputValidation.cs" />
     <Compile Include="dynamic-change\IParameters.cs" />

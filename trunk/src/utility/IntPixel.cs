@@ -3,7 +3,7 @@
 
 using Landis.SpatialModeling;
 
-namespace Landis.Extension.Succession.Century
+namespace Landis.Extension.Succession.NetEcosystemCN
 {
     public class IntPixel : Pixel
     {

@@ -4,7 +4,7 @@
 using Landis.Core;
 using System.Collections.Generic;
 
-namespace Landis.Extension.Succession.Century.AgeOnlyDisturbances
+namespace Landis.Extension.Succession.NetEcosystemCN.AgeOnlyDisturbances
 {
     /// <summary>
     /// A table of pool percentages for age-only disturbances.

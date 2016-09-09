@@ -8,7 +8,7 @@ using System;
 using System.Collections.Generic;
 
 
-namespace Landis.Extension.Succession.Century
+namespace Landis.Extension.Succession.NetEcosystemCN
 {
     /// <summary>
     /// Soil organic matter (SOM) pool.

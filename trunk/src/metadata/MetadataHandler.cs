@@ -7,7 +7,7 @@ using Landis.Library.Metadata;
 using Landis.Core;
 using Edu.Wisc.Forest.Flel.Util;
 
-namespace Landis.Extension.Succession.Century
+namespace Landis.Extension.Succession.NetEcosystemCN
 {
     public class MetadataHandler
     {

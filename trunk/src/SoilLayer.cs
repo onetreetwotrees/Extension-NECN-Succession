@@ -5,7 +5,7 @@ using Landis.Core;
 using Landis.SpatialModeling;
 using Edu.Wisc.Forest.Flel.Util;
 
-namespace Landis.Extension.Succession.Century
+namespace Landis.Extension.Succession.NetEcosystemCN
 {
     /// <summary>
     /// </summary>
@@ -151,7 +151,7 @@ namespace Landis.Extension.Succession.Century
                         SiteVars.Stream[site].Nitrogen += orgflow;
                         //PlugIn.ModelCore.UI.WriteLine("DON Leaching. ratioCN_SOM1soil={0:0.00}, DON={1:0.00}.", ratioCN_SOM1soil, orgflow);
 
-                        SiteVars.MonthlyStreamN[site][Century.Month] += orgflow;
+                        SiteVars.MonthlyStreamN[site][Main.Month] += orgflow;
 
                         //PlugIn.ModelCore.UI.WriteLine("DON Leaching. totalNLeach={0:0.0}, MineralN={1:0.00}", totalNleached, SiteVars.MineralN[site]);         
 

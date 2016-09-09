@@ -12,7 +12,7 @@ using System;
 //using Landis.Cohorts;
 
 
-namespace Landis.Extension.Succession.Century
+namespace Landis.Extension.Succession.NetEcosystemCN
 {
     /// <summary>
     /// The initial live and dead biomass at a site.
@@ -364,15 +364,10 @@ namespace Landis.Extension.Succession.Century
                             indexNextAgeCohort++;
                         }
 
-                        Century.Run(site, successionTimestep, true);
+                        Main.Run(site, successionTimestep, true);
                 
                 
                 }
-            //}
-            //catch (ClimateDataOutOfRangeException ex)
-            //{
-            //    throw ex;   //do nothing
-            //}
             return SiteVars.Cohorts[site];
         }
 

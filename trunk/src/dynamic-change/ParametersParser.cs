@@ -5,7 +5,7 @@ using Landis.Core;
 using Landis.SpatialModeling;
 using Edu.Wisc.Forest.Flel.Util;
 
-namespace Landis.Extension.Succession.Century.Dynamic
+namespace Landis.Extension.Succession.NetEcosystemCN.Dynamic
 {
     /// <summary>
     /// A parser that reads biomass parameters affected by climate change from

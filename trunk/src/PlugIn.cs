@@ -15,7 +15,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Landis.Extension.Succession.Century
+namespace Landis.Extension.Succession.NetEcosystemCN
 {
     public class PlugIn
         : Landis.Library.Succession.ExtensionBase
@@ -409,7 +409,7 @@ namespace Landis.Extension.Succession.Century
                                            ushort     years,
                                            int?       successionTimestep)
         {
-            Century.Run(site, years, successionTimestep.HasValue);
+            Main.Run(site, years, successionTimestep.HasValue);
 
         }
         //---------------------------------------------------------------------

@@ -4,7 +4,7 @@
 using Landis.Library.Succession;
 using System.Collections.Generic;
 
-namespace Landis.Extension.Succession.Century.Dynamic
+namespace Landis.Extension.Succession.NetEcosystemCN.Dynamic
 {
     /// <summary>
     /// The public interface for the module that handles updates to the biomass

@@ -3,7 +3,7 @@
 
 using Landis.Core;
 
-namespace Landis.Extension.Succession.Century.AgeOnlyDisturbances
+namespace Landis.Extension.Succession.NetEcosystemCN.AgeOnlyDisturbances
 {
     /// <summary>
     /// A collection of biomass parameters for age-only disturbances.

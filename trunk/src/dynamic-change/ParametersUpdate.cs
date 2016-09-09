@@ -1,7 +1,7 @@
 using Edu.Wisc.Forest.Flel.Util;
 using System.IO;
 
-namespace Landis.Extension.Succession.Century.Dynamic
+namespace Landis.Extension.Succession.NetEcosystemCN.Dynamic
 {
     /// <summary>
     /// An update of the biomass parameters due to climate change.

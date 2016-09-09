@@ -5,7 +5,7 @@
 
 using Edu.Wisc.Forest.Flel.Util;
 
-namespace Landis.Extension.Succession.Century.AgeOnlyDisturbances
+namespace Landis.Extension.Succession.NetEcosystemCN.AgeOnlyDisturbances
 {
     /// <summary>
     /// A pair of percentage parameters for the two dead pools.

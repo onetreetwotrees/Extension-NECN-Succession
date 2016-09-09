@@ -7,7 +7,7 @@ using Landis.Core;
 using System.Collections.Generic;
 
 
-namespace Landis.Extension.Succession.Century
+namespace Landis.Extension.Succession.NetEcosystemCN
 {
     public interface IFunctionalType
     {

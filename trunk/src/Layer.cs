@@ -8,7 +8,7 @@ using Landis.Core;
 using Landis.SpatialModeling;
 
 
-namespace Landis.Extension.Succession.Century
+namespace Landis.Extension.Succession.NetEcosystemCN
 {
 
     public enum LayerName {Leaf, FineRoot, Wood, CoarseRoot, Metabolic, Structural, SOM1, SOM2, SOM3, Other};
@@ -518,7 +518,7 @@ namespace Landis.Extension.Succession.Century
             this.TransferCarbon(SiteVars.SourceSink[site], co2loss);
 
             //Add lost CO2 to monthly heterotrophic respiration
-            SiteVars.MonthlyResp[site][Century.Month] += co2loss;
+            SiteVars.MonthlyResp[site][Main.Month] += co2loss;
 
             this.Nitrogen -= mineralNFlow;
             SiteVars.MineralN[site] += mineralNFlow;

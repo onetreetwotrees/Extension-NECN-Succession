@@ -6,7 +6,7 @@ using Landis.SpatialModeling;
 using Edu.Wisc.Forest.Flel.Util;
 using System.Collections.Generic;
 
-namespace Landis.Extension.Succession.Century.AgeOnlyDisturbances
+namespace Landis.Extension.Succession.NetEcosystemCN.AgeOnlyDisturbances
 {
     /// <summary>
     /// A parser that reads a dataset of biomass parameters for age-only

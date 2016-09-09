@@ -5,7 +5,7 @@ using Landis.Core;
 using Landis.SpatialModeling;
 using Landis.Library.LeafBiomassCohorts;
 
-namespace Landis.Extension.Succession.Century
+namespace Landis.Extension.Succession.NetEcosystemCN
 {
     /// <summary>
     /// Utility methods.

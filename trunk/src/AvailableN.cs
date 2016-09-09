@@ -9,7 +9,7 @@ using Landis.Core;
 using Landis.SpatialModeling;
 using Landis.Library.LeafBiomassCohorts;
 
-namespace Landis.Extension.Succession.Century
+namespace Landis.Extension.Succession.NetEcosystemCN
 {
     /// <summary>
     /// </summary>
@@ -195,7 +195,7 @@ namespace Landis.Extension.Succession.Century
                 foreach (ICohort cohort in speciesCohorts)
                 {
                     int cohortAddYear = GetAddYear(cohort); 
-                    if (Century.MonthCnt == 11) 
+                    if (Main.MonthCnt == 11) 
                         cohortAddYear--;
                     
                     double Nfraction = 0.05;  //even a new cohort gets a little love
@@ -324,7 +324,7 @@ namespace Landis.Extension.Succession.Century
 
             // Use resorbed N first and only if it is spring time unless you are evergreen.  
             double leafLongevity = SpeciesData.LeafLongevity[cohort.Species];
-            if ((leafLongevity <= 1.0 && Century.Month > 2 && Century.Month < 6) || leafLongevity > 1.0)
+            if ((leafLongevity <= 1.0 && Main.Month > 2 && Main.Month < 6) || leafLongevity > 1.0)
             {
             double resorbedNallocation = Math.Max(0.0, AvailableN.GetResorbedNallocation(cohort, site));            
 
@@ -366,8 +366,8 @@ namespace Landis.Extension.Succession.Century
         private static int GetAddYear(ICohort cohort)
         {
             int currentYear = PlugIn.ModelCore.CurrentTime;
-            int cohortAddYear = currentYear - (cohort.Age - Century.Year);
-            if (Century.MonthCnt == 11)
+            int cohortAddYear = currentYear - (cohort.Age - Main.Year);
+            if (Main.MonthCnt == 11)
                 cohortAddYear++; 
             return cohortAddYear;
         }

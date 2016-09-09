@@ -5,7 +5,7 @@ using Landis.Library.Succession;
 using Edu.Wisc.Forest.Flel.Util;
 using System.Collections.Generic;
 
-namespace Landis.Extension.Succession.Century
+namespace Landis.Extension.Succession.NetEcosystemCN
 {
     /// <summary>
     /// The parameters for biomass succession.
