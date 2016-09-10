@@ -17,7 +17,7 @@ namespace Landis.Extension.Succession.Century
     {
 
         //user-defined by ecoregion
-        public static Ecoregions.AuxParm<double> PercentClay;  
+        //public static Ecoregions.AuxParm<double> PercentClay;  
         //public static Ecoregions.AuxParm<double> PercentSand;  
         //public static Ecoregions.AuxParm<int>    SoilDepth;
         //public static Ecoregions.AuxParm<double> FieldCapacity;
@@ -46,7 +46,7 @@ namespace Landis.Extension.Succession.Century
         public static void Initialize(IInputParameters parameters)
         {
         
-            PercentClay         = parameters.PercentClay; 
+            //PercentClay         = parameters.PercentClay; 
             //PercentSand         = parameters.PercentSand; 
             //SoilDepth           = parameters.SoilDepth;
             //FieldCapacity       = parameters.FieldCapacity;

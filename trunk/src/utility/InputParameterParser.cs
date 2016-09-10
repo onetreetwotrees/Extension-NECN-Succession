@@ -137,6 +137,10 @@ namespace Landis.Extension.Succession.Century
             ReadVar(soilSandMapName);
             parameters.SoilPercentSandMapName = soilSandMapName.Value;
 
+            InputVar<string> soilClayMapName = new InputVar<string>("SoilPercentClayMapName");
+            ReadVar(soilClayMapName);
+            parameters.SoilPercentClayMapName = soilClayMapName.Value;
+
             InputVar<bool> calimode = new InputVar<bool>(Names.CalibrateMode);
             if (ReadOptionalVar(calimode))
                 parameters.CalibrateMode = calimode.Value;
@@ -568,7 +572,7 @@ namespace Landis.Extension.Succession.Century
             InputVar<double> iS3N = new InputVar<double>("Initial SOM3 (slow turnover) N");
             Dictionary <string, int> lineNumbers2 = new Dictionary<string, int>();
 
-            while (! AtEndOfInput && CurrentName != Names.EcoregionParameters ) {
+            while (! AtEndOfInput && CurrentName != Names.FireReductionParameters){ //Names.EcoregionParameters ) {
                 StringReader currentLine = new StringReader(CurrentLine);
 
                 ReadValue(ecoregionName, currentLine);
@@ -607,10 +611,10 @@ namespace Landis.Extension.Succession.Century
 
             //--------- Read In SECOND Ecoregion Table ---------------------------
             // First, read table of additional parameters for ecoregions
-            PlugIn.ModelCore.UI.WriteLine("   Begin reading FIXED ECOREGION parameters.");
-            ReadName(Names.EcoregionParameters);
+            //PlugIn.ModelCore.UI.WriteLine("   Begin reading FIXED ECOREGION parameters.");
+            //ReadName(Names.EcoregionParameters);
 
-            InputVar<double> pclay = new InputVar<double>("Percent Clay");
+            //InputVar<double> pclay = new InputVar<double>("Percent Clay");
             //InputVar<double> psand = new InputVar<double>("Percent Sand");
             //InputVar<int> sd = new InputVar<int>("Soil Depth");
             //InputVar<double> fc = new InputVar<double>("Field Capacity");
@@ -621,21 +625,21 @@ namespace Landis.Extension.Succession.Century
             //InputVar<double> lat = new InputVar<double>("Latitude");
             //InputVar<double> denits = new InputVar<double>("Denitrification");
 
-            Dictionary<string, int> lineNumbers = new Dictionary<string, int>();
+            //Dictionary<string, int> lineNumbers = new Dictionary<string, int>();
 
-            while (! AtEndOfInput && CurrentName != Names.FireReductionParameters ) {
-                StringReader currentLine = new StringReader(CurrentLine);
+            //while (! AtEndOfInput && CurrentName != Names.FireReductionParameters ) {
+            //    StringReader currentLine = new StringReader(CurrentLine);
 
-                ReadValue(ecoregionName, currentLine);
+            //    ReadValue(ecoregionName, currentLine);
 
-                IEcoregion ecoregion = GetEcoregion(ecoregionName.Value,
-                                                    lineNumbers);
+            //    IEcoregion ecoregion = GetEcoregion(ecoregionName.Value,
+            //                                        lineNumbers);
 
-                //ReadValue(sd, currentLine);
-                //parameters.SetSoilDepth(ecoregion, sd.Value);
+            //    //ReadValue(sd, currentLine);
+            //    //parameters.SetSoilDepth(ecoregion, sd.Value);
 
-                ReadValue(pclay, currentLine);
-                parameters.SetPercentClay(ecoregion, pclay.Value);
+            //    ReadValue(pclay, currentLine);
+            //    parameters.SetPercentClay(ecoregion, pclay.Value);
 
                 //ReadValue(psand, currentLine);
                 //parameters.SetPercentSand(ecoregion, psand.Value);
@@ -657,10 +661,10 @@ namespace Landis.Extension.Succession.Century
 
 
 
-                CheckNoDataAfter("the " + pclay.Name + " column", currentLine);
+            //    CheckNoDataAfter("the " + pclay.Name + " column", currentLine);
 
-                GetNextLine();
-            }
+            //    GetNextLine();
+            //}
             //--------- Read In Fire Reductions Table ---------------------------
             PlugIn.ModelCore.UI.WriteLine("   Begin reading FIRE REDUCTION parameters.");
             ReadName(Names.FireReductionParameters);

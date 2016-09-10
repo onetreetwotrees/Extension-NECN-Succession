@@ -24,6 +24,7 @@ namespace Landis.Extension.Succession.Century
         string SoilFieldCapacityMapName { get; set; }
         string SoilWiltingPointMapName { get; set; }
         string SoilPercentSandMapName { get; set; }
+        string SoilPercentClayMapName { get; set; }
 
 
         //double SpinupMortalityFraction { get; set; }
@@ -98,8 +99,8 @@ namespace Landis.Extension.Succession.Century
         Species.AuxParm<int> MaxANPP { get; }
         Species.AuxParm<int> MaxBiomass { get; }
 
-        Ecoregions.AuxParm<double> PercentClay {get;}
-        Ecoregions.AuxParm<double> PercentSand {get;}
+        //Ecoregions.AuxParm<double> PercentClay {get;}
+        //Ecoregions.AuxParm<double> PercentSand {get;}
         //Ecoregions.AuxParm<int>    SoilDepth {get;}
         //Ecoregions.AuxParm<double> FieldCapacity {get;}
         //Ecoregions.AuxParm<double> WiltingPoint {get;}

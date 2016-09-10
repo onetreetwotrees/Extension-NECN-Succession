@@ -15,6 +15,7 @@ SoilStormFlowMapName		point4singlecell.img
 SoilFieldCapacityMapName	point1singlecell.img
 SoilWiltingPointMapName		point05singlecell.img
 SoilPercentSandMapName		point591singlecell.img
+SoilPercentClayMapName		point1singlecell.img
 
 CalibrateMode 	yes
 WaterDecayFunction Ratio <<Linear or Ratio
@@ -94,12 +95,12 @@ InitialEcoregionParameters
 eco3	110	6	150	9	4500	145	1294.0	50	
 eco2	110	6	150	9	4500	145	1294.0	50		
 
-EcoregionParameters
+>>EcoregionParameters
 >>	Percent	Percent				
 >>	Clay	Sand				
 >>      							
-eco3	0.069	
-eco2	0.069	
+>>eco3	0.069	
+>>eco2	0.069	
 
 FireReductionParameters
 >>	Severity	Wood	Litter

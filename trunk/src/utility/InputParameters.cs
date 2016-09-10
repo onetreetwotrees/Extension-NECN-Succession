@@ -30,6 +30,7 @@ namespace Landis.Extension.Succession.Century
         private string soilFieldCapacityMapName;
         private string soilWiltingPointMapName;
         private string soilPercentSandMapName;
+        private string soilPercentClayMapName;
 
         private bool calibrateMode;
         //private double spinupMortalityFraction;
@@ -73,9 +74,9 @@ namespace Landis.Extension.Succession.Century
         
         private Ecoregions.AuxParm<Percentage>[] minRelativeBiomass;
         private List<ISufficientLight> sufficientLight;
-        
-        private Ecoregions.AuxParm<double> percentClay;
-        private Ecoregions.AuxParm<double> percentSand;
+
+        //private Ecoregions.AuxParm<double> percentClay;
+        //private Ecoregions.AuxParm<double> percentSand;
         //private Ecoregions.AuxParm<int>    soilDepth;
         //private Ecoregions.AuxParm<double> fieldCapacity;
         //private Ecoregions.AuxParm<double> wiltingPoint;
@@ -439,19 +440,19 @@ namespace Landis.Extension.Succession.Century
         }
         //---------------------------------------------------------------------
 
-        public Ecoregions.AuxParm<double> PercentClay
-        {
-            get {
-                return percentClay;
-            }
-        }
-        //---------------------------------------------------------------------
-        public Ecoregions.AuxParm<double> PercentSand
-        {
-            get {
-                return percentSand;
-            }
-        }
+        //public Ecoregions.AuxParm<double> PercentClay
+        //{
+        //    get {
+        //        return percentClay;
+        //    }
+        //}
+        ////---------------------------------------------------------------------
+        //public Ecoregions.AuxParm<double> PercentSand
+        //{
+        //    get {
+        //        return percentSand;
+        //    }
+        //}
         //---------------------------------------------------------------------
         //public Ecoregions.AuxParm<int> SoilDepth
         //{
@@ -682,6 +683,21 @@ namespace Landis.Extension.Succession.Century
         }
         //---------------------------------------------------------------------
 
+        public string SoilPercentClayMapName
+        {
+            get
+            {
+                return soilPercentClayMapName;
+            }
+            set
+            {
+                string path = value;
+                if (path.Trim(null).Length == 0)
+                    throw new InputValueException(path, "\"{0}\" is not a valid path.", path);
+                soilPercentClayMapName = value;
+            }
+        }//---------------------------------------------------------------------
+
         public void SetMinRelativeBiomass(byte                   shadeClass,
                                           IEcoregion             ecoregion,
                                           InputValue<Percentage> newValue)
@@ -842,18 +858,18 @@ namespace Landis.Extension.Succession.Century
         }
         //---------------------------------------------------------------------
 
-        public void SetPercentClay(IEcoregion ecoregion, InputValue<double> newValue)
-        {
-            Debug.Assert(ecoregion != null);
-            percentClay[ecoregion] = CheckBiomassParm(newValue, 0.0, 1.0);
-        }
-        //---------------------------------------------------------------------
+        //public void SetPercentClay(IEcoregion ecoregion, InputValue<double> newValue)
+        //{
+        //    Debug.Assert(ecoregion != null);
+        //    percentClay[ecoregion] = CheckBiomassParm(newValue, 0.0, 1.0);
+        //}
+        ////---------------------------------------------------------------------
 
-        public void SetPercentSand(IEcoregion ecoregion, InputValue<double> newValue)
-        {
-            Debug.Assert(ecoregion != null);
-            percentSand[ecoregion] = CheckBiomassParm(newValue, 0.0, 1.0);
-        }
+        //public void SetPercentSand(IEcoregion ecoregion, InputValue<double> newValue)
+        //{
+        //    Debug.Assert(ecoregion != null);
+        //    percentSand[ecoregion] = CheckBiomassParm(newValue, 0.0, 1.0);
+        //}
         //---------------------------------------------------------------------
 
         //public void SetSoilDepth(IEcoregion ecoregion, InputValue<int> newValue)
@@ -1036,8 +1052,8 @@ namespace Landis.Extension.Succession.Century
             }
             sufficientLight         = new List<ISufficientLight>();
 
-            percentClay             = new Ecoregions.AuxParm<double>(ecoregionDataset);
-            percentSand             = new Ecoregions.AuxParm<double>(ecoregionDataset);
+            //percentClay             = new Ecoregions.AuxParm<double>(ecoregionDataset);
+            //percentSand             = new Ecoregions.AuxParm<double>(ecoregionDataset);
             //soilDepth               = new Ecoregions.AuxParm<int>(ecoregionDataset);
             //fieldCapacity           = new Ecoregions.AuxParm<double>(ecoregionDataset);
             //wiltingPoint            = new Ecoregions.AuxParm<double>(ecoregionDataset);
