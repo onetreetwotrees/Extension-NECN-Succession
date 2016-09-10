@@ -43,6 +43,9 @@ namespace Landis.Extension.Succession.Century
         private static ISiteVar<double> soilStormFlowFraction;
         private static ISiteVar<double> soilFieldCapacity;
         private static ISiteVar<double> soilWiltingPoint;
+        private static ISiteVar<double> soilPercentSand;
+        private static ISiteVar<double> soilPercentClay;
+
         
         // Similar to soil layers with respect to their pools:
         private static ISiteVar<Layer> stream;
@@ -128,6 +131,8 @@ namespace Landis.Extension.Succession.Century
             soilStormFlowFraction = PlugIn.ModelCore.Landscape.NewSiteVar<double>();
             soilFieldCapacity = PlugIn.ModelCore.Landscape.NewSiteVar<double>();
             soilWiltingPoint = PlugIn.ModelCore.Landscape.NewSiteVar<double>();
+            soilPercentSand = PlugIn.ModelCore.Landscape.NewSiteVar<double>();
+            soilPercentClay = PlugIn.ModelCore.Landscape.NewSiteVar<double>();
             
             // Other Layers
             stream              = PlugIn.ModelCore.Landscape.NewSiteVar<Layer>();
@@ -444,6 +449,8 @@ namespace Landis.Extension.Succession.Century
         public static ISiteVar<double> SoilStormFlowFraction { get { return soilStormFlowFraction; } }
         public static ISiteVar<double> SoilFieldCapacity { get { return soilFieldCapacity; } }
         public static ISiteVar<double> SoilWiltingPoint { get { return soilWiltingPoint; } }
+        public static ISiteVar<double> SoilPercentSand { get { return soilPercentSand; } }
+        public static ISiteVar<double> SoilPercentClay { get { return soilPercentClay; } }
         //---------------------------------------------------------------------
 
         /// <summary>

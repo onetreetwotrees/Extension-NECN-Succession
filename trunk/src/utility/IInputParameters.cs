@@ -23,6 +23,7 @@ namespace Landis.Extension.Succession.Century
         string SoilStormFlowMapName { get; set; }
         string SoilFieldCapacityMapName { get; set; }
         string SoilWiltingPointMapName { get; set; }
+        string SoilPercentSandMapName { get; set; }
 
 
         //double SpinupMortalityFraction { get; set; }

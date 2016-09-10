@@ -78,8 +78,8 @@ namespace Landis.Extension.Succession.Century
 
                 //Compute total C flow out of soil microbes.
                 //Added impact of soil anaerobic conditions -rm 12/91
-                double textureEffect = OtherData.TextureEffectIntercept 
-                                        + OtherData.TextureEffectSlope * ClimateRegionData.PercentSand[ecoregion];
+                double textureEffect = OtherData.TextureEffectIntercept
+                                        + OtherData.TextureEffectSlope * SiteVars.SoilPercentSand[site];//ClimateRegionData.PercentSand[ecoregion];
                 
                 double anerb = SiteVars.AnaerobicEffect[site];
 
@@ -98,7 +98,7 @@ namespace Landis.Extension.Succession.Century
                 if (SiteVars.SOM1soil[site].DecomposePossible(ratioCNtoSOM2, SiteVars.MineralN[site]))
                 {   
                     //CO2 Loss - Compute and schedule respiration flows
-                    double P1CO2_Soil = OtherData.P1CO2_Soil_Intercept + OtherData.P1CO2_Soil_Slope * ClimateRegionData.PercentSand[ecoregion];
+                    double P1CO2_Soil = OtherData.P1CO2_Soil_Intercept + OtherData.P1CO2_Soil_Slope * SiteVars.SoilPercentSand[site];//ClimateRegionData.PercentSand[ecoregion];
 
                     double co2loss = totalCflow * P1CO2_Soil;
                     double netCFlow = totalCflow - co2loss;
@@ -106,7 +106,7 @@ namespace Landis.Extension.Succession.Century
  
                     // Decompose Soil SOM1 to SOM3
                     // The fraction of totalCflow that goes to SOM3 is a function of clay content.
-                    double clayEffect = OtherData.PS1S3_Intercept + (OtherData.PS1S3_Slope * ClimateRegionData.PercentClay[ecoregion]);
+                    double clayEffect = OtherData.PS1S3_Intercept + (OtherData.PS1S3_Slope * SiteVars.SoilPercentClay[site]);//ClimateRegionData.PercentClay[ecoregion]);
                     double cFlowS1S3 = netCFlow * clayEffect * (1.0 + OtherData.AnaerobicImpactSlope * (1.0 - anerb));
 
                     //Compute and schedule C & N flows and update mineralization accumulators
@@ -133,7 +133,7 @@ namespace Landis.Extension.Succession.Century
                         //double linten = System.Math.Min(1.0 - ((OtherData.OMLeachWater - SiteVars.WaterMovement[site])  / OtherData.OMLeachWater), 1.0);
                         //cLeached = netCFlow * leachTextureEffect * linten;
 
-                        double leachTextureEffect = OtherData.OMLeachIntercept + OtherData.OMLeachSlope * ClimateRegionData.PercentSand[ecoregion];
+                        double leachTextureEffect = OtherData.OMLeachIntercept + OtherData.OMLeachSlope * SiteVars.SoilPercentSand[site];//ClimateRegionData.PercentSand[ecoregion];
 
                         double indexWaterMovement = SiteVars.WaterMovement[site] / (SiteVars.SoilDepth[site] * SiteVars.SoilFieldCapacity[site]);//ClimateRegionData.FieldCapacity[ecoregion]);
                                               
@@ -208,7 +208,7 @@ namespace Landis.Extension.Succession.Century
 
                     // -----------------------------------------------
                     // Decompose SOM2 to SOM3, SOM3 gets what's left of totalCflow.
-                    double clayEffect = OtherData.PS2S3_Intercept + OtherData.PS2S3_Slope * ClimateRegionData.PercentClay[ecoregion];
+                    double clayEffect = OtherData.PS2S3_Intercept + OtherData.PS2S3_Slope * SiteVars.SoilPercentClay[site];//ClimateRegionData.PercentClay[ecoregion];
                     double cFlowS2S3 = netCFlow * clayEffect * (1.0 + OtherData.AnaerobicImpactSlope * (1.0 - anerb));
 
                     //Compute and schedule C and N flows and update mineralization accumulators

@@ -133,6 +133,10 @@ namespace Landis.Extension.Succession.Century
             ReadVar(soilWPMapName);
             parameters.SoilWiltingPointMapName = soilWPMapName.Value;
 
+            InputVar<string> soilSandMapName = new InputVar<string>("SoilPercentSandMapName");
+            ReadVar(soilSandMapName);
+            parameters.SoilPercentSandMapName = soilSandMapName.Value;
+
             InputVar<bool> calimode = new InputVar<bool>(Names.CalibrateMode);
             if (ReadOptionalVar(calimode))
                 parameters.CalibrateMode = calimode.Value;

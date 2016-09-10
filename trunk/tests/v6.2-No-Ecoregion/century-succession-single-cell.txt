@@ -14,6 +14,7 @@ SoilBaseFlowMapName		point4singlecell.img
 SoilStormFlowMapName		point4singlecell.img
 SoilFieldCapacityMapName	point1singlecell.img
 SoilWiltingPointMapName		point05singlecell.img
+SoilPercentSandMapName		point591singlecell.img
 
 CalibrateMode 	yes
 WaterDecayFunction Ratio <<Linear or Ratio

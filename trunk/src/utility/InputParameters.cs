@@ -29,6 +29,7 @@ namespace Landis.Extension.Succession.Century
         private string soilStormFlowMapName;
         private string soilFieldCapacityMapName;
         private string soilWiltingPointMapName;
+        private string soilPercentSandMapName;
 
         private bool calibrateMode;
         //private double spinupMortalityFraction;
@@ -661,6 +662,22 @@ namespace Landis.Extension.Succession.Century
                 if (path.Trim(null).Length == 0)
                     throw new InputValueException(path, "\"{0}\" is not a valid path.", path);
                 soilWiltingPointMapName = value;
+            }
+        }
+        //---------------------------------------------------------------------
+
+        public string SoilPercentSandMapName
+        {
+            get
+            {
+                return soilPercentSandMapName;
+            }
+            set
+            {
+                string path = value;
+                if (path.Trim(null).Length == 0)
+                    throw new InputValueException(path, "\"{0}\" is not a valid path.", path);
+                soilPercentSandMapName = value;
             }
         }
         //---------------------------------------------------------------------

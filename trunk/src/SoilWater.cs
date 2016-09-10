@@ -475,7 +475,7 @@ namespace Landis.Extension.Succession.Century
          //...waterMove > 0. indicates a saturated water flow out of layer lyr
             if (waterMove > 0.0 && SiteVars.MineralN[site] > 0.0)
             {
-                double textureEffect = OtherData.MineralLeachIntercept + OtherData.MineralLeachSlope * ClimateRegionData.PercentSand[ecoregion];
+                double textureEffect = OtherData.MineralLeachIntercept + OtherData.MineralLeachSlope * SiteVars.SoilPercentSand[site];//ClimateRegionData.PercentSand[ecoregion];
                 //double leachIntensity = (1.0 - (OtherData.OMLeachWater - waterMove) / OtherData.OMLeachWater);
                 //amtNLeached = textureEffect * SiteVars.MineralN[site] * OtherData.NfracLeachWater * OtherData.NO3frac;
                 amtNLeached = textureEffect * SiteVars.MineralN[site] *  OtherData.NO3frac;
