@@ -16,6 +16,7 @@ SoilFieldCapacityMapName	point1singlecell.img
 SoilWiltingPointMapName		point05singlecell.img
 SoilPercentSandMapName		point591singlecell.img
 SoilPercentClayMapName		point1singlecell.img
+InitialSOM1CsurfMapName		singlecell_110.img
 
 CalibrateMode 	yes
 WaterDecayFunction Ratio <<Linear or Ratio
@@ -92,8 +93,8 @@ InitialEcoregionParameters
 >> 	SOM1	SOM1	SOM1	SOM1	SOM2	SOM2	SOM3	SOM3	
 >> 	C	N	C	N	C	N	C	N	
 >> 	surf	surf	soil	soil
-eco3	110	6	150	9	4500	145	1294.0	50	
-eco2	110	6	150	9	4500	145	1294.0	50		
+eco3	6	150	9	4500	145	1294.0	50	
+eco2	6	150	9	4500	145	1294.0	50		
 
 >>EcoregionParameters
 >>	Percent	Percent				

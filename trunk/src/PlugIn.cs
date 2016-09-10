@@ -106,6 +106,7 @@ namespace Landis.Extension.Succession.Century
             Util.ReadWiltingPointMap(parameters.SoilWiltingPointMapName);
             Util.ReadPercentSandMap(parameters.SoilPercentSandMapName);
             Util.ReadPercentClayMap(parameters.SoilPercentClayMapName);
+            Util.ReadSoilCNMaps(parameters.InitialSOM1CSurfaceMapName);
             
             // TO DO
             // Read in soil depth, field capacity, wilting point, then generate an LIST of soil water holding capacity for logging

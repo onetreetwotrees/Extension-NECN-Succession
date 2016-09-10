@@ -37,9 +37,6 @@ namespace Landis.Extension.Succession.Century
             public const string FireReductionParameters = "FireReductionParameters";
             public const string HarvestReductionParameters = "HarvestReductionParameters";
             public const string AgeOnlyDisturbanceParms = "AgeOnlyDisturbances:BiomassParameters";
-            //public const string SoilDepthMapName = "SoilDepthMapName";
-            //public const string DynamicChange = "DynamicChange";
-            //public const string MonthlyMaxNPP = "MonthlyMaxNPP";
         }
 
         //---------------------------------------------------------------------
@@ -140,6 +137,10 @@ namespace Landis.Extension.Succession.Century
             InputVar<string> soilClayMapName = new InputVar<string>("SoilPercentClayMapName");
             ReadVar(soilClayMapName);
             parameters.SoilPercentClayMapName = soilClayMapName.Value;
+
+            InputVar<string> som1CsurfMapName = new InputVar<string>("InitialSOM1CsurfMapName");
+            ReadVar(som1CsurfMapName);
+            parameters.InitialSOM1CSurfaceMapName = som1CsurfMapName.Value;
 
             InputVar<bool> calimode = new InputVar<bool>(Names.CalibrateMode);
             if (ReadOptionalVar(calimode))
@@ -562,7 +563,7 @@ namespace Landis.Extension.Succession.Century
             ReadName(InitialEcoregionParameters);
 
             InputVar<string> ecoregionName = new InputVar<string>("Ecoregion");
-            InputVar<double> iS1surfC = new InputVar<double>("Initial SOM1 surface C");
+            //InputVar<double> iS1surfC = new InputVar<double>("Initial SOM1 surface C");
             InputVar<double> iS1surfN = new InputVar<double>("Initial SOM1 surface N");
             InputVar<double> iS1soilC = new InputVar<double>("Initial SOM1 soil C");
             InputVar<double> iS1soilN = new InputVar<double>("Initial SOM1 soil N");
@@ -580,8 +581,8 @@ namespace Landis.Extension.Succession.Century
                 IEcoregion ecoregion = GetEcoregion(ecoregionName.Value,
                                                     lineNumbers2);
 
-                ReadValue(iS1surfC, currentLine);
-                parameters.SetInitSOM1surfC(ecoregion, iS1surfC.Value);
+                //ReadValue(iS1surfC, currentLine);
+                //parameters.SetInitSOM1surfC(ecoregion, iS1surfC.Value);
 
                 ReadValue(iS1surfN, currentLine);
                 parameters.SetInitSOM1surfN(ecoregion, iS1surfN.Value);

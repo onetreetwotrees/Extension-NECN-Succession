@@ -31,6 +31,7 @@ namespace Landis.Extension.Succession.Century
         private string soilWiltingPointMapName;
         private string soilPercentSandMapName;
         private string soilPercentClayMapName;
+        private string initialSOM1CSurfaceMapName;
 
         private bool calibrateMode;
         //private double spinupMortalityFraction;
@@ -75,17 +76,7 @@ namespace Landis.Extension.Succession.Century
         private Ecoregions.AuxParm<Percentage>[] minRelativeBiomass;
         private List<ISufficientLight> sufficientLight;
 
-        //private Ecoregions.AuxParm<double> percentClay;
-        //private Ecoregions.AuxParm<double> percentSand;
-        //private Ecoregions.AuxParm<int>    soilDepth;
-        //private Ecoregions.AuxParm<double> fieldCapacity;
-        //private Ecoregions.AuxParm<double> wiltingPoint;
-        //private Ecoregions.AuxParm<double> stormFlowFraction;
-        //private Ecoregions.AuxParm<double> baseFlowFraction;
-        //private Ecoregions.AuxParm<double> drain;
-        
-
-        private Ecoregions.AuxParm<double> initSOM1surfC;
+        //private Ecoregions.AuxParm<double> initSOM1surfC;
         private Ecoregions.AuxParm<double> initSOM1surfN;
         private Ecoregions.AuxParm<double> initSOM1soilC;
         private Ecoregions.AuxParm<double> initSOM1soilN;
@@ -95,8 +86,6 @@ namespace Landis.Extension.Succession.Century
         private Ecoregions.AuxParm<double> initSOM3N;
         private double initMineralN;
 
-        
-        //private List<Dynamic.ParametersUpdate> dynamicUpdates;
 
         //---------------------------------------------------------------------
         /// <summary>
@@ -545,7 +534,7 @@ namespace Landis.Extension.Succession.Century
 
         
         //---------------------------------------------------------------------
-        public Ecoregions.AuxParm<double> InitialSOM1surfC { get { return initSOM1surfC; } }
+        //public Ecoregions.AuxParm<double> InitialSOM1surfC { get { return initSOM1surfC; } }
         public Ecoregions.AuxParm<double> InitialSOM1surfN { get { return initSOM1surfN; } }
         public Ecoregions.AuxParm<double> InitialSOM1soilC { get { return initSOM1soilC; } }
         public Ecoregions.AuxParm<double> InitialSOM1soilN { get { return initSOM1soilN; } }
@@ -696,7 +685,25 @@ namespace Landis.Extension.Succession.Century
                     throw new InputValueException(path, "\"{0}\" is not a valid path.", path);
                 soilPercentClayMapName = value;
             }
-        }//---------------------------------------------------------------------
+        }
+        //---------------------------------------------------------------------
+
+        public string InitialSOM1CSurfaceMapName
+        {
+            get
+            {
+                return initialSOM1CSurfaceMapName;
+            }
+            set
+            {
+                string path = value;
+                if (path.Trim(null).Length == 0)
+                    throw new InputValueException(path, "\"{0}\" is not a valid path.", path);
+                initialSOM1CSurfaceMapName = value;
+            }
+        }
+        
+        //---------------------------------------------------------------------
 
         public void SetMinRelativeBiomass(byte                   shadeClass,
                                           IEcoregion             ecoregion,
@@ -960,11 +967,11 @@ namespace Landis.Extension.Succession.Century
 
        
         //---------------------------------------------------------------------
-        public void SetInitSOM1surfC(IEcoregion ecoregion, InputValue<double> newValue)
-        {
-            Debug.Assert(ecoregion != null);
-            initSOM1surfC[ecoregion] = CheckBiomassParm(newValue, 0.0, 10000.0);
-        }
+        //public void SetInitSOM1surfC(IEcoregion ecoregion, InputValue<double> newValue)
+        //{
+        //    Debug.Assert(ecoregion != null);
+        //    initSOM1surfC[ecoregion] = CheckBiomassParm(newValue, 0.0, 10000.0);
+        //}
         //---------------------------------------------------------------------
         public void SetInitSOM1surfN(IEcoregion ecoregion, InputValue<double> newValue)
         {
@@ -1064,7 +1071,7 @@ namespace Landis.Extension.Succession.Century
             //atmosNintercept         = new Ecoregions.AuxParm<double>(ecoregionDataset);
             //latitude                = new Ecoregions.AuxParm<double>(ecoregionDataset);
             //denitrif              = new Ecoregions.AuxParm<double>(ecoregionDataset);
-            initSOM1surfC           = new Ecoregions.AuxParm<double>(ecoregionDataset);
+            //initSOM1surfC           = new Ecoregions.AuxParm<double>(ecoregionDataset);
             initSOM1surfN           = new Ecoregions.AuxParm<double>(ecoregionDataset);
             initSOM1soilC           = new Ecoregions.AuxParm<double>(ecoregionDataset);
             initSOM1soilN           = new Ecoregions.AuxParm<double>(ecoregionDataset);

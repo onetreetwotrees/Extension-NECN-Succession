@@ -357,6 +357,51 @@ namespace Landis.Extension.Succession.Century
             //    SiteVars.SoilPercentClay[site] = 0.069;
             //}
         }
+        public static void ReadSoilCNMaps(string path)
+        {
+            IInputRaster<DoublePixel> map = MakeDoubleMap(path);
+
+            using (map)
+            {
+                DoublePixel pixel = map.BufferPixel;
+                foreach (Site site in PlugIn.ModelCore.Landscape.AllSites)
+                {
+                    map.ReadBufferPixel();
+                    double mapValue = pixel.MapCode.Value;
+                    if (site.IsActive)
+                    {
+                        if (mapValue < 0.0 || mapValue > 10000.0)
+                            throw new InputValueException(mapValue.ToString(),
+                                                          "{0} is not between {1:0.0} and {2:0.0}",
+                                                          mapValue, 0.0, 10000.0);
+                        SiteVars.SOM1surface[site].Carbon = mapValue;
+                    }
+                }
+            }
+        }
+        //---------------------------------------------------------------------
+        private static IInputRaster<DoublePixel> MakeDoubleMap(string path)
+        {
+            IInputRaster<DoublePixel> map;
+
+            try
+            {
+                map = PlugIn.ModelCore.OpenRaster<DoublePixel>(path);
+            }
+            catch (FileNotFoundException)
+            {
+                string mesg = string.Format("Error: The file {0} does not exist", path);
+                throw new System.ApplicationException(mesg);
+            }
+
+            if (map.Dimensions != PlugIn.ModelCore.Landscape.Dimensions)
+            {
+                string mesg = string.Format("Error: The input map {0} does not have the same dimension (row, column) as the scenario ecoregions map", path);
+                throw new System.ApplicationException(mesg);
+            }
+
+            return map;
+        }
         //---------------------------------------------------------------------
     }
 }

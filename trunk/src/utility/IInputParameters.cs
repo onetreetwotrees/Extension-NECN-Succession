@@ -25,6 +25,7 @@ namespace Landis.Extension.Succession.Century
         string SoilWiltingPointMapName { get; set; }
         string SoilPercentSandMapName { get; set; }
         string SoilPercentClayMapName { get; set; }
+        string InitialSOM1CSurfaceMapName { get; set; }
 
 
         //double SpinupMortalityFraction { get; set; }
@@ -117,7 +118,7 @@ namespace Landis.Extension.Succession.Century
         double DecayRateSOM3 { get; }
         double Denitrif { get; }
         
-        Ecoregions.AuxParm<double> InitialSOM1surfC {get;}
+        //Ecoregions.AuxParm<double> InitialSOM1surfC {get;}
         Ecoregions.AuxParm<double> InitialSOM1surfN {get;}
         Ecoregions.AuxParm<double> InitialSOM1soilC {get;}
         Ecoregions.AuxParm<double> InitialSOM1soilN {get;}
@@ -138,18 +139,6 @@ namespace Landis.Extension.Succession.Century
         {
             get;set;
         }
-
-
-        //---------------------------------------------------------------------
-
-        /// <summary>
-        /// A list of zero or more updates to the biomass parameters because of
-        /// climate change.
-        /// </summary>
-        //List<Dynamic.ParametersUpdate> DynamicUpdates
-        //{
-        //    get;
-        //}
 
         
     }
