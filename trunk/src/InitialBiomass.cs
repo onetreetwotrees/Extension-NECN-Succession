@@ -29,7 +29,7 @@ namespace Landis.Extension.Succession.Century
         private Layer soilStructural;
         private Layer soilMetabolic;
         
-        private Layer som1surface;
+        //private Layer som1surface;
         private Layer som1soil;
         private Layer som2;
         private Layer som3;
@@ -74,9 +74,9 @@ namespace Landis.Extension.Succession.Century
         public Layer SoilMetabolic 
         { get { return soilMetabolic ; } 
         } 
-        public Layer SOM1surface 
-        { get { return som1surface ; } 
-        } 
+        //public Layer SOM1surface 
+        //{ get { return som1surface ; } 
+        //} 
         public Layer SOM1soil 
         { get { return som1soil ; } 
         } 
@@ -109,7 +109,7 @@ namespace Landis.Extension.Succession.Century
                 Layer soilStructural,
                 Layer soilMetabolic,
                 
-                Layer som1surface,
+                //Layer som1surface,
                 Layer som1soil,
                 Layer som2,
                 Layer som3,
@@ -136,7 +136,7 @@ namespace Landis.Extension.Succession.Century
             this.soilStructural = soilStructural;
             this.soilMetabolic = soilMetabolic;
             
-            this.som1surface = som1surface;
+            //this.som1surface = som1surface;
             this.som1soil = som1soil;
             this.som2 = som2;
             this.som3 = som3;
@@ -251,7 +251,7 @@ namespace Landis.Extension.Succession.Century
                         SiteVars.SoilStructural[site],
                         SiteVars.SoilMetabolic[site],
                         
-                        SiteVars.SOM1surface[site],
+                        //SiteVars.SOM1surface[site],
                         SiteVars.SOM1soil[site],
                         SiteVars.SOM2[site],
                         SiteVars.SOM3[site],

@@ -142,6 +142,10 @@ namespace Landis.Extension.Succession.Century
             ReadVar(som1CsurfMapName);
             parameters.InitialSOM1CSurfaceMapName = som1CsurfMapName.Value;
 
+            InputVar<string> som1NsurfMapName = new InputVar<string>("InitialSOM1NsurfMapName");
+            ReadVar(som1NsurfMapName);
+            parameters.InitialSOM1NSurfaceMapName = som1NsurfMapName.Value;
+
             InputVar<bool> calimode = new InputVar<bool>(Names.CalibrateMode);
             if (ReadOptionalVar(calimode))
                 parameters.CalibrateMode = calimode.Value;
@@ -584,8 +588,8 @@ namespace Landis.Extension.Succession.Century
                 //ReadValue(iS1surfC, currentLine);
                 //parameters.SetInitSOM1surfC(ecoregion, iS1surfC.Value);
 
-                ReadValue(iS1surfN, currentLine);
-                parameters.SetInitSOM1surfN(ecoregion, iS1surfN.Value);
+                //ReadValue(iS1surfN, currentLine);
+                //parameters.SetInitSOM1surfN(ecoregion, iS1surfN.Value);
 
                 ReadValue(iS1soilC, currentLine);
                 parameters.SetInitSOM1soilC(ecoregion, iS1soilC.Value);

@@ -26,6 +26,7 @@ namespace Landis.Extension.Succession.Century
         string SoilPercentSandMapName { get; set; }
         string SoilPercentClayMapName { get; set; }
         string InitialSOM1CSurfaceMapName { get; set; }
+        string InitialSOM1NSurfaceMapName { get; set; }
 
 
         //double SpinupMortalityFraction { get; set; }
@@ -119,7 +120,7 @@ namespace Landis.Extension.Succession.Century
         double Denitrif { get; }
         
         //Ecoregions.AuxParm<double> InitialSOM1surfC {get;}
-        Ecoregions.AuxParm<double> InitialSOM1surfN {get;}
+        //Ecoregions.AuxParm<double> InitialSOM1surfN {get;}
         Ecoregions.AuxParm<double> InitialSOM1soilC {get;}
         Ecoregions.AuxParm<double> InitialSOM1soilN {get;}
         Ecoregions.AuxParm<double> InitialSOM2C {get;}

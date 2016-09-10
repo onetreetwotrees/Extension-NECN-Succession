@@ -32,6 +32,7 @@ namespace Landis.Extension.Succession.Century
         private string soilPercentSandMapName;
         private string soilPercentClayMapName;
         private string initialSOM1CSurfaceMapName;
+        private string initialSOM1NSurfaceMapName;
 
         private bool calibrateMode;
         //private double spinupMortalityFraction;
@@ -77,7 +78,7 @@ namespace Landis.Extension.Succession.Century
         private List<ISufficientLight> sufficientLight;
 
         //private Ecoregions.AuxParm<double> initSOM1surfC;
-        private Ecoregions.AuxParm<double> initSOM1surfN;
+        //private Ecoregions.AuxParm<double> initSOM1surfN;
         private Ecoregions.AuxParm<double> initSOM1soilC;
         private Ecoregions.AuxParm<double> initSOM1soilN;
         private Ecoregions.AuxParm<double> initSOM2C;
@@ -535,7 +536,7 @@ namespace Landis.Extension.Succession.Century
         
         //---------------------------------------------------------------------
         //public Ecoregions.AuxParm<double> InitialSOM1surfC { get { return initSOM1surfC; } }
-        public Ecoregions.AuxParm<double> InitialSOM1surfN { get { return initSOM1surfN; } }
+        //public Ecoregions.AuxParm<double> InitialSOM1surfN { get { return initSOM1surfN; } }
         public Ecoregions.AuxParm<double> InitialSOM1soilC { get { return initSOM1soilC; } }
         public Ecoregions.AuxParm<double> InitialSOM1soilN { get { return initSOM1soilN; } }
         public Ecoregions.AuxParm<double> InitialSOM2C { get { return initSOM2C; } }
@@ -702,7 +703,23 @@ namespace Landis.Extension.Succession.Century
                 initialSOM1CSurfaceMapName = value;
             }
         }
-        
+
+        //---------------------------------------------------------------------
+
+        public string InitialSOM1NSurfaceMapName
+        {
+            get
+            {
+                return initialSOM1NSurfaceMapName;
+            }
+            set
+            {
+                string path = value;
+                if (path.Trim(null).Length == 0)
+                    throw new InputValueException(path, "\"{0}\" is not a valid path.", path);
+                initialSOM1NSurfaceMapName = value;
+            }
+        }
         //---------------------------------------------------------------------
 
         public void SetMinRelativeBiomass(byte                   shadeClass,
@@ -973,11 +990,11 @@ namespace Landis.Extension.Succession.Century
         //    initSOM1surfC[ecoregion] = CheckBiomassParm(newValue, 0.0, 10000.0);
         //}
         //---------------------------------------------------------------------
-        public void SetInitSOM1surfN(IEcoregion ecoregion, InputValue<double> newValue)
-        {
-            Debug.Assert(ecoregion != null);
-            initSOM1surfN[ecoregion] = CheckBiomassParm(newValue, 0.0, 500.0);
-        }
+        //public void SetInitSOM1surfN(IEcoregion ecoregion, InputValue<double> newValue)
+        //{
+        //    Debug.Assert(ecoregion != null);
+        //    initSOM1surfN[ecoregion] = CheckBiomassParm(newValue, 0.0, 500.0);
+        //}
         //---------------------------------------------------------------------
         public void SetInitSOM1soilC(IEcoregion ecoregion, InputValue<double> newValue)
         {
@@ -1072,7 +1089,7 @@ namespace Landis.Extension.Succession.Century
             //latitude                = new Ecoregions.AuxParm<double>(ecoregionDataset);
             //denitrif              = new Ecoregions.AuxParm<double>(ecoregionDataset);
             //initSOM1surfC           = new Ecoregions.AuxParm<double>(ecoregionDataset);
-            initSOM1surfN           = new Ecoregions.AuxParm<double>(ecoregionDataset);
+            //initSOM1surfN           = new Ecoregions.AuxParm<double>(ecoregionDataset);
             initSOM1soilC           = new Ecoregions.AuxParm<double>(ecoregionDataset);
             initSOM1soilN           = new Ecoregions.AuxParm<double>(ecoregionDataset);
             initSOM2C               = new Ecoregions.AuxParm<double>(ecoregionDataset);

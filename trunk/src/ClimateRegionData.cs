@@ -76,7 +76,7 @@ namespace Landis.Extension.Succession.Century
                 //PlugIn.ModelCore.UI.WriteLine("Latitude for {0} = {1}.", ecoregion.Name, parameters.Latitude[ecoregion]);
                 
                 //SiteVars.SOM1surface[site].Carbon     = parameters.InitialSOM1surfC[ecoregion];
-                SiteVars.SOM1surface[site].Nitrogen   = parameters.InitialSOM1surfN[ecoregion];
+                //SiteVars.SOM1surface[site].Nitrogen   = parameters.InitialSOM1surfN[ecoregion];
 
                 SiteVars.SOM1soil[site].Carbon          = parameters.InitialSOM1soilC[ecoregion];
                 SiteVars.SOM1soil[site].Nitrogen        = parameters.InitialSOM1soilN[ecoregion];

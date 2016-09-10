@@ -357,7 +357,7 @@ namespace Landis.Extension.Succession.Century
             //    SiteVars.SoilPercentClay[site] = 0.069;
             //}
         }
-        public static void ReadSoilCNMaps(string path)
+        public static void ReadSoilCNMaps(string path, string path2)
         {
             IInputRaster<DoublePixel> map = MakeDoubleMap(path);
 
@@ -375,6 +375,26 @@ namespace Landis.Extension.Succession.Century
                                                           "{0} is not between {1:0.0} and {2:0.0}",
                                                           mapValue, 0.0, 10000.0);
                         SiteVars.SOM1surface[site].Carbon = mapValue;
+                    }
+                }
+            }
+            
+            map = MakeDoubleMap(path2);
+
+            using (map)
+            {
+                DoublePixel pixel = map.BufferPixel;
+                foreach (Site site in PlugIn.ModelCore.Landscape.AllSites)
+                {
+                    map.ReadBufferPixel();
+                    double mapValue = pixel.MapCode.Value;
+                    if (site.IsActive)
+                    {
+                        if (mapValue < 0.0 || mapValue > 500.0)
+                            throw new InputValueException(mapValue.ToString(),
+                                                          "{0} is not between {1:0.0} and {2:0.0}",
+                                                          mapValue, 0.0, 500.0);
+                        SiteVars.SOM1surface[site].Nitrogen = mapValue;
                     }
                 }
             }

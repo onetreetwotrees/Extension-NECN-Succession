@@ -17,6 +17,7 @@ SoilWiltingPointMapName		point05singlecell.img
 SoilPercentSandMapName		point591singlecell.img
 SoilPercentClayMapName		point1singlecell.img
 InitialSOM1CsurfMapName		singlecell_110.img
+InitialSOM1NsurfMapName		singlecell_6.img
 
 CalibrateMode 	yes
 WaterDecayFunction Ratio <<Linear or Ratio
@@ -90,11 +91,11 @@ HVFST	3	25.0	45.0	1.0	3.0	0.5	0.00823	2000	20.0	1.0	0.8	0.4	0.003	10	9	0.1	0.1
 ASPEN 	4	20.0	32.0	0.2	10.0	0.5	0.00823	3000	20.0	1.0	0.8	0.4	0.003	10	9	0.1	0.1
 
 InitialEcoregionParameters
->> 	SOM1	SOM1	SOM1	SOM1	SOM2	SOM2	SOM3	SOM3	
->> 	C	N	C	N	C	N	C	N	
->> 	surf	surf	soil	soil
-eco3	6	150	9	4500	145	1294.0	50	
-eco2	6	150	9	4500	145	1294.0	50		
+>> 	SOM1	SOM1	SOM2	SOM2	SOM3	SOM3	
+>> 	C	N	C	N	C	N	
+>> 	soil	soil
+eco3	150	9	4500	145	1294.0	50	
+eco2	150	9	4500	145	1294.0	50		
 
 >>EcoregionParameters
 >>	Percent	Percent				
