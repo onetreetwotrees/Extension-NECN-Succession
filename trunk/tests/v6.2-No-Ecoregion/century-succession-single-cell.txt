@@ -18,6 +18,12 @@ SoilPercentSandMapName		point591singlecell.img
 SoilPercentClayMapName		point1singlecell.img
 InitialSOM1CsurfMapName		singlecell_110.img
 InitialSOM1NsurfMapName		singlecell_6.img
+InitialSOM1CsoilMapName		singlecell_150.img
+InitialSOM1NsoilMapName		singlecell_9.img
+InitialSOM2CMapName		singlecell_4500.img
+InitialSOM2NMapName		singlecell_145.img
+InitialSOM3CMapName		singlecell_1294.img
+InitialSOM3NMapName		singlecell_50.img
 
 CalibrateMode 	yes
 WaterDecayFunction Ratio <<Linear or Ratio
@@ -89,20 +95,6 @@ SMAPLE 	1	20.0	32.0	0.2	8.0	0.5	0.00823	3000	20.0	1.0	0.8	0.4	0.003	10	9	0.1	0.1
 WPINE  	2	15.0	32.0	1.0	3.5	0.37	0.00823	3000	10.0	1.0	0.8	0.4	0.003	10	10	0.1	0.1
 HVFST	3	25.0	45.0	1.0	3.0	0.5	0.00823	2000	20.0	1.0	0.8	0.4	0.003	10	9	0.1	0.1
 ASPEN 	4	20.0	32.0	0.2	10.0	0.5	0.00823	3000	20.0	1.0	0.8	0.4	0.003	10	9	0.1	0.1
-
-InitialEcoregionParameters
->> 	SOM1	SOM1	SOM2	SOM2	SOM3	SOM3	
->> 	C	N	C	N	C	N	
->> 	soil	soil
-eco3	150	9	4500	145	1294.0	50	
-eco2	150	9	4500	145	1294.0	50		
-
->>EcoregionParameters
->>	Percent	Percent				
->>	Clay	Sand				
->>      							
->>eco3	0.069	
->>eco2	0.069	
 
 FireReductionParameters
 >>	Severity	Wood	Litter

@@ -27,6 +27,12 @@ namespace Landis.Extension.Succession.Century
         string SoilPercentClayMapName { get; set; }
         string InitialSOM1CSurfaceMapName { get; set; }
         string InitialSOM1NSurfaceMapName { get; set; }
+        string InitialSOM1CSoilMapName { get; set; }
+        string InitialSOM1NSoilMapName { get; set; }
+        string InitialSOM2CMapName { get; set; }
+        string InitialSOM2NMapName { get; set; }
+        string InitialSOM3CMapName { get; set; }
+        string InitialSOM3NMapName { get; set; }
 
 
         //double SpinupMortalityFraction { get; set; }
@@ -101,15 +107,6 @@ namespace Landis.Extension.Succession.Century
         Species.AuxParm<int> MaxANPP { get; }
         Species.AuxParm<int> MaxBiomass { get; }
 
-        //Ecoregions.AuxParm<double> PercentClay {get;}
-        //Ecoregions.AuxParm<double> PercentSand {get;}
-        //Ecoregions.AuxParm<int>    SoilDepth {get;}
-        //Ecoregions.AuxParm<double> FieldCapacity {get;}
-        //Ecoregions.AuxParm<double> WiltingPoint {get;}
-        //Ecoregions.AuxParm<double> StormFlowFraction {get;}
-        //Ecoregions.AuxParm<double> BaseFlowFraction {get;}
-        //Ecoregions.AuxParm<double> Drain {get;}
-        //Ecoregions.AuxParm<double> MonthlyNDeposition {get;}
         double AtmosNslope {get;}
         double AtmosNintercept {get;}
         double Latitude {get;}
@@ -118,16 +115,16 @@ namespace Landis.Extension.Succession.Century
         double DecayRateSOM2 { get; }
         double DecayRateSOM3 { get; }
         double Denitrif { get; }
+        double InitialMineralN { get; }
         
         //Ecoregions.AuxParm<double> InitialSOM1surfC {get;}
         //Ecoregions.AuxParm<double> InitialSOM1surfN {get;}
-        Ecoregions.AuxParm<double> InitialSOM1soilC {get;}
-        Ecoregions.AuxParm<double> InitialSOM1soilN {get;}
-        Ecoregions.AuxParm<double> InitialSOM2C {get;}
-        Ecoregions.AuxParm<double> InitialSOM2N {get;}
-        Ecoregions.AuxParm<double> InitialSOM3C {get;}
-        Ecoregions.AuxParm<double> InitialSOM3N {get;}
-        double InitialMineralN {get;}
+        //Ecoregions.AuxParm<double> InitialSOM1soilC {get;}
+        //Ecoregions.AuxParm<double> InitialSOM1soilN {get;}
+        //Ecoregions.AuxParm<double> InitialSOM2C {get;}
+        //Ecoregions.AuxParm<double> InitialSOM2N {get;}
+        //Ecoregions.AuxParm<double> InitialSOM3C {get;}
+        //Ecoregions.AuxParm<double> InitialSOM3N {get;}
 
 
         //---------------------------------------------------------------------

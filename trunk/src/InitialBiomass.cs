@@ -30,9 +30,9 @@ namespace Landis.Extension.Succession.Century
         private Layer soilMetabolic;
         
         //private Layer som1surface;
-        private Layer som1soil;
-        private Layer som2;
-        private Layer som3;
+        //private Layer som1soil;
+        //private Layer som2;
+        //private Layer som3;
         
         private double mineralN;
         private double cohortLeafC;
@@ -77,15 +77,15 @@ namespace Landis.Extension.Succession.Century
         //public Layer SOM1surface 
         //{ get { return som1surface ; } 
         //} 
-        public Layer SOM1soil 
-        { get { return som1soil ; } 
-        } 
-        public Layer SOM2 
-        { get { return som2; } 
-        } 
-        public Layer SOM3 
-        { get { return som3; } 
-        } 
+        //public Layer SOM1soil 
+        //{ get { return som1soil ; } 
+        //} 
+        //public Layer SOM2 
+        //{ get { return som2; } 
+        //} 
+        //public Layer SOM3 
+        //{ get { return som3; } 
+        //} 
         
         public double MineralN { get { return mineralN; } } 
         public double CohortLeafC { get { return cohortLeafC; } }
@@ -110,9 +110,9 @@ namespace Landis.Extension.Succession.Century
                 Layer soilMetabolic,
                 
                 //Layer som1surface,
-                Layer som1soil,
-                Layer som2,
-                Layer som3,
+                //Layer som1soil,
+                //Layer som2,
+                //Layer som3,
                 
                 double mineralN,
                 double cohortLeafC,
@@ -137,9 +137,9 @@ namespace Landis.Extension.Succession.Century
             this.soilMetabolic = soilMetabolic;
             
             //this.som1surface = som1surface;
-            this.som1soil = som1soil;
-            this.som2 = som2;
-            this.som3 = som3;
+            //this.som1soil = som1soil;
+            //this.som2 = som2;
+            //this.som3 = som3;
             
             this.mineralN = mineralN;
             this.cohortLeafC = cohortLeafC;
@@ -252,9 +252,9 @@ namespace Landis.Extension.Succession.Century
                         SiteVars.SoilMetabolic[site],
                         
                         //SiteVars.SOM1surface[site],
-                        SiteVars.SOM1soil[site],
-                        SiteVars.SOM2[site],
-                        SiteVars.SOM3[site],
+                        //SiteVars.SOM1soil[site],
+                        //SiteVars.SOM2[site],
+                        //SiteVars.SOM3[site],
                         
                         SiteVars.MineralN[site],
                         SiteVars.CohortLeafC[site],

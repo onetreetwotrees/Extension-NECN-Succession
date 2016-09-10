@@ -25,15 +25,14 @@ namespace Landis.Extension.Succession.Century
 
         public static class Names
         {
-            public const string Timestep = "Timestep";
-            public const string SeedingAlgorithm = "SeedingAlgorithm";
+            //public const string Timestep = "Timestep";
+            //public const string SeedingAlgorithm = "SeedingAlgorithm";
 
-            public const string ClimateConfigFile = "ClimateConfigFile";
-            public const string CalibrateMode = "CalibrateMode";
-            public const string SufficientLight = "SufficientLightTable";
+            //public const string ClimateConfigFile = "ClimateConfigFile";
+            //public const string CalibrateMode = "CalibrateMode";
+            //public const string SufficientLight = "SufficientLightTable";
             public const string SpeciesParameters = "SpeciesParameters";
             public const string FunctionalGroupParameters = "FunctionalGroupParameters";
-            public const string EcoregionParameters = "EcoregionParameters";
             public const string FireReductionParameters = "FireReductionParameters";
             public const string HarvestReductionParameters = "HarvestReductionParameters";
             public const string AgeOnlyDisturbanceParms = "AgeOnlyDisturbances:BiomassParameters";
@@ -80,11 +79,11 @@ namespace Landis.Extension.Succession.Century
 
             InputParameters parameters = new InputParameters(ecoregionDataset, speciesDataset, numLitterTypes, numFunctionalTypes);
 
-            InputVar<int> timestep = new InputVar<int>(Names.Timestep);
+            InputVar<int> timestep = new InputVar<int>("Timestep");
             ReadVar(timestep);
             parameters.Timestep = timestep.Value;
 
-            InputVar<SeedingAlgorithms> seedAlg = new InputVar<SeedingAlgorithms>(Names.SeedingAlgorithm);
+            InputVar<SeedingAlgorithms> seedAlg = new InputVar<SeedingAlgorithms>("SeedingAlgorithm");
             ReadVar(seedAlg);
             parameters.SeedAlgorithm = seedAlg.Value;
 
@@ -98,11 +97,11 @@ namespace Landis.Extension.Succession.Century
             ReadVar(communitiesMap);
             parameters.InitialCommunitiesMap = communitiesMap.Value;
 
-            InputVar<string> climateConfigFile = new InputVar<string>(Names.ClimateConfigFile);
+            InputVar<string> climateConfigFile = new InputVar<string>("ClimateConfigFile");
             ReadVar(climateConfigFile);
             parameters.ClimateConfigFile = climateConfigFile.Value;
 
-            InputVar<string> ageOnlyDisturbanceParms = new InputVar<string>(Names.AgeOnlyDisturbanceParms);
+            InputVar<string> ageOnlyDisturbanceParms = new InputVar<string>("AgeOnlyDisturbanceParms");
             ReadVar(ageOnlyDisturbanceParms);
             parameters.AgeOnlyDisturbanceParms = ageOnlyDisturbanceParms.Value;
 
@@ -146,7 +145,31 @@ namespace Landis.Extension.Succession.Century
             ReadVar(som1NsurfMapName);
             parameters.InitialSOM1NSurfaceMapName = som1NsurfMapName.Value;
 
-            InputVar<bool> calimode = new InputVar<bool>(Names.CalibrateMode);
+            InputVar<string> som1CsoilMapName = new InputVar<string>("InitialSOM1CsoilMapName");
+            ReadVar(som1CsoilMapName);
+            parameters.InitialSOM1CSoilMapName = som1CsoilMapName.Value;
+
+            InputVar<string> som1NsoilMapName = new InputVar<string>("InitialSOM1NsoilMapName");
+            ReadVar(som1NsoilMapName);
+            parameters.InitialSOM1NSoilMapName = som1NsoilMapName.Value;
+
+            InputVar<string> som2CMapName = new InputVar<string>("InitialSOM2CMapName");
+            ReadVar(som2CMapName);
+            parameters.InitialSOM2CMapName = som2CMapName.Value;
+
+            InputVar<string> som2NMapName = new InputVar<string>("InitialSOM2NMapName");
+            ReadVar(som2NMapName);
+            parameters.InitialSOM2NMapName = som2NMapName.Value;
+
+            InputVar<string> som3CMapName = new InputVar<string>("InitialSOM3CMapName");
+            ReadVar(som3CMapName);
+            parameters.InitialSOM3CMapName = som3CMapName.Value;
+
+            InputVar<string> som3NMapName = new InputVar<string>("InitialSOM3NMapName");
+            ReadVar(som3NMapName);
+            parameters.InitialSOM3NMapName = som3NMapName.Value;
+
+            InputVar<bool> calimode = new InputVar<bool>("CalibrateMode");
             if (ReadOptionalVar(calimode))
                 parameters.CalibrateMode = calimode.Value;
             else
@@ -466,8 +489,8 @@ namespace Landis.Extension.Succession.Century
             //--------- Read In Functional Group Table -------------------------------
             PlugIn.ModelCore.UI.WriteLine("   Begin parsing FUNCTIONAL GROUP table.");
 
-            ReadName(Names.FunctionalGroupParameters);
-            string InitialEcoregionParameters = "InitialEcoregionParameters";
+            ReadName("FunctionalGroupParameters");
+            //string InitialEcoregionParameters = "InitialEcoregionParameters";
 
             InputVar<string> ftname = new InputVar<string>("Name");
             InputVar<int> ftindex = new InputVar<int>("Index (< 25)");
@@ -489,7 +512,7 @@ namespace Landis.Extension.Succession.Century
             InputVar<double> coarseRootFraction = new InputVar<double>("CRootFrac");
             InputVar<double> fineRootFraction = new InputVar<double>("FRootFrac");
 
-            while (! AtEndOfInput && CurrentName != InitialEcoregionParameters) {
+            while (! AtEndOfInput && CurrentName != Names.FireReductionParameters) {
                 StringReader currentLine = new StringReader(CurrentLine);
 
                 ReadValue(ftname , currentLine);
@@ -563,27 +586,27 @@ namespace Landis.Extension.Succession.Century
 
 
             //--------- Read In FIRST Ecoregion Table ---------------------------
-            PlugIn.ModelCore.UI.WriteLine("   Begin reading INITIAL ECOREGION parameters.");
-            ReadName(InitialEcoregionParameters);
+            //PlugIn.ModelCore.UI.WriteLine("   Begin reading INITIAL ECOREGION parameters.");
+            //ReadName(InitialEcoregionParameters);
 
-            InputVar<string> ecoregionName = new InputVar<string>("Ecoregion");
+            //InputVar<string> ecoregionName = new InputVar<string>("Ecoregion");
             //InputVar<double> iS1surfC = new InputVar<double>("Initial SOM1 surface C");
-            InputVar<double> iS1surfN = new InputVar<double>("Initial SOM1 surface N");
-            InputVar<double> iS1soilC = new InputVar<double>("Initial SOM1 soil C");
-            InputVar<double> iS1soilN = new InputVar<double>("Initial SOM1 soil N");
-            InputVar<double> iS2C = new InputVar<double>("Initial SOM2 (intermediate turnover) C");
-            InputVar<double> iS2N = new InputVar<double>("Initial SOM2 (intermediate turnover) N");
-            InputVar<double> iS3C = new InputVar<double>("Initial SOM3 (slow turnover) C");
-            InputVar<double> iS3N = new InputVar<double>("Initial SOM3 (slow turnover) N");
-            Dictionary <string, int> lineNumbers2 = new Dictionary<string, int>();
+            //InputVar<double> iS1surfN = new InputVar<double>("Initial SOM1 surface N");
+            //InputVar<double> iS1soilC = new InputVar<double>("Initial SOM1 soil C");
+            //InputVar<double> iS1soilN = new InputVar<double>("Initial SOM1 soil N");
+            //InputVar<double> iS2C = new InputVar<double>("Initial SOM2 (intermediate turnover) C");
+            //InputVar<double> iS2N = new InputVar<double>("Initial SOM2 (intermediate turnover) N");
+            //InputVar<double> iS3C = new InputVar<double>("Initial SOM3 (slow turnover) C");
+            //InputVar<double> iS3N = new InputVar<double>("Initial SOM3 (slow turnover) N");
+            //Dictionary <string, int> lineNumbers2 = new Dictionary<string, int>();
 
-            while (! AtEndOfInput && CurrentName != Names.FireReductionParameters){ //Names.EcoregionParameters ) {
-                StringReader currentLine = new StringReader(CurrentLine);
+            //while (! AtEndOfInput && CurrentName != Names.FireReductionParameters){ //Names.EcoregionParameters ) {
+            //    StringReader currentLine = new StringReader(CurrentLine);
 
-                ReadValue(ecoregionName, currentLine);
+            //    ReadValue(ecoregionName, currentLine);
 
-                IEcoregion ecoregion = GetEcoregion(ecoregionName.Value,
-                                                    lineNumbers2);
+            //    IEcoregion ecoregion = GetEcoregion(ecoregionName.Value,
+            //                                        lineNumbers2);
 
                 //ReadValue(iS1surfC, currentLine);
                 //parameters.SetInitSOM1surfC(ecoregion, iS1surfC.Value);
@@ -591,28 +614,28 @@ namespace Landis.Extension.Succession.Century
                 //ReadValue(iS1surfN, currentLine);
                 //parameters.SetInitSOM1surfN(ecoregion, iS1surfN.Value);
 
-                ReadValue(iS1soilC, currentLine);
-                parameters.SetInitSOM1soilC(ecoregion, iS1soilC.Value);
+                //ReadValue(iS1soilC, currentLine);
+                //parameters.SetInitSOM1soilC(ecoregion, iS1soilC.Value);
 
-                ReadValue(iS1soilN, currentLine);
-                parameters.SetInitSOM1soilN(ecoregion, iS1soilN.Value);
+                //ReadValue(iS1soilN, currentLine);
+                //parameters.SetInitSOM1soilN(ecoregion, iS1soilN.Value);
 
-                ReadValue(iS2C, currentLine);
-                parameters.SetInitSOM2C(ecoregion, iS2C.Value);
+                //ReadValue(iS2C, currentLine);
+                //parameters.SetInitSOM2C(ecoregion, iS2C.Value);
 
-                ReadValue(iS2N, currentLine);
-                parameters.SetInitSOM2N(ecoregion, iS2N.Value);
+                //ReadValue(iS2N, currentLine);
+                //parameters.SetInitSOM2N(ecoregion, iS2N.Value);
 
-                ReadValue(iS3C, currentLine);
-                parameters.SetInitSOM3C(ecoregion, iS3C.Value);
+                //ReadValue(iS3C, currentLine);
+                //parameters.SetInitSOM3C(ecoregion, iS3C.Value);
 
-                ReadValue(iS3N, currentLine);
-                parameters.SetInitSOM3N(ecoregion, iS3N.Value);
+                //ReadValue(iS3N, currentLine);
+                //parameters.SetInitSOM3N(ecoregion, iS3N.Value);
 
-                CheckNoDataAfter("the " + iS3N.Name + " column", currentLine);
+            //    CheckNoDataAfter("the " + ecoregionName.Name + " column", currentLine);
 
-                GetNextLine();
-            }
+            //    GetNextLine();
+            //}
 
             //--------- Read In SECOND Ecoregion Table ---------------------------
             // First, read table of additional parameters for ecoregions

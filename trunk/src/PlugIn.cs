@@ -106,7 +106,14 @@ namespace Landis.Extension.Succession.Century
             Util.ReadWiltingPointMap(parameters.SoilWiltingPointMapName);
             Util.ReadPercentSandMap(parameters.SoilPercentSandMapName);
             Util.ReadPercentClayMap(parameters.SoilPercentClayMapName);
-            Util.ReadSoilCNMaps(parameters.InitialSOM1CSurfaceMapName, parameters.InitialSOM1NSurfaceMapName);
+            Util.ReadSoilCNMaps(parameters.InitialSOM1CSurfaceMapName, 
+                parameters.InitialSOM1NSurfaceMapName,
+                parameters.InitialSOM1CSoilMapName,
+                parameters.InitialSOM1NSoilMapName,
+                parameters.InitialSOM2CMapName,
+                parameters.InitialSOM2NMapName,
+                parameters.InitialSOM3CMapName,
+                parameters.InitialSOM3NMapName);
             
             // TO DO
             // Read in soil depth, field capacity, wilting point, then generate an LIST of soil water holding capacity for logging
@@ -376,9 +383,9 @@ namespace Landis.Extension.Succession.Century
             SiteVars.SoilMetabolic[site]         = initialBiomass.SoilMetabolic.Clone();
 
             //SiteVars.SOM1surface[site]           = initialBiomass.SOM1surface.Clone();
-            SiteVars.SOM1soil[site]              = initialBiomass.SOM1soil.Clone();
-            SiteVars.SOM2[site]                  = initialBiomass.SOM2.Clone();
-            SiteVars.SOM3[site]                  = initialBiomass.SOM3.Clone();
+            //SiteVars.SOM1soil[site]              = initialBiomass.SOM1soil.Clone();
+            //SiteVars.SOM2[site]                  = initialBiomass.SOM2.Clone();
+            //SiteVars.SOM3[site]                  = initialBiomass.SOM3.Clone();
 
             SiteVars.MineralN[site]              = initialBiomass.MineralN;
             SiteVars.CohortLeafC[site]           = initialBiomass.CohortLeafC;

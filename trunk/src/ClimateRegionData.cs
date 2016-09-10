@@ -78,14 +78,14 @@ namespace Landis.Extension.Succession.Century
                 //SiteVars.SOM1surface[site].Carbon     = parameters.InitialSOM1surfC[ecoregion];
                 //SiteVars.SOM1surface[site].Nitrogen   = parameters.InitialSOM1surfN[ecoregion];
 
-                SiteVars.SOM1soil[site].Carbon          = parameters.InitialSOM1soilC[ecoregion];
-                SiteVars.SOM1soil[site].Nitrogen        = parameters.InitialSOM1soilN[ecoregion];
+                //SiteVars.SOM1soil[site].Carbon          = parameters.InitialSOM1soilC[ecoregion];
+                //SiteVars.SOM1soil[site].Nitrogen        = parameters.InitialSOM1soilN[ecoregion];
 
-                SiteVars.SOM2[site].Carbon              = parameters.InitialSOM2C[ecoregion];
-                SiteVars.SOM2[site].Nitrogen            = parameters.InitialSOM2N[ecoregion];
+                //SiteVars.SOM2[site].Carbon              = parameters.InitialSOM2C[ecoregion];
+                //SiteVars.SOM2[site].Nitrogen            = parameters.InitialSOM2N[ecoregion];
                 
-                SiteVars.SOM3[site].Carbon              = parameters.InitialSOM3C[ecoregion];
-                SiteVars.SOM3[site].Nitrogen            = parameters.InitialSOM3N[ecoregion];
+                //SiteVars.SOM3[site].Carbon              = parameters.InitialSOM3C[ecoregion];
+                //SiteVars.SOM3[site].Nitrogen            = parameters.InitialSOM3N[ecoregion];
                 
                 SiteVars.MineralN[site]               = parameters.InitialMineralN;
                 

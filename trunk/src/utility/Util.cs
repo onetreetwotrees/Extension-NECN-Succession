@@ -357,7 +357,7 @@ namespace Landis.Extension.Succession.Century
             //    SiteVars.SoilPercentClay[site] = 0.069;
             //}
         }
-        public static void ReadSoilCNMaps(string path, string path2)
+        public static void ReadSoilCNMaps(string path, string path2, string path3, string path4, string path5, string path6, string path7, string path8)
         {
             IInputRaster<DoublePixel> map = MakeDoubleMap(path);
 
@@ -395,6 +395,124 @@ namespace Landis.Extension.Succession.Century
                                                           "{0} is not between {1:0.0} and {2:0.0}",
                                                           mapValue, 0.0, 500.0);
                         SiteVars.SOM1surface[site].Nitrogen = mapValue;
+                    }
+                }
+            }
+            
+            map = MakeDoubleMap(path3);
+
+            using (map)
+            {
+                DoublePixel pixel = map.BufferPixel;
+                foreach (Site site in PlugIn.ModelCore.Landscape.AllSites)
+                {
+                    map.ReadBufferPixel();
+                    double mapValue = pixel.MapCode.Value;
+                    if (site.IsActive)
+                    {
+                        if (mapValue < 0.0 || mapValue > 10000.0)
+                            throw new InputValueException(mapValue.ToString(),
+                                                          "{0} is not between {1:0.0} and {2:0.0}",
+                                                          mapValue, 0.0, 10000.0);
+                        SiteVars.SOM1soil[site].Carbon = mapValue;
+                    }
+                }
+            }
+
+            map = MakeDoubleMap(path4);
+
+            using (map)
+            {
+                DoublePixel pixel = map.BufferPixel;
+                foreach (Site site in PlugIn.ModelCore.Landscape.AllSites)
+                {
+                    map.ReadBufferPixel();
+                    double mapValue = pixel.MapCode.Value;
+                    if (site.IsActive)
+                    {
+                        if (mapValue < 0.0 || mapValue > 500.0)
+                            throw new InputValueException(mapValue.ToString(),
+                                                          "{0} is not between {1:0.0} and {2:0.0}",
+                                                          mapValue, 0.0, 500.0);
+                        SiteVars.SOM1soil[site].Nitrogen = mapValue;
+                    }
+                }
+            }
+            map = MakeDoubleMap(path5);
+
+            using (map)
+            {
+                DoublePixel pixel = map.BufferPixel;
+                foreach (Site site in PlugIn.ModelCore.Landscape.AllSites)
+                {
+                    map.ReadBufferPixel();
+                    double mapValue = pixel.MapCode.Value;
+                    if (site.IsActive)
+                    {
+                        if (mapValue < 0.0 || mapValue > 20000.0)
+                            throw new InputValueException(mapValue.ToString(),
+                                                          "{0} is not between {1:0.0} and {2:0.0}",
+                                                          mapValue, 0.0, 20000.0);
+                        SiteVars.SOM2[site].Carbon = mapValue;
+                    }
+                }
+            }
+
+            map = MakeDoubleMap(path6);
+
+            using (map)
+            {
+                DoublePixel pixel = map.BufferPixel;
+                foreach (Site site in PlugIn.ModelCore.Landscape.AllSites)
+                {
+                    map.ReadBufferPixel();
+                    double mapValue = pixel.MapCode.Value;
+                    if (site.IsActive)
+                    {
+                        if (mapValue < 0.0 || mapValue > 1000.0)
+                            throw new InputValueException(mapValue.ToString(),
+                                                          "{0} is not between {1:0.0} and {2:0.0}",
+                                                          mapValue, 0.0, 1000.0);
+                        SiteVars.SOM2[site].Nitrogen = mapValue;
+                    }
+                }
+            }
+            map = MakeDoubleMap(path7);
+
+            using (map)
+            {
+                DoublePixel pixel = map.BufferPixel;
+                foreach (Site site in PlugIn.ModelCore.Landscape.AllSites)
+                {
+                    map.ReadBufferPixel();
+                    double mapValue = pixel.MapCode.Value;
+                    if (site.IsActive)
+                    {
+                        if (mapValue < 0.0 || mapValue > 30000.0)
+                            throw new InputValueException(mapValue.ToString(),
+                                                          "{0} is not between {1:0.0} and {2:0.0}",
+                                                          mapValue, 0.0, 20000.0);
+                        SiteVars.SOM3[site].Carbon = mapValue;
+                    }
+                }
+            }
+
+            map = MakeDoubleMap(path8);
+
+            using (map)
+            {
+                DoublePixel pixel = map.BufferPixel;
+                foreach (Site site in PlugIn.ModelCore.Landscape.AllSites)
+                {
+                    map.ReadBufferPixel();
+                    double mapValue = pixel.MapCode.Value;
+                    if (site.IsActive)
+                    {
+                        if (mapValue < 0.0 || mapValue > 1000.0)
+                            throw new InputValueException(mapValue.ToString(),
+                                                          "{0} is not between {1:0.0} and {2:0.0}",
+                                                          mapValue, 0.0, 1000.0);
+                        SiteVars.SOM3[site].Nitrogen = mapValue;
                     }
                 }
             }
