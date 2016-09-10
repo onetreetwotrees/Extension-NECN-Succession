@@ -34,7 +34,7 @@ namespace Landis.Extension.Succession.Century
         //public static Ecoregions.AuxParm<double> DecayRateSOM3;
         //public static Ecoregions.AuxParm<double> Denitrif;
         public static Ecoregions.AuxParm<int> ActiveSiteCount;
-        public static Ecoregions.AuxParm<Percentage>[] ShadeBiomass;
+        //public static Ecoregions.AuxParm<Percentage>[] ShadeBiomass;
         //public static Ecoregions.AuxParm<int> B_MAX;
         public static Ecoregions.AuxParm<double> AnnualNDeposition;    
         public static Ecoregions.AuxParm<double[]> MonthlyNDeposition; 
@@ -61,7 +61,7 @@ namespace Landis.Extension.Succession.Century
             //DecayRateSOM3       = parameters.DecayRateSOM3;
             //Denitrif             = parameters.Denitrif;
             
-            ShadeBiomass = parameters.MinRelativeBiomass;
+            //ShadeBiomass = parameters.MinRelativeBiomass;
     
             ActiveSiteCount = new Ecoregions.AuxParm<int>(PlugIn.ModelCore.Ecoregions);
             //LastYearUpdated = new Ecoregions.AuxParm<int>(PlugIn.ModelCore.Ecoregions);
@@ -87,7 +87,7 @@ namespace Landis.Extension.Succession.Century
                 //SiteVars.SOM3[site].Carbon              = parameters.InitialSOM3C[ecoregion];
                 //SiteVars.SOM3[site].Nitrogen            = parameters.InitialSOM3N[ecoregion];
                 
-                SiteVars.MineralN[site]               = parameters.InitialMineralN;
+                //SiteVars.MineralN[site]               = parameters.InitialMineralN;
                 
                 ActiveSiteCount[ecoregion]++;
             }

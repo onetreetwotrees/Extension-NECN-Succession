@@ -39,6 +39,7 @@ namespace Landis.Extension.Succession.Century
         bool CalibrateMode { get; set; }
         WaterType WType {get;set;}
         double ProbEstablishAdjustment { get; set; }
+        double[] MaximumShadeLAI { get; }
 
         //---------------------------------------------------------------------
         /// <summary>
@@ -70,10 +71,10 @@ namespace Landis.Extension.Succession.Century
         /// <summary>
         /// The maximum relative biomass for each shade class.
         /// </summary>
-        Ecoregions.AuxParm<Percentage>[] MinRelativeBiomass
-        {
-            get;
-        }
+        //Ecoregions.AuxParm<Percentage>[] MinRelativeBiomass
+        //{
+        //    get;
+        //}
 
         //---------------------------------------------------------------------
 

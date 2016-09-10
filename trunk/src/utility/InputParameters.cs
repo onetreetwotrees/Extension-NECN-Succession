@@ -52,8 +52,10 @@ namespace Landis.Extension.Succession.Century
         private double decayRateSOM1;
         private double decayRateSOM2;
         private double decayRateSOM3;
+        private double[] maximumShadeLAI;
+        private double initMineralN;
 
-        private IEcoregionDataset ecoregionDataset;
+        //private IEcoregionDataset ecoregionDataset;
         private ISpeciesDataset speciesDataset;
         
         private FunctionalTypeTable functionalTypes;
@@ -80,7 +82,7 @@ namespace Landis.Extension.Succession.Century
         private Species.AuxParm<int> maxANPP;
         private Species.AuxParm<int> maxBiomass;
         
-        private Ecoregions.AuxParm<Percentage>[] minRelativeBiomass;
+        //private Ecoregions.AuxParm<Percentage>[] minRelativeBiomass;
         private List<ISufficientLight> sufficientLight;
 
         //private Ecoregions.AuxParm<double> initSOM1surfC;
@@ -91,7 +93,6 @@ namespace Landis.Extension.Succession.Century
         //private Ecoregions.AuxParm<double> initSOM2N;
         //private Ecoregions.AuxParm<double> initSOM3C;
         //private Ecoregions.AuxParm<double> initSOM3N;
-        private double initMineralN;
 
 
         //---------------------------------------------------------------------
@@ -301,13 +302,21 @@ namespace Landis.Extension.Succession.Century
             }
         }
         //---------------------------------------------------------------------
-
-        public Ecoregions.AuxParm<Percentage>[] MinRelativeBiomass
+        public double[] MaximumShadeLAI
         {
-            get {
-                return minRelativeBiomass;
+            get
+            {
+                return maximumShadeLAI;
             }
         }
+
+        //public double[] MaximumShadeLAI
+        //{
+        //    get
+        //    {
+        //        return maximumShadeLAI;
+        //    }
+        //}
 
         //---------------------------------------------------------------------
 
@@ -769,18 +778,19 @@ namespace Landis.Extension.Succession.Century
         }
         //---------------------------------------------------------------------
 
-        public void SetMinRelativeBiomass(byte                   shadeClass,
-                                          IEcoregion             ecoregion,
-                                          InputValue<Percentage> newValue)
+        public void SetMaximumShadeLAI(byte                   shadeClass,
+                                          //IEcoregion             ecoregion,
+                                          InputValue<double> newValue)
         {
             Debug.Assert(1 <= shadeClass && shadeClass <= 5);
-            Debug.Assert(ecoregion != null);
+            //Debug.Assert(ecoregion != null);
             if (newValue != null) {
-                if (newValue.Actual < 0.0 || newValue.Actual > 1.0)
+                if (newValue.Actual < 0.0 || newValue.Actual > 20)
                     throw new InputValueException(newValue.String,
-                                                  "{0} is not between 0% and 100%", newValue.String);
+                                                  "{0} is not between 0 and 20", newValue.String);
             }
-            minRelativeBiomass[shadeClass][ecoregion] = newValue;
+            maximumShadeLAI[shadeClass] = newValue;
+            //minRelativeBiomass[shadeClass][ecoregion] = newValue;
         }
         //---------------------------------------------------------------------
 
@@ -1028,12 +1038,12 @@ namespace Landis.Extension.Succession.Century
         //---------------------------------------------------------------------
         //---------------------------------------------------------------------
 
-        public InputParameters(IEcoregionDataset ecoregionDataset,
+        public InputParameters(//IEcoregionDataset ecoregionDataset,
                                   ISpeciesDataset    speciesDataset,
                                   int litterCnt, int functionalCnt)
         {
             this.speciesDataset = speciesDataset;
-            this.ecoregionDataset = ecoregionDataset;
+            //this.ecoregionDataset = ecoregionDataset;
 
             functionalTypes = new FunctionalTypeTable(functionalCnt);
             fireReductionsTable = new FireReductions[6];
@@ -1059,10 +1069,12 @@ namespace Landis.Extension.Succession.Century
             maxANPP                 = new Species.AuxParm<int>(speciesDataset);
             maxBiomass              = new Species.AuxParm<int>(speciesDataset);
 
-            minRelativeBiomass = new Ecoregions.AuxParm<Percentage>[6];
-            for (byte shadeClass = 1; shadeClass <= 5; shadeClass++) {
-                minRelativeBiomass[shadeClass] = new Ecoregions.AuxParm<Percentage>(ecoregionDataset);
-            }
+            maximumShadeLAI = new double[6];
+
+            //minRelativeBiomass = new Ecoregions.AuxParm<Percentage>[6];
+            //for (byte shadeClass = 1; shadeClass <= 5; shadeClass++) {
+            //    minRelativeBiomass[shadeClass] = new Ecoregions.AuxParm<Percentage>(ecoregionDataset);
+            //}
             sufficientLight         = new List<ISufficientLight>();
 
             //percentClay             = new Ecoregions.AuxParm<double>(ecoregionDataset);

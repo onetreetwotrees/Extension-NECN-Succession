@@ -177,7 +177,7 @@ namespace Landis.Extension.Succession.Century
 
             double limitH20 = calculateWater_Limit(site, ecoregion, cohort.Species);
 
-            double limitLAI = calculateLAI_Limit(((double) cohort.LeafBiomass * 0.47), ((double) cohort.WoodBiomass * 0.47), cohort.Species);
+            double limitLAI = calculateLAI_Limit(cohort, site);
 
             // RMS 03/2016: Testing alternative more similar to how Biomass Succession operates: REMOVE FOR NEXT RELEASE
             double limitCapacity = 1.0 - Math.Min(1.0, Math.Exp(siteBiomass / maxBiomass * 5.0) / Math.Exp(5.0));
@@ -482,7 +482,7 @@ namespace Landis.Extension.Succession.Century
         //--------------------------------------------------------------------------
         // Originally from lacalc.f of CENTURY model
 
-        private static double calculateLAI_Limit(double leafC, double largeWoodC, ISpecies species)
+        private static double calculateLAI_Limit(ICohort cohort, ActiveSite site)
         {
 
             //...Calculate true LAI using leaf biomass and a biomass-to-LAI
@@ -520,16 +520,18 @@ namespace Landis.Extension.Succession.Century
             //                 the Pacific Northwest.  Ecology 63:469-481.
 
             //...Local variables
+            double leafC = (double) cohort.LeafBiomass * 0.47;
+            double largeWoodC = (double) cohort.WoodBiomass * 0.47;
 
             double lai = 0.0;
             double laitop = -0.47;  // This is the value given for all biomes in the tree.100 file.
-            double btolai = FunctionalType.Table[SpeciesData.FuncType[species]].BTOLAI;
-            double klai   = FunctionalType.Table[SpeciesData.FuncType[species]].KLAI;
-            double maxlai = FunctionalType.Table[SpeciesData.FuncType[species]].MAXLAI;
+            double btolai = FunctionalType.Table[SpeciesData.FuncType[cohort.Species]].BTOLAI;
+            double klai   = FunctionalType.Table[SpeciesData.FuncType[cohort.Species]].KLAI;
+            double maxlai = FunctionalType.Table[SpeciesData.FuncType[cohort.Species]].MAXLAI;
 
             double rlai = (Math.Max(0.0, 1.0 - Math.Exp(btolai * leafC)));
 
-            if (SpeciesData.LeafLongevity[species] > 1.0)
+            if (SpeciesData.LeafLongevity[cohort.Species] > 1.0)
             {
                 rlai = 1.0;
             }
@@ -567,14 +569,15 @@ namespace Landis.Extension.Succession.Century
             //if (lai < 0.5) lai = 0.5;
             if (lai < 0.1) lai = 0.1;
 
-            //SiteVars.LAI[site] += lai; Tracking LAI.
+            if(Century.Month == 6)
+                SiteVars.LAI[site] += lai; //Tracking LAI.
 
             double LAI_limit = Math.Max(0.0, 1.0 - Math.Exp(laitop * lai));
 
             //This allows LAI to go to zero for deciduous trees.
 
-            if (SpeciesData.LeafLongevity[species] <= 1.0 &&
-                (Century.Month > FunctionalType.Table[SpeciesData.FuncType[species]].LeafNeedleDrop || Century.Month < 3))
+            if (SpeciesData.LeafLongevity[cohort.Species] <= 1.0 &&
+                (Century.Month > FunctionalType.Table[SpeciesData.FuncType[cohort.Species]].LeafNeedleDrop || Century.Month < 3))
             {
                 lai = 0.0;
                 LAI_limit = 0.0;

@@ -32,6 +32,7 @@ namespace Landis.Extension.Succession.Century
         public static double DecayRateSOM2;
         public static double DecayRateSOM3;
         public static List<int> SWHC_List;
+        public static double[] ShadeLAI;
 
         private List<ISufficientLight> sufficientLight;
         public static string SoilCarbonMapNames = null;
@@ -120,6 +121,7 @@ namespace Landis.Extension.Succession.Century
             // TO DO
             //ClimateRegionData.ChangeParameters(parameters);
 
+            ShadeLAI = parameters.MaximumShadeLAI; //.MinRelativeBiomass;
             OtherData.Initialize(parameters);
             FunctionalType.Initialize(parameters);
 
@@ -336,24 +338,25 @@ namespace Landis.Extension.Succession.Century
 
             //double B_MAX = (double) ClimateRegionData.B_MAX[ecoregion];
 
-            double oldBiomass = (double) Library.LeafBiomassCohorts.Cohorts.ComputeNonYoungBiomass(SiteVars.Cohorts[site]);
+            //double oldBiomass = (double) Library.LeafBiomassCohorts.Cohorts.ComputeNonYoungBiomass(SiteVars.Cohorts[site]);
 
-            int lastMortality = SiteVars.PrevYearMortality[site];
-            double B_ACT = Math.Min(B_MAX - lastMortality, oldBiomass);
+            //int lastMortality = SiteVars.PrevYearMortality[site];
+            //double B_ACT = Math.Min(B_MAX - lastMortality, oldBiomass);
 
             //  Relative living biomass (ratio of actual to maximum site
             //  biomass).
-            double B_AM = B_ACT / B_MAX;
+            //double B_AM = B_ACT / B_MAX;
 
             for (byte shade = 5; shade >= 1; shade--)
             {
-                if(ClimateRegionData.ShadeBiomass[shade][ecoregion] <= 0)
+                if(PlugIn.ShadeLAI[shade] <=0 ) //ClimateRegionData.ShadeBiomass[shade][ecoregion] <= 0)
                 {
-                    string mesg = string.Format("Minimum relative biomass has not been defined for ecoregion {0}", ecoregion.Name);
+                    string mesg = string.Format("Maximum LAI has not been defined for shade class {0}", shade);
                     throw new System.ApplicationException(mesg);
                 }
                 //PlugIn.ModelCore.UI.WriteLine("Shade Calculation:  lastMort={0:0.0}, B_MAX={1}, oldB={2}, B_ACT={3}, shade={4}.", lastMortality, B_MAX,oldBiomass,B_ACT,shade);
-                if (B_AM >= ClimateRegionData.ShadeBiomass[shade][ecoregion])
+                if (SiteVars.LAI[site] >= PlugIn.ShadeLAI[shade])
+                    //B_AM >= ClimateRegionData.ShadeBiomass[shade][ecoregion])
                 {
                     finalShade = shade;
                     break;
@@ -373,6 +376,7 @@ namespace Landis.Extension.Succession.Century
             InitialBiomass initialBiomass = InitialBiomass.Compute(site, initialCommunity);
             //SiteVars.Cohorts[site] = InitialBiomass.Clone(initialBiomass.Cohorts);
             //IEcoregion ecoregion = PlugIn.ModelCore.Ecoregion[site];
+            SiteVars.MineralN[site] = parameters.InitialMineralN;
 
             SiteVars.SurfaceDeadWood[site]       = initialBiomass.SurfaceDeadWood.Clone();
             SiteVars.SurfaceStructural[site]     = initialBiomass.SurfaceStructural.Clone();
@@ -387,7 +391,7 @@ namespace Landis.Extension.Succession.Century
             //SiteVars.SOM2[site]                  = initialBiomass.SOM2.Clone();
             //SiteVars.SOM3[site]                  = initialBiomass.SOM3.Clone();
 
-            SiteVars.MineralN[site]              = initialBiomass.MineralN;
+            //SiteVars.MineralN[site]              = initialBiomass.MineralN;
             SiteVars.CohortLeafC[site]           = initialBiomass.CohortLeafC;
             SiteVars.CohortFRootC[site]           = initialBiomass.CohortFRootC;
             SiteVars.CohortLeafN[site]           = initialBiomass.CohortLeafN;

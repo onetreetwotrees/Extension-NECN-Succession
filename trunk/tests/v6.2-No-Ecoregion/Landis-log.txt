@@ -1,105 +1,156 @@
-2016-09-10 12:57:47,064 - LANDIS-II 6.2 (beta release 1)
-2016-09-10 12:57:47,080 - 
-2016-09-10 12:57:47,401 - Loading scenario from file "scenario-single-cell.txt" ...
-2016-09-10 12:57:47,483 - Initialized random number generator with seed = 1,581,615,516
-2016-09-10 12:57:47,483 - Loading species data from file "species.txt" ...
-2016-09-10 12:57:47,512 - Loading ecoregions from file "./ecoregions.txt" ...
-2016-09-10 12:57:47,534 - Initializing landscape from ecoregions map "./single_cell_3.img" ...
-2016-09-10 12:57:47,578 - Cell length = 100 m, cell area = 1 ha
-2016-09-10 12:57:47,580 - Map dimensions: 1 row by 1 column = 1 cell
-2016-09-10 12:57:47,589 - Sites: 1 active (100.0 %), 0 inactive (0.0 %)
-2016-09-10 12:57:47,601 - Loading Century Succession extension ...
-2016-09-10 12:57:47,660 -    Registering Data:  Succession.LeafBiomassCohorts.
-2016-09-10 12:57:47,661 -    Registering Data:  Succession.AgeCohorts.
-2016-09-10 12:57:47,662 -    Registering Data:  Succession.BiomassCohorts.
-2016-09-10 12:57:47,720 -    Begin parsing FUNCTIONAL GROUP table.
-2016-09-10 12:57:47,724 -    Begin reading FIRE REDUCTION parameters.
-2016-09-10 12:57:47,725 -    Begin reading HARVEST REDUCTION parameters.
-2016-09-10 12:57:47,733 - Initializing Century Succession ...
-2016-09-10 12:57:47,814 -    Loading weather data ...
-2016-09-10 12:57:56,955 -    Registering Data:  TimeOfLastSuccession.
-2016-09-10 12:57:56,955 -    Registering Data:  Shade.
-2016-09-10 12:57:56,957 -    Creating Dispersal Neighborhood List.
-2016-09-10 12:57:56,958 -    Dispersal:  NeighborRadius=5050, CellLength=100, numCellRadius=50
-2016-09-10 12:57:56,965 -    Loading biomass parameters for age-only disturbances from file "bio-reductions-standard.txt" ...
-2016-09-10 12:57:56,969 -       Reading CohortBiomassReductions.
-2016-09-10 12:57:56,971 -          Adding disturbance:fire...
-2016-09-10 12:57:56,971 -          Adding disturbance:wind...
-2016-09-10 12:57:56,972 -          Adding disturbance:harvest...
-2016-09-10 12:57:56,972 -       Reading DeadBiomassReductions.
-2016-09-10 12:57:56,972 -          Adding disturbance:fire...
-2016-09-10 12:57:56,975 -    Loading initial communities from file "./initial-communities.txt" ...
-2016-09-10 12:57:56,992 - Read in biomass value: 10
-2016-09-10 12:57:56,996 - Read in biomass value: 20
-2016-09-10 12:57:56,996 - Read in biomass value: 20
-2016-09-10 12:57:56,997 - Read in biomass value: 10
-2016-09-10 12:57:56,997 - Read in biomass value: 10
-2016-09-10 12:57:56,997 - Read in biomass value: 10
-2016-09-10 12:57:56,998 - Read in biomass value: 10
-2016-09-10 12:57:56,998 - Read in biomass value: 10
-2016-09-10 12:57:56,998 - Read in biomass value: 10
-2016-09-10 12:57:56,999 - Read in biomass value: 10
-2016-09-10 12:57:56,999 - Read in biomass value: 10
-2016-09-10 12:57:56,999 - Read in biomass value: 10
-2016-09-10 12:57:56,999 - Read in biomass value: 10
-2016-09-10 12:57:57,000 - Read in biomass value: 10
-2016-09-10 12:57:57,000 - Read in biomass value: 20
-2016-09-10 12:57:57,001 - Read in biomass value: 20
-2016-09-10 12:57:57,001 - Read in biomass value: 10
-2016-09-10 12:57:57,001 - Read in biomass value: 10
-2016-09-10 12:57:57,001 - Read in biomass value: 10
-2016-09-10 12:57:57,001 - Read in biomass value: 10
-2016-09-10 12:57:57,002 - Read in biomass value: 10
-2016-09-10 12:57:57,002 -    Reading initial communities map "./single_cell_3.img" ...
-2016-09-10 12:57:57,042 -    Opening Century calibrate log file "Century-calibrate-log.csv" ...
-2016-09-10 12:57:57,131 - Current time: 1
-2016-09-10 12:57:57,132 - Running Century Succession ...
-2016-09-10 12:57:57,271 - Spp=acerrubr, Pest=0.325: tM=1.0, sM=0.3, jM=1.0
-2016-09-10 12:57:57,275 - Spp=fraxamer, Pest=0.515: tM=1.0, sM=0.5, jM=1.0
-2016-09-10 12:57:57,306 - Current time: 2
-2016-09-10 12:57:57,306 - Running Century Succession ...
-2016-09-10 12:57:57,325 - Spp=tsugcana, Pest=0.300: tM=0.3, sM=0.7, jM=1.0
-2016-09-10 12:57:57,346 - Current time: 3
-2016-09-10 12:57:57,347 - Running Century Succession ...
-2016-09-10 12:57:57,387 - Current time: 4
-2016-09-10 12:57:57,387 - Running Century Succession ...
-2016-09-10 12:57:57,404 - Spp=tsugcana, Pest=0.249: tM=0.2, sM=0.7, jM=1.0
-2016-09-10 12:57:57,426 - Current time: 5
-2016-09-10 12:57:57,426 - Running Century Succession ...
-2016-09-10 12:57:57,465 - Current time: 6
-2016-09-10 12:57:57,465 - Running Century Succession ...
-2016-09-10 12:57:57,483 - Spp=fraxamer, Pest=0.687: tM=1.0, sM=0.7, jM=1.0
-2016-09-10 12:57:57,486 - Spp=tsugcana, Pest=0.386: tM=0.4, sM=0.4, jM=1.0
-2016-09-10 12:57:57,507 - Current time: 7
-2016-09-10 12:57:57,507 - Running Century Succession ...
-2016-09-10 12:57:57,524 - Spp=acerrubr, Pest=0.790: tM=1.0, sM=0.8, jM=1.0
-2016-09-10 12:57:57,545 - Current time: 8
-2016-09-10 12:57:57,545 - Running Century Succession ...
-2016-09-10 12:57:57,587 - Current time: 9
-2016-09-10 12:57:57,587 - Running Century Succession ...
-2016-09-10 12:57:57,628 - Current time: 10
-2016-09-10 12:57:57,629 - Running Century Succession ...
-2016-09-10 12:57:57,674 - Current time: 11
-2016-09-10 12:57:57,674 - Running Century Succession ...
-2016-09-10 12:57:57,739 - Current time: 12
-2016-09-10 12:57:57,739 - Running Century Succession ...
-2016-09-10 12:57:57,787 - Current time: 13
-2016-09-10 12:57:57,787 - Running Century Succession ...
-2016-09-10 12:57:57,828 - Current time: 14
-2016-09-10 12:57:57,829 - Running Century Succession ...
-2016-09-10 12:57:57,875 - Current time: 15
-2016-09-10 12:57:57,875 - Running Century Succession ...
-2016-09-10 12:57:57,895 - Spp=acerrubr, Pest=0.736: tM=1.0, sM=0.7, jM=1.0
-2016-09-10 12:57:57,945 - Current time: 16
-2016-09-10 12:57:57,945 - Running Century Succession ...
-2016-09-10 12:57:57,962 - Spp=tsugcana, Pest=0.174: tM=0.2, sM=0.7, jM=1.0
-2016-09-10 12:57:57,987 - Current time: 17
-2016-09-10 12:57:57,987 - Running Century Succession ...
-2016-09-10 12:57:58,025 - Current time: 18
-2016-09-10 12:57:58,025 - Running Century Succession ...
-2016-09-10 12:57:58,067 - Current time: 19
-2016-09-10 12:57:58,067 - Running Century Succession ...
-2016-09-10 12:57:58,085 - Spp=acerrubr, Pest=0.979: tM=1.0, sM=1.0, jM=1.0
-2016-09-10 12:57:58,114 - Current time: 20
-2016-09-10 12:57:58,115 - Running Century Succession ...
-2016-09-10 12:57:58,153 - Model run is complete.
+2016-09-10 16:01:21,959 - LANDIS-II 6.2 (beta release 1)
+2016-09-10 16:01:21,975 - 
+2016-09-10 16:01:22,287 - Loading scenario from file "scenario-single-cell.txt" ...
+2016-09-10 16:01:22,371 - Initialized random number generator with seed = 1,114,191,046
+2016-09-10 16:01:22,371 - Loading species data from file "species.txt" ...
+2016-09-10 16:01:22,400 - Loading ecoregions from file "./ecoregions.txt" ...
+2016-09-10 16:01:22,423 - Initializing landscape from ecoregions map "./single_cell_3.img" ...
+2016-09-10 16:01:22,468 - Cell length = 100 m, cell area = 1 ha
+2016-09-10 16:01:22,470 - Map dimensions: 1 row by 1 column = 1 cell
+2016-09-10 16:01:22,479 - Sites: 1 active (100.0 %), 0 inactive (0.0 %)
+2016-09-10 16:01:22,492 - Loading Century Succession extension ...
+2016-09-10 16:01:22,553 -    Registering Data:  Succession.LeafBiomassCohorts.
+2016-09-10 16:01:22,554 -    Registering Data:  Succession.AgeCohorts.
+2016-09-10 16:01:22,554 -    Registering Data:  Succession.BiomassCohorts.
+2016-09-10 16:01:22,609 -    Begin parsing FUNCTIONAL GROUP table.
+2016-09-10 16:01:22,612 -    Begin reading FIRE REDUCTION parameters.
+2016-09-10 16:01:22,614 -    Begin reading HARVEST REDUCTION parameters.
+2016-09-10 16:01:22,623 - Initializing Century Succession ...
+2016-09-10 16:01:22,708 -    Loading weather data ...
+2016-09-10 16:01:34,278 -    Registering Data:  TimeOfLastSuccession.
+2016-09-10 16:01:34,278 -    Registering Data:  Shade.
+2016-09-10 16:01:34,280 -    Creating Dispersal Neighborhood List.
+2016-09-10 16:01:34,280 -    Dispersal:  NeighborRadius=5050, CellLength=100, numCellRadius=50
+2016-09-10 16:01:34,288 -    Loading biomass parameters for age-only disturbances from file "bio-reductions-standard.txt" ...
+2016-09-10 16:01:34,292 -       Reading CohortBiomassReductions.
+2016-09-10 16:01:34,293 -          Adding disturbance:fire...
+2016-09-10 16:01:34,297 -          Adding disturbance:wind...
+2016-09-10 16:01:34,297 -          Adding disturbance:harvest...
+2016-09-10 16:01:34,297 -       Reading DeadBiomassReductions.
+2016-09-10 16:01:34,298 -          Adding disturbance:fire...
+2016-09-10 16:01:34,301 -    Loading initial communities from file "./initial-communities.txt" ...
+2016-09-10 16:01:34,317 - Read in biomass value: 10
+2016-09-10 16:01:34,321 - Read in biomass value: 20
+2016-09-10 16:01:34,322 - Read in biomass value: 20
+2016-09-10 16:01:34,322 - Read in biomass value: 10
+2016-09-10 16:01:34,323 - Read in biomass value: 10
+2016-09-10 16:01:34,323 - Read in biomass value: 10
+2016-09-10 16:01:34,323 - Read in biomass value: 10
+2016-09-10 16:01:34,323 - Read in biomass value: 10
+2016-09-10 16:01:34,324 - Read in biomass value: 10
+2016-09-10 16:01:34,324 - Read in biomass value: 10
+2016-09-10 16:01:34,324 - Read in biomass value: 10
+2016-09-10 16:01:34,324 - Read in biomass value: 10
+2016-09-10 16:01:34,325 - Read in biomass value: 10
+2016-09-10 16:01:34,326 - Read in biomass value: 10
+2016-09-10 16:01:34,326 - Read in biomass value: 20
+2016-09-10 16:01:34,326 - Read in biomass value: 20
+2016-09-10 16:01:34,326 - Read in biomass value: 10
+2016-09-10 16:01:34,326 - Read in biomass value: 10
+2016-09-10 16:01:34,327 - Read in biomass value: 10
+2016-09-10 16:01:34,327 - Read in biomass value: 10
+2016-09-10 16:01:34,327 - Read in biomass value: 10
+2016-09-10 16:01:34,327 -    Reading initial communities map "./single_cell_3.img" ...
+2016-09-10 16:01:34,368 -    Opening Century calibrate log file "Century-calibrate-log.csv" ...
+2016-09-10 16:01:34,450 - Current time: 1
+2016-09-10 16:01:34,451 - Running Century Succession ...
+2016-09-10 16:01:34,597 - Spp=acerrubr, Pest=0.657: tM=1.0, sM=0.7, jM=1.0
+2016-09-10 16:01:34,600 - Spp=fraxamer, Pest=0.730: tM=1.0, sM=0.7, jM=1.0
+2016-09-10 16:01:34,601 - Spp=querrubr, Pest=0.647: tM=0.8, sM=0.6, jM=1.0
+2016-09-10 16:01:34,645 - Current time: 2
+2016-09-10 16:01:34,646 - Running Century Succession ...
+2016-09-10 16:01:34,670 - Spp=acerrubr, Pest=0.994: tM=1.0, sM=1.0, jM=1.0
+2016-09-10 16:01:34,670 - Spp=fraxamer, Pest=0.963: tM=1.0, sM=1.0, jM=1.0
+2016-09-10 16:01:34,670 - Spp=querrubr, Pest=0.438: tM=0.4, sM=1.0, jM=1.0
+2016-09-10 16:01:34,694 - Current time: 3
+2016-09-10 16:01:34,694 - Running Century Succession ...
+2016-09-10 16:01:34,722 - Spp=acerrubr, Pest=0.184: tM=1.0, sM=0.2, jM=1.0
+2016-09-10 16:01:34,722 - Spp=fraxamer, Pest=0.454: tM=1.0, sM=0.5, jM=1.0
+2016-09-10 16:01:34,722 - Spp=querrubr, Pest=0.111: tM=0.6, sM=0.1, jM=1.0
+2016-09-10 16:01:34,745 - Current time: 4
+2016-09-10 16:01:34,746 - Running Century Succession ...
+2016-09-10 16:01:34,770 - Spp=acerrubr, Pest=0.961: tM=1.0, sM=1.0, jM=1.0
+2016-09-10 16:01:34,771 - Spp=fraxamer, Pest=0.984: tM=1.0, sM=1.0, jM=1.0
+2016-09-10 16:01:34,771 - Spp=querrubr, Pest=0.893: tM=0.9, sM=1.0, jM=1.0
+2016-09-10 16:01:34,795 - Current time: 5
+2016-09-10 16:01:34,795 - Running Century Succession ...
+2016-09-10 16:01:34,827 - Spp=acerrubr, Pest=0.299: tM=1.0, sM=0.3, jM=1.0
+2016-09-10 16:01:34,827 - Spp=fraxamer, Pest=0.502: tM=0.9, sM=0.5, jM=1.0
+2016-09-10 16:01:34,827 - Spp=querrubr, Pest=0.237: tM=0.2, sM=0.3, jM=1.0
+2016-09-10 16:01:34,850 - Current time: 6
+2016-09-10 16:01:34,850 - Running Century Succession ...
+2016-09-10 16:01:34,876 - Spp=acerrubr, Pest=0.541: tM=1.0, sM=0.5, jM=1.0
+2016-09-10 16:01:34,876 - Spp=fraxamer, Pest=0.647: tM=1.0, sM=0.6, jM=1.0
+2016-09-10 16:01:34,876 - Spp=querrubr, Pest=0.526: tM=0.6, sM=0.5, jM=1.0
+2016-09-10 16:01:34,899 - Current time: 7
+2016-09-10 16:01:34,900 - Running Century Succession ...
+2016-09-10 16:01:34,926 - Spp=acerrubr, Pest=0.876: tM=1.0, sM=0.9, jM=1.0
+2016-09-10 16:01:34,927 - Spp=fraxamer, Pest=0.900: tM=1.0, sM=0.9, jM=1.0
+2016-09-10 16:01:34,927 - Spp=querrubr, Pest=0.696: tM=0.7, sM=0.9, jM=1.0
+2016-09-10 16:01:34,950 - Current time: 8
+2016-09-10 16:01:34,950 - Running Century Succession ...
+2016-09-10 16:01:34,981 - Spp=acerrubr, Pest=0.598: tM=1.0, sM=0.6, jM=1.0
+2016-09-10 16:01:34,982 - Spp=fraxamer, Pest=0.687: tM=1.0, sM=0.7, jM=1.0
+2016-09-10 16:01:34,982 - Spp=querrubr, Pest=0.586: tM=0.8, sM=0.6, jM=1.0
+2016-09-10 16:01:35,004 - Current time: 9
+2016-09-10 16:01:35,004 - Running Century Succession ...
+2016-09-10 16:01:35,039 - Spp=acerrubr, Pest=0.993: tM=1.0, sM=1.0, jM=1.0
+2016-09-10 16:01:35,039 - Spp=fraxamer, Pest=1.000: tM=1.0, sM=1.0, jM=1.0
+2016-09-10 16:01:35,039 - Spp=querrubr, Pest=0.749: tM=0.7, sM=1.0, jM=1.0
+2016-09-10 16:01:35,040 - Spp=tsugcana, Pest=0.148: tM=0.1, sM=1.0, jM=1.0
+2016-09-10 16:01:35,063 - Current time: 10
+2016-09-10 16:01:35,064 - Running Century Succession ...
+2016-09-10 16:01:35,098 - Spp=acerrubr, Pest=0.770: tM=1.0, sM=0.8, jM=1.0
+2016-09-10 16:01:35,098 - Spp=fraxamer, Pest=0.816: tM=1.0, sM=0.8, jM=1.0
+2016-09-10 16:01:35,098 - Spp=querrubr, Pest=0.686: tM=0.7, sM=0.8, jM=1.0
+2016-09-10 16:01:35,133 - Current time: 11
+2016-09-10 16:01:35,133 - Running Century Succession ...
+2016-09-10 16:01:35,166 - Spp=acerrubr, Pest=0.723: tM=1.0, sM=0.7, jM=1.0
+2016-09-10 16:01:35,166 - Spp=fraxamer, Pest=0.780: tM=1.0, sM=0.8, jM=1.0
+2016-09-10 16:01:35,167 - Spp=querrubr, Pest=0.476: tM=0.5, sM=0.7, jM=1.0
+2016-09-10 16:01:35,315 - Current time: 12
+2016-09-10 16:01:35,316 - Running Century Succession ...
+2016-09-10 16:01:35,351 - Spp=acerrubr, Pest=0.916: tM=1.0, sM=0.9, jM=1.0
+2016-09-10 16:01:35,351 - Spp=fraxamer, Pest=0.931: tM=1.0, sM=0.9, jM=1.0
+2016-09-10 16:01:35,351 - Spp=querrubr, Pest=0.659: tM=0.7, sM=0.9, jM=1.0
+2016-09-10 16:01:35,373 - Current time: 13
+2016-09-10 16:01:35,374 - Running Century Succession ...
+2016-09-10 16:01:35,406 - Spp=acerrubr, Pest=0.989: tM=1.0, sM=1.0, jM=1.0
+2016-09-10 16:01:35,407 - Spp=fraxamer, Pest=1.000: tM=1.0, sM=1.0, jM=1.0
+2016-09-10 16:01:35,407 - Spp=querrubr, Pest=0.781: tM=0.8, sM=1.0, jM=1.0
+2016-09-10 16:01:35,431 - Current time: 14
+2016-09-10 16:01:35,431 - Running Century Succession ...
+2016-09-10 16:01:35,467 - Spp=acerrubr, Pest=0.626: tM=1.0, sM=0.6, jM=1.0
+2016-09-10 16:01:35,467 - Spp=fraxamer, Pest=0.708: tM=1.0, sM=0.7, jM=1.0
+2016-09-10 16:01:35,467 - Spp=querrubr, Pest=0.616: tM=0.7, sM=0.6, jM=1.0
+2016-09-10 16:01:35,489 - Current time: 15
+2016-09-10 16:01:35,489 - Running Century Succession ...
+2016-09-10 16:01:35,529 - Spp=acerrubr, Pest=0.989: tM=1.0, sM=1.0, jM=1.0
+2016-09-10 16:01:35,529 - Spp=fraxamer, Pest=1.000: tM=1.0, sM=1.0, jM=1.0
+2016-09-10 16:01:35,529 - Spp=querrubr, Pest=0.781: tM=0.8, sM=1.0, jM=1.0
+2016-09-10 16:01:35,551 - Current time: 16
+2016-09-10 16:01:35,551 - Running Century Succession ...
+2016-09-10 16:01:35,615 - Current time: 17
+2016-09-10 16:01:35,615 - Running Century Succession ...
+2016-09-10 16:01:35,650 - Spp=acerrubr, Pest=0.601: tM=1.0, sM=0.6, jM=1.0
+2016-09-10 16:01:35,650 - Spp=fraxamer, Pest=0.689: tM=1.0, sM=0.7, jM=1.0
+2016-09-10 16:01:35,650 - Spp=querrubr, Pest=0.589: tM=0.7, sM=0.6, jM=1.0
+2016-09-10 16:01:35,650 - Spp=tsugcana, Pest=0.084: tM=0.1, sM=0.4, jM=1.0
+2016-09-10 16:01:35,909 - Current time: 18
+2016-09-10 16:01:35,910 - Running Century Succession ...
+2016-09-10 16:01:35,945 - Spp=acerrubr, Pest=0.989: tM=1.0, sM=1.0, jM=1.0
+2016-09-10 16:01:35,945 - Spp=fraxamer, Pest=1.000: tM=1.0, sM=1.0, jM=1.0
+2016-09-10 16:01:35,945 - Spp=querrubr, Pest=0.781: tM=0.8, sM=1.0, jM=1.0
+2016-09-10 16:01:35,945 - Spp=tsugcana, Pest=0.232: tM=0.2, sM=1.0, jM=1.0
+2016-09-10 16:01:35,968 - Current time: 19
+2016-09-10 16:01:35,968 - Running Century Succession ...
+2016-09-10 16:01:36,006 - Spp=acerrubr, Pest=1.000: tM=1.0, sM=1.0, jM=1.0
+2016-09-10 16:01:36,006 - Spp=fraxamer, Pest=0.986: tM=1.0, sM=1.0, jM=1.0
+2016-09-10 16:01:36,006 - Spp=querrubr, Pest=0.574: tM=0.6, sM=1.0, jM=1.0
+2016-09-10 16:01:36,028 - Current time: 20
+2016-09-10 16:01:36,028 - Running Century Succession ...
+2016-09-10 16:01:36,069 - Spp=acerrubr, Pest=0.624: tM=1.0, sM=0.6, jM=1.0
+2016-09-10 16:01:36,069 - Spp=fraxamer, Pest=0.706: tM=1.0, sM=0.7, jM=1.0
+2016-09-10 16:01:36,069 - Spp=querrubr, Pest=0.613: tM=0.8, sM=0.6, jM=1.0
+2016-09-10 16:01:36,069 - Spp=tsugcana, Pest=0.221: tM=0.2, sM=0.5, jM=1.0
+2016-09-10 16:01:36,093 - Model run is complete.

@@ -34,7 +34,7 @@ namespace Landis.Extension.Succession.Century
         //private Layer som2;
         //private Layer som3;
         
-        private double mineralN;
+        //private double mineralN;
         private double cohortLeafC;
         private double cohortFRootC;
         private double cohortLeafN;
@@ -87,7 +87,7 @@ namespace Landis.Extension.Succession.Century
         //{ get { return som3; } 
         //} 
         
-        public double MineralN { get { return mineralN; } } 
+        //public double MineralN { get { return mineralN; } } 
         public double CohortLeafC { get { return cohortLeafC; } }
         public double CohortFRootC { get { return cohortFRootC; } } 
         public double CohortLeafN { get { return cohortLeafN; } }
@@ -114,7 +114,7 @@ namespace Landis.Extension.Succession.Century
                 //Layer som2,
                 //Layer som3,
                 
-                double mineralN,
+                //double mineralN,
                 double cohortLeafC,
                 double cohortFRootC,
                 double cohortLeafN,
@@ -141,7 +141,7 @@ namespace Landis.Extension.Succession.Century
             //this.som2 = som2;
             //this.som3 = som3;
             
-            this.mineralN = mineralN;
+            //this.mineralN = mineralN;
             this.cohortLeafC = cohortLeafC;
             this.cohortFRootC = cohortFRootC;
             this.cohortLeafN = cohortLeafN;
@@ -256,7 +256,7 @@ namespace Landis.Extension.Succession.Century
                         //SiteVars.SOM2[site],
                         //SiteVars.SOM3[site],
                         
-                        SiteVars.MineralN[site],
+                        //SiteVars.MineralN[site],
                         SiteVars.CohortLeafC[site],
                         SiteVars.CohortFRootC[site],
                         SiteVars.CohortLeafN[site],

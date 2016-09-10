@@ -77,7 +77,7 @@ namespace Landis.Extension.Succession.Century
             int numLitterTypes = 4;
             int numFunctionalTypes = 25;
 
-            InputParameters parameters = new InputParameters(ecoregionDataset, speciesDataset, numLitterTypes, numFunctionalTypes);
+            InputParameters parameters = new InputParameters(speciesDataset, numLitterTypes, numFunctionalTypes);
 
             InputVar<int> timestep = new InputVar<int>("Timestep");
             ReadVar(timestep);
@@ -101,7 +101,7 @@ namespace Landis.Extension.Succession.Century
             ReadVar(climateConfigFile);
             parameters.ClimateConfigFile = climateConfigFile.Value;
 
-            InputVar<string> ageOnlyDisturbanceParms = new InputVar<string>("AgeOnlyDisturbanceParms");
+            InputVar<string> ageOnlyDisturbanceParms = new InputVar<string>("AgeOnlyDisturbances:BiomassParameters");
             ReadVar(ageOnlyDisturbanceParms);
             parameters.AgeOnlyDisturbanceParms = ageOnlyDisturbanceParms.Value;
 
@@ -304,12 +304,13 @@ namespace Landis.Extension.Succession.Century
             //--------------------------
             //  MinRelativeBiomass table
 
-            ReadName("AvailableLightBiomass");
-
-            List<IEcoregion> ecoregions = ReadEcoregions();
-            string lastEcoregion = ecoregions[ecoregions.Count-1].Name;
-
+            ReadName("MaximumLAI"); //"AvailableLightBiomass");
             InputVar<byte> shadeClassVar = new InputVar<byte>("Shade Class");
+            InputVar<double> maxLAI = new InputVar<double>("Maximum LAI");
+
+            //List<IEcoregion> ecoregions = ReadEcoregions();
+            //string lastEcoregion = ecoregions[ecoregions.Count-1].Name;
+
             for (byte shadeClass = 1; shadeClass <= 5; shadeClass++) {
                 if (AtEndOfInput)
                     throw NewParseException("Expected a line with available light class {0}", shadeClass);
@@ -319,16 +320,16 @@ namespace Landis.Extension.Succession.Century
                 if (shadeClassVar.Value.Actual != shadeClass)
                     throw new InputValueException(shadeClassVar.Value.String,
                                                   "Expected the available light class {0}", shadeClass);
+                
+                ReadValue(maxLAI, currentLine);
+                parameters.SetMaximumShadeLAI(shadeClass, maxLAI.Value);
 
-                foreach (IEcoregion ecoregion in ecoregions)
-                {
-                    InputVar<Percentage> MinRelativeBiomass = new InputVar<Percentage>("Ecoregion " + ecoregion.Name);
-                    ReadValue(MinRelativeBiomass, currentLine);
-                    parameters.SetMinRelativeBiomass(shadeClass, ecoregion, MinRelativeBiomass.Value);
-                }
+                //foreach (IEcoregion ecoregion in ecoregions)
+                //{
+                //    InputVar<Percentage> MinRelativeBiomass = new InputVar<Percentage>("Ecoregion " + ecoregion.Name);
+                //}
 
-                CheckNoDataAfter("the Ecoregion " + lastEcoregion + " column",
-                                 currentLine);
+                CheckNoDataAfter("the " + maxLAI + " column", currentLine);
                 GetNextLine();
             }
 
