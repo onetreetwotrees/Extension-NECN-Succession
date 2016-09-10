@@ -312,10 +312,6 @@ namespace Landis.Extension.Succession.Century
                     }
                 }
             }
-            //foreach (Site site in PlugIn.ModelCore.Landscape.AllSites)
-            //{
-            //    SiteVars.SoilPercentSand[site] = 0.591;
-            //}
         }
         //---------------------------------------------------------------------
 

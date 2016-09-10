@@ -611,10 +611,10 @@ namespace Landis.Extension.Succession.Century
             ReadName(Names.EcoregionParameters);
 
             InputVar<double> pclay = new InputVar<double>("Percent Clay");
-            InputVar<double> psand = new InputVar<double>("Percent Sand");
+            //InputVar<double> psand = new InputVar<double>("Percent Sand");
             //InputVar<int> sd = new InputVar<int>("Soil Depth");
-            InputVar<double> fc = new InputVar<double>("Field Capacity");
-            InputVar<double> wp = new InputVar<double>("Wilting Point");
+            //InputVar<double> fc = new InputVar<double>("Field Capacity");
+            //InputVar<double> wp = new InputVar<double>("Wilting Point");
             //InputVar<double> sff = new InputVar<double>("Storm Flow Fraction");
             //InputVar<double> bff = new InputVar<double>("Base Flow Fraction");
             //InputVar<double> drain = new InputVar<double>("Drain Fraction");
@@ -637,8 +637,8 @@ namespace Landis.Extension.Succession.Century
                 ReadValue(pclay, currentLine);
                 parameters.SetPercentClay(ecoregion, pclay.Value);
 
-                ReadValue(psand, currentLine);
-                parameters.SetPercentSand(ecoregion, psand.Value);
+                //ReadValue(psand, currentLine);
+                //parameters.SetPercentSand(ecoregion, psand.Value);
 
                 //ReadValue(fc, currentLine);
                 //parameters.SetFieldCapacity(ecoregion, fc.Value);
@@ -657,7 +657,7 @@ namespace Landis.Extension.Succession.Century
 
 
 
-                CheckNoDataAfter("the " + psand.Name + " column", currentLine);
+                CheckNoDataAfter("the " + pclay.Name + " column", currentLine);
 
                 GetNextLine();
             }

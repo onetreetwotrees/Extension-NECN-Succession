@@ -98,8 +98,8 @@ EcoregionParameters
 >>	Percent	Percent				
 >>	Clay	Sand				
 >>      							
-eco3	0.069	0.591
-eco2	0.069	0.591				
+eco3	0.069	
+eco2	0.069	
 
 FireReductionParameters
 >>	Severity	Wood	Litter
