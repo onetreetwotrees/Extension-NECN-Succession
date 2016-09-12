@@ -146,7 +146,7 @@ namespace Landis.Extension.Succession.Century
             Cohort.DeathEvent += CohortDied;
             AgeOnlyDisturbances.Module.Initialize(parameters.AgeOnlyDisturbanceParms);
 
-            InitialBiomass.Initialize(Timestep);
+            //InitialBiomass.Initialize(Timestep);
             InitializeSites(parameters.InitialCommunities, parameters.InitialCommunitiesMap, modelCore); 
             
             if (parameters.CalibrateMode)
@@ -274,14 +274,14 @@ namespace Landis.Extension.Succession.Century
             //SiteVars.SOM3[site]                  = initialBiomass.SOM3.Clone();
 
             //SiteVars.MineralN[site]              = initialBiomass.MineralN;
-            SiteVars.CohortLeafC[site]           = initialBiomass.CohortLeafC;
-            SiteVars.CohortFRootC[site]           = initialBiomass.CohortFRootC;
-            SiteVars.CohortLeafN[site]           = initialBiomass.CohortLeafN;
-            SiteVars.CohortFRootN[site]            = initialBiomass.CohortFRootN;
-            SiteVars.CohortWoodC[site]           = initialBiomass.CohortWoodC;
-            SiteVars.CohortCRootC[site]          = initialBiomass.CohortCRootC;
-            SiteVars.CohortWoodN[site]           = initialBiomass.CohortWoodN;
-            SiteVars.CohortCRootN[site]          = initialBiomass.CohortCRootN;
+            //SiteVars.CohortLeafC[site]           = initialBiomass.CohortLeafC;
+            //SiteVars.CohortFRootC[site]           = initialBiomass.CohortFRootC;
+            //SiteVars.CohortLeafN[site]           = initialBiomass.CohortLeafN;
+            //SiteVars.CohortFRootN[site]            = initialBiomass.CohortFRootN;
+            //SiteVars.CohortWoodC[site]           = initialBiomass.CohortWoodC;
+            //SiteVars.CohortCRootC[site]          = initialBiomass.CohortCRootC;
+            //SiteVars.CohortWoodN[site]           = initialBiomass.CohortWoodN;
+            //SiteVars.CohortCRootN[site]          = initialBiomass.CohortCRootN;
 
             //// Override the spin-up soil C and N values with the contemporary data
             //// provided in the intialization file.

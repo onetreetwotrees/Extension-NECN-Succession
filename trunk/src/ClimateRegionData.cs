@@ -16,55 +16,15 @@ namespace Landis.Extension.Succession.Century
     public class ClimateRegionData
     {
 
-        //user-defined by ecoregion
-        //public static Ecoregions.AuxParm<double> PercentClay;  
-        //public static Ecoregions.AuxParm<double> PercentSand;  
-        //public static Ecoregions.AuxParm<int>    SoilDepth;
-        //public static Ecoregions.AuxParm<double> FieldCapacity;
-        //public static Ecoregions.AuxParm<double> WiltingPoint;
-        //public static Ecoregions.AuxParm<double> StormFlowFraction;
-        //public static Ecoregions.AuxParm<double> BaseFlowFraction;
-        //public static Ecoregions.AuxParm<double> Drain;
-        //public static Ecoregions.AuxParm<double> AtmosNslope;
-        //public static Ecoregions.AuxParm<double> AtmosNintercept;
-        //public static Ecoregions.AuxParm<double> Latitude;
-        //public static Ecoregions.AuxParm<double> DecayRateSurf; 
-        //public static Ecoregions.AuxParm<double> DecayRateSOM1;
-        //public static Ecoregions.AuxParm<double> DecayRateSOM2;
-        //public static Ecoregions.AuxParm<double> DecayRateSOM3;
-        //public static Ecoregions.AuxParm<double> Denitrif;
         public static Ecoregions.AuxParm<int> ActiveSiteCount;
-        //public static Ecoregions.AuxParm<Percentage>[] ShadeBiomass;
-        //public static Ecoregions.AuxParm<int> B_MAX;
         public static Ecoregions.AuxParm<double> AnnualNDeposition;    
         public static Ecoregions.AuxParm<double[]> MonthlyNDeposition; 
-        //private static Ecoregions.AuxParm<int> LastYearUpdated;
-
         public static Ecoregions.AuxParm<AnnualClimate_Monthly> AnnualWeather;
 
         //---------------------------------------------------------------------
         public static void Initialize(IInputParameters parameters)
         {
-        
-            //PercentClay         = parameters.PercentClay; 
-            //PercentSand         = parameters.PercentSand; 
-            //SoilDepth           = parameters.SoilDepth;
-            //FieldCapacity       = parameters.FieldCapacity;
-            //WiltingPoint        = parameters.WiltingPoint;
-            //StormFlowFraction   = parameters.StormFlowFraction;
-            //BaseFlowFraction    = parameters.BaseFlowFraction;
-            //Drain               = parameters.Drain;
-            //Latitude            = parameters.Latitude;
-            //DecayRateSurf       = parameters.DecayRateSurf;
-            //DecayRateSOM1       = parameters.DecayRateSOM1;
-            //DecayRateSOM2       = parameters.DecayRateSOM2;
-            //DecayRateSOM3       = parameters.DecayRateSOM3;
-            //Denitrif             = parameters.Denitrif;
-            
-            //ShadeBiomass = parameters.MinRelativeBiomass;
-    
             ActiveSiteCount = new Ecoregions.AuxParm<int>(PlugIn.ModelCore.Ecoregions);
-            //LastYearUpdated = new Ecoregions.AuxParm<int>(PlugIn.ModelCore.Ecoregions);
             AnnualWeather = new Ecoregions.AuxParm<AnnualClimate_Monthly>(PlugIn.ModelCore.Ecoregions);
             MonthlyNDeposition = new Ecoregions.AuxParm<double[]>(PlugIn.ModelCore.Ecoregions);
 
@@ -73,31 +33,12 @@ namespace Landis.Extension.Succession.Century
             foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
             {
                 IEcoregion ecoregion = PlugIn.ModelCore.Ecoregion[site];
-                //PlugIn.ModelCore.UI.WriteLine("Latitude for {0} = {1}.", ecoregion.Name, parameters.Latitude[ecoregion]);
-                
-                //SiteVars.SOM1surface[site].Carbon     = parameters.InitialSOM1surfC[ecoregion];
-                //SiteVars.SOM1surface[site].Nitrogen   = parameters.InitialSOM1surfN[ecoregion];
-
-                //SiteVars.SOM1soil[site].Carbon          = parameters.InitialSOM1soilC[ecoregion];
-                //SiteVars.SOM1soil[site].Nitrogen        = parameters.InitialSOM1soilN[ecoregion];
-
-                //SiteVars.SOM2[site].Carbon              = parameters.InitialSOM2C[ecoregion];
-                //SiteVars.SOM2[site].Nitrogen            = parameters.InitialSOM2N[ecoregion];
-                
-                //SiteVars.SOM3[site].Carbon              = parameters.InitialSOM3C[ecoregion];
-                //SiteVars.SOM3[site].Nitrogen            = parameters.InitialSOM3N[ecoregion];
-                
-                //SiteVars.MineralN[site]               = parameters.InitialMineralN;
-                
                 ActiveSiteCount[ecoregion]++;
             }
 
             foreach (IEcoregion ecoregion in PlugIn.ModelCore.Ecoregions)
             {
                 MonthlyNDeposition[ecoregion] = new double[12];
-
-                //for (int i = 0; i < 12; i++)
-                //    MonthlyNDeposition[ecoregion][i] = 0.0;
 
                 if (ecoregion.Active)
                 {
