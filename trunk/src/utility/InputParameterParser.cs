@@ -169,6 +169,14 @@ namespace Landis.Extension.Succession.Century
             ReadVar(som3NMapName);
             parameters.InitialSOM3NMapName = som3NMapName.Value;
 
+            InputVar<string> deadSurfMapName = new InputVar<string>("InitialDeadWoodSurfaceMapName");
+            ReadVar(deadSurfMapName);
+            parameters.InitialDeadSurfaceMapName = deadSurfMapName.Value;
+
+            InputVar<string> deadSoilMapName = new InputVar<string>("InitialDeadWoodSoilMapName");
+            ReadVar(deadSoilMapName);
+            parameters.InitialDeadSoilMapName = deadSoilMapName.Value;
+
             InputVar<bool> calimode = new InputVar<bool>("CalibrateMode");
             if (ReadOptionalVar(calimode))
                 parameters.CalibrateMode = calimode.Value;

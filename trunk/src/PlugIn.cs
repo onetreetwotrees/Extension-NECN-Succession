@@ -116,6 +116,7 @@ namespace Landis.Extension.Succession.Century
                 parameters.InitialSOM2NMapName,
                 parameters.InitialSOM3CMapName,
                 parameters.InitialSOM3NMapName);
+            Util.ReadDeadWoodMaps(parameters.InitialDeadSurfaceMapName, parameters.InitialDeadSoilMapName);
 
             AtmosNslope = parameters.AtmosNslope;
             AtmosNintercept = parameters.AtmosNintercept;
@@ -125,11 +126,6 @@ namespace Landis.Extension.Succession.Century
             DecayRateSOM1 = parameters.DecayRateSOM1;
             DecayRateSOM2 = parameters.DecayRateSOM2;
             DecayRateSOM3 = parameters.DecayRateSOM3;
-
-            // TO DO
-            // Read in soil depth, field capacity, wilting point, then generate an LIST of soil water holding capacity for logging
-            // TO DO
-            //ClimateRegionData.ChangeParameters(parameters);
 
             ShadeLAI = parameters.MaximumShadeLAI; //.MinRelativeBiomass;
             OtherData.Initialize(parameters);
@@ -176,8 +172,6 @@ namespace Landis.Extension.Succession.Century
             if (PlugIn.ModelCore.CurrentTime > 0)
                     SiteVars.InitializeDisturbances();
 
-            // Update Pest only once.
-            //SpeciesData.EstablishProbability = Establishment.GenerateNewEstablishProbabilities(Timestep);
             ClimateRegionData.AnnualNDeposition = new Ecoregions.AuxParm<double>(PlugIn.ModelCore.Ecoregions);
 
             //base.RunReproductionFirst();
@@ -259,20 +253,20 @@ namespace Landis.Extension.Succession.Century
             int swhc = (int)((SiteVars.SoilFieldCapacity[site] - SiteVars.SoilWiltingPoint[site]) * SiteVars.SoilDepth[site]);
             if (!PlugIn.SWHC_List.Contains(swhc))
                 PlugIn.SWHC_List.Add(swhc);
-            PlugIn.ModelCore.UI.WriteLine("SWHC = {0}", swhc);
+            //PlugIn.ModelCore.UI.WriteLine("SWHC = {0}", swhc);
 
             InitialBiomass initialBiomass = InitialBiomass.Compute(site, initialCommunity);
             //SiteVars.Cohorts[site] = InitialBiomass.Clone(initialBiomass.Cohorts);
             //IEcoregion ecoregion = PlugIn.ModelCore.Ecoregion[site];
             SiteVars.MineralN[site] = parameters.InitialMineralN;
 
-            SiteVars.SurfaceDeadWood[site]       = initialBiomass.SurfaceDeadWood.Clone();
-            SiteVars.SurfaceStructural[site]     = initialBiomass.SurfaceStructural.Clone();
-            SiteVars.SurfaceMetabolic[site]      = initialBiomass.SurfaceMetabolic.Clone();
+            //SiteVars.SurfaceDeadWood[site]       = initialBiomass.SurfaceDeadWood.Clone();
+            //SiteVars.SurfaceStructural[site]     = initialBiomass.SurfaceStructural.Clone();
+            //SiteVars.SurfaceMetabolic[site]      = initialBiomass.SurfaceMetabolic.Clone();
 
-            SiteVars.SoilDeadWood[site]          = initialBiomass.SoilDeadWood.Clone();
-            SiteVars.SoilStructural[site]        = initialBiomass.SoilStructural.Clone();
-            SiteVars.SoilMetabolic[site]         = initialBiomass.SoilMetabolic.Clone();
+            //SiteVars.SoilDeadWood[site]          = initialBiomass.SoilDeadWood.Clone();
+            //SiteVars.SoilStructural[site]        = initialBiomass.SoilStructural.Clone();
+            //SiteVars.SoilMetabolic[site]         = initialBiomass.SoilMetabolic.Clone();
 
             //SiteVars.SOM1surface[site]           = initialBiomass.SOM1surface.Clone();
             //SiteVars.SOM1soil[site]              = initialBiomass.SOM1soil.Clone();

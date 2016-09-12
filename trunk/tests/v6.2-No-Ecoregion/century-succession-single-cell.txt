@@ -24,6 +24,8 @@ InitialSOM2CMapName		singlecell_4500.img
 InitialSOM2NMapName		singlecell_145.img
 InitialSOM3CMapName		singlecell_1294.img
 InitialSOM3NMapName		singlecell_50.img
+InitialDeadWoodSurfaceMapName	singlecell_110.img
+InitialDeadWoodSoilMapName	singlecell_50.img
 
 CalibrateMode 	yes
 WaterDecayFunction Ratio <<Linear or Ratio

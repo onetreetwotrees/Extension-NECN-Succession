@@ -21,13 +21,13 @@ namespace Landis.Extension.Succession.Century
     {
         private ISiteCohorts cohorts;
         
-        private Layer surfaceDeadWood;
-        private Layer surfaceStructural;
-        private Layer surfaceMetabolic;
+        //private Layer surfaceDeadWood;
+        //private Layer surfaceStructural;
+        //private Layer surfaceMetabolic;
         
-        private Layer soilDeadWood;
-        private Layer soilStructural;
-        private Layer soilMetabolic;
+        //private Layer soilDeadWood;
+        //private Layer soilStructural;
+        //private Layer soilMetabolic;
         
         //private Layer som1surface;
         //private Layer som1soil;
@@ -56,24 +56,24 @@ namespace Landis.Extension.Succession.Century
             }
         }
         
-        public Layer SurfaceDeadWood 
-        { get { return surfaceDeadWood; } 
-        } 
-        public Layer SoilDeadWood 
-        { get { return soilDeadWood; } 
-        } 
-        public Layer SurfaceStructural 
-        { get { return surfaceStructural ; } 
-        } 
-        public Layer SoilStructural 
-        { get { return soilStructural ; } 
-        } 
-        public Layer SurfaceMetabolic 
-        { get { return surfaceMetabolic ; } 
-        } 
-        public Layer SoilMetabolic 
-        { get { return soilMetabolic ; } 
-        } 
+        //public Layer SurfaceDeadWood 
+        //{ get { return surfaceDeadWood; } 
+        //} 
+        //public Layer SoilDeadWood 
+        //{ get { return soilDeadWood; } 
+        //} 
+        //public Layer SurfaceStructural 
+        //{ get { return surfaceStructural ; } 
+        //} 
+        //public Layer SoilStructural 
+        //{ get { return soilStructural ; } 
+        //} 
+        //public Layer SurfaceMetabolic 
+        //{ get { return surfaceMetabolic ; } 
+        //} 
+        //public Layer SoilMetabolic 
+        //{ get { return soilMetabolic ; } 
+        //} 
         //public Layer SOM1surface 
         //{ get { return som1surface ; } 
         //} 
@@ -101,13 +101,13 @@ namespace Landis.Extension.Succession.Century
 
         private InitialBiomass(ISiteCohorts cohorts,
                 
-                Layer surfaceDeadWood,
-                Layer surfaceStructural,
-                Layer surfaceMetabolic,
+                //Layer surfaceDeadWood,
+                //Layer surfaceStructural,
+                //Layer surfaceMetabolic,
                 
-                Layer soilDeadWood,
-                Layer soilStructural,
-                Layer soilMetabolic,
+                //Layer soilDeadWood,
+                //Layer soilStructural,
+                //Layer soilMetabolic,
                 
                 //Layer som1surface,
                 //Layer som1soil,
@@ -128,13 +128,13 @@ namespace Landis.Extension.Succession.Century
         {
             this.cohorts = cohorts;
             
-            this.surfaceDeadWood = surfaceDeadWood;
-            this.surfaceStructural = surfaceStructural;
-            this.surfaceMetabolic = surfaceMetabolic;
+            //this.surfaceDeadWood = surfaceDeadWood;
+            //this.surfaceStructural = surfaceStructural;
+            //this.surfaceMetabolic = surfaceMetabolic;
             
-            this.soilDeadWood = soilDeadWood;
-            this.soilStructural = soilStructural;
-            this.soilMetabolic = soilMetabolic;
+            //this.soilDeadWood = soilDeadWood;
+            //this.soilStructural = soilStructural;
+            //this.soilMetabolic = soilMetabolic;
             
             //this.som1surface = som1surface;
             //this.som1soil = som1soil;
@@ -243,13 +243,13 @@ namespace Landis.Extension.Succession.Century
             initialBiomass = new InitialBiomass(
                         cohorts,
                         
-                        SiteVars.SurfaceDeadWood[site],
-                        SiteVars.SurfaceStructural[site],
-                        SiteVars.SurfaceMetabolic[site],
+                        //SiteVars.SurfaceDeadWood[site],
+                        //SiteVars.SurfaceStructural[site],
+                        //SiteVars.SurfaceMetabolic[site],
                         
-                        SiteVars.SoilDeadWood[site],
-                        SiteVars.SoilStructural[site],
-                        SiteVars.SoilMetabolic[site],
+                        //SiteVars.SoilDeadWood[site],
+                        //SiteVars.SoilStructural[site],
+                        //SiteVars.SoilMetabolic[site],
                         
                         //SiteVars.SOM1surface[site],
                         //SiteVars.SOM1soil[site],

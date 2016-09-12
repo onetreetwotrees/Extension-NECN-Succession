@@ -33,6 +33,8 @@ namespace Landis.Extension.Succession.Century
         string InitialSOM2NMapName { get; set; }
         string InitialSOM3CMapName { get; set; }
         string InitialSOM3NMapName { get; set; }
+        string InitialDeadSurfaceMapName { get; set; }
+        string InitialDeadSoilMapName { get; set; }
 
 
         //double SpinupMortalityFraction { get; set; }
@@ -118,20 +120,11 @@ namespace Landis.Extension.Succession.Century
         double Denitrif { get; }
         double InitialMineralN { get; }
         
-        //Ecoregions.AuxParm<double> InitialSOM1surfC {get;}
-        //Ecoregions.AuxParm<double> InitialSOM1surfN {get;}
-        //Ecoregions.AuxParm<double> InitialSOM1soilC {get;}
-        //Ecoregions.AuxParm<double> InitialSOM1soilN {get;}
-        //Ecoregions.AuxParm<double> InitialSOM2C {get;}
-        //Ecoregions.AuxParm<double> InitialSOM2N {get;}
-        //Ecoregions.AuxParm<double> InitialSOM3C {get;}
-        //Ecoregions.AuxParm<double> InitialSOM3N {get;}
-
 
         //---------------------------------------------------------------------
 
         /// <summary>
-        /// Path to the optional file with the biomass parameters for age-only
+        /// Path to the file with the biomass parameters for age-only
         /// disturbances.
         /// </summary>
         string AgeOnlyDisturbanceParms

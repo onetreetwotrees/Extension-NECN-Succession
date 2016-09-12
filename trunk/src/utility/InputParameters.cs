@@ -39,6 +39,8 @@ namespace Landis.Extension.Succession.Century
         private string initialSOM2NMapName;
         private string initialSOM3CMapName;
         private string initialSOM3NMapName;
+        private string initialDeadSurfaceMapName;
+        private string initialDeadSoilMapName;
 
         private bool calibrateMode;
         //private double spinupMortalityFraction;
@@ -82,9 +84,9 @@ namespace Landis.Extension.Succession.Century
         private Species.AuxParm<int> maxANPP;
         private Species.AuxParm<int> maxBiomass;
         
-        //private Ecoregions.AuxParm<Percentage>[] minRelativeBiomass;
         private List<ISufficientLight> sufficientLight;
 
+        //private Ecoregions.AuxParm<Percentage>[] minRelativeBiomass;
         //private Ecoregions.AuxParm<double> initSOM1surfC;
         //private Ecoregions.AuxParm<double> initSOM1surfN;
         //private Ecoregions.AuxParm<double> initSOM1soilC;
@@ -310,14 +312,7 @@ namespace Landis.Extension.Succession.Century
             }
         }
 
-        //public double[] MaximumShadeLAI
-        //{
-        //    get
-        //    {
-        //        return maximumShadeLAI;
-        //    }
-        //}
-
+ 
         //---------------------------------------------------------------------
 
         public Species.AuxParm<int>     SppFunctionalType {get {return sppFunctionalType;}}
@@ -778,6 +773,38 @@ namespace Landis.Extension.Succession.Century
         }
         //---------------------------------------------------------------------
 
+        public string InitialDeadSurfaceMapName
+        {
+            get
+            {
+                return initialDeadSurfaceMapName;
+            }
+            set
+            {
+                string path = value;
+                if (path.Trim(null).Length == 0)
+                    throw new InputValueException(path, "\"{0}\" is not a valid path.", path);
+                initialDeadSurfaceMapName = value;
+            }
+        }
+        //---------------------------------------------------------------------
+
+        public string InitialDeadSoilMapName
+        {
+            get
+            {
+                return initialDeadSoilMapName;
+            }
+            set
+            {
+                string path = value;
+                if (path.Trim(null).Length == 0)
+                    throw new InputValueException(path, "\"{0}\" is not a valid path.", path);
+                initialDeadSoilMapName = value;
+            }
+        }
+        //---------------------------------------------------------------------
+
         public void SetMaximumShadeLAI(byte                   shadeClass,
                                           //IEcoregion             ecoregion,
                                           InputValue<double> newValue)
@@ -1077,31 +1104,6 @@ namespace Landis.Extension.Succession.Century
             //}
             sufficientLight         = new List<ISufficientLight>();
 
-            //percentClay             = new Ecoregions.AuxParm<double>(ecoregionDataset);
-            //percentSand             = new Ecoregions.AuxParm<double>(ecoregionDataset);
-            //soilDepth               = new Ecoregions.AuxParm<int>(ecoregionDataset);
-            //fieldCapacity           = new Ecoregions.AuxParm<double>(ecoregionDataset);
-            //wiltingPoint            = new Ecoregions.AuxParm<double>(ecoregionDataset);
-            //stormFlowFraction       = new Ecoregions.AuxParm<double>(ecoregionDataset);
-            //baseFlowFraction        = new Ecoregions.AuxParm<double>(ecoregionDataset);
-            //drain                   = new Ecoregions.AuxParm<double>(ecoregionDataset);
-            //atmosNslope             = new Ecoregions.AuxParm<double>(ecoregionDataset);
-            //atmosNintercept         = new Ecoregions.AuxParm<double>(ecoregionDataset);
-            //latitude                = new Ecoregions.AuxParm<double>(ecoregionDataset);
-            //denitrif              = new Ecoregions.AuxParm<double>(ecoregionDataset);
-            //initSOM1surfC           = new Ecoregions.AuxParm<double>(ecoregionDataset);
-            //initSOM1surfN           = new Ecoregions.AuxParm<double>(ecoregionDataset);
-            //initSOM1soilC           = new Ecoregions.AuxParm<double>(ecoregionDataset);
-            //initSOM1soilN           = new Ecoregions.AuxParm<double>(ecoregionDataset);
-            //initSOM2C               = new Ecoregions.AuxParm<double>(ecoregionDataset);
-            //initSOM2N               = new Ecoregions.AuxParm<double>(ecoregionDataset);
-            //initSOM3C               = new Ecoregions.AuxParm<double>(ecoregionDataset);
-            //initSOM3N               = new Ecoregions.AuxParm<double>(ecoregionDataset);
-            //initMineralN            = new Ecoregions.AuxParm<double>(ecoregionDataset);
-
-            
-            //this.dynamicUpdates = new List<Dynamic.ParametersUpdate>();
-            
         }
 
         //---------------------------------------------------------------------
@@ -1134,14 +1136,14 @@ namespace Landis.Extension.Succession.Century
         }
         //---------------------------------------------------------------------
 
-        private Ecoregions.AuxParm<T> ConvertToActualValues<T>(Ecoregions.AuxParm<InputValue<T>> inputValues)
-        {
-            Ecoregions.AuxParm<T> actualValues = new Ecoregions.AuxParm<T>(PlugIn.ModelCore.Ecoregions); //ecoregionDataset);
-            foreach (IEcoregion ecoregion in PlugIn.ModelCore.Ecoregions)//ecoregionDataset)
-                if (inputValues[ecoregion] != null)
-                    actualValues[ecoregion] = inputValues[ecoregion].Actual;
-            return actualValues;
-        }
+        //private Ecoregions.AuxParm<T> ConvertToActualValues<T>(Ecoregions.AuxParm<InputValue<T>> inputValues)
+        //{
+        //    Ecoregions.AuxParm<T> actualValues = new Ecoregions.AuxParm<T>(PlugIn.ModelCore.Ecoregions); //ecoregionDataset);
+        //    foreach (IEcoregion ecoregion in PlugIn.ModelCore.Ecoregions)//ecoregionDataset)
+        //        if (inputValues[ecoregion] != null)
+        //            actualValues[ecoregion] = inputValues[ecoregion].Actual;
+        //    return actualValues;
+        //}
 
         //---------------------------------------------------------------------
 
