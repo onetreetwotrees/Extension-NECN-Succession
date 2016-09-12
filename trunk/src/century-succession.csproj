@@ -8,7 +8,7 @@
     <ProjectGuid>{651E102F-6FC1-4DB8-B384-3178E409AF2D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>century_succession</RootNamespace>
+    <RootNamespace>necn_hydro_succession</RootNamespace>
     <AssemblyName>Landis.Extension.Succession.Century</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

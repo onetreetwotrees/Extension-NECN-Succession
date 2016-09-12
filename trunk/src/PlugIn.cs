@@ -31,7 +31,8 @@ namespace Landis.Extension.Succession.Century
         public static double DecayRateSOM1;
         public static double DecayRateSOM2;
         public static double DecayRateSOM3;
-        public static List<int> SWHC_List;
+        public static List<int> SWHC_List = new List<int>(0);
+        //public static int[] SWHC_Count;
         public static double[] ShadeLAI;
 
         private List<ISufficientLight> sufficientLight;
@@ -115,7 +116,16 @@ namespace Landis.Extension.Succession.Century
                 parameters.InitialSOM2NMapName,
                 parameters.InitialSOM3CMapName,
                 parameters.InitialSOM3NMapName);
-            
+
+            AtmosNslope = parameters.AtmosNslope;
+            AtmosNintercept = parameters.AtmosNintercept;
+            Latitude = parameters.Latitude;
+            DenitrificationRate = parameters.Denitrif;
+            DecayRateSurf = parameters.DecayRateSurf;
+            DecayRateSOM1 = parameters.DecayRateSOM1;
+            DecayRateSOM2 = parameters.DecayRateSOM2;
+            DecayRateSOM3 = parameters.DecayRateSOM3;
+
             // TO DO
             // Read in soil depth, field capacity, wilting point, then generate an LIST of soil water holding capacity for logging
             // TO DO
@@ -124,6 +134,7 @@ namespace Landis.Extension.Succession.Century
             ShadeLAI = parameters.MaximumShadeLAI; //.MinRelativeBiomass;
             OtherData.Initialize(parameters);
             FunctionalType.Initialize(parameters);
+            FireEffects.Initialize(parameters);
 
             //  Cohorts must be created before the base class is initialized
             //  because the base class' reproduction module uses the core's
@@ -136,17 +147,14 @@ namespace Landis.Extension.Succession.Century
             Reproduction.AddNewCohort = AddNewCohort;
             Reproduction.MaturePresent = MaturePresent;
             base.Initialize(modelCore, parameters.SeedAlgorithm);
-
-            InitialBiomass.Initialize(Timestep);
-
             Cohort.DeathEvent += CohortDied;
             AgeOnlyDisturbances.Module.Initialize(parameters.AgeOnlyDisturbanceParms);
 
-            FireEffects.Initialize(parameters);
-            InitializeSites(parameters.InitialCommunities, parameters.InitialCommunitiesMap, modelCore); //the spinup is heppend within this fucntion
+            InitialBiomass.Initialize(Timestep);
+            InitializeSites(parameters.InitialCommunities, parameters.InitialCommunitiesMap, modelCore); 
+            
             if (parameters.CalibrateMode)
                 Outputs.CreateCalibrateLogFile();
-
             Outputs.WritePrimaryLogFile(0);
             Outputs.WriteShortPrimaryLogFile(0);
 
@@ -156,16 +164,8 @@ namespace Landis.Extension.Succession.Century
                 if (SpeciesData.Max_Biomass[species] > B_MAX)
                     B_MAX = SpeciesData.Max_Biomass[species];
             }
-            
-            AtmosNslope = parameters.AtmosNslope;
-            AtmosNintercept = parameters.AtmosNintercept;
-            Latitude = parameters.Latitude;
-            DenitrificationRate = parameters.Denitrif;
-            DecayRateSurf = parameters.DecayRateSurf;
-            DecayRateSOM1 = parameters.DecayRateSOM1;
-            DecayRateSOM2 = parameters.DecayRateSOM2;
-            DecayRateSOM3 = parameters.DecayRateSOM3;
 
+            
         }
 
         //---------------------------------------------------------------------
@@ -195,7 +195,7 @@ namespace Landis.Extension.Succession.Century
 
                 if (OtherData.CalibrateMode)
                     months = new int[12] { 6, 7, 8, 9, 10, 11, 0, 1, 2, 3, 4, 5 };
-                
+
                 for (int i = 0; i < 12; i++)
                 {
                     int month = months[i];
@@ -203,123 +203,7 @@ namespace Landis.Extension.Succession.Century
                 }
                 Outputs.WritePrimaryLogFile(PlugIn.ModelCore.CurrentTime);
                 Outputs.WriteShortPrimaryLogFile(PlugIn.ModelCore.CurrentTime);
-
-
-                if (SoilCarbonMapNames != null)// && (PlugIn.ModelCore.CurrentTime % SoilCarbonMapFrequency) == 0)
-                {
-                    string path = MapNames.ReplaceTemplateVars(SoilCarbonMapNames, PlugIn.ModelCore.CurrentTime);
-                    using (IOutputRaster<IntPixel> outputRaster = modelCore.CreateRaster<IntPixel>(path, modelCore.Landscape.Dimensions))
-                    {
-                        IntPixel pixel = outputRaster.BufferPixel;
-                        foreach (Site site in PlugIn.ModelCore.Landscape.AllSites)
-                        {
-                            if (site.IsActive)
-                            {
-                                pixel.MapCode.Value = (int)((SiteVars.SOM1surface[site].Carbon + SiteVars.SOM1soil[site].Carbon + SiteVars.SOM2[site].Carbon + SiteVars.SOM3[site].Carbon));
-                            }
-                            else
-                            {
-                                //  Inactive site
-                                pixel.MapCode.Value = 0;
-                            }
-                            outputRaster.WriteBufferPixel();
-                        }
-                    }
-                }
-
-                if (SoilNitrogenMapNames != null)// && (PlugIn.ModelCore.CurrentTime % SoilNitrogenMapFrequency) == 0)
-                {
-                    string path2 = MapNames.ReplaceTemplateVars(SoilNitrogenMapNames, PlugIn.ModelCore.CurrentTime);
-                    using (IOutputRaster<ShortPixel> outputRaster = modelCore.CreateRaster<ShortPixel>(path2, modelCore.Landscape.Dimensions))
-                    {
-                        ShortPixel pixel = outputRaster.BufferPixel;
-                        foreach (Site site in PlugIn.ModelCore.Landscape.AllSites)
-                        {
-                            if (site.IsActive)
-                            {
-                                pixel.MapCode.Value = (short)(SiteVars.MineralN[site]);
-                            }
-                            else
-                            {
-                                //  Inactive site
-                                pixel.MapCode.Value = 0;
-                            }
-                            outputRaster.WriteBufferPixel();
-                        }
-                    }
-                }
-
-                if (ANPPMapNames != null)// && (PlugIn.ModelCore.CurrentTime % ANPPMapFrequency) == 0)
-                {
-                    string path3 = MapNames.ReplaceTemplateVars(ANPPMapNames, PlugIn.ModelCore.CurrentTime);
-                    using (IOutputRaster<ShortPixel> outputRaster = modelCore.CreateRaster<ShortPixel>(path3, modelCore.Landscape.Dimensions))
-                    {
-                        ShortPixel pixel = outputRaster.BufferPixel;
-                        foreach (Site site in PlugIn.ModelCore.Landscape.AllSites)
-                        {
-                            if (site.IsActive)
-                            {
-                                pixel.MapCode.Value = (short)SiteVars.AGNPPcarbon[site];
-                            }
-                            else
-                            {
-                                //  Inactive site
-                                pixel.MapCode.Value = 0;
-                            }
-                            outputRaster.WriteBufferPixel();
-                        }
-                    }
-                }
-                if (ANEEMapNames != null)// && (PlugIn.ModelCore.CurrentTime % ANEEMapFrequency) == 0)
-                {
-
-                    string path4 = MapNames.ReplaceTemplateVars(ANEEMapNames, PlugIn.ModelCore.CurrentTime);
-                    using (IOutputRaster<ShortPixel> outputRaster = modelCore.CreateRaster<ShortPixel>(path4, modelCore.Landscape.Dimensions))
-                    {
-                        ShortPixel pixel = outputRaster.BufferPixel;
-                        foreach (Site site in PlugIn.ModelCore.Landscape.AllSites)
-                        {
-                            if (site.IsActive)
-                            {
-                                pixel.MapCode.Value = (short)(SiteVars.AnnualNEE[site] + 1000);
-                            }
-                            else
-                            {
-                                //  Inactive site
-                                pixel.MapCode.Value = 0;
-                            }
-                            outputRaster.WriteBufferPixel();
-                        }
-                    }
-                }
-                if (TotalCMapNames != null)// && (PlugIn.ModelCore.CurrentTime % TotalCMapFrequency) == 0)
-                {
-
-                    string path5 = MapNames.ReplaceTemplateVars(TotalCMapNames, PlugIn.ModelCore.CurrentTime);
-                    using (IOutputRaster<IntPixel> outputRaster = modelCore.CreateRaster<IntPixel>(path5, modelCore.Landscape.Dimensions))
-                    {
-                        IntPixel pixel = outputRaster.BufferPixel;
-                        foreach (Site site in PlugIn.ModelCore.Landscape.AllSites)
-                        {
-                            if (site.IsActive)
-                            {
-                                pixel.MapCode.Value = (int)(Outputs.GetOrganicCarbon(site) +
-                                    SiteVars.CohortLeafC[site] +
-                                    SiteVars.CohortFRootC[site] +
-                                    SiteVars.CohortWoodC[site] +
-                                    SiteVars.CohortCRootC[site] +
-                                    SiteVars.SurfaceDeadWood[site].Carbon +
-                                    SiteVars.SoilDeadWood[site].Carbon);
-                            }
-                            else
-                            {
-                                //  Inactive site
-                                pixel.MapCode.Value = 0;
-                            }
-                            outputRaster.WriteBufferPixel();
-                        }
-                    }
-                }
+                Outputs.WriteMaps();
             }
 
         }
@@ -372,6 +256,10 @@ namespace Landis.Extension.Succession.Century
         protected override void InitializeSite(ActiveSite site,
                                                ICommunity initialCommunity)
         {
+            int swhc = (int)((SiteVars.SoilFieldCapacity[site] - SiteVars.SoilWiltingPoint[site]) * SiteVars.SoilDepth[site]);
+            if (!PlugIn.SWHC_List.Contains(swhc))
+                PlugIn.SWHC_List.Add(swhc);
+            PlugIn.ModelCore.UI.WriteLine("SWHC = {0}", swhc);
 
             InitialBiomass initialBiomass = InitialBiomass.Compute(site, initialCommunity);
             //SiteVars.Cohorts[site] = InitialBiomass.Clone(initialBiomass.Cohorts);
