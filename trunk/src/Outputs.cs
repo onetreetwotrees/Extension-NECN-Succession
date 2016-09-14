@@ -504,7 +504,29 @@ namespace Landis.Extension.Succession.Century
         public static void WriteMaps()
         {
 
-                if (PlugIn.SoilCarbonMapNames != null)// && (PlugIn.ModelCore.CurrentTime % SoilCarbonMapFrequency) == 0)
+            //if (PlugIn.SoilCarbonMapNames != null)// && (PlugIn.ModelCore.CurrentTime % SoilCarbonMapFrequency) == 0)
+            //{
+                string pathH2O = MapNames.ReplaceTemplateVars("Annual-water-budget-{timestep}.img", PlugIn.ModelCore.CurrentTime);
+                using (IOutputRaster<IntPixel> outputRaster = PlugIn.ModelCore.CreateRaster<IntPixel>(pathH2O, PlugIn.ModelCore.Landscape.Dimensions))
+                {
+                    IntPixel pixel = outputRaster.BufferPixel;
+                    foreach (Site site in PlugIn.ModelCore.Landscape.AllSites)
+                    {
+                        if (site.IsActive)
+                        {
+                            pixel.MapCode.Value = (int)((SiteVars.SOM1surface[site].Carbon + SiteVars.SOM1soil[site].Carbon + SiteVars.SOM2[site].Carbon + SiteVars.SOM3[site].Carbon));
+                        }
+                        else
+                        {
+                            //  Inactive site
+                            pixel.MapCode.Value = 0;
+                        }
+                        outputRaster.WriteBufferPixel();
+                    }
+                //}
+            }
+            
+            if (PlugIn.SoilCarbonMapNames != null)// && (PlugIn.ModelCore.CurrentTime % SoilCarbonMapFrequency) == 0)
                 {
                     string path = MapNames.ReplaceTemplateVars(PlugIn.SoilCarbonMapNames, PlugIn.ModelCore.CurrentTime);
                     using (IOutputRaster<IntPixel> outputRaster = PlugIn.ModelCore.CreateRaster<IntPixel>(path, PlugIn.ModelCore.Landscape.Dimensions))

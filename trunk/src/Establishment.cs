@@ -67,8 +67,8 @@ namespace Landis.Extension.Succession.Century
             //}
             //establishProbability /= (double) years;
             establishProbability *= PlugIn.ProbEstablishAdjust;
-            if (establishProbability > 0.0)
-                PlugIn.ModelCore.UI.WriteLine("Spp={0}, Pest={1:0.000}: tM={2:0.0}, sM={3:0.0}, jM={4:0.0}", species.Name, establishProbability, tempMultiplier, soilMultiplier, minJanTempMultiplier);
+            //if (establishProbability > 0.0)
+            //    PlugIn.ModelCore.UI.WriteLine("Spp={0}, Pest={1:0.000}: tM={2:0.0}, sM={3:0.0}, jM={4:0.0}", species.Name, establishProbability, tempMultiplier, soilMultiplier, minJanTempMultiplier);
             return establishProbability;
         }
 

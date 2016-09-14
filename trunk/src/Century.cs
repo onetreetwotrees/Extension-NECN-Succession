@@ -52,9 +52,11 @@ namespace Landis.Extension.Succession.Century
                     //months = new int[12]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}; This output will not match normal mode due to differences in initialization
                     months = new int[12] { 6, 7, 8, 9, 10, 11, 0, 1, 2, 3, 4, 5 };
 
+                PlugIn.AnnualWaterBalance = 0;
+
                 for (MonthCnt = 0; MonthCnt < 12; MonthCnt++)
                 {
-                    // Calculate mineral N fractions based on coarse root biomass 
+                    // Calculate mineral N fractions based on coarse root biomass.  Only need to do once per year.
                     if (MonthCnt == 0)
                     {
                         AvailableN.CalculateMineralNfraction(site);
@@ -91,8 +93,10 @@ namespace Landis.Extension.Succession.Century
                     //PlugIn.ModelCore.UI.WriteLine("Ndeposition={0},MineralN={1:0.00}.", monthlyNdeposition, SiteVars.MineralN[site]);
 
                     double liveBiomass = (double) ComputeLivingBiomass(siteCohorts);
-                    double baseFlow, stormFlow;
-                    SoilWater.Run(y, Month, liveBiomass, site, out baseFlow, out stormFlow);
+                    double baseFlow, stormFlow, AET;
+                    SoilWater.Run(y, Month, liveBiomass, site, out baseFlow, out stormFlow, out AET);
+
+                    PlugIn.AnnualWaterBalance += ppt - AET;
 
                     // Calculate N allocation for each cohort
                     AvailableN.SetMineralNallocation(site);

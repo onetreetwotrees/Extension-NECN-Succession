@@ -26,7 +26,7 @@ namespace Landis.Extension.Succession.Century
         private static int beginGrowing;
         private static int endGrowing;
 
-        public static void Run(int year, int month, double liveBiomass, Site site, out double baseFlow, out double stormFlow)
+        public static void Run(int year, int month, double liveBiomass, Site site, out double baseFlow, out double stormFlow, out double AET)
         {
 
             //Originally from h2olos.f of CENTURY model
@@ -158,8 +158,6 @@ namespace Landis.Extension.Succession.Century
                 soilWaterContent -= stormFlow;
                 //PlugIn.ModelCore.UI.WriteLine("Water Runs Off. stormflow={0}.", stormFlow);
             }
-
-            
             
             //...Calculate bare soil water loss and interception  when air temperature is above freezing and no snow cover.
             //...Mofified 9/94 to allow interception when t < 0 but no snow cover, Pulliam
@@ -199,6 +197,7 @@ namespace Landis.Extension.Succession.Century
 
             if (actualET < 0.0)
                 actualET = 0.0;
+            AET = actualET;
 
             //Subtract transpiration from soil water content
             soilWaterContent -= actualET;

@@ -34,6 +34,7 @@ namespace Landis.Extension.Succession.Century
         public static List<int> SWHC_List = new List<int>(0);
         //public static int[] SWHC_Count;
         public static double[] ShadeLAI;
+        public static double AnnualWaterBalance;
 
         private List<ISufficientLight> sufficientLight;
         public static string SoilCarbonMapNames = null;
