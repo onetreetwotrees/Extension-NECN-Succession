@@ -1,6 +1,6 @@
 LandisData  Scenario
 
-Duration  100
+Duration  30
 
 Species   species.txt
 
@@ -12,7 +12,7 @@ CellLength  100 << meters, 100 x 100 m = 1 ha
 
 >> Succession Extension     Initialization File
 >> --------------------     -------------------
-   "Century Succession"     century-succession.txt
+   "NetEcosystemCN Succession"        NECN-succession.txt
 
 
 >> Disturbance Extensions   Initialization File
@@ -25,8 +25,6 @@ CellLength  100 << meters, 100 x 100 m = 1 ha
 >> Other Extensions         	Initialization File
 >> ----------------         	------------------
 >>   "Output Cohort Stats"    	cohort-stats.output.txt
->>"Output Leaf Biomass Reclass"	output-biomass-reclass.txt
->>"Output Leaf Biomass"	    	output-leaf-biomass.txt
 
 
 >>RandomNumberSeed  4,357  << optional parameter; default = the seed is
