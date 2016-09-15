@@ -25,62 +25,6 @@ namespace Landis.Extension.Succession.NetEcosystemCN
         public static MetadataTable<PrimaryLogShort> primaryLogShort;
 
 
-        //---------------------------------------------------------------------
-        //public static void Initialize(IInputParameters parameters)
-        //{
-
-        //    string logFileName   = "Century-succession-log.csv";
-        //    PlugIn.ModelCore.UI.WriteLine("   Opening Century-succession log file \"{0}\" ...", logFileName);
-        //    try {
-        //        log = new StreamWriter(logFileName);
-        //    }
-        //    catch (Exception err) {
-        //        string mesg = string.Format("{0}", err.Message);
-        //        throw new System.ApplicationException(mesg);
-        //    }
-
-        //    log.AutoFlush = true;
-        //    log.Write("Time, Ecoregion, NumSites,");
-        //    log.Write("NEEC, SOMTC, AGB, ");
-        //    log.Write("AG_NPPC, BG_NPPC, LitterfallC, AgeMortality, ");
-        //    log.Write("MineralN, TotalN, GrossMineralization, ");
-        //    log.Write("C:LeafFRoot, C:WoodCRoot, C:DeadWood, C:DeadCRoot, ");
-        //    log.Write("C:SurfStruc, C:SurfMeta, C:SoilStruc, C:SoilMeta, ");
-        //    log.Write("C:SOM1surf, C:SOM1soil, C:SOM2, C:SOM3, ");
-        //    log.Write("N:CohortLeaf, N:CohortWood, N:DeadWood, N:DeadRoot, ");
-        //    log.Write("N:SurfStruc, N:SurfMeta, N:SoilStruc, N:SoilMeta, ");
-        //    log.Write("N:SOM1surf, N:SOM1soil, N:SOM2, N:SOM3, ");
-        //    log.Write("SurfStrucNetMin, SurfMetaNetMin, SoilStrucNetMin, SoilMetaNetMin, ");
-        //    log.Write("SOM1surfNetMin, SOM1soilNetMin, SOM2NetMin, SOM3NetMin, ");
-        //    log.Write("StreamC, StreamN, FireCEfflux, FireNEfflux, ");
-        //    log.Write("Nuptake, Nresorbed, TotalSoilN, Nvol, avgfrassC,");
-        //    log.WriteLine("");
-
-        //}
-
-        //---------------------------------------------------------------------
-        //public static void InitializeMonthly(IInputParameters parameters)
-        //{
-        //string logFileName   = "Century-succession-monthly-log.csv"; 
-        //PlugIn.ModelCore.UI.WriteLine("   Opening Century-succession log file \"{0}\" ...", logFileName);
-        //try {
-        //    logMonthly = new StreamWriter(logFileName);
-        //}
-        //catch (Exception err) {
-        //    string mesg = string.Format("{0}", err.Message);
-        //    throw new System.ApplicationException(mesg);
-        //}
-
-        //logMonthly.AutoFlush = true;
-        //logMonthly.Write("Time, Month, Ecoregion, NumSites,");
-        //logMonthly.Write("PPT, T, ");
-        //logMonthly.Write("NPPC, Resp, NEE, ");
-        //logMonthly.Write("Ndeposition,");
-        //logMonthly.WriteLine("");
-
-
-        //}
-
 
         //---------------------------------------------------------------------
         public static void WriteShortPrimaryLogFile(int CurrentTime)
@@ -546,8 +490,8 @@ namespace Landis.Extension.Succession.NetEcosystemCN
         //Write log file for growth and limits
         public static void CreateCalibrateLogFile()
         {
-            string logFileName = "Century-calibrate-log.csv";
-            PlugIn.ModelCore.UI.WriteLine("   Opening Century calibrate log file \"{0}\" ...", logFileName);
+            string logFileName = "NECN-calibrate-log.csv";
+            PlugIn.ModelCore.UI.WriteLine("   Opening NECN calibrate log file \"{0}\" ...", logFileName);
             try
             {
                 CalibrateLog = new StreamWriter(logFileName);

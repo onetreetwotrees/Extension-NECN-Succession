@@ -37,8 +37,6 @@ namespace Landis.Extension.Succession.NetEcosystemCN
                 if (PlugIn.ModelCore.CurrentTime > 0 && Climate.Future_MonthlyData.ContainsKey(PlugIn.FutureClimateBaseYear + y + PlugIn.ModelCore.CurrentTime- years))
                     EcoregionData.AnnualWeather[ecoregion] = Climate.Future_MonthlyData[PlugIn.FutureClimateBaseYear + y - years + PlugIn.ModelCore.CurrentTime][ecoregion.Index];
 
-                //PlugIn.ModelCore.UI.WriteLine("PlugIn_FutureClimateBaseYear={0}, y={1}, ModelCore_CurrentTime={2}, CenturyTimeStep = {3}, SimulatedYear = {4}.", PlugIn.FutureClimateBaseYear, y, PlugIn.ModelCore.CurrentTime, years, (PlugIn.FutureClimateBaseYear + y - years + PlugIn.ModelCore.CurrentTime));
-
                 SiteVars.ResetAnnualValues(site);
 
                 if(y == 0 && SiteVars.FireSeverity != null && SiteVars.FireSeverity[site] > 0)
@@ -69,7 +67,7 @@ namespace Landis.Extension.Succession.NetEcosystemCN
                     SiteVars.MonthlyStreamN[site][Month] = 0.0;
                     SiteVars.SourceSink[site].Carbon = 0.0;
                     SiteVars.TotalWoodBiomass[site] = Main.ComputeWoodBiomass((ActiveSite) site);
-                    //SiteVars.LAI[site] = Century.ComputeLAI((ActiveSite)site);
+                    //SiteVars.LAI[site] = Main.ComputeLAI((ActiveSite)site);
                                    
                     double ppt = EcoregionData.AnnualWeather[ecoregion].MonthlyPrecip[Main.Month];
 

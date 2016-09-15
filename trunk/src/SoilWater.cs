@@ -31,7 +31,7 @@ namespace Landis.Extension.Succession.NetEcosystemCN
             //     Rewritten by Bill Pulliam - 9/94
             // Rewritten by Melissa Lucash- 11/2014
 
-            //PlugIn.ModelCore.UI.WriteLine("month={0}.", Century.Month);
+            //PlugIn.ModelCore.UI.WriteLine("month={0}.", Main.Month);
         
             //...Initialize Local Variables
             double addToSoil = 0.0;
@@ -212,7 +212,6 @@ namespace Landis.Extension.Succession.NetEcosystemCN
             //// Compute the ratio of precipitation to PET
             double ratioPrecipPET = 0.0;
             //if (pet > 0.0) ratioPrecipPET = (availableWater + H2Oinputs) / pet; //old ratio used in previous versions of LANDIS-Century
-            //if (pet > 0.0) ratioPrecipPET = H2Oinputs / pet;  //assumes that the ratio is the amount of incoming precip divided by PET.
             if (pet > 0.0) ratioPrecipPET = availableWater / pet;  //assumes that the ratio is the amount of incoming precip divided by PET.
 
             //SiteVars.NumberDryDays[site] = numberDryDays; //Calculated above using method below.
@@ -273,12 +272,6 @@ namespace Landis.Extension.Succession.NetEcosystemCN
 
             //defac must >= 0.0
             if (decayFactor < 0.0) decayFactor = 0.0;
-
-            //if (soilTemp < 0 && decayFactor > 0.01)
-            //{
-            //    PlugIn.ModelCore.UI.WriteLine("Yr={0},Mo={1}, PET={2:0.00}, MinT={3:0.0}, MaxT={4:0.0}, AveT={5:0.0}, H20={6:0.0}.", Century.Year, month, pet, tmin, tmax, tave, H2Oinputs);
-            //    PlugIn.ModelCore.UI.WriteLine("Yr={0},Mo={1}, DecayFactor={2:0.00}, tempFactor={3:0.00}, waterFactor={4:0.00}, ratioPrecipPET={5:0.000}, soilT={6:0.0}.", Century.Year, month, decayFactor, tempModifier, W_Decomp, ratioPrecipPET, soilTemp);
-            //}
 
             return decayFactor;   //Combination of water and temperature effects on decomposition
         }
@@ -374,21 +367,12 @@ namespace Landis.Extension.Succession.NetEcosystemCN
         public static void Leach(Site site, double baseFlow, double stormFlow)
         {
            
-            //  double minlch, double frlech[3], double stream[8], double basef, double stormf)
-            //Originally from leach.f of CENTURY model
+            //   Originally from leach.f of CENTURY model
             //...This routine computes the leaching of inorganic nitrogen (potential for use with phosphorus, and sulfur)
             //...Written 2/92 -rm. Revised on 12/11 by ML
-            // ML left out leaching intensity factor.  Cap on MAX leaching (MINLECH/OMLECH3) is poorly defined in CENTURY manual. Added a NO3frac factor to account 
-            //for the fact that only NO3 (not NH4) is leached from soils.  
+            //   ML left out leaching intensity factor.  Cap on MAX leaching (MINLECH/OMLECH3) is poorly defined in CENTURY manual. Added a NO3frac factor to account 
+            //   for the fact that only NO3 (not NH4) is leached from soils.  
 
-            //...Called From:   SIMSOM
-
-            //...amtlea:    amount leached
-            //...linten:    leaching intensity
-            //...strm:      storm flow
-            //...base:      base flow
-
-            //Outputs:
             //minerl and stream are recomputed
             IEcoregion ecoregion = PlugIn.ModelCore.Ecoregion[site];
             double waterMove = SiteVars.WaterMovement[site];
@@ -397,7 +381,7 @@ namespace Landis.Extension.Succession.NetEcosystemCN
 
             //PlugIn.ModelCore.UI.WriteLine("WaterMove={0:0}, ", waterMove);         
            
-         //...waterMove > 0. indicates a saturated water flow out of layer lyr
+            //...waterMove > 0. indicates a saturated water flow out of layer lyr
             if (waterMove > 0.0 && SiteVars.MineralN[site] > 0.0)
             {
                 double textureEffect = OtherData.MineralLeachIntercept + OtherData.MineralLeachSlope * EcoregionData.PercentSand[ecoregion];
@@ -488,7 +472,7 @@ namespace Landis.Extension.Succession.NetEcosystemCN
         //    tmin = EcoregionData.AnnualWeather[ecoregion].MonthlyMinTemp[month];
         //    pet = EcoregionData.AnnualWeather[ecoregion].MonthlyPET[month];
 
-        //    PlugIn.ModelCore.UI.WriteLine("Line 91. Really just the inputs. Year={0}, month={1}, AvgMonthlyTemp={2}, tmax={3}, tmin={4}, pet={5:0.0000}, ppt={6}, soilWaterContent={7:0.0000}.", Century.Year, Century.Month, tave, tmax, tmin, pet, H2Oinputs, soilWaterContent);
+        //    PlugIn.ModelCore.UI.WriteLine("Line 91. Really just the inputs. Year={0}, month={1}, AvgMonthlyTemp={2}, tmax={3}, tmin={4}, pet={5:0.0000}, ppt={6}, soilWaterContent={7:0.0000}.", Main.Year, Main.Month, tave, tmax, tmin, pet, H2Oinputs, soilWaterContent);
         //    //double soilTemp         = tave;    
 
         //    double wiltingPoint = EcoregionData.WiltingPoint[ecoregion];

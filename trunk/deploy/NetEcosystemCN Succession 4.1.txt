@@ -1,10 +1,10 @@
 LandisData   Extension
 
 Name         "NetEcosystemCN Succession"
-Version      5.0
+Version      4.1
 Type         succession
 Assembly     Landis.Extension.Succession.NetEcosystemCarbonNitrogen
 Class        Landis.Extension.Succession.NetEcosystemCN.PlugIn
 Description  "Succession with complete Carbon and Nitrogen Cycling"
-UserGuide    "LANDIS-II NetEcosystemCN Succession v5.0 User Guide.pdf"
+UserGuide    "LANDIS-II Net Ecosystem CN Succession v4.1 User Guide.pdf"
 CoreVersion  6.0

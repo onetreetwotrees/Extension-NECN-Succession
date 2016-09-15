@@ -1,6 +1,6 @@
-#define PackageName      "Century Succession"
-#define PackageNameLong  "Century Succession Extension"
-#define Version          "4.0.2"
+#define PackageName      "NECN Succession"
+#define PackageNameLong  "NECN Succession Extension"
+#define Version          "4.1"
 #define ReleaseType      "official"
 #define ReleaseNumber    "4"
 
@@ -22,37 +22,37 @@ Source: ..\src\bin\Debug\Landis.Library.Metadata.dll; DestDir: {#ExtDir}; Flags:
 Source: ..\src\bin\Debug\Landis.Library.Climate.dll; DestDir: {#ExtDir}; Flags: replacesameversion
 
 ; Century Succession
-Source: ..\src\bin\Debug\Landis.Extension.Succession.Century.dll; DestDir: {#ExtDir}; Flags: replacesameversion
+Source: ..\src\bin\Debug\Landis.Extension.Succession.NetEcosystemCarbonNitrogen.dll; DestDir: {#ExtDir}; Flags: replacesameversion
 
 ; Supporting documents
-Source: docs\LANDIS-II Century Succession v4.0 User Guide.pdf; DestDir: {#AppDir}\docs
+Source: docs\LANDIS-II Net Ecosystem CN Succession v4.1 User Guide.pdf; DestDir: {#AppDir}\docs
 Source: docs\LANDIS-II Climate Library v1.0 User Guide.pdf; DestDir: {#AppDir}\docs
-Source: docs\Century-calibrate-log-metadata.csv; DestDir: {#AppDir}\docs
-Source: docs\Century-prob-establish-log-metadata.csv; DestDir: {#AppDir}\docs
-Source: examples\*.bat; DestDir: {#AppDir}\examples\century-succession
-Source: examples\*.txt; DestDir: {#AppDir}\examples\century-succession
-Source: examples\*.csv; DestDir: {#AppDir}\examples\century-succession
-Source: examples\single_cell_3.img; DestDir: {#AppDir}\examples\century-succession
-Source: examples\ecoregions.gis; DestDir: {#AppDir}\examples\century-succession
-Source: examples\initial-communities.gis; DestDir: {#AppDir}\examples\century-succession
+Source: docs\NECN-calibrate-log-metadata.csv; DestDir: {#AppDir}\docs
+;; Source: docs\Century-prob-establish-log-metadata.csv; DestDir: {#AppDir}\docs
+Source: examples\*.bat; DestDir: {#AppDir}\examples\NECN-succession
+Source: examples\*.txt; DestDir: {#AppDir}\examples\NECN-succession
+Source: examples\*.csv; DestDir: {#AppDir}\examples\NECN-succession
+Source: examples\single_cell_3.img; DestDir: {#AppDir}\examples\NECN-succession
+Source: examples\ecoregions.gis; DestDir: {#AppDir}\examples\NECN-succession
+Source: examples\initial-communities.gis; DestDir: {#AppDir}\examples\NECN-succession
 
-#define CenturySucc "Century Succession 4.0.1.txt"
-Source: {#CenturySucc}; DestDir: {#LandisPlugInDir}
+#define NECNSucc "NetEcosystemCN Succession 4.1.txt"
+Source: {#NECNSucc}; DestDir: {#LandisPlugInDir}
 
-[InstallDelete]
-Type: files; Name: "{#AppDir}\bin\Landis.Library.Climate.dll"
+;;[InstallDelete]
+;;Type: files; Name: "{#AppDir}\bin\Landis.Library.Climate.dll"
 
 [Run]
 ;; Run plug-in admin tool to add an entry for the plug-in
 #define PlugInAdminTool  CoreBinDir + "\Landis.PlugIns.Admin.exe"
 
-Filename: {#PlugInAdminTool}; Parameters: "remove ""Century Succession"" "; WorkingDir: {#LandisPlugInDir}
-Filename: {#PlugInAdminTool}; Parameters: "add ""{#CenturySucc}"" "; WorkingDir: {#LandisPlugInDir}
+Filename: {#PlugInAdminTool}; Parameters: "remove ""NECN Succession"" "; WorkingDir: {#LandisPlugInDir}
+Filename: {#PlugInAdminTool}; Parameters: "add ""{#NECNSucc}"" "; WorkingDir: {#LandisPlugInDir}
 
 [UninstallRun]
 
 [Code]
-#include "C:\Users\lucash\Documents\LANDIS_Code\Succession_Code\Extensions-Succession\Century-succession\trunk\deploy\package (Code section) v3.iss"
+#include "package (Code section) v3.iss"
 
 //-----------------------------------------------------------------------------
 

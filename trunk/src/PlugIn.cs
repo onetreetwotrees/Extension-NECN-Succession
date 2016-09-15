@@ -20,7 +20,7 @@ namespace Landis.Extension.Succession.NetEcosystemCN
     public class PlugIn
         : Landis.Library.Succession.ExtensionBase
     {
-        public static readonly string ExtensionName = "Century Succession";
+        public static readonly string ExtensionName = "NECN Succession";
         private static ICore modelCore;
         private IInputParameters parameters;
 

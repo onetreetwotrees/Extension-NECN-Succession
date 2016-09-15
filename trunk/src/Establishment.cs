@@ -20,8 +20,8 @@ namespace Landis.Extension.Succession.NetEcosystemCN
 
         public static void Initialize()
         {
-            string logFileName   = "Century-prob-establish-log.csv"; 
-            PlugIn.ModelCore.UI.WriteLine("   Opening a Century log file \"{0}\" ...", logFileName);
+            string logFileName   = "NECN-prob-establish-log.csv"; 
+            PlugIn.ModelCore.UI.WriteLine("   Opening NECN P-establishment log file \"{0}\" ...", logFileName);
             try {
                 log = Landis.Data.CreateTextFile(logFileName);
             }

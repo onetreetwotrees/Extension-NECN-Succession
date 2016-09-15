@@ -25,7 +25,7 @@ namespace Landis.Extension.Succession.NetEcosystemCN
         // Return amount of resorbed N in g N m-2.
         public static double GetResorbedNallocation(ICohort cohort, ActiveSite site)
         {
-            int cohortAddYear = GetAddYear(cohort); //currentYear - (cohort.Age - Century.Year) + (CohortBiomass.centuryMonth == 11 ? 1 : 0);
+            int cohortAddYear = GetAddYear(cohort); 
             //PlugIn.ModelCore.UI.WriteLine("GETResorbedNallocation: year={0}, mo={1}, species={2}, cohortAge={3}, cohortAddYear={4}.", PlugIn.ModelCore.CurrentTime, Century.Month, cohort.Species.Name, cohort.Age, cohortAddYear);
             double resorbedNallocation = 0.0;
             Dictionary<int, double> cohortDict;
@@ -104,7 +104,7 @@ namespace Landis.Extension.Succession.NetEcosystemCN
          
 
         //---------------------------------------------------------------------
-        // Method for calculating Mineral N allocation, called from Century.cs Run method before calling Grow
+        // Method for calculating Mineral N allocation, called from Main.cs Run method before calling Grow
         // Iterates through cohorts, assigning each a portion of mineral N based on coarse root biomass.  Uses an exponential function to "distribute" 
         // the N more evenly between spp. so that the ones with the most woody biomass don't get all the N (L122).
 
@@ -118,7 +118,7 @@ namespace Landis.Extension.Succession.NetEcosystemCN
                 foreach (ICohort cohort in speciesCohorts)
                 {
                     int cohortAddYear = GetAddYear(cohort); 
-                    //PlugIn.ModelCore.UI.WriteLine("CALCMineralNfraction: year={0}, mo={1}, species={2}, cohortAge={3}, cohortAddYear={4}.", PlugIn.ModelCore.CurrentTime, Century.Month, cohort.Species.Name, cohort.Age, cohortAddYear);
+                    //PlugIn.ModelCore.UI.WriteLine("CALCMineralNfraction: year={0}, mo={1}, species={2}, cohortAge={3}, cohortAddYear={4}.", PlugIn.ModelCore.CurrentTime, Main.Month, cohort.Species.Name, cohort.Age, cohortAddYear);
                     
                     //Nallocation is a measure of how much N a cohort can gather relative to other cohorts
                     //double Nallocation = Roots.CalculateFineRoot(cohort.LeafBiomass); 
