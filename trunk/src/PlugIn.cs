@@ -154,6 +154,7 @@ namespace Landis.Extension.Succession.Century
                 Outputs.CreateCalibrateLogFile();
             Outputs.WritePrimaryLogFile(0);
             Outputs.WriteShortPrimaryLogFile(0);
+            Establishment.InitializeLogFile();
 
             B_MAX = 0;
             foreach(ISpecies species in ModelCore.Species)
@@ -199,6 +200,7 @@ namespace Landis.Extension.Succession.Century
                 Outputs.WritePrimaryLogFile(PlugIn.ModelCore.CurrentTime);
                 Outputs.WriteShortPrimaryLogFile(PlugIn.ModelCore.CurrentTime);
                 Outputs.WriteMaps();
+                Establishment.LogEstablishment();
             }
 
         }

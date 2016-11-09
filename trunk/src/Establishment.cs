@@ -15,61 +15,93 @@ namespace Landis.Extension.Succession.Century
     public class Establishment
     {
 
-        //private static StreamWriter log;
+        private static StreamWriter log;
+        private static double[, ,] avgSoilMoisturelimit = new double[PlugIn.ModelCore.Species.Count, PlugIn.ModelCore.Ecoregions.Count, PlugIn.SWHC_List.Count];
+        private static double[, ,] avgMATlimit = new double[PlugIn.ModelCore.Species.Count, PlugIn.ModelCore.Ecoregions.Count, PlugIn.SWHC_List.Count];
+        private static double[, ,] avgJanuaryTlimit = new double[PlugIn.ModelCore.Species.Count, PlugIn.ModelCore.Ecoregions.Count, PlugIn.SWHC_List.Count];
+        private static double[, ,] avgPest = new double[PlugIn.ModelCore.Species.Count, PlugIn.ModelCore.Ecoregions.Count, PlugIn.SWHC_List.Count];
+        private static int[,] Climate_SWHC_Count = new int[PlugIn.ModelCore.Ecoregions.Count, PlugIn.SWHC_List.Count];
 
-        // QUESTION: HOW TO LOG??
-        //public static void Initialize()
-        //{
-        //    string logFileName   = "Century-prob-establish-log.csv"; 
-        //    PlugIn.ModelCore.UI.WriteLine("   Opening a Century log file \"{0}\" ...", logFileName);
-        //    try {
-        //        log = Landis.Data.CreateTextFile(logFileName);
-        //    }
-        //    catch (Exception err) {
-        //        string mesg = string.Format("{0}", err.Message);
-        //        throw new System.ApplicationException(mesg);
-        //    }
+
+        public static void InitializeLogFile()
+        {
+            string logFileName   = "Century-prob-establish-log.csv"; 
+            PlugIn.ModelCore.UI.WriteLine("   Opening a Century log file \"{0}\" ...", logFileName);
+            try {
+                log = Landis.Data.CreateTextFile(logFileName);
+            }
+            catch (Exception err) {
+                string mesg = string.Format("{0}", err.Message);
+                throw new System.ApplicationException(mesg);
+            }
             
-        //    log.AutoFlush = true;
-        //    log.WriteLine("Time, ClimateRegion, Species, TempMult, MinJanTempMult, SoilMoistureMult, OtherAdjustMult, ProbEst");
-        //}
+            log.AutoFlush = true;
+            log.WriteLine("Time, Species, ClimateRegion, SWHC, AvgTempMult, AvgMinJanTempMult, AvgSoilMoistureMult, AvgProbEst");
+        }
 
         public static double Calculate(ISpecies species, ActiveSite site)//, int years)
         {
             IEcoregion climateRegion = PlugIn.ModelCore.Ecoregion[site];
+            int swhc = (int)((SiteVars.SoilFieldCapacity[site] - SiteVars.SoilWiltingPoint[site]) * SiteVars.SoilDepth[site]);
+            int swhc_index = PlugIn.SWHC_List.BinarySearch(swhc);
+
             double tempMultiplier = 0.0;
             double soilMultiplier = 0.0;
             double minJanTempMultiplier = 0.0;
             //if (!ecoregion.Active || ClimateRegionData.ActiveSiteCount[ecoregion] < 1)
             //    continue;
-            
+
             double establishProbability = 0.0;
-            //for (int y = 0; y < years; ++y)
-            //{
-                //int actualYear = PlugIn.ModelCore.TimeSinceStart + y;
 
-                AnnualClimate_Monthly ecoClimate = ClimateRegionData.AnnualWeather[climateRegion];
-                //PlugIn.ModelCore.UI.WriteLine("MAT={0:0.0}, TAP={1:0.0}", ecoClimate.MeanAnnualTemperature, ecoClimate.TotalAnnualPrecip);
+            AnnualClimate_Monthly ecoClimate = ClimateRegionData.AnnualWeather[climateRegion];
 
-                if (ecoClimate == null)
-                    throw new System.ApplicationException("Error in Establishment: CLIMATE NULL.");
+            if (ecoClimate == null)
+                throw new System.ApplicationException("Error in Establishment: CLIMATE NULL.");
 
-                double ecoDryDays = SiteVars.DryDays[site]; // CalculateSoilMoisture(ecoClimate, climateRegion, ecoClimate.Year);
-                soilMultiplier = SoilMoistureMultiplier(ecoClimate, species, ecoDryDays);
-                tempMultiplier = BotkinDegreeDayMultiplier(ecoClimate, species);
-                minJanTempMultiplier = MinJanuaryTempModifier(ecoClimate, species);
+            double ecoDryDays = SiteVars.DryDays[site]; // CalculateSoilMoisture(ecoClimate, climateRegion, ecoClimate.Year);
+            soilMultiplier = SoilMoistureMultiplier(ecoClimate, species, ecoDryDays);
+            tempMultiplier = BotkinDegreeDayMultiplier(ecoClimate, species);
+            minJanTempMultiplier = MinJanuaryTempModifier(ecoClimate, species);
 
-                // Liebig's Law of the Minimum is applied to the four multipliers for each year:
-                double minMultiplier = System.Math.Min(tempMultiplier, soilMultiplier);
-                minMultiplier = System.Math.Min(minJanTempMultiplier, minMultiplier);
+            // Liebig's Law of the Minimum is applied to the four multipliers for each year:
+            double minMultiplier = System.Math.Min(tempMultiplier, soilMultiplier);
+            minMultiplier = System.Math.Min(minJanTempMultiplier, minMultiplier);
 
-                establishProbability += minMultiplier;
-            //}
-            //establishProbability /= (double) years;
+            establishProbability += minMultiplier;
             establishProbability *= PlugIn.ProbEstablishAdjust;
+
+            avgSoilMoisturelimit[species.Index, climateRegion.Index, swhc_index] += soilMultiplier;
+            avgMATlimit[species.Index, climateRegion.Index, swhc_index] += tempMultiplier;
+            avgJanuaryTlimit[species.Index, climateRegion.Index, swhc_index] += minJanTempMultiplier;
+            avgPest[species.Index, climateRegion.Index, swhc_index] += establishProbability;
+            Climate_SWHC_Count[climateRegion.Index, swhc_index]++;
+
             //if (establishProbability > 0.0)
             //    PlugIn.ModelCore.UI.WriteLine("Spp={0}, Pest={1:0.000}: tM={2:0.0}, sM={3:0.0}, jM={4:0.0}", species.Name, establishProbability, tempMultiplier, soilMultiplier, minJanTempMultiplier);
             return establishProbability;
+        }
+
+        public static void LogEstablishment()
+        {
+            foreach (ISpecies species in PlugIn.ModelCore.Species)
+            {
+                foreach (IEcoregion ecoregion in PlugIn.ModelCore.Ecoregions)
+                {
+                    if (!ecoregion.Active || ClimateRegionData.ActiveSiteCount[ecoregion] < 1)
+                        continue;
+
+                    foreach (int swhc in PlugIn.SWHC_List)
+                    {
+                        int swhc_index = PlugIn.SWHC_List.BinarySearch(swhc);
+                        log.Write("{0}, {1}, {2},", PlugIn.ModelCore.CurrentTime, species.Name, ecoregion.Name, swhc);
+                        log.Write("{0:0.00},", (avgMATlimit[species.Index, ecoregion.Index, swhc_index] / (double)Climate_SWHC_Count[ecoregion.Index, swhc_index]));
+                        log.Write("{0:0.00},", (avgJanuaryTlimit[species.Index, ecoregion.Index, swhc_index] / (double)Climate_SWHC_Count[ecoregion.Index, swhc_index]));
+                        log.Write("{0:0.00},", (avgSoilMoisturelimit[species.Index, ecoregion.Index, swhc_index] / (double)Climate_SWHC_Count[ecoregion.Index, swhc_index]));
+                        log.WriteLine("{0:0.00}", (avgPest[species.Index, ecoregion.Index, swhc_index] / (double)Climate_SWHC_Count[ecoregion.Index, swhc_index]));
+                    }
+                }
+            }
+
         }
 
 
