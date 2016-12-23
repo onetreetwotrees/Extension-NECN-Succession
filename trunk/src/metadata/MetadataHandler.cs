@@ -133,7 +133,7 @@ namespace Landis.Extension.Succession.NetEcosystemCN
                 {
                     Type = OutputType.Map,
                     Name = "Total Carbon",
-                    FilePath = @"NECN\TotalC-{timestep}.gis",  //century
+                    FilePath = @"NECN\TotalC-{timestep}.gis",  
                     Map_DataType = MapDataType.Continuous,
                     Map_Unit = FieldUnits.g_C_m2,
                     Visualize = true,

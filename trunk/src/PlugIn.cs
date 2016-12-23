@@ -112,7 +112,6 @@ namespace Landis.Extension.Succession.NetEcosystemCN
             AgeOnlyDisturbances.Module.Initialize(parameters.AgeOnlyDisturbanceParms);
 
             Dynamic.Module.Initialize(parameters.DynamicUpdates);
-            //EcoregionData.Initialize(parameters);
             FireEffects.Initialize(parameters);
             InitializeSites(parameters.InitialCommunities, parameters.InitialCommunitiesMap, modelCore); //the spinup is heppend within this fucntion
             if (parameters.CalibrateMode)
@@ -350,23 +349,12 @@ namespace Landis.Extension.Succession.NetEcosystemCN
             SiteVars.CohortWoodN[site]           = initialBiomass.CohortWoodN;
             SiteVars.CohortCRootN[site]          = initialBiomass.CohortCRootN;
 
-            //// Override the spin-up soil C and N values with the contemporary data
-            //// provided in the intialization file.
-            //SiteVars.SOM1surface[site].Carbon       = parameters.InitialSOM1surfC[ecoregion];
-            //SiteVars.SOM1surface[site].Nitrogen     = parameters.InitialSOM1surfN[ecoregion];
-            //SiteVars.SOM1soil[site].Carbon          = parameters.InitialSOM1soilC[ecoregion];
-            //SiteVars.SOM1soil[site].Nitrogen        = parameters.InitialSOM1soilN[ecoregion];
-            //SiteVars.SOM2[site].Carbon              = parameters.InitialSOM2C[ecoregion];
-            //SiteVars.SOM2[site].Nitrogen            = parameters.InitialSOM2N[ecoregion];
-            //SiteVars.SOM3[site].Carbon              = parameters.InitialSOM3C[ecoregion];
-            //SiteVars.SOM3[site].Nitrogen            = parameters.InitialSOM3N[ecoregion];
-            //SiteVars.MineralN[site]                 = parameters.InitialMineralN[ecoregion];
         }
 
 
         //---------------------------------------------------------------------
 
-        public void CohortDied(object         sender,
+        public void CohortDied(object sender,
                                DeathEventArgs eventArgs)
         {
 
@@ -376,23 +364,25 @@ namespace Landis.Extension.Succession.NetEcosystemCN
             ActiveSite site = eventArgs.Site;
 
             ICohort cohort = eventArgs.Cohort;
-            double foliar = (double) cohort.LeafBiomass;
+            double foliar = (double)cohort.LeafBiomass;
 
-            double wood = (double) cohort.WoodBiomass;
+            double wood = (double)cohort.WoodBiomass;
 
             //PlugIn.ModelCore.UI.WriteLine("Cohort Died: species={0}, age={1}, biomass={2}, foliage={3}.", cohort.Species.Name, cohort.Age, cohort.Biomass, foliar);
 
-            if (disturbanceType == null) {
+            if (disturbanceType == null)
+            {
                 //PlugIn.ModelCore.UI.WriteLine("NO EVENT: Cohort Died: species={0}, age={1}, disturbance={2}.", cohort.Species.Name, cohort.Age, eventArgs.DisturbanceType);
 
                 ForestFloor.AddWoodLitter(wood, cohort.Species, eventArgs.Site);
                 ForestFloor.AddFoliageLitter(foliar, cohort.Species, eventArgs.Site);
 
                 Roots.AddCoarseRootLitter(wood, cohort, cohort.Species, eventArgs.Site);
-                Roots.AddFineRootLitter(foliar, cohort,  cohort.Species, eventArgs.Site);
+                Roots.AddFineRootLitter(foliar, cohort, cohort.Species, eventArgs.Site);
             }
 
-            if (disturbanceType != null) {
+            if (disturbanceType != null)
+            {
                 //PlugIn.ModelCore.UI.WriteLine("DISTURBANCE EVENT: Cohort Died: species={0}, age={1}, disturbance={2}.", cohort.Species.Name, cohort.Age, eventArgs.DisturbanceType);
 
                 Disturbed[site] = true;

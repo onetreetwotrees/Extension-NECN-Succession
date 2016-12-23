@@ -17,9 +17,9 @@ WaterDecayFunction Ratio <<Linear or Ratio
 
 ProbEstablishAdjust 1.0
 
-ANPPMapNames		century/ag_npp-{timestep}.gis
+ANPPMapNames		necn/ag_npp-{timestep}.gis
 ANPPMapFrequency	10
-ANEEMapNames		century/nee-{timestep}.gis
+ANEEMapNames		necn/nee-{timestep}.gis
 ANEEMapFrequency	10
 
 
