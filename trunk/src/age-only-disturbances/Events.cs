@@ -5,7 +5,6 @@ using Landis.Core;
 using Landis.SpatialModeling;
 using Edu.Wisc.Forest.Flel.Util;
 using System.Collections.Generic;
-
 using Landis.Library.LeafBiomassCohorts;  
 
 namespace Landis.Extension.Succession.NetEcosystemCN.AgeOnlyDisturbances
@@ -16,14 +15,13 @@ namespace Landis.Extension.Succession.NetEcosystemCN.AgeOnlyDisturbances
     /// </summary>
     public static class Events
     {
-        public static void CohortDied(object         sender,
-                                      DeathEventArgs eventArgs)
+        public static void CohortTotalMortality(object sender, Landis.Library.BiomassCohorts.DeathEventArgs eventArgs)
         {
             ExtensionType disturbanceType = eventArgs.DisturbanceType;
             
             PoolPercentages cohortReductions = Module.Parameters.CohortReductions[disturbanceType];
 
-            ICohort cohort = eventArgs.Cohort;
+            ICohort cohort = (Landis.Library.LeafBiomassCohorts.ICohort) eventArgs.Cohort;
             ActiveSite site = eventArgs.Site;
             float foliar = cohort.LeafBiomass; 
             float wood = cohort.WoodBiomass; 
@@ -45,15 +43,41 @@ namespace Landis.Extension.Succession.NetEcosystemCN.AgeOnlyDisturbances
         }
 
         //---------------------------------------------------------------------
+        //public static void CohortPartialMortality(object sender, Landis.Library.BiomassCohorts.PartialDeathEventArgs eventArgs)
+        //{
+        //    ExtensionType disturbanceType = eventArgs.DisturbanceType;
+        //    ICohort cohort = (Landis.Library.LeafBiomassCohorts.Cohort) eventArgs.Cohort;
+        //    ActiveSite site = eventArgs.Site;
+        //    float fractionPartialMortality = (float)eventArgs.Reduction;
 
-        private static float ReduceInput(float     poolInput,
+        //    PoolPercentages cohortReductions = Module.Parameters.CohortReductions[disturbanceType];
+
+        //    float foliar = cohort.LeafBiomass * fractionPartialMortality;
+        //    float wood = cohort.WoodBiomass * fractionPartialMortality;
+
+        //    float foliarInput = ReduceInput(foliar, cohortReductions.Foliar, site);
+        //    float woodInput = ReduceInput(wood, cohortReductions.Wood, site);
+
+        //    ForestFloor.AddWoodLitter(woodInput, cohort.Species, site);
+        //    ForestFloor.AddFoliageLitter(foliarInput, cohort.Species, site);
+
+        //    Roots.AddCoarseRootLitter(woodInput, cohort, cohort.Species, site);  // All of cohorts roots are killed.
+        //    Roots.AddFineRootLitter(foliarInput, cohort, cohort.Species, site);
+
+        //    PlugIn.ModelCore.UI.WriteLine("EVENT: Cohort Partial Mortality: species={0}, age={1}, disturbance={2}.", cohort.Species.Name, cohort.Age, disturbanceType);
+        //    PlugIn.ModelCore.UI.WriteLine("       Cohort Reductions:  Foliar={0:0.00}.  Wood={1:0.00}.", cohortReductions.Foliar, cohortReductions.Wood);
+        //    PlugIn.ModelCore.UI.WriteLine("       InputB/TotalB:  Foliar={0:0.00}/{1:0.00}, Wood={2:0.0}/{3:0.0}.", foliarInput, foliar, woodInput, wood);
+
+        //}
+        //---------------------------------------------------------------------
+
+        public static float ReduceInput(float     poolInput,
                                           Percentage reductionPercentage,
                                           ActiveSite site)
         {
             float reduction = (poolInput * (float) reductionPercentage);
             
             SiteVars.SourceSink[site].Carbon        += (double) reduction * 0.47;
-            //SiteVars.FireEfflux[site]               += (double) reduction * 0.47;
             
             return (poolInput - reduction);
         }
@@ -61,7 +85,7 @@ namespace Landis.Extension.Succession.NetEcosystemCN.AgeOnlyDisturbances
         //---------------------------------------------------------------------
 
         public static void SiteDisturbed(object               sender,
-                                         DisturbanceEventArgs eventArgs)
+                                         Landis.Library.BiomassCohorts.DisturbanceEventArgs eventArgs)
         {
 
             ExtensionType disturbanceType = eventArgs.DisturbanceType;

@@ -1,5 +1,5 @@
 //  Copyright 2007-2010 Portland State University, University of Wisconsin-Madison
-//  Author: Robert Scheller, Ben Sulman
+//  Author: Robert Scheller
 
 using Landis.Library.LeafBiomassCohorts;  
 
@@ -40,13 +40,14 @@ namespace Landis.Extension.Succession.NetEcosystemCN.AgeOnlyDisturbances
                 DatasetParser parser = new DatasetParser();
                 parameters = Landis.Data.Load<IParameterDataset>(filename, parser);
 
-                Cohort.AgeOnlyDeathEvent += Events.CohortDied;
-                SiteCohorts.AgeOnlyDisturbanceEvent += Events.SiteDisturbed;
+                //Landis.Library.BiomassCohorts.Cohort.PartialDeathEvent += Events.CohortPartialMortality;
+                Landis.Library.BiomassCohorts.Cohort.AgeOnlyDeathEvent += Events.CohortTotalMortality;
+                Landis.Library.BiomassCohorts.SiteCohorts.AgeOnlyDisturbanceEvent += Events.SiteDisturbed;
             }
             else {
                 parameters = null;
-                Cohort.AgeOnlyDeathEvent += NoParameters.CohortDied;
-                SiteCohorts.AgeOnlyDisturbanceEvent += NoParameters.SiteDisturbed;
+                Landis.Library.BiomassCohorts.Cohort.AgeOnlyDeathEvent += NoParameters.CohortDied;
+                Landis.Library.BiomassCohorts.SiteCohorts.AgeOnlyDisturbanceEvent += NoParameters.SiteDisturbed;
             }
         }
     }

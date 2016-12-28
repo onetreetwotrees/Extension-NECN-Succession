@@ -13,7 +13,7 @@ namespace Landis.Extension.Succession.NetEcosystemCN.AgeOnlyDisturbances
     public static class NoParameters
     {
         public static void CohortDied(object         sender,
-                                      DeathEventArgs eventArgs)
+                                      Landis.Library.BiomassCohorts.DeathEventArgs eventArgs)
         {
             ThrowException();
         }
@@ -21,7 +21,7 @@ namespace Landis.Extension.Succession.NetEcosystemCN.AgeOnlyDisturbances
         //---------------------------------------------------------------------
 
         public static void SiteDisturbed(object               sender,
-                                         DisturbanceEventArgs eventArgs)
+                                         Landis.Library.BiomassCohorts.DisturbanceEventArgs eventArgs)
         {
             ThrowException();
         }
