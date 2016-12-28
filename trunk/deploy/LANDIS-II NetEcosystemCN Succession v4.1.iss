@@ -1,13 +1,12 @@
 #define PackageName      "NECN Succession"
 #define PackageNameLong  "NECN Succession Extension"
-#define Version          "4.1.2"
+#define Version          "4.2"
 #define ReleaseType      "official"
 #define ReleaseNumber    "4"
 
 #define CoreVersion      "6.0"
 #define CoreReleaseAbbr  ""
 
-; #include "J:\Scheller\LANDIS-II\deploy\package (Setup section) v6.0.iss"
 #include "package (Setup section) v6.0.iss"
 #define ExtDir "C:\Program Files\LANDIS-II\v6\bin\extensions"
 #define AppDir "C:\Program Files\LANDIS-II\v6"
@@ -16,7 +15,7 @@
 ; Auxiliary libs
 Source: ..\src\bin\Debug\Landis.Library.AgeOnlyCohorts.dll; DestDir: {#ExtDir}; Flags: replacesameversion
 Source: ..\src\bin\Debug\Landis.Library.Biomass-v1.dll; DestDir: {#ExtDir}; Flags: replacesameversion
-Source: ..\src\bin\Debug\Landis.Library.BiomassCohorts.dll; DestDir: {#ExtDir}; Flags: replacesameversion
+Source: ..\src\bin\Debug\Landis.Library.BiomassCohorts-v2.dll; DestDir: {#ExtDir}; Flags: replacesameversion
 Source: ..\src\bin\Debug\Landis.Library.Climate.dll; DestDir: {#ExtDir}; Flags: replacesameversion
 Source: ..\src\bin\Debug\Landis.Library.Cohorts.dll; DestDir: {#ExtDir}; Flags: replacesameversion
 Source: ..\src\bin\Debug\Landis.Library.LeafBiomassCohorts.dll; DestDir: {#ExtDir}; Flags: replacesameversion
@@ -38,7 +37,7 @@ Source: examples\single_cell_3.img; DestDir: {#AppDir}\examples\NECN-succession
 Source: examples\ecoregions.gis; DestDir: {#AppDir}\examples\NECN-succession
 Source: examples\initial-communities.gis; DestDir: {#AppDir}\examples\NECN-succession
 
-#define NECNSucc "NetEcosystemCN Succession 4.1.txt"
+#define NECNSucc "NetEcosystemCN Succession 4.2.txt"
 Source: {#NECNSucc}; DestDir: {#LandisPlugInDir}
 
 ;;[InstallDelete]
