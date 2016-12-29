@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using System;
 using System.IO;
 
-namespace Landis.Extension.Succession.Century
+namespace Landis.Extension.Succession.NECN
 {
 
     //public interface ISpeciesData : Landis.Core.ISpecies

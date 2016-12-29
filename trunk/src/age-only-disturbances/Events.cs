@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 using Landis.Library.LeafBiomassCohorts;  
 
-namespace Landis.Extension.Succession.Century.AgeOnlyDisturbances
+namespace Landis.Extension.Succession.NECN.AgeOnlyDisturbances
 {
     /// <summary>
     /// The handlers for various type of events related to age-only
@@ -16,14 +16,14 @@ namespace Landis.Extension.Succession.Century.AgeOnlyDisturbances
     /// </summary>
     public static class Events
     {
-        public static void CohortDied(object         sender,
-                                      DeathEventArgs eventArgs)
+        public static void CohortTotalMortality(object         sender,
+                                      Landis.Library.BiomassCohorts.DeathEventArgs eventArgs)
         {
             ExtensionType disturbanceType = eventArgs.DisturbanceType;
             
             PoolPercentages cohortReductions = Module.Parameters.CohortReductions[disturbanceType];
 
-            ICohort cohort = eventArgs.Cohort;
+            ICohort cohort = (Landis.Library.LeafBiomassCohorts.ICohort) eventArgs.Cohort;
             ActiveSite site = eventArgs.Site;
             float foliar = cohort.LeafBiomass; 
             float wood = cohort.WoodBiomass; 
@@ -46,7 +46,7 @@ namespace Landis.Extension.Succession.Century.AgeOnlyDisturbances
 
         //---------------------------------------------------------------------
 
-        private static float ReduceInput(float     poolInput,
+        public static float ReduceInput(float     poolInput,
                                           Percentage reductionPercentage,
                                           ActiveSite site)
         {
@@ -61,7 +61,7 @@ namespace Landis.Extension.Succession.Century.AgeOnlyDisturbances
         //---------------------------------------------------------------------
 
         public static void SiteDisturbed(object               sender,
-                                         DisturbanceEventArgs eventArgs)
+                                         Landis.Library.BiomassCohorts.DisturbanceEventArgs eventArgs)
         {
 
             ExtensionType disturbanceType = eventArgs.DisturbanceType;

@@ -10,7 +10,7 @@ using System;
 using System.IO;
 using Landis.Library.Climate;
 
-namespace Landis.Extension.Succession.Century
+namespace Landis.Extension.Succession.NECN
 {
     public class Establishment
     {

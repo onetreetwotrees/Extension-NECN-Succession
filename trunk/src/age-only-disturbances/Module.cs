@@ -3,7 +3,7 @@
 
 using Landis.Library.LeafBiomassCohorts;  
 
-namespace Landis.Extension.Succession.Century.AgeOnlyDisturbances
+namespace Landis.Extension.Succession.NECN.AgeOnlyDisturbances
 {
     /// <summary>
     /// The public interface for the module that handles age-only disturbances.
@@ -40,13 +40,18 @@ namespace Landis.Extension.Succession.Century.AgeOnlyDisturbances
                 DatasetParser parser = new DatasetParser();
                 parameters = Landis.Data.Load<IParameterDataset>(filename, parser);
 
-                Cohort.AgeOnlyDeathEvent += Events.CohortDied;
-                SiteCohorts.AgeOnlyDisturbanceEvent += Events.SiteDisturbed;
+                //Cohort.AgeOnlyDeathEvent += Events.CohortDied;
+                //SiteCohorts.AgeOnlyDisturbanceEvent += Events.SiteDisturbed;
+                Landis.Library.BiomassCohorts.Cohort.AgeOnlyDeathEvent += Events.CohortTotalMortality;
+                Landis.Library.BiomassCohorts.SiteCohorts.AgeOnlyDisturbanceEvent += Events.SiteDisturbed;
+
             }
             else {
                 parameters = null;
-                Cohort.AgeOnlyDeathEvent += NoParameters.CohortDied;
-                SiteCohorts.AgeOnlyDisturbanceEvent += NoParameters.SiteDisturbed;
+                Landis.Library.BiomassCohorts.Cohort.AgeOnlyDeathEvent += NoParameters.CohortDied;
+                Landis.Library.BiomassCohorts.SiteCohorts.AgeOnlyDisturbanceEvent += NoParameters.SiteDisturbed;
+                //Cohort.AgeOnlyDeathEvent += NoParameters.CohortDied;
+                //SiteCohorts.AgeOnlyDisturbanceEvent += NoParameters.SiteDisturbed;
             }
         }
     }

@@ -12,7 +12,7 @@ using System;
 //using Landis.Cohorts;
 
 
-namespace Landis.Extension.Succession.Century
+namespace Landis.Extension.Succession.NECN
 {
     /// <summary>
     /// The initial live and dead biomass at a site.

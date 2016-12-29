@@ -15,7 +15,7 @@ using System.Collections;
 
 
 
-namespace Landis.Extension.Succession.Century
+namespace Landis.Extension.Succession.NECN
 {
     public class Outputs
     {

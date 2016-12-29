@@ -4,7 +4,7 @@
 using Edu.Wisc.Forest.Flel.Util;
 using Landis.Library.LeafBiomassCohorts;  
 
-namespace Landis.Extension.Succession.Century.AgeOnlyDisturbances
+namespace Landis.Extension.Succession.NECN.AgeOnlyDisturbances
 {
     /// <summary>
     /// The event handlers when no biomass parameters have been provided by
@@ -13,7 +13,7 @@ namespace Landis.Extension.Succession.Century.AgeOnlyDisturbances
     public static class NoParameters
     {
         public static void CohortDied(object         sender,
-                                      DeathEventArgs eventArgs)
+                                      Landis.Library.BiomassCohorts.DeathEventArgs eventArgs)
         {
             ThrowException();
         }
@@ -21,7 +21,7 @@ namespace Landis.Extension.Succession.Century.AgeOnlyDisturbances
         //---------------------------------------------------------------------
 
         public static void SiteDisturbed(object               sender,
-                                         DisturbanceEventArgs eventArgs)
+                                         Landis.Library.BiomassCohorts.DisturbanceEventArgs eventArgs)
         {
             ThrowException();
         }

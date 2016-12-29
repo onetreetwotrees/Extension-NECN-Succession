@@ -15,7 +15,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Landis.Extension.Succession.Century
+namespace Landis.Extension.Succession.NECN
 {
     public class PlugIn
         : Landis.Library.Succession.ExtensionBase
@@ -144,7 +144,8 @@ namespace Landis.Extension.Succession.Century
             Reproduction.AddNewCohort = AddNewCohort;
             Reproduction.MaturePresent = MaturePresent;
             base.Initialize(modelCore, parameters.SeedAlgorithm);
-            Cohort.DeathEvent += CohortDied;
+            Landis.Library.LeafBiomassCohorts.Cohort.PartialDeathEvent += CohortPartialMortality;
+            Landis.Library.BiomassCohorts.Cohort.DeathEvent += CohortDied;
             AgeOnlyDisturbances.Module.Initialize(parameters.AgeOnlyDisturbanceParms);
 
             //InitialBiomass.Initialize(Timestep);
@@ -259,51 +260,47 @@ namespace Landis.Extension.Succession.Century
             //PlugIn.ModelCore.UI.WriteLine("SWHC = {0}", swhc);
 
             InitialBiomass initialBiomass = InitialBiomass.Compute(site, initialCommunity);
-            //SiteVars.Cohorts[site] = InitialBiomass.Clone(initialBiomass.Cohorts);
-            //IEcoregion ecoregion = PlugIn.ModelCore.Ecoregion[site];
             SiteVars.MineralN[site] = parameters.InitialMineralN;
-
-            //SiteVars.SurfaceDeadWood[site]       = initialBiomass.SurfaceDeadWood.Clone();
-            //SiteVars.SurfaceStructural[site]     = initialBiomass.SurfaceStructural.Clone();
-            //SiteVars.SurfaceMetabolic[site]      = initialBiomass.SurfaceMetabolic.Clone();
-
-            //SiteVars.SoilDeadWood[site]          = initialBiomass.SoilDeadWood.Clone();
-            //SiteVars.SoilStructural[site]        = initialBiomass.SoilStructural.Clone();
-            //SiteVars.SoilMetabolic[site]         = initialBiomass.SoilMetabolic.Clone();
-
-            //SiteVars.SOM1surface[site]           = initialBiomass.SOM1surface.Clone();
-            //SiteVars.SOM1soil[site]              = initialBiomass.SOM1soil.Clone();
-            //SiteVars.SOM2[site]                  = initialBiomass.SOM2.Clone();
-            //SiteVars.SOM3[site]                  = initialBiomass.SOM3.Clone();
-
-            //SiteVars.MineralN[site]              = initialBiomass.MineralN;
-            //SiteVars.CohortLeafC[site]           = initialBiomass.CohortLeafC;
-            //SiteVars.CohortFRootC[site]           = initialBiomass.CohortFRootC;
-            //SiteVars.CohortLeafN[site]           = initialBiomass.CohortLeafN;
-            //SiteVars.CohortFRootN[site]            = initialBiomass.CohortFRootN;
-            //SiteVars.CohortWoodC[site]           = initialBiomass.CohortWoodC;
-            //SiteVars.CohortCRootC[site]          = initialBiomass.CohortCRootC;
-            //SiteVars.CohortWoodN[site]           = initialBiomass.CohortWoodN;
-            //SiteVars.CohortCRootN[site]          = initialBiomass.CohortCRootN;
-
-            //// Override the spin-up soil C and N values with the contemporary data
-            //// provided in the intialization file.
-            //SiteVars.SOM1surface[site].Carbon       = parameters.InitialSOM1surfC[ecoregion];
-            //SiteVars.SOM1surface[site].Nitrogen     = parameters.InitialSOM1surfN[ecoregion];
-            //SiteVars.SOM1soil[site].Carbon          = parameters.InitialSOM1soilC[ecoregion];
-            //SiteVars.SOM1soil[site].Nitrogen        = parameters.InitialSOM1soilN[ecoregion];
-            //SiteVars.SOM2[site].Carbon              = parameters.InitialSOM2C[ecoregion];
-            //SiteVars.SOM2[site].Nitrogen            = parameters.InitialSOM2N[ecoregion];
-            //SiteVars.SOM3[site].Carbon              = parameters.InitialSOM3C[ecoregion];
-            //SiteVars.SOM3[site].Nitrogen            = parameters.InitialSOM3N[ecoregion];
-            //SiteVars.MineralN[site]                 = parameters.InitialMineralN[ecoregion];
         }
 
 
         //---------------------------------------------------------------------
 
+        public void CohortPartialMortality(object sender, Landis.Library.BiomassCohorts.PartialDeathEventArgs eventArgs)
+        {
+            ExtensionType disturbanceType = eventArgs.DisturbanceType;
+            ActiveSite site = eventArgs.Site;
+            double reduction = eventArgs.Reduction;
+
+            ICohort cohort = (Landis.Library.LeafBiomassCohorts.ICohort)eventArgs.Cohort;
+
+            float fractionPartialMortality = (float)eventArgs.Reduction;
+            //PlugIn.ModelCore.UI.WriteLine("Cohort experienced partial mortality: species={0}, age={1}, wood_biomass={2}, fraction_mortality={3:0.0}.", cohort.Species.Name, cohort.Age, cohort.WoodBiomass, fractionPartialMortality);
+
+            AgeOnlyDisturbances.PoolPercentages cohortReductions = AgeOnlyDisturbances.Module.Parameters.CohortReductions[disturbanceType];
+
+            float foliar = cohort.LeafBiomass * fractionPartialMortality;
+            float wood = cohort.WoodBiomass * fractionPartialMortality;
+
+            float foliarInput = AgeOnlyDisturbances.Events.ReduceInput(foliar, cohortReductions.Foliar, site);
+            float woodInput = AgeOnlyDisturbances.Events.ReduceInput(wood, cohortReductions.Wood, site);
+
+            ForestFloor.AddWoodLitter(woodInput, cohort.Species, site);
+            ForestFloor.AddFoliageLitter(foliarInput, cohort.Species, site);
+
+            Roots.AddCoarseRootLitter(woodInput, cohort, cohort.Species, site);  // All of cohorts roots are killed.
+            Roots.AddFineRootLitter(foliarInput, cohort, cohort.Species, site);
+
+            //PlugIn.ModelCore.UI.WriteLine("EVENT: Cohort Partial Mortality: species={0}, age={1}, disturbance={2}.", cohort.Species.Name, cohort.Age, disturbanceType);
+            //PlugIn.ModelCore.UI.WriteLine("       Cohort Reductions:  Foliar={0:0.00}.  Wood={1:0.00}.", cohortReductions.Foliar, cohortReductions.Wood);
+            //PlugIn.ModelCore.UI.WriteLine("       InputB/TotalB:  Foliar={0:0.00}/{1:0.00}, Wood={2:0.0}/{3:0.0}.", foliarInput, foliar, woodInput, wood);
+
+            return;
+        }
+        //---------------------------------------------------------------------
+
         public void CohortDied(object         sender,
-                               DeathEventArgs eventArgs)
+                               Landis.Library.BiomassCohorts.DeathEventArgs eventArgs)
         {
 
             //PlugIn.ModelCore.UI.WriteLine("Cohort Died! :-(");
@@ -311,7 +308,7 @@ namespace Landis.Extension.Succession.Century
             ExtensionType disturbanceType = eventArgs.DisturbanceType;
             ActiveSite site = eventArgs.Site;
 
-            ICohort cohort = eventArgs.Cohort;
+            ICohort cohort = (Landis.Library.LeafBiomassCohorts.ICohort) eventArgs.Cohort;
             double foliar = (double) cohort.LeafBiomass;
 
             double wood = (double) cohort.WoodBiomass;
