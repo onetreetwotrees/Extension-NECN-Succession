@@ -68,9 +68,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\Landis.Library.Metadata.dll</HintPath>
     </Reference>
-    <Reference Include="Landis.Library.Succession, Version=4.0.5521.15032, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Landis.Library.Succession-vAGB-Input, Version=4.0.6208.18921, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\lib\Landis.Library.Succession.dll</HintPath>
+      <HintPath>bin\debug\Landis.Library.Succession-vAGB-Input.dll</HintPath>
     </Reference>
     <Reference Include="Landis.SpatialModeling, Version=1.0.4815.34359, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
