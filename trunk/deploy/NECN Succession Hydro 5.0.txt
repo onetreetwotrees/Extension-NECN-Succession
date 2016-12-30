@@ -6,5 +6,5 @@ Type         succession
 Assembly     Landis.Extension.Succession.NECN_Hydro
 Class        Landis.Extension.Succession.NECN.PlugIn
 Description  "Succession with biomass cohorts and Century soil model"
-UserGuide    "LANDIS-II Century Succession v4.0 User Guide.pdf"
+UserGuide    "LANDIS-II NECN-Hydro Succession User Guide.pdf"
 CoreVersion  6.0
