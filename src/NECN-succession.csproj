@@ -90,7 +90,8 @@
     <Compile Include="HarvestEffects.cs" />
     <Compile Include="LitterType.cs">
       <SubType>Code</SubType>
-    </Compile>
+  </Compile>
+    <Compile Include="AssemblyInfo.cs" />
     <Compile Include="metadata\MonthlyLog.cs" />
     <Compile Include="metadata\PrimaryLogShort.cs" />
     <Compile Include="metadata\PrimaryLog.cs" />

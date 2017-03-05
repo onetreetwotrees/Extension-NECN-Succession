@@ -4,10 +4,10 @@ Timestep  5
 
 SeedingAlgorithm  WardSeedDispersal
 
-InitialCommunities      "initial-communities.txt"
-InitialCommunitiesMap   "initial-communities.gis"
+InitialCommunities      ./NECN-succession_InitialCommunities.txt
+InitialCommunitiesMap   ./NECN-succession_InitialCommunities.gis
 
-ClimateConfigFile	climate-generator.txt
+ClimateConfigFile	./NECN-succession_ClimateGenerator.txt
 
 CalibrateMode 	no
 
@@ -17,9 +17,9 @@ WaterDecayFunction Ratio <<Linear or Ratio
 
 ProbEstablishAdjust 1.0
 
-ANPPMapNames		necn/ag_npp-{timestep}.gis
+ANPPMapNames		necn/NECN-ag_anpp-{timestep}.gis
 ANPPMapFrequency	10
-ANEEMapNames		necn/nee-{timestep}.gis
+ANEEMapNames		necn/NECN-nee-{timestep}.gis
 ANEEMapFrequency	10
 
 
@@ -200,7 +200,7 @@ tiliamer   	37500	37500
 ulmuamer    	20000	20000
 	   
 	 
-AgeOnlyDisturbances:BiomassParameters  bio-reductions-standard.txt
+AgeOnlyDisturbances:BiomassParameters    ./NECN-succession_StdBiomassReductions.txt
  	 
 		 	 
 		 	 
