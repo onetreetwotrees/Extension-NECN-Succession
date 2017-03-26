@@ -1,7 +1,7 @@
 Title:			README_NECNSuccession4.2
 Project:		LANDIS-II Landscape Change Model
 Project Component:	Extension-NECN-Succession
-Repository:		https://github.com/LANDIS-II-Foundation/Extension-Biomass-Harvest
+Repository:		https://github.com/LANDIS-II-Foundation/Extension-NECN-Succession
 Author:			LANDIS-II Foundation
 Revision Date:		04 Mar 2017
 Final Date:		04 Mar 2017

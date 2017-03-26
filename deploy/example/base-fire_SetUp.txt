@@ -15,7 +15,7 @@ Timestep  5
 >>----------------------
 >> FIRE REGIONS MAP
 >>----------------------
-InitialFireRegionsMap	./ecoregions.gis
+InitialFireRegionsMap	./ecoregions_MN.gis
 
 
 >> ---------------
