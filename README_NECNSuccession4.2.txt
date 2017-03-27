@@ -163,12 +163,6 @@ Solution 'base harvest' (1 project)
 ...src\obj\
 
 
-	d. Save all files as a solution (.sln) in the LOCAL repo before performing the 
-	   (re)build 
-	d1. from the pull down menus: File ==> Save All
-	d2. Save as
-C:\Users\...\Extension-Base-Harvest\src\base-harvest.sln
-
 
 ===== STEP3. (Re)build the project ==========================================================
 

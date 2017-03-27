@@ -39,11 +39,11 @@ Source: ..\..\src\bin\Debug\Landis.Library.Succession.dll; DestDir: {#ExtDir}; F
 
 
 ;Complete example for testing
-Source: ..\example\*.bat; DestDir: {#AppDir}\examples\NECN-succession
-Source: ..\example\*.txt; DestDir: {#AppDir}\examples\NECN-succession
-Source: ..\example\*.csv; DestDir: {#AppDir}\examples\NECN-succession
-Source: ..\example\*.gis; DestDir: {#AppDir}\examples\NECN-succession
-Source: ..\example\*.img; DestDir: {#AppDir}\examples\NECN-succession
+Source: ..\examples\*.bat; DestDir: {#AppDir}\examples\NECN Succession
+Source: ..\examples\*.txt; DestDir: {#AppDir}\examples\NECN Succession
+Source: ..\examples\*.csv; DestDir: {#AppDir}\examples\NECN Succession
+Source: ..\examples\*.gis; DestDir: {#AppDir}\examples\NECN Succession
+Source: ..\examples\*.img; DestDir: {#AppDir}\examples\NECN Succession
 
 
 ;Supporting files

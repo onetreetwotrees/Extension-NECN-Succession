@@ -25,7 +25,7 @@ InitialFireRegionsMap	./ecoregions_MN.gis
 >>  DynamicFireRegionTable 	<< Optional (uncomment to select) 
 
 >>Year	FileName  (this line always commented out)
->>   20		ecoregions.gis		<< Optional (uncomment to select)
+>>   20		ecoregions_MN.gis		<< Optional (uncomment to select)
 
 
 FuelCurveTable
