@@ -2,10 +2,10 @@ LandisData  Scenario
 
 Duration  100
 
-Species   	./species.txt
+Species   	./species_MN.txt
 
-Ecoregions      ./singlecell_ecoregions.txt
-EcoregionsMap   ./singlecell_ecoregions.img
+Ecoregions      ./singlecell_ecoregions_MN.txt
+EcoregionsMap   ./singlecell_ecoregions_MN.img
 
 CellLength  100 << meters, 100 x 100 m = 1 ha
 

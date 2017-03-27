@@ -39,11 +39,11 @@ Source: ..\..\src\bin\Debug\Landis.Library.Succession.dll; DestDir: {#ExtDir}; F
 
 
 ;Complete example for testing
-Source: ..\example\*.bat; DestDir: {#AppDir}\examples\NECN-succession
-Source: ..\example\*.txt; DestDir: {#AppDir}\examples\NECN-succession
-Source: ..\example\*.csv; DestDir: {#AppDir}\examples\NECN-succession
-Source: ..\example\*.gis; DestDir: {#AppDir}\examples\NECN-succession
-Source: ..\example\single_cell_3.img; DestDir: {#AppDir}\examples\NECN-succession
+Source: ..\examples\*.bat; DestDir: {#AppDir}\examples\NECN Succession
+Source: ..\examples\*.txt; DestDir: {#AppDir}\examples\NECN Succession
+Source: ..\examples\*.csv; DestDir: {#AppDir}\examples\NECN Succession
+Source: ..\examples\*.gis; DestDir: {#AppDir}\examples\NECN Succession
+Source: ..\examples\*.img; DestDir: {#AppDir}\examples\NECN Succession
 
 
 ;Supporting files
@@ -52,7 +52,7 @@ Source: ..\calibration\*.csv; DestDir: {#AppDir}\examples\NECN-succession\calibr
 
 ;LANDIS-II identifies the extension with the info in this .txt file
 ; NB. New releases must modify the name of this file and the info in it
-#define InfoTxt "NECN_Succession_4.2.txt"
+#define InfoTxt "NECN Succession 4.2.txt"
 Source: {#InfoTxt}; DestDir: {#LandisPlugInDir}
 
 

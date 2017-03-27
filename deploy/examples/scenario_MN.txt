@@ -2,10 +2,10 @@ LandisData  Scenario
 
 Duration  30
 
-Species   	./species.txt
+Species   	./species_MN.txt
 
-Ecoregions     ./ecoregions.txt
-EcoregionsMap   ./ecoregions.gis
+Ecoregions     ./ecoregions_MN.txt
+EcoregionsMap   ./ecoregions_MN.gis
 
 CellLength  100 << meters, 100 x 100 m = 1 ha
 
@@ -16,7 +16,7 @@ CellLength  100 << meters, 100 x 100 m = 1 ha
 
 >>	1. Sekect ONE Succession Extension
 >>	2. Select ONE OR MORE Disturbance Extensions (but only ONE harvest extension)
->>	3. Select ONE OR MORE Other Extensions
+>>	3. Select ONE OR MORE (compatible) Output Extensions
 
 >>	Selection is made by uncommenting a line (ie, remove the >> symbols) 
 
@@ -37,19 +37,24 @@ CellLength  100 << meters, 100 x 100 m = 1 ha
 >> 	Disturbance Extensions   	Initialization File
 >>	 ----------------------   	-------------------
 	"Base Fire"			base-fire_SetUp.txt
+	"Base Wind"			base-wind_SetUp.txt
+>>	"Base BDA"			base-BDA_SetUp.txt
+>>	"Base Harvest"			base-harvest_SetUp.txt
 	"Biomass Harvest"		biomass-harvest_SetUp.txt
-
 
 >>   DisturbancesRandomOrder  yes  << optional parameter; default = no
 
 
 
 >> ------------------------
->> OTHER EXTENSONS
+>> OUTPUT EXTENSONS
 >> ----------------------
 
->> 	Other Extensions         	Initialization File
+>> 	Output Extensions         	Initialization File
 >>	 ----------------         	------------------
+	"Output Max Species Age"	output-max-spp-age_SetUp.txt
+	"Output Cohort Statistics"	output-cohort-stats_SetUp.txt
+
 
 
 >> RandomNumberSeed  147  << optional parameter; uncomment for reproducibilty tests

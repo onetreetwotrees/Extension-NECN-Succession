@@ -1,7 +1,7 @@
 Title:			README_NECNSuccession4.2
 Project:		LANDIS-II Landscape Change Model
 Project Component:	Extension-NECN-Succession
-Repository:		https://github.com/LANDIS-II-Foundation/Extension-Biomass-Harvest
+Repository:		https://github.com/LANDIS-II-Foundation/Extension-NECN-Succession
 Author:			LANDIS-II Foundation
 Revision Date:		04 Mar 2017
 Final Date:		04 Mar 2017
@@ -162,12 +162,6 @@ Solution 'base harvest' (1 project)
 ...src\bin\		
 ...src\obj\
 
-
-	d. Save all files as a solution (.sln) in the LOCAL repo before performing the 
-	   (re)build 
-	d1. from the pull down menus: File ==> Save All
-	d2. Save as
-C:\Users\...\Extension-Base-Harvest\src\base-harvest.sln
 
 
 ===== STEP3. (Re)build the project ==========================================================
