@@ -36,11 +36,11 @@ CellLength  100 << meters, 100 x 100 m = 1 ha
 
 >> 	Disturbance Extensions   	Initialization File
 >>	 ----------------------   	-------------------
-	"Base Fire"			base-fire_SetUp.txt
+>>	"Base Fire"			base-fire_SetUp.txt
 	"Base Wind"			base-wind_SetUp.txt
 >>	"Base BDA"			base-BDA_SetUp.txt
 >>	"Base Harvest"			base-harvest_SetUp.txt
-	"Biomass Harvest"		biomass-harvest_SetUp.txt
+>>	"Biomass Harvest"		biomass-harvest_SetUp.txt
 
 >>   DisturbancesRandomOrder  yes  << optional parameter; default = no
 
