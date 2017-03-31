@@ -8,8 +8,6 @@ namespace Landis.Extension.Succession.NetEcosystemCN
 {
     public class PrimaryLog
     {
-            //log.WriteLine("");
-
         [DataFieldAttribute(Unit = FieldUnits.Year, Desc = "Simulation Year")]
         public int Time {set; get;}
 
@@ -31,7 +29,6 @@ namespace Landis.Extension.Succession.NetEcosystemCN
         [DataFieldAttribute(Unit = FieldUnits.g_B_m2, Desc = "Aboveground Biomass", Format = "0.0")]
         public double AGB { get; set; }
         
-        //log.Write("AG_NPPC, BG_NPPC, LitterfallC, AgeMortality, ");
         [DataFieldAttribute(Unit = FieldUnits.g_C_m2_yr1, Desc = "Aboveground NPP C", Format = "0.0")]
         public double AG_NPPC { get; set; }
         
@@ -44,7 +41,6 @@ namespace Landis.Extension.Succession.NetEcosystemCN
         [DataFieldAttribute(Unit = FieldUnits.g_B_m2_yr1, Desc = "Age Mortality Biomass", Format = "0.0")]
         public double AgeMortality { get; set; }
         
-        //log.Write("MineralN, TotalN, GrossMineralization, ");
         [DataFieldAttribute(Unit = FieldUnits.g_N_m2, Desc = "Mineral N", Format = "0.00")]
         public double MineralN { get; set; }
         
@@ -54,7 +50,6 @@ namespace Landis.Extension.Succession.NetEcosystemCN
         [DataFieldAttribute(Unit = FieldUnits.g_N_m2, Desc = "Gross Mineralization", Format = "0.0")]
         public double GrossMineralization { get; set; }
 
-        //log.Write("C:LeafFRoot, C:WoodCRoot, C:DeadWood, C:DeadCRoot, ");
         [DataFieldAttribute(Unit = FieldUnits.g_C_m2, Desc = "Leaf C", Format = "0.0")]
         public double C_Leaf { get; set; }
 
@@ -73,7 +68,6 @@ namespace Landis.Extension.Succession.NetEcosystemCN
         [DataFieldAttribute(Unit = FieldUnits.g_C_m2, Desc = "Dead Coarse Root C", Format = "0.0")]
         public double C_DeadCRoot { get; set; }
 
-        //log.Write("C:SurfStruc, C:SurfMeta, C:SoilStruc, C:SoilMeta, ");
         [DataFieldAttribute(Unit = FieldUnits.g_C_m2, Desc = "Dead Leaf Structural C", Format = "0.0")]
         public double C_DeadLeaf_Struc { get; set; }
 
@@ -86,7 +80,6 @@ namespace Landis.Extension.Succession.NetEcosystemCN
         [DataFieldAttribute(Unit = FieldUnits.g_C_m2, Desc = "Dead Fine RootMetabolic C", Format = "0.0")]
         public double C_DeadFRoot_Meta { get; set; }
 
-        //log.Write("C:SOM1surf, C:SOM1soil, C:SOM2, C:SOM3, ");
         [DataFieldAttribute(Unit = FieldUnits.g_C_m2, Desc = "SOM1 Surface C", Format = "0.0")]
         public double C_SOM1surf { get; set; }
 
@@ -99,7 +92,6 @@ namespace Landis.Extension.Succession.NetEcosystemCN
         [DataFieldAttribute(Unit = FieldUnits.g_C_m2, Desc = "SOM3 C", Format = "0.0")]
         public double C_SOM3 { get; set; }
 
-        //log.Write("N:CohortLeaf, N:CohortWood, N:DeadWood, N:DeadRoot, ");
         [DataFieldAttribute(Unit = FieldUnits.g_N_m2, Desc = "Leaf N", Format = "0.0")]
         public double N_Leaf { get; set; }
 
@@ -118,7 +110,6 @@ namespace Landis.Extension.Succession.NetEcosystemCN
         [DataFieldAttribute(Unit = FieldUnits.g_N_m2, Desc = "Dead Coarse Root N", Format = "0.0")]
         public double N_DeadCRoot { get; set; }
 
-        //log.Write("N:SurfStruc, N:SurfMeta, N:SoilStruc, N:SoilMeta, ");
         [DataFieldAttribute(Unit = FieldUnits.g_N_m2, Desc = "Dead Leaf Structural N", Format = "0.0")]
         public double N_DeadLeaf_Struc { get; set; }
 
@@ -131,7 +122,6 @@ namespace Landis.Extension.Succession.NetEcosystemCN
         [DataFieldAttribute(Unit = FieldUnits.g_N_m2, Desc = "Dead Fine Root Metabolic N", Format = "0.0")]
         public double N_DeadFRoot_Meta { get; set; }
 
-        //log.Write("N:SOM1surf, N:SOM1soil, N:SOM2, N:SOM3, ");
         [DataFieldAttribute(Unit = FieldUnits.g_N_m2, Desc = "SOM1 Surface N", Format = "0.0")]
         public double N_SOM1surf { get; set; }
 
@@ -144,7 +134,6 @@ namespace Landis.Extension.Succession.NetEcosystemCN
         [DataFieldAttribute(Unit = FieldUnits.g_N_m2, Desc = "SOM3 N", Format = "0.0")]
         public double N_SOM3 { get; set; }
 
-        //log.Write("SurfStrucNetMin, SurfMetaNetMin, SoilStrucNetMin, SoilMetaNetMin, ");
         [DataFieldAttribute(Unit = FieldUnits.g_N_m2, Desc = "Surface Structural Net Mineralization", Format = "0.0")]
         public double SurfStrucNetMin { get; set; }
 
@@ -157,7 +146,6 @@ namespace Landis.Extension.Succession.NetEcosystemCN
         [DataFieldAttribute(Unit = FieldUnits.g_N_m2, Desc = "Soil Metabolic Net Mineralization", Format = "0.0")]
         public double SoilMetaNetMin { get; set; }
 
-        //log.Write("SOM1surfNetMin, SOM1soilNetMin, SOM2NetMin, SOM3NetMin, ");
         [DataFieldAttribute(Unit = FieldUnits.g_N_m2, Desc = "SOM1 Surface Net Mineralization", Format = "0.0")]
         public double SOM1surfNetMin { get; set; }
 
@@ -173,7 +161,6 @@ namespace Landis.Extension.Succession.NetEcosystemCN
         [DataFieldAttribute(Unit = FieldUnits.g_N_m2, Desc = "Total Nitrogen Deposition per Timestep", Format = "0.00")]
         public double TotalNdep { get; set; }
 
-        //log.Write("StreamC, StreamN, FireCEfflux, FireNEfflux, ");
         [DataFieldAttribute(Unit = FieldUnits.g_C_m2, Desc = "Stream C", Format = "0.00")]
         public double StreamC { get; set; }
 
