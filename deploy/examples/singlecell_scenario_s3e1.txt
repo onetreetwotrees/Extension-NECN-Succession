@@ -2,17 +2,17 @@ LandisData  Scenario
 
 Duration  100
 
-Species   	./species_MN.txt
+Species   	./species_s3e1.txt
 
-Ecoregions      ./singlecell_ecoregions_MN.txt
-EcoregionsMap   ./singlecell_ecoregions_MN.img
+Ecoregions      ./singlecell_ecoregions_s3e1.txt
+EcoregionsMap   ./singlecell_ecoregions_s3e1.img
 
 CellLength  100 << meters, 100 x 100 m = 1 ha
 
 
 >> Succession Extension     		Initialization File
 >> --------------------     		-------------------
-   "NetEcosystemCN Succession"		NECN-succession-singlecell_SetUp.txt
+   "NECN Succession"			NECN-succession-singlecell_SetUp_s3e1.txt
 
 >> Disturbance Extensions   Initialization File
 >> ----------------------   -------------------
