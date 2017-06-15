@@ -3,8 +3,8 @@ LandisData   Extension
 Name         "NECN Succession"
 Version      4.2
 Type         succession
-Assembly     Landis.Extension.Succession.NetEcosystemCarbonNitrogen
-Class        Landis.Extension.Succession.NetEcosystemCN.PlugIn
+Assembly     Landis.Extension.Succession.NECN
+Class        Landis.Extension.Succession.NECN.PlugIn
 Description  "Succession with complete Carbon and Nitrogen Cycling"
 UserGuide    "LANDIS-II Net Ecosystem CN Succession v4.1 User Guide.pdf"
 CoreVersion  6.0
