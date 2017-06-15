@@ -1,6 +1,6 @@
 LandisData   Extension
 
-Name         "NetEcosystemCN Succession"
+Name         "NECN Succession"
 Version      4.2
 Type         succession
 Assembly     Landis.Extension.Succession.NetEcosystemCarbonNitrogen
