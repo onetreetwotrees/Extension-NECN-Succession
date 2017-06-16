@@ -38,11 +38,11 @@ Source: ..\..\src\bin\Debug\Landis.Library.Succession.dll; DestDir: {#ExtDir}; F
 
 
 ;Complete example for testing
-Source: ..\examples\*.bat; DestDir: {#AppDir}\examples\NECN Succession
-Source: ..\examples\*.txt; DestDir: {#AppDir}\examples\NECN Succession
-Source: ..\examples\*.csv; DestDir: {#AppDir}\examples\NECN Succession
-Source: ..\examples\*.gis; DestDir: {#AppDir}\examples\NECN Succession
-Source: ..\examples\*.img; DestDir: {#AppDir}\examples\NECN Succession
+Source: ..\examples\*.bat; DestDir: {#AppDir}\examples\NECN Succession; Flags: replacesameversion
+Source: ..\examples\*.txt; DestDir: {#AppDir}\examples\NECN Succession; Flags: replacesameversion
+Source: ..\examples\*.csv; DestDir: {#AppDir}\examples\NECN Succession; Flags: replacesameversion
+Source: ..\examples\*.gis; DestDir: {#AppDir}\examples\NECN Succession; Flags: replacesameversion
+Source: ..\examples\*.img; DestDir: {#AppDir}\examples\NECN Succession; Flags: replacesameversion
 
 
 ;Supporting files
