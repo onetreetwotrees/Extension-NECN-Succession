@@ -1,39 +1,44 @@
 LandisData  "NECN Succession"
 
-Timestep  1
 
-SeedingAlgorithm  WardSeedDispersal
+>>------------------
+>> REQUIRED INPUTS
+>>------------------
 
-InitialCommunities      ./NECN-succession-singlecell_InitialCommunities.txt
-InitialCommunitiesMap   ./NECN-succession-singlecell_InitialCommunities.img
+Timestep  			5
 
-ClimateConfigFile	./NECN-succession-singlecell_ClimateGenerator.txt
+SeedingAlgorithm  		WardSeedDispersal
 
-CalibrateMode 	yes
+InitialCommunities      	./NECN-succession_InitialCommunities_s3e1.txt
+InitialCommunitiesMap   	./NECN-succession_InitialCommunities_s3e1.gis
 
-SpinupMortalityFraction 0.0002
+ClimateConfigFile		./NECN-succession_ClimateGenerator.txt
 
-WaterDecayFunction Ratio <<Linear or Ratio
+CalibrateMode 			no
 
-ProbEstablishAdjust 1.0
+SpinupMortalityFraction 	0.0002
 
-ANPPMapNames		necn-singlestep/NECN-ag_npp-{timestep}.gis
-ANPPMapFrequency	10
-ANEEMapNames		necn-singlestep/NECN-nee-{timestep}.gis
-ANEEMapFrequency	10
+WaterDecayFunction 		Ratio <<Linear or Ratio
 
+ProbEstablishAdjust 		1.0
+
+
+
+>>----------------------------
+>> LIFE HISTORY PARAMETERS
+>>----------------------------
 
 AvailableLightBiomass
 
 >> Shade	Percent Max Biomass
 >> Class	by Ecoregions
 >> ----------	--------------------	
-	        MN100    
-	1	25%        
-	2	45%       
-	3	56%        
-	4	70%       
-	5	90%      
+	        MN101  MN102    
+	1	25%    	25%     
+	2	45%     45% 
+	3	56%     56% 
+	4	70%     70% 
+	5	90% 	90% 
 
 LightEstablishmentTable
 >> Spp Shade	Probability
@@ -96,21 +101,23 @@ SMAPLE  1	32	42	1.2	1.5	0.35	-0.8	1700	10	1.0	0.8	0.51	0.003	15	9	0.25	  0.35
 WPINE  	2	25	40	1	3	0.48	-0.8	2000	5	1.0	0.8	0.6	0.004	15	10	0.25	  0.35
 HVFST	3	25	45	1	4	0.3	-0.8	700	7	1.0	0.8	0.6	0.004	15	9	0.25	  0.35
 ASPEN 	4	20	40	0.5	5	0.3	-0.8	650	6	1.0	0.8	0.6	0.004	15	9	0.25	  0.35
->> Note:  The on-line Century guide and default parameters suggest MaxLAI = 20.0
+
+>> Note:  The on-line Century guide and 
+>> default parameters suggest MaxLAI = 20.0
 
 InitialEcoregionParameters
 >> 	SOM1	SOM1	SOM1	SOM1	SOM2	SOM2	SOM3	SOM3	Minrl
 >> 	C	N	C	N	C	N	C	N	N
 >> 	surf	surf	soil	soil
-MN100	60.36	3.35	60.36	7.54	1307.69	42.18	643.79	25.75	26.7  <<Used ecoregion 404 because that's the most common region in 212N
-
+MN101	60.36	3.35	60.36	7.54	1307.69	42.18	643.79	25.75	26.7  <<Used ecoregion 404 because that's the most common region in 212N
+MN102	60.36	3.35	60.36	7.54	1307.69	42.18	643.79	25.75	26.7 
 	
 EcoregionParameters
 >>	Soil	Percent	Percent	Field	Wilt	StormF	BaseF	Drain	Atmos	Atmos	Lat-	Decay	Decay	Decay	Decay	Denit
 >>	Depth	Clay	Sand	Cap	Point	Fract	Fract		N	N	itude	Rate	Rate	Rate	Rate	Slope
 >>      cm					frac	frac		slope	inter		Surf	SOM1	SOM2	SOM3
-MN100	137	0.26	0.21	0.13	0.06	0.1	0.1	0.80	0.08	0.147	47.43	0.1	0.05	0.01	0.0001	0.001
-
+MN101	137	0.26	0.21	0.13	0.06	0.1	0.1	0.80	0.08	0.147	47.43	0.1	0.05	0.01	0.0001	0.001
+MN102	137	0.26	0.21	0.13	0.06	0.1	0.1	0.80	0.08	0.147	47.43	0.1	0.05	0.01	0.0001	0.001
 
 FireReductionParameters
 >>	Severity	Wood	Litter
@@ -126,86 +133,88 @@ MonthlyMaxNPP <<PRDX(3) from Century 4.0 (g Biomass / m2)
 
 >> Species      Ecoregions
 >> --------     ------------------
-		MN100
-abiebals   	357
-acernegu	141
-acerrubr   	141
-acersacc   	158
-acerspic	141
-betualle   	274
-betupapy   	279
-fraxamer   	256
-fraxnigr	253
-fraxpenn	256
-larilari	243
-ostrvirg	205
-piceglau   	453
-picemari	419
-pinubank   	235
-pinuresi   	295
-pinustro   	335
-popubals	323
-popudelt	323
-popugran	317
-poputrem   	323
-prunpens	354
-prunsero	354
-prunvirg	354
-queralba	316
-querelli   	316
-quermacr	335
-querrubr	315
-salix 		274
-thujocci   	243
-tiliamer   	205
-ulmuamer    	196
-ulmurubr	196
-
-	
-
-		 	   
+		MN101	MN102
+abiebals   	357	357
+acernegu	141	141
+acerrubr   	141	141
+acersacc   	158	158
+acerspic	141	141
+betualle   	274	274
+betupapy   	279	279
+fraxamer   	256	256
+fraxnigr	253	253
+fraxpenn	256	256
+larilari	243	243
+ostrvirg	205	205
+piceglau   	453	453
+picemari	419	419
+pinubank   	235	235
+pinuresi   	295	295
+pinustro   	335	335
+popubals	323	323
+popudelt	323	323
+popugran	317	317
+poputrem   	323	323
+prunpens	354	354
+prunsero	354	354
+prunvirg	354	354
+queralba	316	316
+querelli   	316	316
+quermacr	335	335
+querrubr	315	315
+salix 		274	274
+thujocci   	243	243
+tiliamer   	205	205
+ulmuamer    	196	196
+ulmurubr	196	196
+	 	   
 MaxBiomass
-
 >> Species      Ecoregions
 >> --------     ------------------
-		MN100
-abiebals   	12300
-acernegu	18000
-acerrubr   	18000
-acersacc   	32400
-acerspic	18000
-betualle   	24500
-betupapy   	12500
-fraxamer   	25100
-fraxnigr	25100
-fraxpenn	25100
-larilari	7500
-ostrvirg	18200
-piceglau   	12500
-picemari	10000
-pinubank   	9000
-pinuresi   	15000
-pinustro   	15000
-popubals	12500
-popudelt	29900
-popugran	29900
-poputrem   	29900
-prunsero	18900
-prunvirg	18900
-queralba	21100
-querelli   	21100
-quermacr	21100
-querrubr	25000
-salix 		20000
-thujocci   	13000
-tiliamer   	37500
-ulmuamer    	20000
+		MN101	MN102
+abiebals   	12300	12300
+acernegu	18000	18000
+acerrubr   	18000	18000
+acersacc   	32400	32400
+acerspic	18000	18000
+betualle   	24500	24500
+betupapy   	12500	12500
+fraxamer   	25100	25100
+fraxnigr	25100	25100
+fraxpenn	25100	25100
+larilari	7500	7500
+ostrvirg	18200	18200
+piceglau   	12500	12500
+picemari	10000	10000
+pinubank   	9000	9000
+pinuresi   	15000	15000
+pinustro   	15000	15000
+popubals	12500	12500
+popudelt	29900	29900
+popugran	29900	29900
+poputrem   	29900	29900
+prunsero	18900	18900
+prunvirg	18900	18900
+queralba	21100	21100
+querelli   	21100	21100
+quermacr	21100	21100
+querrubr	25000	25000
+salix 		20000	20000
+thujocci   	13000	13000	
+tiliamer   	37500	37500
+ulmuamer    	20000	20000
+	   
+	 
+AgeOnlyDisturbances:BiomassParameters    ./NECN-succession_StdBiomassReductions.txt
 
-	
-		 	   
- 	 
-AgeOnlyDisturbances:BiomassParameters   ./NECN-succession_StdBiomassReductions.txt
- 	 
-		 	 
+
+>>------------------
+>> OUTPUTS
+>>------------------- 
+
+ANPPMapNames		necn/NECN-ag_anpp-{timestep}.gis
+ANPPMapFrequency	10
+ANEEMapNames		necn/NECN-nee-{timestep}.gis
+ANEEMapFrequency	10		 	 
 		 	 
 			

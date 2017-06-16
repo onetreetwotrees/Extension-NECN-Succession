@@ -1,22 +1,20 @@
 LandisData  "Base Harvest"
 
 
-Timestep    10
+>>----------------
+>> REQUIRED INPUTS
+>>-----------------
+Timestep		10
 
+ManagementAreas 	./base-harvest_Management_s3e1.gis
 
+Stands     		./base-harvest_Stand_s3e1.gis
 
->>-------------------------
->> HARVEST MAPS
->>---------------------------
-
-ManagementAreas 	./base-harvest_Management.gis
-Stands     		./base-harvest_Stand.gis
 
 
 >> -------------------------
->> HARVEST PRESCRIPTIONS
+>> HARVESTING PRESCRIPTIONS
 >> -------------------------
-
 
 >>---- PRESCRIPTION_1 ---------------------------------------
 Prescription MaxAgeClearcut
@@ -83,7 +81,7 @@ Prescription    OakPatchCutting
 
 
 >> ----------------------------------
->> HARVEST IMPLEMENTATION 
+>> HARVESTING IMPLEMENTATION 
 >> ---------------------------------
 
     HarvestImplementations
