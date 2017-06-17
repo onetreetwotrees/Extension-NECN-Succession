@@ -40,7 +40,7 @@ Source: ..\examples\*.img; DestDir: {#AppDir}\examples\NECN Succession; Flags: r
 
 
 ;Supporting files
-Source: ..\calibration\*.csv; DestDir: {#AppDir}\examples\NECN-succession\calibration
+Source: ..\calibration\*.csv; DestDir: {#AppDir}\examples\NECN Succession\calibration
 
 
 ;LANDIS-II identifies the extension with the info in this .txt file
