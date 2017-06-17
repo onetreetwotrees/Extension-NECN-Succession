@@ -6,5 +6,4 @@ Type         succession
 Assembly     Landis.Extension.Succession.NetEcosystemCarbonNitrogen
 Class        Landis.Extension.Succession.NetEcosystemCN.PlugIn
 Description  "Succession with complete Carbon and Nitrogen Cycling"
-UserGuide    "LANDIS-II Net Ecosystem CN Succession v4.2 User Guide.pdf"
 CoreVersion  6.0
