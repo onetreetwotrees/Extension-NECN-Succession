@@ -31,12 +31,6 @@ Source: ..\..\src\bin\Debug\Landis.Library.Succession.dll; DestDir: {#ExtDir}; F
 
 
 
-;User Guides are no longer shipped with installer
-;Source: docs\LANDIS-II Net Ecosystem CN Succession v4.1 User Guide.pdf; DestDir: {#AppDir}\docs
-;Source: docs\LANDIS-II Climate Library v1.0 User Guide.pdf; DestDir: {#AppDir}\docs
-
-
-
 ;Complete example for testing
 Source: ..\examples\*.bat; DestDir: {#AppDir}\examples\NECN Succession; Flags: replacesameversion
 Source: ..\examples\*.txt; DestDir: {#AppDir}\examples\NECN Succession; Flags: replacesameversion
