@@ -1,6 +1,6 @@
 #define PackageName      "NECN Succession"
 #define PackageNameLong  "NECN Succession Extension"
-#define Version          "4.2"
+#define Version          "4.2.1"
 #define ReleaseType      "official"
 #define CoreVersion      "6.0"
 #define CoreReleaseAbbr  ""
@@ -29,8 +29,6 @@ Source: ..\..\src\bin\Debug\Landis.Library.LeafBiomassCohorts.dll; DestDir: {#Ex
 Source: ..\..\src\bin\Debug\Landis.Library.Metadata.dll; DestDir: {#ExtDir}; Flags:replacesameversion
 Source: ..\..\src\bin\Debug\Landis.Library.Succession.dll; DestDir: {#ExtDir}; Flags: replacesameversion
 
-
-
 ;Complete example for testing
 Source: ..\examples\*.bat; DestDir: {#AppDir}\examples\NECN Succession; Flags: replacesameversion
 Source: ..\examples\*.txt; DestDir: {#AppDir}\examples\NECN Succession; Flags: replacesameversion
@@ -47,10 +45,6 @@ Source: ..\calibration\*.csv; DestDir: {#AppDir}\examples\NECN Succession\calibr
 ; NB. New releases must modify the name of this file and the info in it
 #define InfoTxt "NECN Succession 4.2.txt"
 Source: {#InfoTxt}; DestDir: {#LandisPlugInDir}
-
-
-;;[InstallDelete]
-;;Type: files; Name: "{#AppDir}\bin\Landis.Library.Climate.dll"
 
 [Run]
 ;; Run plug-in admin tool to add an entry for the plug-in

@@ -215,6 +215,8 @@ namespace Landis.Extension.Succession.NetEcosystemCN
             if (pet > 0.0) ratioPrecipPET = availableWater / pet;  //assumes that the ratio is the amount of incoming precip divided by PET.
 
             //SiteVars.NumberDryDays[site] = numberDryDays; //Calculated above using method below.
+            SiteVars.AnnualPPT_AET[site] = H2Oinputs - actualET;
+            SiteVars.AnnualSoilMoisture[site] = pet - actualET;
             SiteVars.LiquidSnowPack[site] = liquidSnowpack;
             SiteVars.WaterMovement[site] = waterMovement;
             SiteVars.AvailableWater[site] = availableWater;  //available to plants for growth     

@@ -38,7 +38,6 @@ namespace Landis.Extension.Succession.NetEcosystemCN
         public static int TotalCMapFrequency;
         public static int SuccessionTimeStep;
         public static double ProbEstablishAdjust;
-
         public static int FutureClimateBaseYear;
 
         //---------------------------------------------------------------------
@@ -155,6 +154,24 @@ namespace Landis.Extension.Succession.NetEcosystemCN
                 Outputs.WritePrimaryLogFile(PlugIn.ModelCore.CurrentTime);
                 Outputs.WriteShortPrimaryLogFile(PlugIn.ModelCore.CurrentTime);
 
+                string pathH2O = MapNames.ReplaceTemplateVars(@"NECN_Hydro\Annual-water-budget-{timestep}.img", PlugIn.ModelCore.CurrentTime);
+                using (IOutputRaster<IntPixel> outputRaster = PlugIn.ModelCore.CreateRaster<IntPixel>(pathH2O, PlugIn.ModelCore.Landscape.Dimensions))
+                {
+                    IntPixel pixel = outputRaster.BufferPixel;
+                    foreach (Site site in PlugIn.ModelCore.Landscape.AllSites)
+                    {
+                        if (site.IsActive)
+                        {
+                            pixel.MapCode.Value = (int)((SiteVars.AnnualPPT_AET[site]));
+                        }
+                        else
+                        {
+                            //  Inactive site
+                            pixel.MapCode.Value = 0;
+                        }
+                        outputRaster.WriteBufferPixel();
+                    }
+                }
 
                 if (SoilCarbonMapNames != null)// && (PlugIn.ModelCore.CurrentTime % SoilCarbonMapFrequency) == 0)
                 {

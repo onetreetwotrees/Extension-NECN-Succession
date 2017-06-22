@@ -79,6 +79,8 @@ namespace Landis.Extension.Succession.NetEcosystemCN
         private static ISiteVar<double[]> monthlymineralN;
         private static ISiteVar<double> frassC;
         private static ISiteVar<double> lai;
+        private static ISiteVar<double> annualPPT_AET; //Annual water budget calculation. I'm coppying LAI implementation
+        private static ISiteVar<double> annualSoilMoisture; //Annual soil moisture calculation, defined as pet - aet
                 
         public static ISiteVar<double> TotalWoodBiomass;
         public static ISiteVar<int> PrevYearMortality;
@@ -162,6 +164,8 @@ namespace Landis.Extension.Succession.NetEcosystemCN
             monthlymineralN     = PlugIn.ModelCore.Landscape.NewSiteVar<double[]>();
             frassC              = PlugIn.ModelCore.Landscape.NewSiteVar<double>();
             lai                 = PlugIn.ModelCore.Landscape.NewSiteVar<double>();
+            annualPPT_AET = PlugIn.ModelCore.Landscape.NewSiteVar<double>();
+            annualSoilMoisture = PlugIn.ModelCore.Landscape.NewSiteVar<double>();
             HarvestPrescriptionName = PlugIn.ModelCore.GetSiteVar<string>("Harvest.PrescriptionName");
 
             CohortResorbedNallocation = PlugIn.ModelCore.Landscape.NewSiteVar<Dictionary<int, Dictionary<int, double>>>();
@@ -305,6 +309,9 @@ namespace Landis.Extension.Succession.NetEcosystemCN
             SiteVars.FrassC[site] = 0.0;
             SiteVars.LAI[site] = 0.0;
             SiteVars.WoodMortality[site] = 0.0;
+            SiteVars.AnnualPPT_AET[site] = 0.0;
+            SiteVars.AnnualSoilMoisture[site] = 0.0;
+
 
             //SiteVars.FireEfflux[site] = 0.0;
                         
@@ -875,6 +882,40 @@ namespace Landis.Extension.Succession.NetEcosystemCN
             set
             {
                 lai = value;
+            }
+
+
+        }
+        //---------------------------------------------------------------------
+        /// <summary>
+        /// A summary of Annual Water Budget (ppt - AET)
+        /// </summary>
+        public static ISiteVar<double> AnnualPPT_AET
+        {
+            get
+            {
+                return annualPPT_AET;
+            }
+            set
+            {
+                annualPPT_AET = value;
+            }
+
+
+        }
+        //---------------------------------------------------------------------
+        /// <summary>
+        /// A summary of Soil Moisture (PET - AET)
+        /// </summary>
+        public static ISiteVar<double> AnnualSoilMoisture
+        {
+            get
+            {
+                return annualSoilMoisture;
+            }
+            set
+            {
+                annualSoilMoisture = value;
             }
 
 
