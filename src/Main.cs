@@ -1,5 +1,4 @@
-//  Copyright 2007-2010 Portland State University, University of Wisconsin-Madison
-//  Author: Robert Scheller, Ben Sulman
+//  Author: Robert Scheller
 
 using Landis.Core;
 using Landis.SpatialModeling;
