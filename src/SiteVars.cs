@@ -1,5 +1,4 @@
-//  Copyright 2007-2010 Portland State University, University of Wisconsin-Madison
-//  Author: Robert Scheller, Ben Sulman
+//  Authors: Robert Scheller, Melissa Lucash
 
 using Landis.Core;
 using Landis.SpatialModeling;
@@ -170,10 +169,7 @@ namespace Landis.Extension.Succession.NetEcosystemCN
 
             CohortResorbedNallocation = PlugIn.ModelCore.Landscape.NewSiteVar<Dictionary<int, Dictionary<int, double>>>();
 
-
-
-
-            PlugIn.ModelCore.RegisterSiteVar(cohorts, "Succession.LeafBiomassCohorts");
+            //PlugIn.ModelCore.RegisterSiteVar(cohorts, "Succession.LeafBiomassCohorts");
             PlugIn.ModelCore.RegisterSiteVar(baseCohortsSiteVar, "Succession.AgeCohorts");
             PlugIn.ModelCore.RegisterSiteVar(biomassCohortsSiteVar, "Succession.BiomassCohorts");
             
@@ -181,8 +177,6 @@ namespace Landis.Extension.Succession.NetEcosystemCN
             {
                 //  site cohorts are initialized by the PlugIn.InitializeSite method
                 
-                //leafBiomassCohorts[site]    = new SiteCohorts();
-                //Console.Write("-");
                 surfaceDeadWood[site]       = new Layer(LayerName.Wood, LayerType.Surface);
                 soilDeadWood[site]          = new Layer(LayerName.CoarseRoot, LayerType.Soil);
                 
