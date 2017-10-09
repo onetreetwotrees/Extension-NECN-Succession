@@ -27,7 +27,7 @@ Source: ..\..\src\bin\Debug\Landis.Library.Climate-v1.1.dll; DestDir: {#ExtDir};
 Source: ..\..\src\bin\Debug\Landis.Library.Cohorts.dll; DestDir: {#ExtDir}; Flags: replacesameversion
 Source: ..\..\src\bin\Debug\Landis.Library.LeafBiomassCohorts.dll; DestDir: {#ExtDir}; Flags: replacesameversion
 Source: ..\..\src\bin\Debug\Landis.Library.Metadata.dll; DestDir: {#ExtDir}; Flags:replacesameversion
-Source: ..\..\src\bin\Debug\Landis.Library.Succession.dll; DestDir: {#ExtDir}; Flags: replacesameversion
+Source: ..\..\src\bin\Debug\Landis.Library.Succession-v5.dll; DestDir: {#ExtDir}; Flags: replacesameversion
 
 ;Complete example for testing
 Source: ..\examples\*.bat; DestDir: {#AppDir}\examples\NECN Succession; Flags: replacesameversion
