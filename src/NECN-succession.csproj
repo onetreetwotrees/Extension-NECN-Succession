@@ -44,15 +44,15 @@
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Landis.Library.Biomass-v1">
+    <Reference Include="Landis.Library.Biomass-v1.0.1">
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Landis.Library.BiomassCohorts-v2">
+    <Reference Include="Landis.Library.BiomassCohorts-v2.0.1">
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Landis.Library.Climate-v1.1, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Landis.Library.Climate-v1.1">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Extension-SCRAPPLE\src\bin\debug\Landis.Library.Climate-v1.1.dll</HintPath>
     </Reference>
@@ -60,7 +60,7 @@
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Landis.Library.LeafBiomassCohorts">
+    <Reference Include="Landis.Library.LeafBiomassCohorts-v1.0.1">
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
@@ -148,11 +148,12 @@
   <PropertyGroup>
     <PostBuildEvent>
     </PostBuildEvent>
-  </PropertyGroup>
+</PropertyGroup>
+
   <PropertyGroup>
     <PreBuildEvent>call $(SolutionDir)\install-libs.cmd</PreBuildEvent>
   </PropertyGroup>
-  <!--
+<!--
   To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
