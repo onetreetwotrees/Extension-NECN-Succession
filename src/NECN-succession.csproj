@@ -52,9 +52,8 @@
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Landis.Library.Climate-v1.1">
+    <Reference Include="Landis.Library.Climate">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Extension-SCRAPPLE\src\bin\debug\Landis.Library.Climate-v1.1.dll</HintPath>
     </Reference>
     <Reference Include="Landis.Library.Cohorts">
       <SpecificVersion>False</SpecificVersion>
@@ -70,7 +69,6 @@
     </Reference>
     <Reference Include="Landis.Library.Succession-v5, Version=5.0.6491.14006, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Library-Succession\src\bin\Debug\Landis.Library.Succession-v5.dll</HintPath>
     </Reference>
     <Reference Include="Landis.SpatialModeling">
       <SpecificVersion>False</SpecificVersion>
