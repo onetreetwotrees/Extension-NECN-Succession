@@ -33,8 +33,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Edu.Wisc.Forest.Flel.Util">
-      <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
+    <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private> 
     </Reference>
     <Reference Include="Landis.Core">
       <SpecificVersion>False</SpecificVersion>
@@ -44,23 +44,23 @@
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Landis.Library.Biomass-v1.0.1">
+    <Reference Include="Landis.Library.Biomass-v1">
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Landis.Library.BiomassCohorts-v2.0.1">
+    <Reference Include="Landis.Library.BiomassCohorts-v2">
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Landis.Library.Climate-v1.1">
+    <Reference Include="Landis.Library.Climate">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Extension-SCRAPPLE\src\bin\debug\Landis.Library.Climate-v1.1.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Landis.Library.Cohorts">
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Landis.Library.LeafBiomassCohorts-v1.0.1">
+    <Reference Include="Landis.Library.LeafBiomassCohorts">
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
@@ -68,9 +68,9 @@
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Landis.Library.Succession-v5, Version=5.0.6491.14006, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Landis.Library.Succession-v5">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Library-Succession\src\bin\Debug\Landis.Library.Succession-v5.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Landis.SpatialModeling">
       <SpecificVersion>False</SpecificVersion>
@@ -99,7 +99,7 @@
     <Compile Include="HarvestEffects.cs" />
     <Compile Include="LitterType.cs">
       <SubType>Code</SubType>
-    </Compile>
+  </Compile>
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="metadata\MonthlyLog.cs" />
     <Compile Include="metadata\PrimaryLogShort.cs" />
@@ -148,12 +148,12 @@
   <PropertyGroup>
     <PostBuildEvent>
     </PostBuildEvent>
-</PropertyGroup>
-
+  </PropertyGroup>
+ <!--
   <PropertyGroup>
     <PreBuildEvent>call $(SolutionDir)\install-libs.cmd</PreBuildEvent>
   </PropertyGroup>
-<!--
+
   To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
