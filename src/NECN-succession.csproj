@@ -54,7 +54,6 @@
     </Reference>
     <Reference Include="Landis.Library.Climate">
       <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
     </Reference>
     <Reference Include="Landis.Library.Cohorts">
       <SpecificVersion>False</SpecificVersion>
@@ -70,7 +69,6 @@
     </Reference>
     <Reference Include="Landis.Library.Succession-v5">
       <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
     </Reference>
     <Reference Include="Landis.SpatialModeling">
       <SpecificVersion>False</SpecificVersion>
